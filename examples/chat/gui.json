@@ -1,0 +1,95 @@
+[
+	{
+		"type": "RadJav.GUI.MenuBar", 
+		"name": "menubar", 
+		"visibility": true, 
+		"children": [
+				{
+					"type": "RadJav.GUI.MenuItem", 
+					"name": "ProgramToolStripMenuItem", 
+					"text": "Program", 
+					"children": [
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "LoginToolStripMenuItem", 
+								"text": "Connect to Server...", 
+								"click": "connectToServer();"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "ToolStripMenuItem2", 
+								"text": "-", 
+								"createOnPlatforms": {
+										"HTML5": false
+									}
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "ExitToolStripMenuItem", 
+								"text": "Exit", 
+								"createOnPlatforms": {
+										"HTML5": false
+									}, 
+								"click": "RadJav.exit();"
+							}
+						]
+				}
+			]
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "label1", 
+		"visibility": true, 
+		"position": "12, 4", 
+		"size": "105, 13", 
+		"text": "Chat:"
+	}, 
+	{
+		"type": "RadJav.GUI.Textarea", 
+		"name": "chatarea", 
+		"visibility": true, 
+		"position": "12, 20", 
+		"size": "316, 233"
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "label2", 
+		"visibility": true, 
+		"position": "12, 262", 
+		"size": "53, 15", 
+		"text": "Message:"
+	}, 
+	{
+		"type": "RadJav.GUI.Textbox", 
+		"name": "message", 
+		"visibility": true, 
+		"position": "71, 259", 
+		"size": "176, 20"
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "send", 
+		"visibility": true, 
+		"position": "253, 257", 
+		"size": "75, 23", 
+		"text": "Send"
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "label3", 
+		"visibility": true, 
+		"position": "334, 4", 
+		"size": "130, 13", 
+		"text": "In Chat Room:"
+	}, 
+	{
+		"type": "RadJav.GUI.List", 
+		"name": "online", 
+		"visibility": true, 
+		"position": "334, 20", 
+		"size": "138, 264", 
+		"columns": [
+				{ "text": "Friends" }
+			]
+	}
+]

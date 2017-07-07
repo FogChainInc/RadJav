@@ -1,0 +1,81 @@
+policy_module(xrjv1, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type xrjv1_t;
+type xrjv1_exec_t;
+init_daemon_domain(xrjv1_t, xrjv1_exec_t)
+
+permissive xrjv1_t;
+
+type xrjv1_initrc_exec_t;
+init_script_file(xrjv1_initrc_exec_t)
+
+type xrjv1_conf_t;
+files_type(xrjv1_conf_t)
+
+type xrjv1_var_lib_t;
+files_type(xrjv1_var_lib_t)
+
+type xrjv1_var_run_t;
+files_type(xrjv1_var_run_t)
+
+type xrjv1_port_t;
+corenet_port(xrjv1_port_t)
+
+########################################
+#
+# xrjv1 local policy
+#
+allow xrjv1_t self:process { fork };
+
+allow xrjv1_t self:fifo_file rw_fifo_file_perms;
+allow xrjv1_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(xrjv1_t, xrjv1_conf_t, xrjv1_conf_t)
+manage_files_pattern(xrjv1_t, xrjv1_conf_t, xrjv1_conf_t)
+
+manage_dirs_pattern(xrjv1_t, xrjv1_var_lib_t, xrjv1_var_lib_t)
+manage_files_pattern(xrjv1_t, xrjv1_var_lib_t, xrjv1_var_lib_t)
+files_var_lib_filetrans(xrjv1_t, xrjv1_var_lib_t, { dir file })
+
+manage_dirs_pattern(xrjv1_t, xrjv1_var_run_t, xrjv1_var_run_t)
+manage_files_pattern(xrjv1_t, xrjv1_var_run_t, xrjv1_var_run_t)
+
+sysnet_dns_name_resolve(xrjv1_t)
+corenet_all_recvfrom_unlabeled(xrjv1_t)
+
+allow xrjv1_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(xrjv1_t)
+corenet_tcp_sendrecv_generic_node(xrjv1_t)
+corenet_tcp_sendrecv_all_ports(xrjv1_t)
+corenet_tcp_bind_generic_node(xrjv1_t)
+
+gen_require(`
+    type xrjv1_port_t;
+')
+allow xrjv1_t xrjv1_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type xrjv1_port_t;
+')
+allow xrjv1_t xrjv1_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(xrjv1_t)
+
+files_read_etc_files(xrjv1_t)
+
+miscfiles_read_localization(xrjv1_t)
+
+sysnet_dns_name_resolve(xrjv1_t)
+
+allow xrjv1_t xrjv1_exec_t:file execute_no_trans;
+allow xrjv1_t self:process setsched;
+corecmd_exec_ls(xrjv1_t)
+corenet_tcp_connect_http_port(xrjv1_t)
+dev_read_urand(xrjv1_t)
+fs_getattr_xattr_fs(xrjv1_t)
+kernel_read_system_state(xrjv1_t)

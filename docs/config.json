@@ -1,0 +1,9 @@
+{
+	"--": ["./temp/"], 
+	"--title": "RadJav API Documentation 0.1",
+	"--footer": "Documentation generated using <a href = \"https://github.com/senchalabs/jsduck\" target = \"_new\">JSDuck</a>&nbsp;&nbsp;|&nbsp;&nbsp;Copyright &copy; 2016, <a href = \"http://www.highersoftware.com/\" target = \"_new\">Higher Edge Software, LLC</a>",
+	"--warnings": ["-global"], 
+	"--builtin-classes": true, 
+	"--welcome": "./welcome.html", 
+	"--no-source": true
+}

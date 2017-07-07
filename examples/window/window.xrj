@@ -1,0 +1,18 @@
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				var win = new RadJav.GUI.Window ("win", "Window Example");
+				win.create ().then (function (win2)
+					{
+						RadJav.GUI.create ("Button", "button", "Say Hello", win2).then (
+											function (button)
+											{
+												button.on ("click", function ()
+													{
+														alert ("Hello World!");
+													});
+											});
+					});
+			});
+	});

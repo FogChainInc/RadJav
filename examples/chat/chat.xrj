@@ -1,0 +1,42 @@
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				var win = new RadJav.GUI.Window ("win", "Chat");
+				win.create ().then (function (win2)
+					{
+						var gotData = function (data)
+							{
+								var json = JSON.parse (data);
+								RadJav.GUI.createObjects (json, win2).then (function (objs)
+									{
+										for (var iIdx = 0; iIdx < objs.length; iIdx++)
+										{
+											var obj = objs[iIdx];
+
+											if (obj.name == "online")
+											{
+												var row = new RadJav.GUI.List.Row ();
+												row.addItem ("Alan");
+												obj.addRow (row);
+												var row = new RadJav.GUI.List.Row ();
+												row.addItem ("Stan");
+												obj.addRow (row);
+												var row = new RadJav.GUI.List.Row ();
+												row.addItem ("Mary");
+												obj.addRow (row);
+											}
+										}
+									});
+							};
+
+						if (RadJav.OS.HTML5 != null)
+							RadJav.Net.httpRequest ("./gui.json").then (gotData);
+						else
+						{
+							var data = RadJav.IO.TextFile.readEntireFile ("./gui.json");
+							gotData (data);
+						}
+					});
+			});
+	});

@@ -1,0 +1,8 @@
+/usr/bin/xrjv1-cli		--	gen_context(system_u:object_r:xrjv1_exec_t,s0)
+/usr/sbin/xrjv1d		--	gen_context(system_u:object_r:xrjv1_exec_t,s0)
+/usr/lib(64)?/xrjv1/xrjv1d		--	gen_context(system_u:object_r:xrjv1_exec_t,s0)
+
+/etc/xrjv1(/.*)?		gen_context(system_u:object_r:xrjv1_conf_t,s0)
+/var/lib/xrjv1(/.*)?		gen_context(system_u:object_r:xrjv1_var_lib_t,s0)
+
+(/var)?/run/xrjv1d(/.*)?   gen_context(system_u:object_r:xrjv1_var_run_t,s0)

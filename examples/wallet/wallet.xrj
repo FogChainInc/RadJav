@@ -1,0 +1,24 @@
+var walletWin = null;
+var walletWinLabel = null;
+
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				walletWin = new RadJav.GUI.Window ("walletWindow", "Wallet");
+				walletWin.create ().then (function (win)
+					{
+						RadJav.GUI.create ("Label", "label", "Connecting to network...", walletWin).then (
+							function (label)
+							{
+								walletWinLabel = label;
+
+								RadJav.BlockchainV1.on ("ready", function ()
+									{
+										walletWinLabel.setText ("Finished loading");
+									});
+								RadJav.BlockchainV1.connectToNetwork ();
+							});
+					});
+			});
+	});

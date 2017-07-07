@@ -1,0 +1,124 @@
+[
+	{
+		"type": "RadJav.GUI.MenuBar", 
+		"name": "menubar", 
+		"visibility": true, 
+		"children": [
+				{
+					"type": "RadJav.GUI.MenuItem", 
+					"name": "ProgramToolStripMenuItem", 
+					"text": "Program", 
+					"children": [
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "html5ExamplesItem", 
+								"text": "View HTML5 Examples Online", 
+								"click": "RadJav.OS.openWebBrowserURL('http://www.radjav.com/en_us/examples/');"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "desktopExamplesItem", 
+								"text": "View Desktop Examples", 
+								"createOnPlatforms": {
+										"WIN32": false, 
+										"WIN64": false, 
+										"LINUX32": false, 
+										"LINUX64": false, 
+										"MACOSX32": false, 
+										"MACOSX64": false
+									}, 
+								"click": "RadJav.OS.openWebBrowserURL('https://github.com/HigherEdgeSoftware/RadJav/releases');"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "exitMenuItem", 
+								"text": "Exit", 
+								"createOnPlatforms": {
+										"HTML5": false
+									}, 
+								"click": "RadJav.exit();"
+							}
+						]
+				}, 
+				{
+					"type": "RadJav.GUI.MenuItem", 
+					"name": "ProgramToolStripMenuItem", 
+					"text": "Help", 
+					"children": [
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "apiRefItem", 
+								"text": "API Reference", 
+								"click": "RadJav.OS.openWebBrowserURL('http://www.radjav.com/en_us/api-reference/');"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "wikiItem", 
+								"text": "Visit Wiki", 
+								"click": "RadJav.OS.openWebBrowserURL('https://github.com/HigherEdgeSoftware/RadJav/wiki');"
+							}
+						]
+				}
+			]
+	}, 
+	{
+		"type": "RadJav.GUI.Image", 
+		"name": "image1", 
+		"visibility": true, 
+		"position": "50, 15", 
+		"size": "400, 62", 
+		"image": "./image/radjav-med.png"
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "label1", 
+		"visibility": true, 
+		"position": "60, 95", 
+		"size": "500, 20", 
+		"text": "Welcome to RadJav. Click any of the buttons below to view an example."
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "button1", 
+		"visibility": true, 
+		"position": "43, 120", 
+		"size": "160, 65", 
+		"font": {
+				"size": 18
+			}, 
+		"text": "Hello World!"
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "button2", 
+		"visibility": true, 
+		"position": "284, 120", 
+		"size": "160, 65", 
+		"font": {
+				"size": 18
+			}, 
+		"text": "Webview Example"
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "button3", 
+		"visibility": true, 
+		"position": "43, 216", 
+		"size": "160, 65", 
+		"font": {
+				"size": 18
+			}, 
+		"text": "Image Example"
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "button4", 
+		"visibility": true, 
+		"position": "284, 216", 
+		"size": "160, 65", 
+		"font": {
+				"size": 18
+			}, 
+		"text": "Start XRJV1 Node"
+	}
+]

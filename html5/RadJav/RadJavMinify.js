@@ -1,0 +1,1 @@
+RadJav.isMinified = true;

@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[xrjv1.qt-translation-014x]
+file_filter = src/qt/locale/xrjv1_<lang>.ts
+source_file = src/qt/locale/xrjv1_en.ts
+source_lang = en

@@ -1,0 +1,90 @@
+var appPath = "./";
+var binPath = "";
+
+function runExample (relPath)
+{
+	if (RadJav.OS.exec != null)
+		RadJav.OS.exec (binPath + " \"" + appPath + "/" + relPath + "\"");
+	else
+		RadJav.OS.openWebBrowserURL("./exampleBrowser.htm?relpath=" + encodeURIComponent (relPath));
+}
+
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				if (RadJav.OS.getApplicationPath != null)
+				{
+					var findSlash = "/";
+
+					if (RadJav.OS.Windows != null)
+						findSlash = "\\";
+
+					binPath = RadJav.OS.getApplicationPath ();
+					binPath = "\"" + binPath + "\"";
+					appPath = RadJav.OS.getCurrentWorkingPath ();
+				}
+
+				var win = new RadJav.GUI.Window ("exampleBrowser", "Example Browser");
+				win.create ().then (function (win2)
+					{
+						var gotData = function (data)
+							{
+								var json = JSON.parse (data);
+								RadJav.GUI.createObjects (json, win2).then (function (objs)
+									{
+										for (var iIdx = 0; iIdx < objs.length; iIdx++)
+										{
+											var obj = objs[iIdx];
+
+											if (obj.name == "button1")
+											{
+												obj.on ("click", function ()
+													{
+														runExample ("window/window.xrj");
+													});
+											}
+
+											if (obj.name == "button2")
+											{
+												obj.on ("click", function ()
+													{
+														if (RadJav.OS.HTML5 != null)
+															alert ("HTML5 Webview support is currently under deliberation.");
+														else
+															runExample ("webview/webview.xrj");
+													});
+											}
+
+											if (obj.name == "button3")
+											{
+												obj.on ("click", function ()
+													{
+														runExample ("image/image.xrj");
+													});
+											}
+
+											if (obj.name == "button4")
+											{
+												obj.on ("click", function ()
+													{
+														if (RadJav.OS.exec != null)
+															RadJav.OS.exec (binPath + " xrjv1 -printtoconsole");
+														else
+															alert ("HTML5 Blockchain V1 support is coming soon.");
+													});
+											}
+										}
+									});
+							};
+
+						if (RadJav.OS.HTML5 != null)
+							RadJav.Net.httpRequest ("./exampleBrowserGUI.json").then (gotData);
+						else
+						{
+							var data = RadJav.IO.TextFile.readEntireFile ("./exampleBrowserGUI.json");
+							gotData (data);
+						}
+					});
+			});
+	});

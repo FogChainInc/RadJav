@@ -1,0 +1,689 @@
+\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server}{}\section{Rad\+J\+AV\+:\+:Networking\+:\+:Tcpip\+Server Class Reference}
+\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server}\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+
+
+{\ttfamily \#include $<$Rad\+Jav\+Networking.\+h$>$}
+
+Inheritance diagram for Rad\+J\+AV\+:\+:Networking\+:\+:Tcpip\+Server\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_rad_j_a_v_1_1_networking_1_1_tcpip_server}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ad7121698db184467e9439fe062b5d35a}{Tcpip\+Server} ()
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a3d67bcb55aae5c4cc937113c2def86b9}{init} (unsigned short new\+Port)=0
+\begin{DoxyCompactList}\small\item\em Start the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a53555ae267a5f3d6ac8aafbb7a567ee9}{accept\+With\+Blocking} ()=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a3d7ea19180509cffa6d4ee802767ca90}{accept\+Without\+Blocking} ()=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a010c397f06fd6b6344fed2957082cc94}{send\+Float\+To\+All} (float f\+Float, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_af853c22dbaed2cebcfa9eb434bf0bca3}{send\+Float} (unsigned int id, float f\+Float)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a898cff16cd54978e362100333e29fb50}{send\+Double\+To\+All} (double d\+Double, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a0fd3de45f41e253be2228f18f244853d}{send\+Double} (unsigned int id, double d\+Double)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a50b7f5fd03623836a5ee82e8389ed66f}{send\+Int\+To\+All} (int i\+Int, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a815323e68b2d921e324292295a9fcb67}{send\+Int} (unsigned int id, int i\+Int)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a6e60288010a4560fc00a4035e1c2a470}{send\+U\+Int\+To\+All} (unsigned int ui\+Int, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a465d9c6e6611f015c566acc890f22e4e}{send\+U\+Int} (unsigned int id, unsigned int ui\+Int)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a127b99aa98eb1d48001376a33190e81a}{send\+Long\+To\+All} (long l\+Long, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a9daf0399b1b6cd1226221d0d8bde7993}{send\+Long} (unsigned int id, long l\+Long)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ab87680c4aa41a1cd7bb7b9e56bc0e344}{send\+U\+Long\+To\+All} (unsigned long ul\+Long, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aafae1fc2ff43ed3c66d721b88fc9d9b0}{send\+U\+Long} (unsigned int id, unsigned long ul\+Long)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a10114a421a940cc5da3b54a10f732e30}{send\+Short\+To\+All} (short s\+Short, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aaa24c728d0eb2066938c762d24927568}{send\+Short} (unsigned int id, short s\+Short)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ae883e39f5bde3d790a47faa29f79b49d}{send\+U\+Short\+To\+All} (unsigned short us\+Short, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a0e2f2edd1580ae9bc37667ed6f85554e}{send\+U\+Short} (unsigned int id, unsigned short us\+Short)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a870b35e5674485806030587fa5e80cf7}{send\+Char\+To\+All} (char c\+Char, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a2004f9c706b743af1555a487b8d5e980}{send\+Char} (unsigned int id, char c\+Char)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a9dcb14e9366e92436de6c604722424f1}{send\+U\+Char\+To\+All} (unsigned char uc\+Char, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a5fee9e1d19e38a5c88773d664d9b5641}{send\+U\+Char} (unsigned int id, unsigned char uc\+Char)=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a4259c3a04b3b0eb6ffaf175f5a779b2b}{send\+String\+To\+All} (\hyperlink{class_rad_j_a_v_1_1_string}{String} line, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a009afc6e3d61e200109d39f90a692cc9}{send\+String} (unsigned int id, \hyperlink{class_rad_j_a_v_1_1_string}{String} line)=0
+\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ float $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a99113c9c8db6b16c804c8efefd0fedae}{recv\+Float} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of floats from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ double $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a42628f9e5e784604d970fea3fce7d5c9}{recv\+Double} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of doubles from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ int $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a728b63e038645a7da857c1e1e628a249}{recv\+Int} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of ints from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned int $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a05ea2d808e273d6e2cd4561df51323a7}{recv\+U\+Int} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of unsigned ints from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ long $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aaf828d5448e9ef57b7f5c3748941fb9d}{recv\+Long} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of longs from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned long $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_abc20c6804ca546955ce5e9e4e7c3f55c}{recv\+U\+Long} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of unsigned longs from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ short $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a398843f8da75d99ed5ff5c10b5504304}{recv\+Short} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of shorts from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned short $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a506ef837d82be03aa3c6bb1c6b44bfc1}{recv\+U\+Short} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of unsigned shorts from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ char $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a1e9b75bd3eccf46033d3c3b0a14c4ced}{recv\+Char} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of chars from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned char $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ac4d92ac7eb86c234f4f46cb7c794c917}{recv\+U\+Char} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of unsigned chars from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ char $\ast$ $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a20703e81091a1823c8d9f62c28785e48}{recv\+String} (int i\+Length)=0
+\begin{DoxyCompactList}\small\item\em Receive a char array from the connected clients. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ \hyperlink{class_rad_j_a_v_1_1_string}{String} $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a167e4f5fd04b01e43a00f99fd1227ce5}{recv\+String} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an array of strings from the connected clients. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection} $>$ $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a02492cac1eaf4ac14d2457666621fae5}{get\+Connected\+Clients} ()
+\begin{DoxyCompactList}\small\item\em Get the connected clients. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection} $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a237daa6d6defd83bf690017edeea28ce}{get\+T\+C\+P\+Connection} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection} associated with a client id. \end{DoxyCompactList}\item 
+\hyperlink{class_rad_j_a_v_1_1_string}{String} \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_afd97d2780d61004d2a790f7f63cc4ed7}{get\+IP} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Get the IP address of a connected client. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection} $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ab3161184633ef9072ba431ca45c408a9}{get\+Last\+T\+C\+P\+Connection} ()
+\begin{DoxyCompactList}\small\item\em Get the last connected client\textquotesingle{}s \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection}. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a84eba14d877a68c241487cfc0a6d9031}{get\+Num\+Connected} ()
+\begin{DoxyCompactList}\small\item\em Get the number of connected clients. \end{DoxyCompactList}\item 
+unsigned short \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a27aecbe03f731d38e635dc1e8cbe7130}{get\+Port} ()
+\begin{DoxyCompactList}\small\item\em Get the port being used. \end{DoxyCompactList}\item 
+\hyperlink{class_rad_j_a_v_1_1_string}{String} \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a08fbc1566fc5e913bccdb1d4e392bdd5}{get\+Last\+Error} ()
+\begin{DoxyCompactList}\small\item\em Get the last error thrown. \end{DoxyCompactList}\item 
+std\+::vector$<$ unsigned int $>$ \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_af5f40a952e032ff6e403e42525efe918}{get\+Last\+Received\+From\+List} ()
+\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a58c5ca09e1e7d121905b07eae252436c}{is\+Socket\+Open} (unsigned int id)=0
+\begin{DoxyCompactList}\small\item\em Checks to see if the socket is open to a connected client. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a70d83ea527d47572c39f6e1f9a74ddd1}{close\+Client} (unsigned int id)=0
+\begin{DoxyCompactList}\small\item\em Closes the connection to a connected client. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_adc98bbb81534697c37b6c30662fe43dc}{close} ()=0
+\begin{DoxyCompactList}\small\item\em Closes all connections with all clients and shuts down the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Start a T\+C\+P/\+IP server. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!Tcpip\+Server@{Tcpip\+Server}}
+\index{Tcpip\+Server@{Tcpip\+Server}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{Tcpip\+Server()}{TcpipServer()}}]{\setlength{\rightskip}{0pt plus 5cm}Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::\+Tcpip\+Server (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ad7121698db184467e9439fe062b5d35a}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ad7121698db184467e9439fe062b5d35a}
+
+
+\subsection{Member Function Documentation}
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!accept\+With\+Blocking@{accept\+With\+Blocking}}
+\index{accept\+With\+Blocking@{accept\+With\+Blocking}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{accept\+With\+Blocking()=0}{acceptWithBlocking()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::accept\+With\+Blocking (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a53555ae267a5f3d6ac8aafbb7a567ee9}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a53555ae267a5f3d6ac8aafbb7a567ee9}
+Listen for connections and lock the current thread. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a09b2a943dc69cab1aa3bf1573a8f72c1}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!accept\+Without\+Blocking@{accept\+Without\+Blocking}}
+\index{accept\+Without\+Blocking@{accept\+Without\+Blocking}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{accept\+Without\+Blocking()=0}{acceptWithoutBlocking()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::accept\+Without\+Blocking (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a3d7ea19180509cffa6d4ee802767ca90}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a3d7ea19180509cffa6d4ee802767ca90}
+Listen for connections and do not lock the current thread. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a1e78417fa012bebbc21fbcf8557c8008}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!close@{close}}
+\index{close@{close}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{close()=0}{close()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_adc98bbb81534697c37b6c30662fe43dc}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_adc98bbb81534697c37b6c30662fe43dc}
+
+
+Closes all connections with all clients and shuts down the server. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!close\+Client@{close\+Client}}
+\index{close\+Client@{close\+Client}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{close\+Client(unsigned int id)=0}{closeClient(unsigned int id)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::close\+Client (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a70d83ea527d47572c39f6e1f9a74ddd1}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a70d83ea527d47572c39f6e1f9a74ddd1}
+
+
+Closes the connection to a connected client. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+Connected\+Clients@{get\+Connected\+Clients}}
+\index{get\+Connected\+Clients@{get\+Connected\+Clients}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+Connected\+Clients()}{getConnectedClients()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ std\+::shared\+\_\+ptr$<$ {\bf T\+C\+P\+Connection} $>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+Connected\+Clients (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a02492cac1eaf4ac14d2457666621fae5}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a02492cac1eaf4ac14d2457666621fae5}
+
+
+Get the connected clients. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+IP@{get\+IP}}
+\index{get\+IP@{get\+IP}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+I\+P(unsigned int id)}{getIP(unsigned int id)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+IP (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_afd97d2780d61004d2a790f7f63cc4ed7}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_afd97d2780d61004d2a790f7f63cc4ed7}
+
+
+Get the IP address of a connected client. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+Last\+Error@{get\+Last\+Error}}
+\index{get\+Last\+Error@{get\+Last\+Error}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+Last\+Error()}{getLastError()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+Last\+Error (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a08fbc1566fc5e913bccdb1d4e392bdd5}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a08fbc1566fc5e913bccdb1d4e392bdd5}
+
+
+Get the last error thrown. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+Last\+Received\+From\+List@{get\+Last\+Received\+From\+List}}
+\index{get\+Last\+Received\+From\+List@{get\+Last\+Received\+From\+List}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+Last\+Received\+From\+List()}{getLastReceivedFromList()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ unsigned int $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+Last\+Received\+From\+List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_af5f40a952e032ff6e403e42525efe918}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_af5f40a952e032ff6e403e42525efe918}
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+Last\+T\+C\+P\+Connection@{get\+Last\+T\+C\+P\+Connection}}
+\index{get\+Last\+T\+C\+P\+Connection@{get\+Last\+T\+C\+P\+Connection}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+Last\+T\+C\+P\+Connection()}{getLastTCPConnection()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf T\+C\+P\+Connection} $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+Last\+T\+C\+P\+Connection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ab3161184633ef9072ba431ca45c408a9}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ab3161184633ef9072ba431ca45c408a9}
+
+
+Get the last connected client\textquotesingle{}s \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection}. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+Num\+Connected@{get\+Num\+Connected}}
+\index{get\+Num\+Connected@{get\+Num\+Connected}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+Num\+Connected()}{getNumConnected()}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+Num\+Connected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a84eba14d877a68c241487cfc0a6d9031}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a84eba14d877a68c241487cfc0a6d9031}
+
+
+Get the number of connected clients. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+Port@{get\+Port}}
+\index{get\+Port@{get\+Port}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+Port()}{getPort()}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+Port (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a27aecbe03f731d38e635dc1e8cbe7130}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a27aecbe03f731d38e635dc1e8cbe7130}
+
+
+Get the port being used. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!get\+T\+C\+P\+Connection@{get\+T\+C\+P\+Connection}}
+\index{get\+T\+C\+P\+Connection@{get\+T\+C\+P\+Connection}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{get\+T\+C\+P\+Connection(unsigned int id)}{getTCPConnection(unsigned int id)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf T\+C\+P\+Connection} $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::get\+T\+C\+P\+Connection (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a237daa6d6defd83bf690017edeea28ce}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a237daa6d6defd83bf690017edeea28ce}
+
+
+Get the \hyperlink{class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection} associated with a client id. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!init@{init}}
+\index{init@{init}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{init(unsigned short new\+Port)=0}{init(unsigned short newPort)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::init (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{new\+Port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a3d67bcb55aae5c4cc937113c2def86b9}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a3d67bcb55aae5c4cc937113c2def86b9}
+
+
+Start the server. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_aa0c34e3462f10c401629f9cea3a113a4}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!is\+Socket\+Open@{is\+Socket\+Open}}
+\index{is\+Socket\+Open@{is\+Socket\+Open}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{is\+Socket\+Open(unsigned int id)=0}{isSocketOpen(unsigned int id)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::is\+Socket\+Open (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a58c5ca09e1e7d121905b07eae252436c}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a58c5ca09e1e7d121905b07eae252436c}
+
+
+Checks to see if the socket is open to a connected client. 
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+Char@{recv\+Char}}
+\index{recv\+Char@{recv\+Char}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+Char()=0}{recvChar()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$char$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+Char (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a1e9b75bd3eccf46033d3c3b0a14c4ced}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a1e9b75bd3eccf46033d3c3b0a14c4ced}
+
+
+Receive an array of chars from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_ae964ef6ac1547ac313d8ab580ae3f7b4}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+Double@{recv\+Double}}
+\index{recv\+Double@{recv\+Double}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+Double()=0}{recvDouble()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$double$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+Double (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a42628f9e5e784604d970fea3fce7d5c9}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a42628f9e5e784604d970fea3fce7d5c9}
+
+
+Receive an array of doubles from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a1c445d2b459e6a249ec132da08f230bd}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+Float@{recv\+Float}}
+\index{recv\+Float@{recv\+Float}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+Float()=0}{recvFloat()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$float$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+Float (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a99113c9c8db6b16c804c8efefd0fedae}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a99113c9c8db6b16c804c8efefd0fedae}
+
+
+Receive an array of floats from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a25f1060df172b7ac485c062d5598ee04}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+Int@{recv\+Int}}
+\index{recv\+Int@{recv\+Int}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+Int()=0}{recvInt()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$int$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a728b63e038645a7da857c1e1e628a249}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a728b63e038645a7da857c1e1e628a249}
+
+
+Receive an array of ints from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a141060e567ebda7607cf74fe086a8e4c}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+Long@{recv\+Long}}
+\index{recv\+Long@{recv\+Long}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+Long()=0}{recvLong()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$long$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+Long (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aaf828d5448e9ef57b7f5c3748941fb9d}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aaf828d5448e9ef57b7f5c3748941fb9d}
+
+
+Receive an array of longs from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_aa52be52a0a3aaec2402f838ce39d734d}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+Short@{recv\+Short}}
+\index{recv\+Short@{recv\+Short}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+Short()=0}{recvShort()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$short$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+Short (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a398843f8da75d99ed5ff5c10b5504304}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a398843f8da75d99ed5ff5c10b5504304}
+
+
+Receive an array of shorts from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a28d61fa54cb79db09a4877832e3488ed}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+String@{recv\+String}}
+\index{recv\+String@{recv\+String}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+String(int i\+Length)=0}{recvString(int iLength)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$char $\ast$$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+String (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+Length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a20703e81091a1823c8d9f62c28785e48}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a20703e81091a1823c8d9f62c28785e48}
+
+
+Receive a char array from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a6b3ea7891f3111f89cd1610a9b1db15d}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+String@{recv\+String}}
+\index{recv\+String@{recv\+String}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+String()=0}{recvString()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<${\bf String}$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a167e4f5fd04b01e43a00f99fd1227ce5}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a167e4f5fd04b01e43a00f99fd1227ce5}
+
+
+Receive an array of strings from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_ac33b6977b1d527476c8f95eb91464fd9}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+U\+Char@{recv\+U\+Char}}
+\index{recv\+U\+Char@{recv\+U\+Char}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+U\+Char()=0}{recvUChar()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$unsigned char$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+U\+Char (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ac4d92ac7eb86c234f4f46cb7c794c917}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ac4d92ac7eb86c234f4f46cb7c794c917}
+
+
+Receive an array of unsigned chars from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_ab4f0c794a4711e14b805f0ffde01160c}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+U\+Int@{recv\+U\+Int}}
+\index{recv\+U\+Int@{recv\+U\+Int}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+U\+Int()=0}{recvUInt()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$unsigned int$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+U\+Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a05ea2d808e273d6e2cd4561df51323a7}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a05ea2d808e273d6e2cd4561df51323a7}
+
+
+Receive an array of unsigned ints from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_aefa435e65eef2200e74f1fd903447071}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+U\+Long@{recv\+U\+Long}}
+\index{recv\+U\+Long@{recv\+U\+Long}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+U\+Long()=0}{recvULong()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$unsigned long$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+U\+Long (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_abc20c6804ca546955ce5e9e4e7c3f55c}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_abc20c6804ca546955ce5e9e4e7c3f55c}
+
+
+Receive an array of unsigned longs from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a9330de8d1fe3d184006cbcfb3c88e87f}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!recv\+U\+Short@{recv\+U\+Short}}
+\index{recv\+U\+Short@{recv\+U\+Short}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{recv\+U\+Short()=0}{recvUShort()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$ {\bf T\+C\+P\+Response}$<$unsigned short$>$ $>$ Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::recv\+U\+Short (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a506ef837d82be03aa3c6bb1c6b44bfc1}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a506ef837d82be03aa3c6bb1c6b44bfc1}
+
+
+Receive an array of unsigned shorts from the connected clients. 
+
+
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_ad7440dbd5ac95f86a7da35306af67174}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Char@{send\+Char}}
+\index{send\+Char@{send\+Char}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Char(unsigned int id, char c\+Char)=0}{sendChar(unsigned int id, char cChar)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Char (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{char}]{c\+Char}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a2004f9c706b743af1555a487b8d5e980}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a2004f9c706b743af1555a487b8d5e980}
+Send a char to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Char\+To\+All@{send\+Char\+To\+All}}
+\index{send\+Char\+To\+All@{send\+Char\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Char\+To\+All(char c\+Char, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendCharToAll(char cChar, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Char\+To\+All (
+\begin{DoxyParamCaption}
+\item[{char}]{c\+Char, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a870b35e5674485806030587fa5e80cf7}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a870b35e5674485806030587fa5e80cf7}
+Send a char to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_aa6f6b6b62002a95f65ed1746a25d3048}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Double@{send\+Double}}
+\index{send\+Double@{send\+Double}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Double(unsigned int id, double d\+Double)=0}{sendDouble(unsigned int id, double dDouble)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Double (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{double}]{d\+Double}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a0fd3de45f41e253be2228f18f244853d}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a0fd3de45f41e253be2228f18f244853d}
+Send a double to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Double\+To\+All@{send\+Double\+To\+All}}
+\index{send\+Double\+To\+All@{send\+Double\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Double\+To\+All(double d\+Double, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendDoubleToAll(double dDouble, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Double\+To\+All (
+\begin{DoxyParamCaption}
+\item[{double}]{d\+Double, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a898cff16cd54978e362100333e29fb50}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a898cff16cd54978e362100333e29fb50}
+Send a double to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a0a575ffac3793d7713d1ba30a64f79e8}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Float@{send\+Float}}
+\index{send\+Float@{send\+Float}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Float(unsigned int id, float f\+Float)=0}{sendFloat(unsigned int id, float fFloat)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Float (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{float}]{f\+Float}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_af853c22dbaed2cebcfa9eb434bf0bca3}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_af853c22dbaed2cebcfa9eb434bf0bca3}
+Send a float to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Float\+To\+All@{send\+Float\+To\+All}}
+\index{send\+Float\+To\+All@{send\+Float\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Float\+To\+All(float f\+Float, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendFloatToAll(float fFloat, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Float\+To\+All (
+\begin{DoxyParamCaption}
+\item[{float}]{f\+Float, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a010c397f06fd6b6344fed2957082cc94}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a010c397f06fd6b6344fed2957082cc94}
+Send a float to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a42d29962406a990eeeaa97014fae1921}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Int@{send\+Int}}
+\index{send\+Int@{send\+Int}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Int(unsigned int id, int i\+Int)=0}{sendInt(unsigned int id, int iInt)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Int (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{int}]{i\+Int}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a815323e68b2d921e324292295a9fcb67}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a815323e68b2d921e324292295a9fcb67}
+Send an integer to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Int\+To\+All@{send\+Int\+To\+All}}
+\index{send\+Int\+To\+All@{send\+Int\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Int\+To\+All(int i\+Int, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendIntToAll(int iInt, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Int\+To\+All (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+Int, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a50b7f5fd03623836a5ee82e8389ed66f}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a50b7f5fd03623836a5ee82e8389ed66f}
+Send an integer to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a88939471a8291c875699b5c21897be8f}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Long@{send\+Long}}
+\index{send\+Long@{send\+Long}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Long(unsigned int id, long l\+Long)=0}{sendLong(unsigned int id, long lLong)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Long (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{long}]{l\+Long}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a9daf0399b1b6cd1226221d0d8bde7993}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a9daf0399b1b6cd1226221d0d8bde7993}
+Send a long to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Long\+To\+All@{send\+Long\+To\+All}}
+\index{send\+Long\+To\+All@{send\+Long\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Long\+To\+All(long l\+Long, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendLongToAll(long lLong, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Long\+To\+All (
+\begin{DoxyParamCaption}
+\item[{long}]{l\+Long, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a127b99aa98eb1d48001376a33190e81a}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a127b99aa98eb1d48001376a33190e81a}
+Send a long to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a6a86177efba9d0d84ed34358b7d417a7}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Short@{send\+Short}}
+\index{send\+Short@{send\+Short}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Short(unsigned int id, short s\+Short)=0}{sendShort(unsigned int id, short sShort)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Short (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{short}]{s\+Short}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aaa24c728d0eb2066938c762d24927568}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aaa24c728d0eb2066938c762d24927568}
+Send a short to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+Short\+To\+All@{send\+Short\+To\+All}}
+\index{send\+Short\+To\+All@{send\+Short\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+Short\+To\+All(short s\+Short, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendShortToAll(short sShort, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+Short\+To\+All (
+\begin{DoxyParamCaption}
+\item[{short}]{s\+Short, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a10114a421a940cc5da3b54a10f732e30}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a10114a421a940cc5da3b54a10f732e30}
+Send a short to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a6d6fb3552b75634646d525d2c23e4904}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+String@{send\+String}}
+\index{send\+String@{send\+String}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+String(unsigned int id, String line)=0}{sendString(unsigned int id, String line)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+String (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{{\bf String}}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a009afc6e3d61e200109d39f90a692cc9}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a009afc6e3d61e200109d39f90a692cc9}
+Send a string to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+String\+To\+All@{send\+String\+To\+All}}
+\index{send\+String\+To\+All@{send\+String\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+String\+To\+All(\+String line, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendStringToAll(String line, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+String\+To\+All (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{line, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a4259c3a04b3b0eb6ffaf175f5a779b2b}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a4259c3a04b3b0eb6ffaf175f5a779b2b}
+Send a string to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_ab94fd4375ec2d5a37951b9004bd8cdae}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Char@{send\+U\+Char}}
+\index{send\+U\+Char@{send\+U\+Char}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Char(unsigned int id, unsigned char uc\+Char)=0}{sendUChar(unsigned int id, unsigned char ucChar)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Char (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{unsigned char}]{uc\+Char}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a5fee9e1d19e38a5c88773d664d9b5641}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a5fee9e1d19e38a5c88773d664d9b5641}
+Send an unsigned char to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Char\+To\+All@{send\+U\+Char\+To\+All}}
+\index{send\+U\+Char\+To\+All@{send\+U\+Char\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Char\+To\+All(unsigned char uc\+Char, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendUCharToAll(unsigned char ucChar, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Char\+To\+All (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{uc\+Char, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a9dcb14e9366e92436de6c604722424f1}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a9dcb14e9366e92436de6c604722424f1}
+Send an unsigned char to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a74a6dd1c944b3781e2ed286f14d79813}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Int@{send\+U\+Int}}
+\index{send\+U\+Int@{send\+U\+Int}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Int(unsigned int id, unsigned int ui\+Int)=0}{sendUInt(unsigned int id, unsigned int uiInt)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Int (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{unsigned int}]{ui\+Int}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a465d9c6e6611f015c566acc890f22e4e}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a465d9c6e6611f015c566acc890f22e4e}
+Send an unsigned integer to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Int\+To\+All@{send\+U\+Int\+To\+All}}
+\index{send\+U\+Int\+To\+All@{send\+U\+Int\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Int\+To\+All(unsigned int ui\+Int, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendUIntToAll(unsigned int uiInt, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Int\+To\+All (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ui\+Int, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a6e60288010a4560fc00a4035e1c2a470}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a6e60288010a4560fc00a4035e1c2a470}
+Send an unsigned integer to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a47832f18cdf7bee7b162c65986042041}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Long@{send\+U\+Long}}
+\index{send\+U\+Long@{send\+U\+Long}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Long(unsigned int id, unsigned long ul\+Long)=0}{sendULong(unsigned int id, unsigned long ulLong)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Long (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{unsigned long}]{ul\+Long}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aafae1fc2ff43ed3c66d721b88fc9d9b0}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_aafae1fc2ff43ed3c66d721b88fc9d9b0}
+Send an unsigned long to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Long\+To\+All@{send\+U\+Long\+To\+All}}
+\index{send\+U\+Long\+To\+All@{send\+U\+Long\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Long\+To\+All(unsigned long ul\+Long, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendULongToAll(unsigned long ulLong, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Long\+To\+All (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{ul\+Long, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ab87680c4aa41a1cd7bb7b9e56bc0e344}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ab87680c4aa41a1cd7bb7b9e56bc0e344}
+Send an unsigned long to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_afce0d88374bfbd8ed5bc1f0eb67669d3}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+\index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Short@{send\+U\+Short}}
+\index{send\+U\+Short@{send\+U\+Short}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Short(unsigned int id, unsigned short us\+Short)=0}{sendUShort(unsigned int id, unsigned short usShort)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Short (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id, }
+\item[{unsigned short}]{us\+Short}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a0e2f2edd1580ae9bc37667ed6f85554e}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_a0e2f2edd1580ae9bc37667ed6f85554e}
+Send an unsigned short to a specific connected client. \index{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}!send\+U\+Short\+To\+All@{send\+U\+Short\+To\+All}}
+\index{send\+U\+Short\+To\+All@{send\+U\+Short\+To\+All}!Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server@{Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server}}
+\subsubsection[{\texorpdfstring{send\+U\+Short\+To\+All(unsigned short us\+Short, std\+::vector$<$ unsigned int $>$ except=std\+::vector$<$ unsigned int $>$())=0}{sendUShortToAll(unsigned short usShort, std::vector< unsigned int > except=std::vector< unsigned int >())=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+J\+A\+V\+::\+Networking\+::\+Tcpip\+Server\+::send\+U\+Short\+To\+All (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{us\+Short, }
+\item[{std\+::vector$<$ unsigned int $>$}]{except = {\ttfamily std\+:\+:vector$<$~unsigned~int~$>$()}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ae883e39f5bde3d790a47faa29f79b49d}{}\label{class_rad_j_a_v_1_1_networking_1_1_tcpip_server_ae883e39f5bde3d790a47faa29f79b49d}
+Send an unsigned short to all connected clients. You can exempt some clients from receiving as well. 
+
+Implemented in \hyperlink{class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server_a5f4d94b2c8d1972c3b01c6de0eee3fc6}{Rad\+J\+A\+V\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Server}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Rad\+Jav/\hyperlink{_rad_jav_networking_8h}{Rad\+Jav\+Networking.\+h}\item 
+src/\+Rad\+Jav/\hyperlink{_rad_jav_networking_8cpp}{Rad\+Jav\+Networking.\+cpp}\end{DoxyCompactItemize}

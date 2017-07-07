@@ -1,0 +1,7 @@
+RadJav.initialize ().then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				RadJav.Console.println ("Hello World!");
+			});
+	});

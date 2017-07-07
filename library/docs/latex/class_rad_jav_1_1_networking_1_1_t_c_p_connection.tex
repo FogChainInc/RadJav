@@ -1,0 +1,158 @@
+\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection}{}\section{Rad\+Jav\+:\+:Networking\+:\+:T\+C\+P\+Connection Class Reference}
+\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection}\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+
+
+Represents a T\+CP connection.  
+
+
+
+
+{\ttfamily \#include $<$Rad\+Jav\+Networking.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a484a982e225dad458692f14e956aa636}{T\+C\+P\+Connection} (\hyperlink{class_rad_jav_1_1_networking_1_1_i_pv4}{I\+Pv4} ip)
+\item 
+\hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a6f792372ebe8f324cfaff8b2de2b3380}{T\+C\+P\+Connection} (\hyperlink{class_rad_jav_1_1_networking_1_1_i_pv6}{I\+Pv6} ip)
+\item 
+int \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_aef3ece4eaa3b5c216a83b72a70c7f897}{get\+Connection\+Type} ()
+\begin{DoxyCompactList}\small\item\em Get the type of T\+CP connection that\textquotesingle{}s used. \end{DoxyCompactList}\item 
+\hyperlink{class_rad_jav_1_1_networking_1_1_i_pv4}{I\+Pv4} \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad9a925fc0d6842a0cd129e1588e98c04}{get\+I\+Pv4} ()
+\begin{DoxyCompactList}\small\item\em Get the T\+C\+Pv4 address being used. \end{DoxyCompactList}\item 
+\hyperlink{class_rad_jav_1_1_networking_1_1_i_pv6}{I\+Pv6} \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_aba9f2205396096c08d87e470fb0ab5f1}{get\+I\+Pv6} ()
+\begin{DoxyCompactList}\small\item\em Get the T\+C\+Pv6 address being used. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ae4640ad69e50025686af707c2769d731}{get\+Id} ()
+\begin{DoxyCompactList}\small\item\em Get connection id. \end{DoxyCompactList}\item 
+String \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a369cebce11eb546b1bcb19ac3be4952d}{get\+IP} ()
+\begin{DoxyCompactList}\small\item\em Get the IP as a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a059b55bb7b6d16d0f0cd0f633f5eda5c}{get\+New\+Id} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a02dd1869a173c7567f473ab191a38d60}{id}
+\item 
+int \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad256d7aa9e03d9257e48f1affe932b4f}{connection\+Type}
+\item 
+\hyperlink{class_rad_jav_1_1_networking_1_1_i_pv4}{I\+Pv4} \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a68043155a46037630c9e0689f12cc1da}{ipv4}
+\item 
+\hyperlink{class_rad_jav_1_1_networking_1_1_i_pv6}{I\+Pv6} \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a2f2016ef5e44febe49accb50784f62cc}{ipv6}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad1ed3c88e6ee99be735b8c846ab70749}{num\+Connections} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a T\+CP connection. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!T\+C\+P\+Connection@{T\+C\+P\+Connection}}
+\index{T\+C\+P\+Connection@{T\+C\+P\+Connection}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{T\+C\+P\+Connection(\+I\+Pv4 ip)}{TCPConnection(IPv4 ip)}}]{\setlength{\rightskip}{0pt plus 5cm}Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::\+T\+C\+P\+Connection (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Pv4}}]{ip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a484a982e225dad458692f14e956aa636}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a484a982e225dad458692f14e956aa636}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!T\+C\+P\+Connection@{T\+C\+P\+Connection}}
+\index{T\+C\+P\+Connection@{T\+C\+P\+Connection}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{T\+C\+P\+Connection(\+I\+Pv6 ip)}{TCPConnection(IPv6 ip)}}]{\setlength{\rightskip}{0pt plus 5cm}Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::\+T\+C\+P\+Connection (
+\begin{DoxyParamCaption}
+\item[{{\bf I\+Pv6}}]{ip}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a6f792372ebe8f324cfaff8b2de2b3380}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a6f792372ebe8f324cfaff8b2de2b3380}
+
+
+\subsection{Member Function Documentation}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!get\+Connection\+Type@{get\+Connection\+Type}}
+\index{get\+Connection\+Type@{get\+Connection\+Type}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{get\+Connection\+Type()}{getConnectionType()}}]{\setlength{\rightskip}{0pt plus 5cm}int Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::get\+Connection\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_aef3ece4eaa3b5c216a83b72a70c7f897}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_aef3ece4eaa3b5c216a83b72a70c7f897}
+
+
+Get the type of T\+CP connection that\textquotesingle{}s used. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{get\+Id()}{getId()}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ae4640ad69e50025686af707c2769d731}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ae4640ad69e50025686af707c2769d731}
+
+
+Get connection id. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!get\+IP@{get\+IP}}
+\index{get\+IP@{get\+IP}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{get\+I\+P()}{getIP()}}]{\setlength{\rightskip}{0pt plus 5cm}String Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::get\+IP (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a369cebce11eb546b1bcb19ac3be4952d}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a369cebce11eb546b1bcb19ac3be4952d}
+
+
+Get the IP as a string. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!get\+I\+Pv4@{get\+I\+Pv4}}
+\index{get\+I\+Pv4@{get\+I\+Pv4}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{get\+I\+Pv4()}{getIPv4()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Pv4} Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::get\+I\+Pv4 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad9a925fc0d6842a0cd129e1588e98c04}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad9a925fc0d6842a0cd129e1588e98c04}
+
+
+Get the T\+C\+Pv4 address being used. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!get\+I\+Pv6@{get\+I\+Pv6}}
+\index{get\+I\+Pv6@{get\+I\+Pv6}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{get\+I\+Pv6()}{getIPv6()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Pv6} Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::get\+I\+Pv6 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_aba9f2205396096c08d87e470fb0ab5f1}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_aba9f2205396096c08d87e470fb0ab5f1}
+
+
+Get the T\+C\+Pv6 address being used. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!get\+New\+Id@{get\+New\+Id}}
+\index{get\+New\+Id@{get\+New\+Id}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{get\+New\+Id()}{getNewId()}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::get\+New\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a059b55bb7b6d16d0f0cd0f633f5eda5c}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a059b55bb7b6d16d0f0cd0f633f5eda5c}
+
+
+\subsection{Member Data Documentation}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!connection\+Type@{connection\+Type}}
+\index{connection\+Type@{connection\+Type}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{connection\+Type}{connectionType}}]{\setlength{\rightskip}{0pt plus 5cm}int Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::connection\+Type\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad256d7aa9e03d9257e48f1affe932b4f}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad256d7aa9e03d9257e48f1affe932b4f}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!id@{id}}
+\index{id@{id}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{id}{id}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::id\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a02dd1869a173c7567f473ab191a38d60}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a02dd1869a173c7567f473ab191a38d60}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!ipv4@{ipv4}}
+\index{ipv4@{ipv4}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{ipv4}{ipv4}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Pv4} Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::ipv4\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a68043155a46037630c9e0689f12cc1da}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a68043155a46037630c9e0689f12cc1da}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!ipv6@{ipv6}}
+\index{ipv6@{ipv6}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{ipv6}{ipv6}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf I\+Pv6} Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::ipv6\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a2f2016ef5e44febe49accb50784f62cc}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_a2f2016ef5e44febe49accb50784f62cc}
+\index{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}!num\+Connections@{num\+Connections}}
+\index{num\+Connections@{num\+Connections}!Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection@{Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection}}
+\subsubsection[{\texorpdfstring{num\+Connections}{numConnections}}]{\setlength{\rightskip}{0pt plus 5cm}int R\+A\+D\+J\+A\+V\+\_\+\+E\+X\+P\+O\+RT Rad\+Jav\+::\+Networking\+::\+T\+C\+P\+Connection\+::num\+Connections = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad1ed3c88e6ee99be735b8c846ab70749}{}\label{class_rad_jav_1_1_networking_1_1_t_c_p_connection_ad1ed3c88e6ee99be735b8c846ab70749}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Rad\+Jav/\hyperlink{_rad_jav_networking_8h}{Rad\+Jav\+Networking.\+h}\item 
+src/\+Rad\+Jav/\hyperlink{_rad_jav_networking_8cpp}{Rad\+Jav\+Networking.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,33 @@
+# /etc/conf.d/xrjv1d: config file for /etc/init.d/xrjv1d
+
+# Config file location
+#XRJV1D_CONFIGFILE="/etc/xrjv1/xrjv1.conf"
+
+# What directory to write pidfile to?  (created and owned by $XRJV1D_USER)
+#XRJV1D_PIDDIR="/var/run/xrjv1d"
+
+# What filename to give the pidfile
+#XRJV1D_PIDFILE="${XRJV1D_PIDDIR}/xrjv1d.pid"
+
+# Where to write xrjv1d data (be mindful that the blockchain is large)
+#XRJV1D_DATADIR="/var/lib/xrjv1d"
+
+# User and group to own xrjv1d process
+#XRJV1D_USER="xrjv1"
+#XRJV1D_GROUP="xrjv1"
+
+# Path to xrjv1d executable
+#XRJV1D_BIN="/usr/bin/xrjv1d"
+
+# Nice value to run xrjv1d under
+#XRJV1D_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+XRJV1D_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for xrjv1d to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+XRJV1D_SIGTERM_TIMEOUT=60

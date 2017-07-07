@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=XRJV1 Core
+Comment=Connect to the XRJV1 P2P Network
+Comment[de]=Verbinde mit dem XRJV1 peer-to-peer Netzwerk
+Comment[fr]=XRJV1, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=XRJV1, eşten eşe kriptografik sanal para birimi
+Exec=xrjv1-qt %u
+Terminal=false
+Type=Application
+Icon=xrjv1128
+MimeType=x-scheme-handler/xrjv1;
+Categories=Office;Finance;

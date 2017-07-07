@@ -1,0 +1,21 @@
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				var win = new RadJav.GUI.Window ({
+						name: "win", 
+						text: "WebView Example", 
+						size: "1024, 768"
+					});
+				win.create ().then (function (win2)
+					{
+						RadJav.GUI.create ({
+								type: "WebView", 
+								name: "view", 
+								text: "http://www.google.com/", 
+								size: "1024, 768", 
+								parent: win2
+							});
+					});
+			});
+	});

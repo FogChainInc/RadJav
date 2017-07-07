@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Example Browser</title>
+
+	<link href = "../html5/RadJav/themes/default/dojo/themes/claro/claro.css" rel = "stylesheet" type = "text/css" />
+	<link href = "../html5/RadJav/themes/default/dojox/grid/resources/Grid.css" rel = "stylesheet" type = "text/css" />
+	<link href = "../html5/RadJav/themes/default/dojox/grid/resources/claroGrid.css" rel = "stylesheet" type = "text/css" />
+	<link href = "../html5/RadJav/themes/default/dojox/calendar/themes/claro/Calendar.css" rel = "stylesheet" type = "text/css" />
+	<link href = "../html5/RadJav/themes/default/dojox/calendar/themes/claro/MonthColumnView.css" rel = "stylesheet" type = "text/css" />
+	<link href = "../html5/RadJav/themes/default/dojo/resources/FloatingPane.css" rel = "stylesheet" type = "text/css" />
+	<link href = "../html5/RadJav/themes/default/dojo/resources/ResizeHandle.css" rel = "stylesheet" type = "text/css" />
+
+	<script type = "text/javascript" src = "../html5/dependencies/three.js/three.min.js"></script>
+	<script type = "text/javascript" src = "../html5/dependencies/dojo/dojo/dojo.js"></script>
+	<script type = "text/javascript" src = "../html5/RadJav/RadJav.js"></script>
+
+	<script type = "text/javascript">
+		RadJav.baseUrl = "../html5/RadJav";
+		RadJav.themeUrl = "../html5/RadJav/themes/default";
+		RadJav.useAjax = true;
+		
+		function setup ()
+		{
+			var relPath = RadJav.OS.HTML5.getUrlParam ("relpath");
+
+			if ((relPath == "") || (relPath == null))
+				relPath = "./exampleBrowser.xrj";
+			else
+				relPath = "./" + decodeURIComponent (relPath);
+
+			RadJav.runApplicationFromFile (relPath);
+		}
+	</script>
+</head>
+
+<body onload = "setup ();" class = "claro">
+</body>
+
+</html>
+

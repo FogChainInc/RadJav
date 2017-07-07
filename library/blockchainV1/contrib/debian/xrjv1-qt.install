@@ -1,0 +1,6 @@
+usr/local/bin/xrjv1-qt usr/bin
+share/pixmaps/xrjv132.xpm usr/share/pixmaps
+share/pixmaps/xrjv116.xpm usr/share/pixmaps
+share/pixmaps/xrjv1128.png usr/share/pixmaps
+debian/xrjv1-qt.desktop usr/share/applications
+debian/xrjv1-qt.protocol usr/share/kde4/services/

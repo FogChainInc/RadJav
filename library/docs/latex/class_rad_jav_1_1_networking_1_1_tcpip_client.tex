@@ -1,0 +1,544 @@
+\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client}{}\section{Rad\+Jav\+:\+:Networking\+:\+:Tcpip\+Client Class Reference}
+\label{class_rad_jav_1_1_networking_1_1_tcpip_client}\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+
+
+{\ttfamily \#include $<$Rad\+Jav\+Networking.\+h$>$}
+
+Inheritance diagram for Rad\+Jav\+:\+:Networking\+:\+:Tcpip\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_rad_jav_1_1_networking_1_1_tcpip_client}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a4a7f0e107204eab395962013d99f8b19}{Tcpip\+Client} ()
+\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a183060b267be8fdbdf40d363f83b3c4a}{init} (unsigned short port)=0
+\begin{DoxyCompactList}\small\item\em Start the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ca02c63d90bc0b6d58c199878fc87cb}{connect\+With\+Blocking} (String str\+Connect\+To)=0
+\begin{DoxyCompactList}\small\item\em Connect to a server while locking the thread. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a7ee68f0894e296f63a2506cea432954f}{connect\+Without\+Blocking} (String str\+Connect\+To)=0
+\begin{DoxyCompactList}\small\item\em Connect to a server without locking the thread. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a5aa35f109fce85d7efc952ba3736a114}{send\+Float} (float f\+Float)=0
+\begin{DoxyCompactList}\small\item\em Send a float to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a34c01edb47b70c2eba337be77e4fd84a}{send\+Double} (double d\+Double)=0
+\begin{DoxyCompactList}\small\item\em Send a double to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_acf5a720509909c3847b9ad41ca676769}{send\+Int} (int i\+Int)=0
+\begin{DoxyCompactList}\small\item\em Send an int to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a5e7cc6633246e2772879271147e933ab}{send\+U\+Int} (unsigned int ui\+Int)=0
+\begin{DoxyCompactList}\small\item\em Send an unsigned int to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a69679bab36c5d521232eb6d374ed0aa3}{send\+Long} (long l\+Long)=0
+\begin{DoxyCompactList}\small\item\em Send a long to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a7a89c7236fb1002d656756df666c50a2}{send\+U\+Long} (unsigned long ul\+Long)=0
+\begin{DoxyCompactList}\small\item\em Send an unsigned long to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a032c9ec922780d4ce6094459622c7b28}{send\+Short} (short s\+Short)=0
+\begin{DoxyCompactList}\small\item\em Send a short to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a5f7307ef472e3eb46008cb3cb1a4004e}{send\+U\+Short} (unsigned short us\+Short)=0
+\begin{DoxyCompactList}\small\item\em Send an unsigned short to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a65dc2eee02337f7b8c8aaa9e3e190a4d}{send\+Char} (char c\+Char)=0
+\begin{DoxyCompactList}\small\item\em Send a char to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ae91c15920f4a5f205d1d9b1d0e57b4}{send\+U\+Char} (unsigned char uc\+Char)=0
+\begin{DoxyCompactList}\small\item\em Send an unsigned char to the server. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_ad92a7dd6a9644df7429de0cd87c79314}{send\+String} (String line)=0
+\begin{DoxyCompactList}\small\item\em Send a string to the server. \end{DoxyCompactList}\item 
+bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a954343f32588c0c613a0455116197db8}{H\+T\+T\+P\+Send\+G\+ET} (String str\+Retrieve, String str\+Headers=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Send an H\+T\+TP request get to the server. \end{DoxyCompactList}\item 
+bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a690fc920a76bf4e3749207f929cea267}{H\+T\+T\+P\+Send\+P\+O\+ST} (String str\+Retrieve, String line, String str\+Headers, String str\+Auth=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Send an H\+T\+TP post request get to the server. \end{DoxyCompactList}\item 
+bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a3db51914091c0452d2417ef2167342c0}{H\+T\+T\+P\+Send\+P\+O\+ST} (String str\+Content\+Type, String str\+Retrieve, String line, String str\+Headers, String str\+Auth=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Send an H\+T\+TP post request get to the server. \end{DoxyCompactList}\item 
+String \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a7baff1a0a5f62e3ed4dbed3d9ee24205}{H\+T\+T\+P\+Parse\+Request} (String str\+Content, String str\+New\+Line)
+\begin{DoxyCompactList}\small\item\em Parse an H\+T\+TP request. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ float $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ae3705885dc01ba454eda88c6de2d7c}{recv\+Float} ()=0
+\begin{DoxyCompactList}\small\item\em Receive a float from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ double $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_aa21cdd752ab372f5160252b15d8c6b44}{recv\+Double} ()=0
+\begin{DoxyCompactList}\small\item\em Receive a double from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ int $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_aefee5d91c6c7e05e5942557f992b3720}{recv\+Int} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an int from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned int $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a02e9cfcd958b6600dc03eee911fbfe5e}{recv\+U\+Int} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an unsigned int from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ long $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_ab8d72a09dfd06b4043980b882f6950a5}{recv\+Long} ()=0
+\begin{DoxyCompactList}\small\item\em Receive a long from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned long $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a2ef3d2270c9ddc1f21823fc240fa50d7}{recv\+U\+Long} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an unsigned long from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ short $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a4906cf1500267303820348d4ad13df5e}{recv\+Short} ()=0
+\begin{DoxyCompactList}\small\item\em Receive a short from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned short $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a3da0d0b500859f751b223162330f91fe}{recv\+U\+Short} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an unsigned short from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ char $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_abeb3730201f542dae6e6d4d29004c29d}{recv\+Char} ()=0
+\begin{DoxyCompactList}\small\item\em Receive a char from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ unsigned char $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a3286aa902385af628b66b1d06a4ca051}{recv\+U\+Char} ()=0
+\begin{DoxyCompactList}\small\item\em Receive an unsigned char from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ char $\ast$ $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_abbbbbd6a99d54e540206dea2fd9a4624}{recv\+String} (int i\+Length)=0
+\begin{DoxyCompactList}\small\item\em Receive a char string from the server. \end{DoxyCompactList}\item 
+virtual \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_response}{T\+C\+P\+Response}$<$ String $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_ab6aa0e3d40288357f58bde9f7184f874}{recv\+String} ()=0
+\begin{DoxyCompactList}\small\item\em Receive a string from the server. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_jav_1_1_networking_1_1_t_c_p_connection}{T\+C\+P\+Connection} $>$ \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_add530166ec4e24a631ebb800069629ed}{get\+Server\+Connection} ()
+\begin{DoxyCompactList}\small\item\em Get the connection to the server. \end{DoxyCompactList}\item 
+String \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a3a9e7b97eb5bf3d4476277a2ddb29262}{get\+Server\+IP} ()
+\begin{DoxyCompactList}\small\item\em Get the server\textquotesingle{}s ip. \end{DoxyCompactList}\item 
+unsigned short \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_aa7d3728465e7fe2baae9b5e76b9aee46}{get\+Port} ()
+\begin{DoxyCompactList}\small\item\em Get the port being used. \end{DoxyCompactList}\item 
+String \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_aca54358a21d0a3f24747739b2ca89c12}{get\+Last\+Error} ()
+\begin{DoxyCompactList}\small\item\em Get the last error. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{class_rad_jav_1_1_networking_1_1_tcpip_client_a16389ef70dd3af178e95efd26a4b269e}{close} ()=0
+\begin{DoxyCompactList}\small\item\em Close the connection to the server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!Tcpip\+Client@{Tcpip\+Client}}
+\index{Tcpip\+Client@{Tcpip\+Client}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{Tcpip\+Client()}{TcpipClient()}}]{\setlength{\rightskip}{0pt plus 5cm}Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::\+Tcpip\+Client (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a4a7f0e107204eab395962013d99f8b19}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a4a7f0e107204eab395962013d99f8b19}
+
+
+\subsection{Member Function Documentation}
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!close@{close}}
+\index{close@{close}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{close()=0}{close()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a16389ef70dd3af178e95efd26a4b269e}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a16389ef70dd3af178e95efd26a4b269e}
+
+
+Close the connection to the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!connect\+With\+Blocking@{connect\+With\+Blocking}}
+\index{connect\+With\+Blocking@{connect\+With\+Blocking}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{connect\+With\+Blocking(\+String str\+Connect\+To)=0}{connectWithBlocking(String strConnectTo)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::connect\+With\+Blocking (
+\begin{DoxyParamCaption}
+\item[{String}]{str\+Connect\+To}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ca02c63d90bc0b6d58c199878fc87cb}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ca02c63d90bc0b6d58c199878fc87cb}
+
+
+Connect to a server while locking the thread. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!connect\+Without\+Blocking@{connect\+Without\+Blocking}}
+\index{connect\+Without\+Blocking@{connect\+Without\+Blocking}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{connect\+Without\+Blocking(\+String str\+Connect\+To)=0}{connectWithoutBlocking(String strConnectTo)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::connect\+Without\+Blocking (
+\begin{DoxyParamCaption}
+\item[{String}]{str\+Connect\+To}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a7ee68f0894e296f63a2506cea432954f}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a7ee68f0894e296f63a2506cea432954f}
+
+
+Connect to a server without locking the thread. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!get\+Last\+Error@{get\+Last\+Error}}
+\index{get\+Last\+Error@{get\+Last\+Error}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{get\+Last\+Error()}{getLastError()}}]{\setlength{\rightskip}{0pt plus 5cm}String Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::get\+Last\+Error (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_aca54358a21d0a3f24747739b2ca89c12}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_aca54358a21d0a3f24747739b2ca89c12}
+
+
+Get the last error. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!get\+Port@{get\+Port}}
+\index{get\+Port@{get\+Port}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{get\+Port()}{getPort()}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned short Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::get\+Port (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_aa7d3728465e7fe2baae9b5e76b9aee46}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_aa7d3728465e7fe2baae9b5e76b9aee46}
+
+
+Get the port being used. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!get\+Server\+Connection@{get\+Server\+Connection}}
+\index{get\+Server\+Connection@{get\+Server\+Connection}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{get\+Server\+Connection()}{getServerConnection()}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf T\+C\+P\+Connection} $>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::get\+Server\+Connection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_add530166ec4e24a631ebb800069629ed}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_add530166ec4e24a631ebb800069629ed}
+
+
+Get the connection to the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!get\+Server\+IP@{get\+Server\+IP}}
+\index{get\+Server\+IP@{get\+Server\+IP}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{get\+Server\+I\+P()}{getServerIP()}}]{\setlength{\rightskip}{0pt plus 5cm}String Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::get\+Server\+IP (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a3a9e7b97eb5bf3d4476277a2ddb29262}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a3a9e7b97eb5bf3d4476277a2ddb29262}
+
+
+Get the server\textquotesingle{}s ip. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!H\+T\+T\+P\+Parse\+Request@{H\+T\+T\+P\+Parse\+Request}}
+\index{H\+T\+T\+P\+Parse\+Request@{H\+T\+T\+P\+Parse\+Request}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{H\+T\+T\+P\+Parse\+Request(\+String str\+Content, String str\+New\+Line)}{HTTPParseRequest(String strContent, String strNewLine)}}]{\setlength{\rightskip}{0pt plus 5cm}String Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::\+H\+T\+T\+P\+Parse\+Request (
+\begin{DoxyParamCaption}
+\item[{String}]{str\+Content, }
+\item[{String}]{str\+New\+Line}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a7baff1a0a5f62e3ed4dbed3d9ee24205}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a7baff1a0a5f62e3ed4dbed3d9ee24205}
+
+
+Parse an H\+T\+TP request. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!H\+T\+T\+P\+Send\+G\+ET@{H\+T\+T\+P\+Send\+G\+ET}}
+\index{H\+T\+T\+P\+Send\+G\+ET@{H\+T\+T\+P\+Send\+G\+ET}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{H\+T\+T\+P\+Send\+G\+E\+T(\+String str\+Retrieve, String str\+Headers="""")}{HTTPSendGET(String strRetrieve, String strHeaders="")}}]{\setlength{\rightskip}{0pt plus 5cm}bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::\+H\+T\+T\+P\+Send\+G\+ET (
+\begin{DoxyParamCaption}
+\item[{String}]{str\+Retrieve, }
+\item[{String}]{str\+Headers = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a954343f32588c0c613a0455116197db8}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a954343f32588c0c613a0455116197db8}
+
+
+Send an H\+T\+TP request get to the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!H\+T\+T\+P\+Send\+P\+O\+ST@{H\+T\+T\+P\+Send\+P\+O\+ST}}
+\index{H\+T\+T\+P\+Send\+P\+O\+ST@{H\+T\+T\+P\+Send\+P\+O\+ST}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{H\+T\+T\+P\+Send\+P\+O\+S\+T(\+String str\+Retrieve, String line, String str\+Headers, String str\+Auth="""")}{HTTPSendPOST(String strRetrieve, String line, String strHeaders, String strAuth="")}}]{\setlength{\rightskip}{0pt plus 5cm}bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::\+H\+T\+T\+P\+Send\+P\+O\+ST (
+\begin{DoxyParamCaption}
+\item[{String}]{str\+Retrieve, }
+\item[{String}]{line, }
+\item[{String}]{str\+Headers, }
+\item[{String}]{str\+Auth = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a690fc920a76bf4e3749207f929cea267}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a690fc920a76bf4e3749207f929cea267}
+
+
+Send an H\+T\+TP post request get to the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!H\+T\+T\+P\+Send\+P\+O\+ST@{H\+T\+T\+P\+Send\+P\+O\+ST}}
+\index{H\+T\+T\+P\+Send\+P\+O\+ST@{H\+T\+T\+P\+Send\+P\+O\+ST}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{H\+T\+T\+P\+Send\+P\+O\+S\+T(\+String str\+Content\+Type, String str\+Retrieve, String line, String str\+Headers, String str\+Auth="""")}{HTTPSendPOST(String strContentType, String strRetrieve, String line, String strHeaders, String strAuth="")}}]{\setlength{\rightskip}{0pt plus 5cm}bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::\+H\+T\+T\+P\+Send\+P\+O\+ST (
+\begin{DoxyParamCaption}
+\item[{String}]{str\+Content\+Type, }
+\item[{String}]{str\+Retrieve, }
+\item[{String}]{line, }
+\item[{String}]{str\+Headers, }
+\item[{String}]{str\+Auth = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a3db51914091c0452d2417ef2167342c0}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a3db51914091c0452d2417ef2167342c0}
+
+
+Send an H\+T\+TP post request get to the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!init@{init}}
+\index{init@{init}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{init(unsigned short port)=0}{init(unsigned short port)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::init (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{port}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a183060b267be8fdbdf40d363f83b3c4a}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a183060b267be8fdbdf40d363f83b3c4a}
+
+
+Start the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+Char@{recv\+Char}}
+\index{recv\+Char@{recv\+Char}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+Char()=0}{recvChar()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$char$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+Char (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_abeb3730201f542dae6e6d4d29004c29d}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_abeb3730201f542dae6e6d4d29004c29d}
+
+
+Receive a char from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+Double@{recv\+Double}}
+\index{recv\+Double@{recv\+Double}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+Double()=0}{recvDouble()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$double$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+Double (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_aa21cdd752ab372f5160252b15d8c6b44}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_aa21cdd752ab372f5160252b15d8c6b44}
+
+
+Receive a double from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+Float@{recv\+Float}}
+\index{recv\+Float@{recv\+Float}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+Float()=0}{recvFloat()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$float$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+Float (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ae3705885dc01ba454eda88c6de2d7c}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ae3705885dc01ba454eda88c6de2d7c}
+
+
+Receive a float from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+Int@{recv\+Int}}
+\index{recv\+Int@{recv\+Int}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+Int()=0}{recvInt()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$int$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_aefee5d91c6c7e05e5942557f992b3720}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_aefee5d91c6c7e05e5942557f992b3720}
+
+
+Receive an int from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+Long@{recv\+Long}}
+\index{recv\+Long@{recv\+Long}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+Long()=0}{recvLong()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$long$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+Long (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_ab8d72a09dfd06b4043980b882f6950a5}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_ab8d72a09dfd06b4043980b882f6950a5}
+
+
+Receive a long from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+Short@{recv\+Short}}
+\index{recv\+Short@{recv\+Short}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+Short()=0}{recvShort()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$short$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+Short (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a4906cf1500267303820348d4ad13df5e}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a4906cf1500267303820348d4ad13df5e}
+
+
+Receive a short from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+String@{recv\+String}}
+\index{recv\+String@{recv\+String}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+String(int i\+Length)=0}{recvString(int iLength)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$char $\ast$$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+String (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+Length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_abbbbbd6a99d54e540206dea2fd9a4624}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_abbbbbd6a99d54e540206dea2fd9a4624}
+
+
+Receive a char string from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+String@{recv\+String}}
+\index{recv\+String@{recv\+String}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+String()=0}{recvString()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$String$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_ab6aa0e3d40288357f58bde9f7184f874}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_ab6aa0e3d40288357f58bde9f7184f874}
+
+
+Receive a string from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+U\+Char@{recv\+U\+Char}}
+\index{recv\+U\+Char@{recv\+U\+Char}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+U\+Char()=0}{recvUChar()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$unsigned char$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+U\+Char (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a3286aa902385af628b66b1d06a4ca051}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a3286aa902385af628b66b1d06a4ca051}
+
+
+Receive an unsigned char from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+U\+Int@{recv\+U\+Int}}
+\index{recv\+U\+Int@{recv\+U\+Int}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+U\+Int()=0}{recvUInt()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$unsigned int$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+U\+Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a02e9cfcd958b6600dc03eee911fbfe5e}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a02e9cfcd958b6600dc03eee911fbfe5e}
+
+
+Receive an unsigned int from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+U\+Long@{recv\+U\+Long}}
+\index{recv\+U\+Long@{recv\+U\+Long}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+U\+Long()=0}{recvULong()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$unsigned long$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+U\+Long (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a2ef3d2270c9ddc1f21823fc240fa50d7}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a2ef3d2270c9ddc1f21823fc240fa50d7}
+
+
+Receive an unsigned long from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!recv\+U\+Short@{recv\+U\+Short}}
+\index{recv\+U\+Short@{recv\+U\+Short}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{recv\+U\+Short()=0}{recvUShort()=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf T\+C\+P\+Response}$<$unsigned short$>$ Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::recv\+U\+Short (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a3da0d0b500859f751b223162330f91fe}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a3da0d0b500859f751b223162330f91fe}
+
+
+Receive an unsigned short from the server. 
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+Char@{send\+Char}}
+\index{send\+Char@{send\+Char}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+Char(char c\+Char)=0}{sendChar(char cChar)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+Char (
+\begin{DoxyParamCaption}
+\item[{char}]{c\+Char}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a65dc2eee02337f7b8c8aaa9e3e190a4d}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a65dc2eee02337f7b8c8aaa9e3e190a4d}
+
+
+Send a char to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a5c47f30760d3875d0ece7b0970f794b1}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+Double@{send\+Double}}
+\index{send\+Double@{send\+Double}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+Double(double d\+Double)=0}{sendDouble(double dDouble)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+Double (
+\begin{DoxyParamCaption}
+\item[{double}]{d\+Double}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a34c01edb47b70c2eba337be77e4fd84a}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a34c01edb47b70c2eba337be77e4fd84a}
+
+
+Send a double to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a06b0248538e1d52736bd3dd9cab4a663}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+Float@{send\+Float}}
+\index{send\+Float@{send\+Float}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+Float(float f\+Float)=0}{sendFloat(float fFloat)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+Float (
+\begin{DoxyParamCaption}
+\item[{float}]{f\+Float}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a5aa35f109fce85d7efc952ba3736a114}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a5aa35f109fce85d7efc952ba3736a114}
+
+
+Send a float to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_ae55381591149dba6639db08a614eeea4}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+Int@{send\+Int}}
+\index{send\+Int@{send\+Int}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+Int(int i\+Int)=0}{sendInt(int iInt)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+Int (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+Int}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_acf5a720509909c3847b9ad41ca676769}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_acf5a720509909c3847b9ad41ca676769}
+
+
+Send an int to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_af41970d0e28c934fb506eaa6774b090e}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+Long@{send\+Long}}
+\index{send\+Long@{send\+Long}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+Long(long l\+Long)=0}{sendLong(long lLong)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+Long (
+\begin{DoxyParamCaption}
+\item[{long}]{l\+Long}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a69679bab36c5d521232eb6d374ed0aa3}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a69679bab36c5d521232eb6d374ed0aa3}
+
+
+Send a long to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a7158aca9f196ac2eedca9149f022be35}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+Short@{send\+Short}}
+\index{send\+Short@{send\+Short}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+Short(short s\+Short)=0}{sendShort(short sShort)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+Short (
+\begin{DoxyParamCaption}
+\item[{short}]{s\+Short}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a032c9ec922780d4ce6094459622c7b28}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a032c9ec922780d4ce6094459622c7b28}
+
+
+Send a short to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a9e55f5e162e1f5b979a7a4eaabb1f9f1}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+String@{send\+String}}
+\index{send\+String@{send\+String}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+String(\+String line)=0}{sendString(String line)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+String (
+\begin{DoxyParamCaption}
+\item[{String}]{line}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_ad92a7dd6a9644df7429de0cd87c79314}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_ad92a7dd6a9644df7429de0cd87c79314}
+
+
+Send a string to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_aecc6c8c21e722ac88540b39959616386}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+U\+Char@{send\+U\+Char}}
+\index{send\+U\+Char@{send\+U\+Char}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+U\+Char(unsigned char uc\+Char)=0}{sendUChar(unsigned char ucChar)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+U\+Char (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{uc\+Char}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ae91c15920f4a5f205d1d9b1d0e57b4}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a9ae91c15920f4a5f205d1d9b1d0e57b4}
+
+
+Send an unsigned char to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a37f507d457f8c0e74ef6f480e8450f2c}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+U\+Int@{send\+U\+Int}}
+\index{send\+U\+Int@{send\+U\+Int}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+U\+Int(unsigned int ui\+Int)=0}{sendUInt(unsigned int uiInt)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+U\+Int (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ui\+Int}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a5e7cc6633246e2772879271147e933ab}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a5e7cc6633246e2772879271147e933ab}
+
+
+Send an unsigned int to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a0e251a186501c2caf49d10e5a86dd302}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+U\+Long@{send\+U\+Long}}
+\index{send\+U\+Long@{send\+U\+Long}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+U\+Long(unsigned long ul\+Long)=0}{sendULong(unsigned long ulLong)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+U\+Long (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{ul\+Long}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a7a89c7236fb1002d656756df666c50a2}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a7a89c7236fb1002d656756df666c50a2}
+
+
+Send an unsigned long to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a507236f083226e0e84229c9fc99dc10e}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+\index{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}!send\+U\+Short@{send\+U\+Short}}
+\index{send\+U\+Short@{send\+U\+Short}!Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client@{Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client}}
+\subsubsection[{\texorpdfstring{send\+U\+Short(unsigned short us\+Short)=0}{sendUShort(unsigned short usShort)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Rad\+Jav\+::\+Networking\+::\+Tcpip\+Client\+::send\+U\+Short (
+\begin{DoxyParamCaption}
+\item[{unsigned short}]{us\+Short}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_jav_1_1_networking_1_1_tcpip_client_a5f7307ef472e3eb46008cb3cb1a4004e}{}\label{class_rad_jav_1_1_networking_1_1_tcpip_client_a5f7307ef472e3eb46008cb3cb1a4004e}
+
+
+Send an unsigned short to the server. 
+
+
+
+Implemented in \hyperlink{class_rad_jav_1_1_networking_1_1wx_widgets_t_c_p_client_a5598335792abf5f93668fd55386e0487}{Rad\+Jav\+::\+Networking\+::wx\+Widgets\+T\+C\+P\+Client}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Rad\+Jav/\hyperlink{_rad_jav_networking_8h}{Rad\+Jav\+Networking.\+h}\item 
+src/\+Rad\+Jav/\hyperlink{_rad_jav_networking_8cpp}{Rad\+Jav\+Networking.\+cpp}\end{DoxyCompactItemize}

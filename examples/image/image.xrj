@@ -1,0 +1,25 @@
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				var win = new RadJav.GUI.Window ("win", "Image Example");
+				win.create ().then (function (win2)
+					{
+						var imagePath = "./radjav-med.png";
+
+						// Until a current working directory can be set for HTML5, 
+						// this dumb hack has to be added in.
+						if (RadJav.OS.HTML5 != null)
+							imagePath = "./image/radjav-med.png";
+
+						RadJav.GUI.create ({
+								type: "RadJav.GUI.Image", 
+								name: "view", 
+								image: imagePath, 
+								size: "400, 62", 
+								position: "40, 120", 
+								parent: win2
+							});
+					});
+			});
+	});

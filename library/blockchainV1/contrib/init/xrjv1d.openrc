@@ -1,0 +1,92 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/xrjv1/.xrjv1" ]; then
+	XRJV1D_DEFAULT_DATADIR="/var/lib/xrjv1/.xrjv1"
+else
+	XRJV1D_DEFAULT_DATADIR="/var/lib/xrjv1d"
+fi
+
+XRJV1D_CONFIGFILE=${XRJV1D_CONFIGFILE:-/etc/xrjv1/xrjv1.conf}
+XRJV1D_PIDDIR=${XRJV1D_PIDDIR:-/var/run/xrjv1d}
+XRJV1D_PIDFILE=${XRJV1D_PIDFILE:-${XRJV1D_PIDDIR}/xrjv1d.pid}
+XRJV1D_DATADIR=${XRJV1D_DATADIR:-${XRJV1D_DEFAULT_DATADIR}}
+XRJV1D_USER=${XRJV1D_USER:-${XRJV1_USER:-xrjv1}}
+XRJV1D_GROUP=${XRJV1D_GROUP:-xrjv1}
+XRJV1D_BIN=${XRJV1D_BIN:-/usr/bin/xrjv1d}
+XRJV1D_NICE=${XRJV1D_NICE:-${NICELEVEL:-0}}
+XRJV1D_OPTS="${XRJV1D_OPTS:-${XRJV1_OPTS}}"
+
+name="XRJV1 Core Daemon"
+description="XRJV1 cryptocurrency P2P network daemon"
+
+command="/usr/bin/xrjv1d"
+command_args="-pid=\"${XRJV1D_PIDFILE}\" \
+		-conf=\"${XRJV1D_CONFIGFILE}\" \
+		-datadir=\"${XRJV1D_DATADIR}\" \
+		-daemon \
+		${XRJV1D_OPTS}"
+
+required_files="${XRJV1D_CONFIGFILE}"
+start_stop_daemon_args="-u ${XRJV1D_USER} \
+			-N ${XRJV1D_NICE} -w 2000"
+pidfile="${XRJV1D_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${XRJV1D_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${XRJV1D_USER}:${XRJV1D_GROUP}" \
+	"${XRJV1D_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${XRJV1D_USER}:${XRJV1D_GROUP}" \
+	"${XRJV1D_PIDDIR}"
+
+	checkpath -f \
+	-o ${XRJV1D_USER}:${XRJV1D_GROUP} \
+	-m 0660 \
+	${XRJV1D_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${XRJV1D_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run xrjv1d."
+		eerror "The setting must appear in ${XRJV1D_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"XRJV1 Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}
