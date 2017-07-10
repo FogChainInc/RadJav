@@ -79,7 +79,8 @@ public:
         consensus.BIP65Height = 121;
         consensus.BIP66Height = 121;
         consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 4 * 24 * 60 * 60; // 4 days
+        //consensus.nPowTargetTimespan = 4 * 24 * 60 * 60; // 4 days
+		consensus.nPowTargetTimespan = 5 * 60; // 5 minutes set this to 4 days eventually
 		consensus.nPowTargetSpacing = 3 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
@@ -178,7 +179,8 @@ public:
         consensus.BIP65Height = 121; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
         consensus.BIP66Height = 121; // 000000002104c8c45e99a8853285a3b592602a3ccde2b832481da85e9e4ba182
         consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-		consensus.nPowTargetTimespan = 4 * 24 * 60 * 60; // 4 days
+		//consensus.nPowTargetTimespan = 4 * 24 * 60 * 60; // 4 days
+		consensus.nPowTargetTimespan = 5 * 60; // 5 minutes
 		consensus.nPowTargetSpacing = 3 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
@@ -271,7 +273,8 @@ public:
         consensus.BIP65Height = 121; // BIP65 activated on regtest (Used in rpc activation tests)
         consensus.BIP66Height = 121; // BIP66 activated on regtest (Used in rpc activation tests)
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 4 * 24 * 60 * 60; // 4 days
+        //consensus.nPowTargetTimespan = 4 * 24 * 60 * 60; // 4 days
+		consensus.nPowTargetTimespan = 5 * 60; // 5 minutes
 		consensus.nPowTargetSpacing = 3 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
