@@ -1,24 +1,86 @@
-var walletWin = null;
-var walletWinLabel = null;
+var walletWindow = null;
+var isConnectedToXRJV1network = false;
+
+function convertCreatedGUIObjectsIntoGlobalVariables (createdObjects)
+{
+	for (var iIdx = 0; iIdx < createdObjects.length; iIdx++)
+	{
+		var obj = createdObjects[iIdx];
+
+		if (obj._children != null)
+		{
+			if (obj._children.length > 0)
+				convertCreatedGUIObjectsIntoGlobalVariables (obj._children);
+		}
+
+		this[obj.name] = obj;
+	}
+}
+
+function fillinNetXRJAddress ()
+{
+	var addr = RadJav.BlockchainV1.getNewAddress ();
+	receivingAddress.setText (addr);
+}
+
+function updateWalletInfo ()
+{
+	var walletInfo = RadJav.BlockchainV1.getWalletInfo ();
+
+	xrjAvailable.setText ("XRJ Available: " + walletInfo.balance);
+	xrjPending.setText ("XRJ Pending: " + walletInfo.unconfirmed_balance);
+}
 
 RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
 	{
 		RadJav.runApplication (function ()
 			{
-				walletWin = new RadJav.GUI.Window ("walletWindow", "Wallet");
-				walletWin.create ().then (function (win)
-					{
-						RadJav.GUI.create ("Label", "label", "Connecting to network...", walletWin).then (
-							function (label)
-							{
-								walletWinLabel = label;
+				if (RadJav.OS.HTML5 != null)
+				{
+					alert ("HTML5 is not yet supported!");
 
-								RadJav.BlockchainV1.on ("ready", function ()
+					return;
+				}
+
+				walletWindow = new RadJav.GUI.Window ("walletWindow", "RadJav Wallet");
+				walletWindow.setSize (581, 274);
+				walletWindow.create ().then (function (win)
+					{
+						var gotData = function (data)
+							{
+								var json = JSON.parse (data);
+
+								RadJav.GUI.createObjects (json, win).then (function (objs)
 									{
-										walletWinLabel.setText ("Finished loading");
+										// This converts all created objects into global variables accessible by 
+										// their object names. For example if a GUI object was created with 
+										// the name "crazyHippo", then it would be converted into a global 
+										// variable named "crazyHippo".
+										convertCreatedGUIObjectsIntoGlobalVariables (objs);
+
+										newReceivingAddress.on ("click", function ()
+											{
+												fillinNetXRJAddress ();
+											});
+
+										RadJav.BlockchainV1.on ("ready", function ()
+											{
+												connectingMessage.setText ("Connected!");
+												isConnectedToXRJV1network = true;
+												fillinNetXRJAddress ();
+												updateWalletInfo ();
+											});
+										RadJav.BlockchainV1.connectToNetwork ({
+												nodes: [
+														"xrjv1seed1.radjav.com", 
+														"xrjv1seed2.radjav.com"
+													]
+											});
 									});
-								RadJav.BlockchainV1.connectToNetwork ();
-							});
+							};
+
+						var data = RadJav.IO.TextFile.readEntireFile ("./wallet.json");
+						gotData (data);
 					});
 			});
 	});
