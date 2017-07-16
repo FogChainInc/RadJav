@@ -1,0 +1,128 @@
+[
+	{
+		"type": "RadJav.GUI.MenuBar", 
+		"name": "walletMenu", 
+		"visibility": true, 
+		"children": [
+				{
+					"type": "RadJav.GUI.MenuItem", 
+					"name": "programMenu", 
+					"text": "Program", 
+					"children": [
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "exitMenuItem", 
+								"text": "Exit", 
+								"createOnPlatforms": {
+										"HTML5": false
+									}, 
+								"click": "RadJav.exit();"
+							}
+						]
+				}]
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "xrjAvailable", 
+		"visibility": true, 
+		"position": "12, 10", 
+		"size": "150, 13", 
+		"text": "XRJ Available: 0"
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "xrjPending", 
+		"visibility": true, 
+		"position": "12, 36", 
+		"size": "150, 17", 
+		"text": "XRJ Pending: 0"
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "receivingAddressLabel", 
+		"visibility": true, 
+		"position": "7, 86", 
+		"size": "180, 17", 
+		"text": "Your Current Receiving Address:"
+	}, 
+	{
+		"type": "RadJav.GUI.Textbox", 
+		"name": "receivingAddress", 
+		"visibility": true, 
+		"position": "190, 83", 
+		"size": "280, 20", 
+		"text": ""
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "newReceivingAddress", 
+		"visibility": true, 
+		"position": "478, 81", 
+		"size": "75, 23", 
+		"text": "New Addr"
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "sendXRJToLabel", 
+		"visibility": true, 
+		"position": "7, 130", 
+		"size": "80, 13", 
+		"text": "Send XRJ to: "
+	}, 
+	{
+		"type": "RadJav.GUI.Textbox", 
+		"name": "sendXRJTo", 
+		"visibility": true, 
+		"position": "90, 127", 
+		"size": "389, 20", 
+		"text": ""
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "amountOfXRJToSendLabel", 
+		"visibility": true, 
+		"position": "9, 156", 
+		"size": "131, 13", 
+		"text": "Amount of XRJ to Send:"
+	}, 
+	{
+		"type": "RadJav.GUI.Textbox", 
+		"name": "amountOfXRJToSend", 
+		"visibility": true, 
+		"position": "146, 153", 
+		"size": "100, 20", 
+		"text": ""
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "transactionFeeLabel", 
+		"visibility": true, 
+		"position": "262, 156", 
+		"size": "144, 13", 
+		"text": "Transaction Fee (XRJ/kB):"
+	}, 
+	{
+		"type": "RadJav.GUI.Textbox", 
+		"name": "transactionFee", 
+		"visibility": true, 
+		"position": "412, 153", 
+		"size": "60, 20", 
+		"text": "0.0002"
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "send", 
+		"visibility": true, 
+		"position": "397, 179", 
+		"size": "75, 23", 
+		"text": "Send"
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "connectingMessage", 
+		"visibility": true, 
+		"position": "331, 10", 
+		"size": "232, 17", 
+		"text": "Connecting to the RadJav XRV1 network..."
+	}
+]
