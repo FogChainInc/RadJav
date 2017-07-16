@@ -148,6 +148,8 @@
 						static void startBlockchain();
 
 						static RJBOOL hasBlockchainStarted;
+						static int connectArgsc;
+						static char **connectArgsv;
 						static v8::Persistent<v8::Function> *onReadyFunction;
 						static v8::Persistent<v8::Function> *onErrorFunction;
 				};

@@ -128,7 +128,7 @@ int main (int iArgs, char **cArgs)
 	ary.push_back ("RadJav.Rectangle.js");
 	ary.push_back ("RadJav.Font.js");
 	ary.push_back ("RadJav.IO.js");
-	ary.push_back ("RadJav.IO.Serial.js");
+	ary.push_back ("RadJav.IO.SerialComm.js");
 	ary.push_back ("RadJav.GUI.GObject.js"); // This must be compiled before any other GUI object.
 	ary.push_back ("RadJav.GUI.Button.js");
 	ary.push_back ("RadJav.GUI.Canvas3D.js");

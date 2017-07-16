@@ -134,7 +134,7 @@ namespace RadJAV
 
 		V8JavascriptEngine::~V8JavascriptEngine()
 		{
-			v8::Unlocker unlocker(isolate);
+			//v8::Unlocker unlocker(isolate);
 			isolate->Dispose();
 			v8::V8::Dispose();
 			v8::V8::ShutdownPlatform();
@@ -159,7 +159,7 @@ namespace RadJAV
 				wxSetWorkingDirectory(parentDir);
 			#endif
 
-			v8::Locker locker(isolate);
+			//v8::Locker locker(isolate);
 			v8::Isolate::Scope scope(isolate);
 			v8::HandleScope handleScope(isolate);
 
@@ -600,6 +600,13 @@ namespace RadJAV
 					v8::Handle<v8::Function> ioFunc = v8GetFunction(radJavFunc, "IO");
 
 					IO::createV8Callbacks(isolate, ioFunc);
+
+					// RadJav.IO.SerialComm
+					{
+						v8::Handle<v8::Function> serialCommFunc = v8GetFunction(ioFunc, "SerialComm");
+
+						IO::SerialComm::createV8Callbacks(isolate, serialCommFunc);
+					}
 
 					// RadJav.IO.TextFile
 					{

@@ -40,6 +40,8 @@ namespace RadJAV
 {
 	#ifdef USE_BLOCKCHAIN_V1
 	RJBOOL BlockchainV1::hasBlockchainStarted = false;
+	int BlockchainV1::connectArgsc = 0;
+	char **BlockchainV1::connectArgsv = NULL;
 	v8::Persistent<v8::Function> *BlockchainV1::onReadyFunction = NULL;
 	v8::Persistent<v8::Function> *BlockchainV1::onErrorFunction = NULL;
 
@@ -158,6 +160,47 @@ namespace RadJAV
 
 	void BlockchainV1::connectToNetwork(const v8::FunctionCallbackInfo<v8::Value> &args)
 	{
+		if (args.Length() > 0)
+		{
+			if (connectArgsv != NULL)
+			{
+				for (RJINT iIdx = 0; iIdx < connectArgsc; iIdx++)
+					RJDELETEARRAY connectArgsv[iIdx];
+
+				RJDELETEARRAY connectArgsv;
+			}
+
+			connectArgsc = 0;
+			connectArgsv = NULL;
+			Array<String> commands;
+
+			v8::Local<v8::Object> connectSettings = v8::Local<v8::Object>::Cast(args[0]);
+			v8::Local<v8::Array> nodes = v8::Local<v8::Array>::Cast(connectSettings->Get(String("nodes").toV8String(args.GetIsolate())));
+
+			if (nodes.IsEmpty() == false)
+			{
+				RJUINT count = nodes->Length();
+
+				for (RJUINT iIdx = 0; iIdx < count; iIdx++)
+				{
+					v8::Local<v8::String> str = v8::Local<v8::String>::Cast(nodes->Get(iIdx));
+
+					String node = parseV8Value(str);
+					commands.push_back("-addnode " + node);
+				}
+			}
+
+			connectArgsc = commands.size();
+			connectArgsv = RJNEW char *[connectArgsc];
+
+			for (RJUINT iIdx = 0; iIdx < commands.size(); iIdx++)
+			{
+				String command = commands.at(iIdx);
+				connectArgsv[iIdx] = RJNEW char[command.size () + 1];
+				strcpy (connectArgsv[iIdx], command.c_str());
+			}
+		}
+
 		hasBlockchainStarted = true;
 	}
 
@@ -173,11 +216,7 @@ namespace RadJAV
 
 			v8::Persistent<v8::Function> *persistent = RJNEW v8::Persistent<v8::Function>();
 
-			persistent->Reset(V8_JAVASCRIPT_ENGINE->isolate, func);
-
-			if (onReadyFunction != NULL)
-				DELETEOBJ(onReadyFunction);
-
+			persistent->Reset(args.GetIsolate(), func);
 			onReadyFunction = persistent;
 		}
 
@@ -188,11 +227,7 @@ namespace RadJAV
 
 			v8::Persistent<v8::Function> *persistent = RJNEW v8::Persistent<v8::Function>();
 
-			persistent->Reset(V8_JAVASCRIPT_ENGINE->isolate, func);
-
-			if (onErrorFunction != NULL)
-				DELETEOBJ(onErrorFunction);
-
+			persistent->Reset(args.GetIsolate(), func);
 			onErrorFunction = persistent;
 		}
 	}
@@ -2013,13 +2048,8 @@ namespace RadJAV
 		try
 		{
 			SetupEnvironment();
-
 			noui_connect();
-
-			int argc = 0;
-			char **argv = NULL;
-
-			AppInit(argc, argv);
+			AppInit(BlockchainV1::connectArgsc, BlockchainV1::connectArgsv);
 		}
 		catch (std::exception ex)
 		{
