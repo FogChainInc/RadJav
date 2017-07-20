@@ -10,3 +10,7 @@ You can view our wiki at https://github.com/HigherEdgeSoftware/RadJav/wiki
 
 # Online HTML5 Examples
 You can view the HTML5 online examples at https://www.radjav.com/en_us/examples/exampleBrowser.htm
+
+
+# Whitepaper
+You can view the whitepaper at https://github.com/HigherEdgeSoftware/RadJav/wiki/Whitepaper
