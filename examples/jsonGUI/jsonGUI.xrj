@@ -1,0 +1,49 @@
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				var win = new RadJav.GUI.Window ("win", "JSON GUI Example");
+				win.create ().then (function (win2)
+					{
+						// Anonymous function to load the new data received.
+						var loadObjs = function (newData)
+							{
+								// Parse the JSON data and convert the data into usable GObject descriptors.
+								var json = JSON.parse (newData);
+
+								// Create the loaded json objects.
+								RadJav.GUI.createObjects (json, win2).then (function (objs)
+									{
+										// Since we don't know which object in objs is button1, 
+										// we have to iterate through each GObject in objs until 
+										// we find one that has the name "button"1.
+										for (var iIdx = 0; iIdx < objs.length; iIdx++)
+										{
+											var obj = objs[iIdx];
+
+											if (obj.name == "button1")
+											{
+												// We found button1! Now we attach an event to it
+												// that will execute everytime the user clicks on it.
+												obj.on ("click", function ()
+													{
+														alert ("YAY!");
+													});
+											}
+										}
+									});
+							};
+
+						// Check to see if the user is using HTML5. If the user is using HTML5, use 
+						// RadJav.Net.httpRequest to get the JSON file. If the user isn't using HTML5 
+						// use RadJav.IO.TextFile.readEntireFile to read the file locally.
+						if (RadJav.OS.type == "html5")
+							RadJav.Net.httpRequest ("./gui.json").then (loadObjs);
+						else
+						{
+							var data = RadJav.IO.TextFile.readEntireFile ("./gui.json");
+							loadObjs (data);
+						}
+					});
+			});
+	});

@@ -1,0 +1,37 @@
+[
+	{
+		"type": "RadJav.GUI.MenuBar", 
+		"name": "menubar", 
+		"visibility": true, 
+		"children": [
+				{
+					"type": "RadJav.GUI.MenuItem", 
+					"name": "programMenu", 
+					"text": "Program", 
+					"children": [
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "exitMenuItem", 
+								"text": "Exit", 
+								"click": "RadJav.exit ();"
+							}
+						]
+				}
+			]
+	}, 
+	{
+		"type": "RadJav.GUI.Label", 
+		"name": "label1", 
+		"visibility": true, 
+		"position": "60, 95", 
+		"size": "500, 20", 
+		"text": "The example works!"
+	}, 
+	{
+		"type": "RadJav.GUI.Button", 
+		"name": "button1", 
+		"visibility": true, 
+		"position": "60, 125", 
+		"text": "Button"
+	}
+]
