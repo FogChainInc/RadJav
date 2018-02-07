@@ -23,9 +23,11 @@
 * A Textbox.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
+RadJav.GUI.Combobox = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Combobox, _super);
+
+	function Combobox (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -39,17 +41,22 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 		if (obj.items != null)
 			obj._items = obj.items;
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Combobox", 
-					size: "120, 40"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 120;
+			obj.size.y = 40;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Combobox";
 
 		/** @property {String} [_items=[]]
 		* The items associated with this object.
 		*/
-		this._items = RadJav.setDefaultValue (obj._items, []);
-		this.onCreated = function ()
+		_this._items = RadJav.setDefaultValue (obj._items, []);
+		_this.onCreated = function ()
 			{
 				for (var iIdx = 0; iIdx < this._items.length; iIdx++)
 				{
@@ -57,7 +64,9 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 					this.addItem (item);
 				}
 			};
-	}, 
+
+		return (_this);
+	}
 
 	/** @method addItem
 	* Add an item to the combo box.
@@ -66,13 +75,13 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, RadJav.GUI.Combobox.Item
 	* @param {RadJav.GUI.Combobox.Item/String} item The item to add.
 	*/
-	addItem: function (item)
+	Combobox.prototype.addItem = function (item)
 	{
 		if (typeof (item) == "string")
 			item = { text: item };
 
 		RadJav.theme.eventSync (this.type, "addItem", this, item);
-	}, 
+	}
 
 	/** @method setItems
 	* Set an array of items to the combo box.
@@ -81,10 +90,10 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, RadJav.GUI.Combobox.Item[]
 	* @param {RadJav.GUI.Combobox.Item[]} items The items to set to this combo box.
 	*/
-	setItems: function (items)
+	Combobox.prototype.setItems = function (items)
 	{
 		RadJav.theme.eventSync (this.type, "setItems", this, items);
-	}, 
+	}
 
 	/** @method deleteItem
 	* Remove an item from this combobox.
@@ -93,10 +102,10 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Number
 	* @param {Number} The item index to delete.
 	*/
-	deleteItem: function (index)
+	Combobox.prototype.deleteItem = function (index)
 	{
 		RadJav.theme.eventSync (this.type, "deleteItem", this, index);
-	}, 
+	}
 
 	/** @method getItem
 	* Get an item from this combobox.
@@ -105,10 +114,10 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Number
 	* @return {RadJav.GUI.Combobox.Item} The item.
 	*/
-	getItem: function (index)
+	Combobox.prototype.getItem = function (index)
 	{
 		return (RadJav.theme.eventSync (this.type, "getItem", this, index));
-	}, 
+	}
 
 	/** @method getItems
 	* Get all items from this combobox.
@@ -117,10 +126,10 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject
 	* @return {RadJav.GUI.Combobox.Item[]} The items.
 	*/
-	getItems: function ()
+	Combobox.prototype.getItems = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getItems", this));
-	}, 
+	}
 
 	/** @method getNumItems
 	* Get the number of items.
@@ -129,10 +138,10 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject
 	* @return {Number} The number of items.
 	*/
-	getNumItems: function ()
+	Combobox.prototype.getNumItems = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getNumItems", this));
-	}, 
+	}
 
 	/** @method clear
 	* Clear this object of all items.
@@ -140,10 +149,10 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Is Theme Event Asynchronous: No
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject
 	*/
-	clear: function ()
+	Combobox.prototype.clear = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "clear", this));
-	}, 
+	}
 
 	/** @method setSelectedItemIndex
 	* Set the selected item index.
@@ -153,10 +162,10 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Returned from Theme Event: Boolean
 	* @param {Number} index The selected item index.
 	*/
-	setSelectedItemIndex: function (index)
+	Combobox.prototype.setSelectedItemIndex = function (index)
 	{
 		RadJav.theme.eventSync (this.type, "setSelectedItemIndex", this, index);
-	}, 
+	}
 
 	/** @method getSelectedItemIndex
 	* Get the selected item index.
@@ -166,19 +175,21 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 	* Returned from Theme Event: Boolean
 	* @return {Number} The selected item index.
 	*/
-	getSelectedItemIndex: function ()
+	Combobox.prototype.getSelectedItemIndex = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getSelectedItemIndex", this));
 	}
-});
+
+	return (Combobox);
+}(RadJav.GUI.GObject));
 
 /** @class RadJav.GUI.Combobox.Item
 * A combobox item.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Combobox.Item = RadJav.Class.extend (
+RadJav.GUI.Combobox.Item = (function ()
 {
-	init: function (obj)
+	function Item (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -192,5 +203,7 @@ RadJav.GUI.Combobox.Item = RadJav.Class.extend (
 		*/
 		this.text = RadJav.setDefaultValue (obj.text, "");
 	}
-});
+
+	return (Item);
+} ());
 

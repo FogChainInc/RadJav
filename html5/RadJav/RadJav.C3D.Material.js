@@ -22,9 +22,9 @@
 * A 3d tranform.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Material = RadJav.Class.extend (
+RadJav.C3D.Material = (function ()
 {
-	init: function (canvas3d, obj)
+	function Material (canvas3d, obj)
 	{
 		if (obj == null)
 			obj = new Object ();
@@ -46,17 +46,19 @@ RadJav.C3D.Material = RadJav.Class.extend (
 		* The 3d engine material.
 		*/
 		this._material = RadJav.setDefaultValue (obj._material, null);
-	}, 
+	}
 
 	/** @method getName
 	* Get the name of this object.
 	* @return {String} The name.
 	*/
-	getName: function ()
+	Material.prototype.getName = function ()
 	{
 		return (this._name);
 	}
-});
+
+	return (Material);
+} ());
 
 /** @method createMaterials
 * @static

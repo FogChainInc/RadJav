@@ -4,7 +4,7 @@ set (wxWidgets_ROOT_DIR $ENV{WXWIN} CACHE PATH "wxWidgets path")
 fixPath (wxWidgets_ROOT_DIR)
 
 set (wxWidgets_CONFIGURATION ${wxWidgets_CONFIGURATION})
-find_package (wxWidgets_COMPONENTS core base png tiff jpeg zlib webview REQUIRED)
+find_package (wxWidgets REQUIRED core base png tiff jpeg zlib webview)
 include (${wxWidgets_USE_FILE})
 
 set (wxWidgets_INCLUDE ${wxWidgets_INCLUDE_DIRS})
@@ -18,4 +18,5 @@ if (WIN32)
 endif ()
 
 hasLibBeenFound (wxWidgets)
+
 

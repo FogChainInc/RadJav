@@ -202,7 +202,7 @@ namespace RadJAV
 				else
 					iSize = cStatus.cbInQue;
 
-				char *cBuffer = new char[iSize];
+				char *cBuffer = new char[iSize + 1];
 				if (ReadFile(hSerialIO, cBuffer, iSize, &dNumBytesRead, 0) == false)
 				{
 					delete[]cBuffer;
@@ -223,6 +223,7 @@ namespace RadJAV
 					return;
 				}
 
+				cBuffer[iSize] = '\0';
 				returnValue = cBuffer;
 
 				delete[]cBuffer;

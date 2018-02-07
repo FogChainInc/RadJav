@@ -22,9 +22,9 @@
 * The base GUI object.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.GObject = RadJav.Class.extend (
+RadJav.GUI.GObject = (function ()
 {
-	init: function (obj, text, parent, beforeCreatedChild)
+	function GObject (obj, text, parent, beforeCreatedChild)
 	{
 		if (obj == null)
 			obj = new Object ();
@@ -207,7 +207,7 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 
 			this._transform.setSize (size);
 		}
-	}, 
+	}
 
 	/** @method create
 	* Using the existing parameters in this object, create it.
@@ -215,7 +215,7 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: Yes
 	* @return {Promise} The promise to execute when the creation is completed.
 	*/
-	create: function ()
+	GObject.prototype.create = function ()
 	{
 		var promise = new Promise (RadJav.keepContext (function (resolve, reject)
 			{
@@ -273,7 +273,7 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 			}, this));
 
 		return (promise);
-	}, 
+	}
 
 	/** @method setFont
 	* Set this object's font.
@@ -281,11 +281,11 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @param {RadJav.Font} font The font to set.
 	*/
-	setFont: function (font)
+	GObject.prototype.setFont = function (font)
 	{
 		this._font = font;
 		RadJav.theme.eventSync (this.type, "setFont", this, font);
-	}, 
+	}
 
 	/** @method getFont
 	* Get this object's font.
@@ -293,10 +293,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {RadJav.Font} The font.
 	*/
-	getFont: function (font)
+	GObject.prototype.getFont = function (font)
 	{
 		return (RadJav.theme.eventSync (this.type, "getFont", this));
-	}, 
+	}
 
 	/** @method setPosition
 	* Set the position of this object.
@@ -305,10 +305,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* @param {Number/RadJav.Vector2} x The new position, or the new x coordinate of the new position.
 	* @param {Number} [y=null] The new y coordinate.
 	*/
-	setPosition: function (x, y)
+	GObject.prototype.setPosition = function (x, y)
 	{
 		this._transform.setPosition (x, y);
-	}, 
+	}
 
 	/** @method getPosition
 	* Get the position of this object.
@@ -316,10 +316,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {RadJav.Vector2} The position of this object.
 	*/
-	getPosition: function ()
+	GObject.prototype.getPosition = function ()
 	{
 		return (this._transform.getPosition ());
-	}, 
+	}
 
 	/** @method getX
 	* Get the X position of this object.
@@ -327,10 +327,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {RadJav.Vector2} The position of this object.
 	*/
-	getX: function ()
+	GObject.prototype.getX = function ()
 	{
 		return (this._transform.x);
-	}, 
+	}
 
 	/** @method getY
 	* Get the Y position of this object.
@@ -338,10 +338,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {RadJav.Vector2} The position of this object.
 	*/
-	getY: function ()
+	GObject.prototype.getY = function ()
 	{
 		return (this._transform.y);
-	}, 
+	}
 
 	/** @method setSize
 	* Set the size of this object.
@@ -350,10 +350,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* @param {Number/RadJav.Vector2} width The object's new size, or new width.
 	* @param {Number} [height=null] The object's new height.
 	*/
-	setSize: function (width, height)
+	GObject.prototype.setSize = function (width, height)
 	{
 		this._transform.setSize (width, height);
-	}, 
+	}
 
 	/** @method getSize
 	* Get the size of this object.
@@ -361,10 +361,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {RadJav.Vector2} The size of this object.
 	*/
-	getSize: function ()
+	GObject.prototype.getSize = function ()
 	{
 		return (this._transform.getSize ());
-	}, 
+	}
 
 	/** @method getWidth
 	* Get the width of this object.
@@ -372,10 +372,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {Number} The width of this object.
 	*/
-	getWidth: function ()
+	GObject.prototype.getWidth = function ()
 	{
 		return (this._transform.width);
-	}, 
+	}
 
 	/** @method getHeight
 	* Get the height of this object.
@@ -383,10 +383,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {Number} The height of this object.
 	*/
-	getHeight: function ()
+	GObject.prototype.getHeight = function ()
 	{
 		return (this._transform.height);
-	}, 
+	}
 
 	/** @method setText
 	* Set the object's text.
@@ -395,10 +395,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* @param {String} text The text to set.
 	* @return {String} The text associated with this object.
 	*/
-	setText: function (text)
+	GObject.prototype.setText = function (text)
 	{
 		RadJav.theme.event (this.type, "setText", this, text);
-	}, 
+	}
 
 	/** @method getText
 	* Get the object's text. 
@@ -406,10 +406,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {String} The text associated with this object.
 	*/
-	getText: function ()
+	GObject.prototype.getText = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getText", this));
-	}, 
+	}
 
 	/** @method getParent
 	* Get the parent.
@@ -417,10 +417,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {RadJav.GUI.GObject} The parent of this object.
 	*/
-	getParent: function ()
+	GObject.prototype.getParent = function ()
 	{
 		return (this._parent);
-	}, 
+	}
 
 	/** @method getHTML
 	* Get the HTML from this object.
@@ -428,10 +428,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {Mixed} The HTML object associated with this object.
 	*/
-	getHTML: function ()
+	GObject.prototype.getHTML = function ()
 	{
 		return (this._html);
-	}, 
+	}
 
 	/** @method setVisibility
 	* Set the visibility of this object.
@@ -440,10 +440,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
 	* @param {Boolean} visible The visibility of the object
 	*/
-	setVisibility: function (visible)
+	GObject.prototype.setVisibility = function (visible)
 	{
 		RadJav.theme.event (this.type, "setVisibility", this, visible);
-	}, 
+	}
 
 	/** @method getVisibility
 	* Get the visibility of this object.
@@ -452,10 +452,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject
 	* @return {Boolean} The visibility of this object
 	*/
-	getVisibility: function ()
+	GObject.prototype.getVisibility = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getVisibility", this));
-	}, 
+	}
 
 	/** @method show
 	* Show this object.
@@ -463,10 +463,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: Yes
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
 	*/
-	show: function ()
+	GObject.prototype.show = function ()
 	{
 		this.setVisibility (true);
-	}, 
+	}
 
 	/** @method hide
 	* Show this object.
@@ -474,10 +474,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: Yes
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
 	*/
-	hide: function ()
+	GObject.prototype.hide = function ()
 	{
 		this.setVisibility (false);
-	}, 
+	}
 
 	/** @method setEnabled
 	* Enable or disable this object.
@@ -485,10 +485,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: Yes
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
 	*/
-	setEnabled: function (enabled)
+	GObject.prototype.setEnabled = function (enabled)
 	{
 		RadJav.theme.event (this.type, "setEnabled", this, enabled);
-	}, 
+	}
 
 	/** @method getEnabled
 	* Get whether or not this object is enabled.
@@ -497,10 +497,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject
 	* @return {Boolean} The enabled status of this object
 	*/
-	getEnabled: function ()
+	GObject.prototype.getEnabled = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getEnabled", this));
-	}, 
+	}
 
 	/** @method on
 	* Calls a function when an event is triggered.
@@ -511,10 +511,10 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* @param {Function} func The function to execute.
 	* @return {Mixed} The result.
 	*/
-	on: function (eventName, func)
+	GObject.prototype.on = function (eventName, func)
 	{
 		return (RadJav.theme.event (this.type, "on", this, eventName, func));
-	}, 
+	}
 
 	/** @method getHTMLDOM
 	* Get the HTML dom object.
@@ -524,9 +524,11 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 	* Available on platforms: HTML5
 	* @return {Mixed} The html dom object.
 	*/
-	getHTMLDOM: function ()
+	GObject.prototype.getHTMLDOM = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getHTMLDOM", this));
 	}
-});
+
+	return (GObject);
+} ());
 

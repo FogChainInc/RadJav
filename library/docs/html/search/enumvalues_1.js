@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['socket_5fclient',['SOCKET_CLIENT',['../namespace_rad_j_a_v_1_1_networking.html#a9835cabf529b549093bd0c7048bada48a11c51975fabad7dd57dc8c5aee4d95c1',1,'RadJAV::Networking']]],
-  ['socket_5fserver',['SOCKET_SERVER',['../namespace_rad_j_a_v_1_1_networking.html#a9835cabf529b549093bd0c7048bada48a84a07e932f5c2b0454a13e10f15e4103',1,'RadJAV::Networking']]],
-  ['socket_5fsocket',['SOCKET_SOCKET',['../namespace_rad_j_a_v_1_1_networking.html#a9835cabf529b549093bd0c7048bada48a35e69c9623c550c84a5b2ba52ea3af2d',1,'RadJAV::Networking']]]
+  ['menu',['MENU',['../namespace_rad_j_a_v_1_1_g_u_i.html#a9cbdda386de15d1c382ddeadbaec131fa0a03134c0289889423cba200d27337ae',1,'RadJAV::GUI']]],
+  ['menu_5fbar',['MENU_BAR',['../namespace_rad_j_a_v_1_1_g_u_i.html#a9cbdda386de15d1c382ddeadbaec131facf4813a08c983ecb7a7587bb1242064c',1,'RadJAV::GUI']]]
 ];

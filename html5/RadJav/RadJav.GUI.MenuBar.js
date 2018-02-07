@@ -23,9 +23,11 @@
 * A menu Bar.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.MenuBar = RadJav.GUI.GObject.extend (
+RadJav.GUI.MenuBar = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(MenuBar, _super);
+
+	function MenuBar (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,11 +38,16 @@ RadJav.GUI.MenuBar = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.MenuBar", 
-					size: "120, 40"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 120;
+			obj.size.y = 40;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.MenuBar";
 
 		if (obj.htmlElement != null)
 			obj._htmlElement = obj.htmlElement;
@@ -51,17 +58,19 @@ RadJav.GUI.MenuBar = RadJav.GUI.GObject.extend (
 		* If this property is a string, it will be selected by the HTML DOM's element id 
 		* then converted into a RadJav.GUI.HTMLElement.
 		*/
-		this._htmlElement = RadJav.setDefaultValue (obj._htmlElement, null);
+		_this._htmlElement = RadJav.setDefaultValue (obj._htmlElement, null);
 
-		if (this._htmlElement != null)
-			this.setHTMLElement (this._htmlElement);
-	}, 
+		if (_this._htmlElement != null)
+			_this.setHTMLElement (_this._htmlElement);
+
+		return (_this);
+	}
 
 	/** @method setHTMLElement
 	* Set the HTML element to use, if the OS being used is HTML5.
 	* @param {RadJav.GUI.HTMLElement/String} element The element to be used.
 	*/
-	setHTMLElement: function (element)
+	MenuBar.prototype.setHTMLElement = function (element)
 	{
 		var elm = element;
 
@@ -70,5 +79,7 @@ RadJav.GUI.MenuBar = RadJav.GUI.GObject.extend (
 
 		this._htmlElement = elm;
 	}
-});
+
+	return (MenuBar);
+}(RadJav.GUI.GObject));
 

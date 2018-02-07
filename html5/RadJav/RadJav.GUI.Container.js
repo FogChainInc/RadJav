@@ -23,9 +23,11 @@
 * A container.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Container = RadJav.GUI.GObject.extend (
+RadJav.GUI.Container = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Container, _super);
+
+	function Container (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,11 +38,20 @@ RadJav.GUI.Container = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Container", 
-					size: "100,100"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 100;
+			obj.size.y = 100;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Container";
+
+		return (_this);
 	}
-});
+
+	return (Container);
+}(RadJav.GUI.GObject));
 

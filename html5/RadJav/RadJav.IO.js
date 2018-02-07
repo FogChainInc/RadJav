@@ -64,6 +64,106 @@
 {
 }*/
 
+/** @class RadJav.IO.SerialComm
+* Handles serial communications.
+* Available on platforms: Windows,Linux,OSX
+*/
+/*RadJav.IO.SerialComm = function ()
+{
+}*/
+
+/** @method getPort
+* Get the serial port.
+* Available on platforms: Windows,Linux,OSX
+* @return {String} The port being used.
+*/
+/*RadJav.IO.SerialComm.getPort = function ()
+{
+}*/
+
+/** @method getBaud
+* Get the baud.
+* Available on platforms: Windows,Linux,OSX
+* @return {String} The baud being used.
+*/
+/*RadJav.IO.SerialComm.getBaud = function ()
+{
+}*/
+
+/** @method getByteSize
+* Get the byte size being used.
+* Available on platforms: Windows,Linux,OSX
+* @return {String} The byte size being used.
+*/
+/*RadJav.IO.SerialComm.getByteSize = function ()
+{
+}*/
+
+/** @method getStopBits
+* Get the stop bits being used.
+* Available on platforms: Windows,Linux,OSX
+* @return {String} The stop bits being used.
+*/
+/*RadJav.IO.SerialComm.getStopBits = function ()
+{
+}*/
+
+/** @method getParity
+* Get the parity being used.
+* Available on platforms: Windows,Linux,OSX
+* @return {String} The parity being used.
+*/
+/*RadJav.IO.SerialComm.getParity = function ()
+{
+}*/
+
+/** @method open
+* Open the serial communications.
+* Available on platforms: Windows,Linux,OSX
+* @return {Boolean} Whether or not communications were able to be established.
+*/
+/*RadJav.IO.SerialComm.open = function ()
+{
+}*/
+
+/** @method isOpen
+* Check if serial communications were opened.
+* Available on platforms: Windows,Linux,OSX
+* @return {Boolean} Whether or not communications were able to be established.
+*/
+/*RadJav.IO.SerialComm.isOpen = function ()
+{
+}*/
+
+/** @method read
+* Read from the opened port.
+* Available on platforms: Windows,Linux,OSX
+* @param {Number} bufferSize The size of the buffer to read in bytes.
+* @return {String} The string buffer from the opened port.
+*/
+/*RadJav.IO.SerialComm.read = function ()
+{
+}*/
+
+/** @method write
+* Write to the opened port.
+* Available on platforms: Windows,Linux,OSX
+* @param {Number} buffer The string buffer to write.
+* @param {Number} [bufferSize=buffer.length] The number of bytes to write from the buffer.
+* @return {Number} The number of bytes written.
+*/
+/*RadJav.IO.SerialComm.write = function ()
+{
+}*/
+
+/** @method close
+* Close the opened port.
+* Available on platforms: Windows,Linux,OSX
+*/
+/*RadJav.IO.SerialComm.close = function ()
+{
+}*/
+
 /** @class RadJav.IO.TextFile
 * Handles text files.
 * Available on platforms: Windows,Linux,OSX

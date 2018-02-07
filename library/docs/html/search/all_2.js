@@ -1,14 +1,12 @@
 var searchData=
 [
-  ['close',['close',['../class_rad_j_a_v_1_1_networking_1_1_tcpip_server.html#adc98bbb81534697c37b6c30662fe43dc',1,'RadJAV::Networking::TcpipServer::close()'],['../class_rad_j_a_v_1_1_networking_1_1_tcpip_client.html#a2da2c8b5f71f1d4f16e727d43e26fef8',1,'RadJAV::Networking::TcpipClient::close()'],['../class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_client.html#a6a9a078dcbb3083eae6398e374fb8aa6',1,'RadJAV::Networking::wxWidgetsTCPClient::Close()']]],
-  ['closeallsockets',['CloseAllSockets',['../class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server.html#a83718025ada3888b0cb3eab89ab9e97f',1,'RadJAV::Networking::wxWidgetsTCPServer']]],
-  ['closeclient',['closeClient',['../class_rad_j_a_v_1_1_networking_1_1_tcpip_server.html#a70d83ea527d47572c39f6e1f9a74ddd1',1,'RadJAV::Networking::TcpipServer']]],
-  ['closeclientsocket',['CloseClientSocket',['../class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server.html#a462129a4742f6b752b2cc57670555606',1,'RadJAV::Networking::wxWidgetsTCPServer']]],
-  ['closeserversocket',['CloseServerSocket',['../class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_server.html#a39bcdb370eee7e96c0bce1429038c548',1,'RadJAV::Networking::wxWidgetsTCPServer']]],
-  ['cmakeccompilerid_2ec',['CMakeCCompilerId.c',['../_c_make_c_compiler_id_8c.html',1,'']]],
-  ['cmakecxxcompilerid_2ecpp',['CMakeCXXCompilerId.cpp',['../_c_make_c_x_x_compiler_id_8cpp.html',1,'']]],
-  ['connectiontype',['connectionType',['../class_rad_j_a_v_1_1_networking_1_1_t_c_p_connection.html#ae24db0c9dac2a7ae3c41afd17ff65d80',1,'RadJAV::Networking::TCPConnection']]],
-  ['connectwithblocking',['connectWithBlocking',['../class_rad_j_a_v_1_1_networking_1_1_tcpip_client.html#ade2497881107c14dd0b3a32ff1f6f669',1,'RadJAV::Networking::TcpipClient::connectWithBlocking()'],['../class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_client.html#a92d5158fc70110d7c152d32382418640',1,'RadJAV::Networking::wxWidgetsTCPClient::ConnectWithBlocking()']]],
-  ['connectwithoutblocking',['connectWithoutBlocking',['../class_rad_j_a_v_1_1_networking_1_1_tcpip_client.html#a2125d436db16091fe9c60ed30b34c56e',1,'RadJAV::Networking::TcpipClient::connectWithoutBlocking()'],['../class_rad_j_a_v_1_1_networking_1_1wx_widgets_t_c_p_client.html#a2aebbf48ef53705babf0f4914cc8e23e',1,'RadJAV::Networking::wxWidgetsTCPClient::ConnectWithoutBlocking()']]],
-  ['create',['create',['../class_rad_j_a_v_1_1_g_u_i_1_1_g_object.html#a0758b7d4b69fc985c20c8dc680c8464c',1,'RadJAV::GUI::GObject::create()'],['../class_rad_j_a_v_1_1_g_u_i_1_1_window.html#a92bf59c30dd5b9f77d77a31f9a2f8982',1,'RadJAV::GUI::Window::create()'],['../window_8js.html#af5e31061d3845fa1c1ed8e2c3691e72a',1,'create():&#160;window.js']]]
+  ['backupwallet',['backupWallet',['../class_rad_j_a_v_1_1_blockchain_v1.html#a8d44413ea4fd3db0e9a408bfd9ea262a',1,'RadJAV::BlockchainV1']]],
+  ['begin_5fevent_5ftable',['BEGIN_EVENT_TABLE',['../_rad_jav_wx_widgets_8cpp.html#a9a8e388565792a4649f9bad3b79ac5c4',1,'RadJavWxWidgets.cpp']]],
+  ['blockchainevent',['blockchainEvent',['../class_rad_j_a_v_1_1_javascript_engine.html#a91ebe8029a9658f66d9c39356eea2d80',1,'RadJAV::JavascriptEngine::blockchainEvent()'],['../class_rad_j_a_v_1_1_v8_javascript_engine.html#a13490748bc843ae2d2be22aa889e8e30',1,'RadJAV::V8JavascriptEngine::blockchainEvent(String event, String dataType=&quot;null&quot;, void *data=NULL)'],['../class_rad_j_a_v_1_1_v8_javascript_engine.html#adc3d7c751504d623017852ea8bfde1d2',1,'RadJAV::V8JavascriptEngine::blockchainEvent(String event, RJINT numargs, v8::Local&lt; v8::Value &gt; *args, RJBOOL alreadyEnteredCritialSection=false)']]],
+  ['blockchainv1',['BlockchainV1',['../class_rad_j_a_v_1_1_blockchain_v1.html',1,'RadJAV']]],
+  ['blockchainv1thread',['BlockchainV1Thread',['../class_rad_j_a_v_1_1_blockchain_v1_thread.html',1,'RadJAV::BlockchainV1Thread'],['../class_rad_j_a_v_1_1_blockchain_v1_thread.html#a419c53c19de683ed3448954eab6d56d8',1,'RadJAV::BlockchainV1Thread::BlockchainV1Thread()']]],
+  ['bug_20list',['Bug List',['../bug.html',1,'']]],
+  ['bumpfee',['bumpFee',['../class_rad_j_a_v_1_1_blockchain_v1.html#a7a214577119111559c7a8512d4d4b2cb',1,'RadJAV::BlockchainV1']]],
+  ['button',['Button',['../class_rad_j_a_v_1_1_g_u_i_1_1_button.html',1,'RadJAV::GUI']]],
+  ['buttonframe',['ButtonFrame',['../class_rad_j_a_v_1_1_g_u_i_1_1_button_frame.html',1,'RadJAV::GUI::ButtonFrame'],['../class_rad_j_a_v_1_1_g_u_i_1_1_button_frame.html#aafb4caa253aab35934c3f53f72f33021',1,'RadJAV::GUI::ButtonFrame::ButtonFrame()']]]
 ];

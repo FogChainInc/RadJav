@@ -76,10 +76,10 @@ namespace RadJAV
 						static void onClick(wxCommandEvent &event);
 						static void onMouseEvent(wxMouseEvent &event);
 						static void onKeyUp(wxKeyEvent &event);
-
-						static v8::Local<v8::Value> executeEvent(
-							v8::Persistent<v8::Value> *pevent, RJINT numArgs = 0, v8::Local<v8::Value> *args = NULL);
 					#endif
+
+					static v8::Local<v8::Value> executeEvent(
+						v8::Persistent<v8::Value> *pevent, RJINT numArgs = 0, v8::Local<v8::Value> *args = NULL);
 
 				protected:
 					HashMap<std::string, v8::Persistent<v8::Value> *> events;

@@ -23,9 +23,11 @@
 * An image.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Image = RadJav.GUI.GObject.extend (
+RadJav.GUI.Image = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Image, _super);
+
+	function Image (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,11 +38,16 @@ RadJav.GUI.Image = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Image", 
-					size: "100,100"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 100;
+			obj.size.y = 100;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Image";
 
 		if (obj.image != null)
 			obj._image = obj.image;
@@ -50,8 +57,16 @@ RadJav.GUI.Image = RadJav.GUI.GObject.extend (
 		* The image thats being used. If a string, it will be converted into 
 		* an Image when the image is set.
 		*/
-		this._image = RadJav.setDefaultValue (obj._image, null);
-		this._createAppObj();
+		_this._image = RadJav.setDefaultValue (obj._image, null);
+		_this.onCreated = function ()
+			{
+				if (this._image != null)
+					this.setImage (this._image);
+			};
+
+		return (_this);
 	}
-});
+
+	return (Image);
+}(RadJav.GUI.GObject));
 

@@ -2,19 +2,19 @@
 	MIT-LICENSE
 	Copyright (c) 2017 Higher Edge Software, LLC
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
-	and associated documentation files (the "Software"), to deal in the Software without restriction, 
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software without restriction,
+	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
 	subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in all copies or substantial 
+	The above copyright notice and this permission notice shall be included in all copies or substantial
 	portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #ifndef _RADJAV_V8_JAVASCRIPT_ENGINE_H_
@@ -28,6 +28,9 @@
 
 	#include <libplatform/libplatform.h>
 
+	#include <atomic>
+	#include <mutex>
+
 	#include "RadJavJavascriptEngine.h"
 
 	#define V8_CALLBACK(context, functionName, function) context->Set(String(functionName).toV8String(isolate), \
@@ -38,13 +41,13 @@
 	namespace RadJAV
 	{
 		/// The array buffer allocator used for V8.
-		class RADJAV_EXPORT V8ArrayBufferAllocator: public v8::ArrayBuffer::Allocator
+		/*class RADJAV_EXPORT V8ArrayBufferAllocator: public v8::ArrayBuffer::Allocator
 		{
 			public:
 				void *Allocate(size_t length);
 				void *AllocateUninitialized(size_t length);
 				void Free(void *data, size_t length);
-		};
+		};*/
 
 		/// V8 Inspector for debugging javascript applications.
 		class RADJAV_EXPORT V8JSInspector: public v8_inspector::V8InspectorClient
@@ -79,7 +82,7 @@
 				/// Execute javascript on the next tick.
 				void executeScriptNextTick(String code, String fileName, v8::Local<v8::Object> context = v8::Local<v8::Object>());
 				/// Call a function on the next tick. Any args passed MUST be an array.
-				void callFunctionOnNextTick(v8::Persistent<v8::Function> *func, 
+				void callFunctionOnNextTick(v8::Persistent<v8::Function> *func,
 						v8::Persistent<v8::Array> *args = NULL, RJBOOL deleteOnComplete  = true);
 				/// Connect the native library to the Javascript library.
 				void loadNativeCode();
@@ -87,8 +90,17 @@
 				/// Collect the garbage. This will only work if the engine is started with exposeGC = true.
 				void collectGarbage();
 
+				#ifdef C3D_USE_OGRE
+					/// Start the 3d engine.
+					void start3DEngine();
+				#endif
+
+				/// Add a timeout, process it.
+				void addTimeout(v8::Persistent<v8::Function> *func, RJINT time);
+
 				/// A blockchain event has occurred, process it.
-				void blockchainEvent(String event);
+				void blockchainEvent(String event, String dataType = "null", void *data = NULL);
+				void blockchainEvent(String event, RJINT numargs, v8::Local<v8::Value> *args, RJBOOL alreadyEnteredCritialSection = false);
 
 				/// Add a thread to be handled by the engine.
 				void addThread(Thread *thread);
@@ -112,6 +124,8 @@
 				void v8SetNumber(v8::Local<v8::Object> context, String functionName, RDECIMAL number);
 				/// Get a V8 int. If the value is null or has an empty handle, 0 will be returned.
 				RJINT v8GetInt(v8::Local<v8::Object> context, String functionName);
+				/// Get a V8 decimal. If the value is null or has an empty handle, 0 will be returned.
+				RDECIMAL v8GetDecimal(v8::Local<v8::Object> context, String functionName);
 				/// Set a bool from a V8 boolean value.
 				void v8SetBool(v8::Local<v8::Object> context, String functionName, bool value);
 				/// Get a V8 bool. If the value is null or has an empty handle, false will be returned.
@@ -140,6 +154,8 @@
 				RJBOOL v8ParseBool(v8::Local<v8::Value> val);
 				/// Get an integer value from a V8 value.
 				RJINT v8ParseInt(v8::Local<v8::Value> val);
+				/// Get a decimal value from a V8 value.
+				RDECIMAL v8ParseDecimal(v8::Local<v8::Value> val);
 
 				// Create a promise.
 				v8::Local<v8::Object> createPromise(v8::Local<v8::Function> function);
@@ -165,6 +181,10 @@
 				v8::Local<v8::Context> globalContext;
 				v8::Persistent<v8::Object> *radJav;
 
+				#ifdef GUI_USE_WXWIDGETS
+					wxCriticalSection *criticalSection;
+				#endif
+
 			protected:
 				Array<String> jsToExecuteNextCode;
 				Array<String> jsToExecuteNextFilename;
@@ -174,9 +194,11 @@
 				Array<v8::Persistent<v8::Array> *> funcNextArgs;
 				Array<RJBOOL> funcDelete;
 
+				Array<v8::Persistent<v8::Function> *> timeoutFuncs;
+				Array<RJINT> timeouts;
+
 				RJBOOL useInspector;
 		};
 	}
 #endif
 #endif
-

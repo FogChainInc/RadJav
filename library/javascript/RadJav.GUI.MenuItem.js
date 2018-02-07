@@ -23,9 +23,11 @@
 * A menu item.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.MenuItem = RadJav.GUI.GObject.extend (
+RadJav.GUI.MenuItem = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(MenuItem, _super);
+
+	function MenuItem (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,12 +38,20 @@ RadJav.GUI.MenuItem = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.MenuItem", 
-					size: "120, 40"
-				}, false);
-		this._super (obj, text, parent);
-		this._createAppObj();
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 120;
+			obj.size.y = 40;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.MenuItem";
+
+		return (_this);
 	}
-});
+
+	return (MenuItem);
+}(RadJav.GUI.GObject));
 

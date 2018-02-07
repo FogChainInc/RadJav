@@ -22,52 +22,56 @@
 * A camera object.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Camera = RadJav.C3D.Object3D.extend (
+RadJav.C3D.Camera = (function (_super)
 {
-	init: function (canvas3d, obj, parent)
-	{
-		this._super (canvas3d, obj, parent);
+	__extends(Camera, _super);
 
-		this.type = "RadJav.C3D.Camera";
+	function Camera (canvas3d, obj, parent)
+	{
+		var _this = _super.call(this, canvas3d, obj, parent) || this;
+
+		_this.type = "RadJav.C3D.Camera";
 
 		/** @property {Boolean} [_perspective=true]
 		* @protected
 		* If this is set to true, the perspective view will be used.
 		*/
-		this._perspective = RadJav.setDefaultValue (obj._perspective, true);
+		_this._perspective = RadJav.setDefaultValue (obj._perspective, true);
 		/** @property {Number} [_aspectRatio=parseFloat (canvas3d.getWidth ()) / parseFloat (canvas3d.getHeight ()]
 		* @protected
 		* The camera's aspect ratio.
 		*/
-		this._aspectRatio = RadJav.setDefaultValue (obj._aspectRatio, parseFloat (canvas3d.getWidth ()) / 
+		_this._aspectRatio = RadJav.setDefaultValue (obj._aspectRatio, parseFloat (canvas3d.getWidth ()) / 
 							parseFloat (canvas3d.getHeight ()));
-		/** @property {Number} [_fov=(90 / this._aspectRatio)]
+		/** @property {Number} [_fov=(90 / _this._aspectRatio)]
 		* @protected
 		* The camera's fov.
 		*/
-		this._fov = RadJav.setDefaultValue (obj._fov, (90 / this._aspectRatio));
+		_this._fov = RadJav.setDefaultValue (obj._fov, (90 / _this._aspectRatio));
 		/** @property {Number} [_nearClip=1.0]
 		* @protected
 		* The camera's near clip distance.
 		*/
-		this._nearClip = RadJav.setDefaultValue (obj._nearClip, 1.0);
+		_this._nearClip = RadJav.setDefaultValue (obj._nearClip, 1.0);
 		/** @property {Number} [_farClip=1.0]
 		* @protected
 		* The camera's far clip distance.
 		*/
-		this._farClip = RadJav.setDefaultValue (obj._farClip, 10000000000.0);
+		_this._farClip = RadJav.setDefaultValue (obj._farClip, 10000000000.0);
 		/** @property {Object} [_rayCaster=null]
 		* @protected
 		* The ray caster used to get ray casts from the screen.
 		*/
-		this._rayCaster = RadJav.setDefaultValue (obj._rayCaster, null);
-	}, 
+		_this._rayCaster = RadJav.setDefaultValue (obj._rayCaster, null);
+
+		return (_this);
+	}
 
 	/** @method create
 	* Using the existing parameters in this object, create it.
 	* @return {Promise} The promise to execute when the creation is completed.
 	*/
-	create: function ()
+	Camera.prototype.create = function ()
 	{
 		var promise = new Promise (RadJav.keepContext (function (resolve, reject)
 			{
@@ -90,5 +94,7 @@ RadJav.C3D.Camera = RadJav.C3D.Object3D.extend (
 
 		return (promise);
 	}
-});
+
+	return (Camera);
+}(RadJav.C3D.Object3D));
 

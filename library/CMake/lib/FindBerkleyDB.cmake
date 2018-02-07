@@ -10,7 +10,7 @@ if (BerkleyDB_SEARCH_PATHS)
 	if (WIN32)
 		searchForLibrary (BerkleyDB libdb62sd libdb62s ${BerkleyDB_SEARCH_PATHS})
 	else ()
-		searchForLibrary (BerkleyDB db62sd db62s ${BerkleyDB_SEARCH_PATHS})
+		searchForLibrary (BerkleyDB db db ${BerkleyDB_SEARCH_PATHS})
 	endif()
 endif ()
 

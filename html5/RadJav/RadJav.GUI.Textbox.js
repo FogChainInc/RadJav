@@ -23,9 +23,11 @@
 * A Textbox.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Textbox = RadJav.GUI.GObject.extend (
+RadJav.GUI.Textbox = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Textbox, _super);
+
+	function Textbox (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,11 +38,20 @@ RadJav.GUI.Textbox = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Textbox", 
-					size: "120, 40"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 120;
+			obj.size.y = 40;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Textbox";
+
+		return (_this);
 	}
-});
+
+	return (Textbox);
+}(RadJav.GUI.GObject));
 

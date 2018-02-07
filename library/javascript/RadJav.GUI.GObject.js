@@ -17,9 +17,9 @@
 	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-RadJav.GUI.GObject = RadJav.Class.extend (
+RadJav.GUI.GObject = (function ()
 {
-	init: function(obj, text, parent, beforeCreatedChild)
+	function GObject (obj, text, parent, beforeCreatedChild)
 	{
 		if (obj == null)
 			obj = new Object ();
@@ -202,16 +202,18 @@ RadJav.GUI.GObject = RadJav.Class.extend (
 
 			this._transform.setSize (size);
 		}
-	}, 
+	}
 
-	show : function()
+	GObject.prototype.show = function()
 	{
 		this.setVisibility(true);
-	},
+	}
 
-	hide: function()
+	GObject.prototype.hide = function()
 	{
 		this.setVisibility(false);
 	}
-});
+
+	return (GObject);
+} ());
 

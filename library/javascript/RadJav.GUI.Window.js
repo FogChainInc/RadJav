@@ -23,9 +23,11 @@
 * A window.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Window = RadJav.GUI.GObject.extend (
+RadJav.GUI.Window = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Window, _super);
+
+	function Window (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,12 +38,20 @@ RadJav.GUI.Window = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Window", 
-					size: "500, 350"
-				}, false);
-		this._super (obj, text, parent);
-		this._createAppObj();
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 500;
+			obj.size.y = 350;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Window";
+
+		return (_this);
 	}
-});
+
+	return (Window);
+}(RadJav.GUI.GObject));
 

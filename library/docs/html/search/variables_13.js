@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['y',['y',['../class_rad_j_a_v_1_1_rectangle.html#a92ea570496c2caaf280a693614fecb86',1,'RadJAV::Rectangle::y()'],['../class_rad_j_a_v_1_1_vector2.html#a98eaf64b58e2c602544b1b4e11702e9c',1,'RadJAV::Vector2::y()']]]
+  ['wcscritical',['wcsCritical',['../class_rad_j_a_v_1_1wx_widgets_rad_jav.html#a93753443d9f01ad987a127cf496ba39e',1,'RadJAV::wxWidgetsRadJav']]],
+  ['webview',['webView',['../class_rad_j_a_v_1_1_g_u_i_1_1_web_view_frame.html#a3073b6697ea6df43d448496798a43805',1,'RadJAV::GUI::WebViewFrame']]],
+  ['write',['write',['../class_rad_j_a_v_1_1_i_o_1_1_text_file.html#a24c5acfee32c466406cf25bf5b04f566',1,'RadJAV::IO::TextFile']]]
 ];

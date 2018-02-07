@@ -22,11 +22,13 @@
 * An entity object.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Entity = RadJav.C3D.Object3D.extend (
+RadJav.C3D.Entity = (function (_super)
 {
-	init: function (canvas3d, obj, parent, model)
+	__extends(Entity, _super);
+
+	function Entity (canvas3d, obj, parent, model)
 	{
-		this._super (canvas3d, obj, parent);
+		var _this = _super.call(this, canvas3d, obj, parent) || this;
 
 		if (typeof (obj) == "string")
 		{
@@ -35,7 +37,7 @@ RadJav.C3D.Entity = RadJav.C3D.Object3D.extend (
 			obj._name = tempObj;
 		}
 
-		this.type = "RadJav.C3D.Entity";
+		_this.type = "RadJav.C3D.Entity";
 
 		if (model != null)
 			obj._model = model;
@@ -47,17 +49,27 @@ RadJav.C3D.Entity = RadJav.C3D.Object3D.extend (
 		* @protected
 		* The name of the 3d model being used.
 		*/
-		this._model = RadJav.setDefaultValue (obj._model, null);
+		_this._model = RadJav.setDefaultValue (obj._model, null);
+		/** @property {Mixed} [_c3dEntity=null]
+		* @protected
+		* The entity object being used by the 3D engine.
+		*/
+		_this._c3dEntity = RadJav.setDefaultValue (obj._c3dEntity, null);
 
-		if (this._model._object3d == null)
-			this._model._object3d = this;
-	}, 
+		if (_this._model != null)
+		{
+			if (_this._model._object3d == null)
+				_this._model._object3d = _this;
+		}
+
+		return (_this);
+	}
 
 	/** @method create
 	* Using the existing parameters in this object, create it.
 	* @return {Promise} The promise to execute when the creation is completed.
 	*/
-	create: function ()
+	Entity.prototype.create = function ()
 	{
 		var promise = null;
 
@@ -73,24 +85,38 @@ RadJav.C3D.Entity = RadJav.C3D.Object3D.extend (
 		}
 
 		return (promise);
-	}, 
+	}
 
 	/** @method setModel
 	* Set a model.
 	* @param {String} newModel The model to set.
 	*/
-	setModel: function (newModel)
+	Entity.prototype.setModel = function (newModel)
 	{
 		this._model = newModel;
-	}, 
+	}
 
 	/** @method getModel
 	* Get the model.
 	* @return {String} The model being used.
 	*/
-	getModel: function ()
+	Entity.prototype.getModel = function ()
 	{
 		return (this._model);
 	}
-});
+
+	return (Entity);
+}(RadJav.C3D.Object3D));
+
+/** @class RadJav.C3D.Entity.Types
+* Types of entities.
+* Available on platforms: Windows,Linux,OSX,HTML5
+*/
+RadJav.C3D.Entity.Types = {};
+RadJav.C3D.Entity.Types.None = 0;
+RadJav.C3D.Entity.Types.Cube = 1;
+RadJav.C3D.Entity.Types.Sphere = 2;
+RadJav.C3D.Entity.Types.Plane = 3;
+RadJav.C3D.Entity.Types.Camera = 4;
+RadJav.C3D.Entity.Types.Light = 5;
 

@@ -1,0 +1,69 @@
+var cube = null;
+var timing = 16;
+var inputTiming = 10;
+var comm = null;
+var light = null;
+
+function moveCube ()
+{
+	cube.yaw (1);
+	cube.pitch (1);
+
+	setTimeout (moveCube, timing);
+}
+
+function listenForInput ()
+{
+	var data = comm.read (100);
+
+	if (data.indexOf ("0") > -1)
+		light.turnWhite ();
+
+	if (data.indexOf ("1") > -1)
+		light.turnRed ();
+
+	if (data.indexOf ("2") > -1)
+		light.turnGreen ();
+
+	if (data.indexOf ("3") > -1)
+		light.turnBlue ();
+
+	setTimeout (listenForInput, inputTiming);
+}
+
+RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getC3DLibrary ()).then (function ()
+	{
+		RadJav.runApplication (function ()
+			{
+				var win = new RadJav.GUI.Canvas3D ("win", "Canvas3D Example");
+				win.create ().then (function (win2)
+					{
+						var world = win2.createWorld ();
+						world.setAmbientLight (new RadJav.Color (0.5, 0.5, 0.5, 1));
+						win2.setWorld (world);
+
+						cube = world.createEntity ("cube", 1);
+						cube.setPosition (0, 0, -250);
+
+						var camera = world.createEntity ("mainCamera", 4);
+						camera.setPosition (0, 0, 0);
+
+						light = world.createEntity ("mainLight", 5);
+						light.setPosition (5, 5, -5);
+
+						setTimeout (moveCube, timing);
+
+						/*try
+						{
+							comm = new RadJav.IO.SerialComm ();
+							comm.open ("COM3", 9600, 8, 0, 0);
+
+							setTimeout (listenForInput, inputTiming);
+						}
+						catch (ex)
+						{
+							alert (ex);
+						}*/
+					});
+			});
+	});

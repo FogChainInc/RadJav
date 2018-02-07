@@ -23,9 +23,11 @@
 * A Radio button.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Radio = RadJav.GUI.GObject.extend (
+RadJav.GUI.Radio = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Radio, _super);
+
+	function Radio (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,29 +38,37 @@ RadJav.GUI.Radio = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 80;
+			obj.size.y = 40;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Radio";
+
 		if (obj.radioGroup != null)
 			obj._radioGroup = obj.radioGroup;
 
 		if (obj.checked != null)
 			obj._checked = obj.checked;
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Radio", 
-					size: "80, 40"
-				}, false);
-		this._super (obj, text, parent);
-
 		/** @property {String} [_radioGroup=""]
 		* @protected
 		* The group this box is associated grouped with.
 		*/
-		this._radioGroup = RadJav.setDefaultValue (obj._radioGroup, "");
+		_this._radioGroup = RadJav.setDefaultValue (obj._radioGroup, "");
 		/** @property {Boolean} [_checked=false]
 		* @protected
 		* Whether or not this object is checked when created.
 		*/
-		this._checked = RadJav.setDefaultValue (obj._checked, false);
-		this._createAppObj();
+		_this._checked = RadJav.setDefaultValue (obj._checked, false);
+
+		return (_this);
 	}
-});
+
+	return (Radio);
+}(RadJav.GUI.GObject));
 

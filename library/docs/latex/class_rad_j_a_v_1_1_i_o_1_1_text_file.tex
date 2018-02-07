@@ -1,0 +1,88 @@
+\hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file}{}\section{Rad\+J\+AV\+:\+:IO\+:\+:Text\+File Class Reference}
+\label{class_rad_j_a_v_1_1_i_o_1_1_text_file}\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+
+
+{\ttfamily \#include $<$Rad\+Jav\+V8\+I\+O.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_ad19422dc71517cf5a45b6a7ed3920bd0}{create\+V8\+Callbacks}} (v8\+::\+Isolate $\ast$isolate, v8\+::\+Local$<$ v8\+::\+Object $>$ object)
+\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_ae6790f6a469a8b598fc2b4cae37b143d}{write\+Text\+To\+File}} (const v8\+::\+Function\+Callback\+Info$<$ v8\+::\+Value $>$ \&args)
+\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_a3a6cb8a2bd674bbb642180d81bf3b981}{read\+Entire\+File}} (const v8\+::\+Function\+Callback\+Info$<$ v8\+::\+Value $>$ \&args)
+\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_a5ce86838dd6aadac22a6fd999e1c9d96}{write\+To\+Text\+File}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} path, \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} contents, R\+J\+I\+NT output\+Type=\mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_a24c5acfee32c466406cf25bf5b04f566}{I\+O\+::\+Text\+File\+::write}})
+\item 
+static \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_a3bdb2de3a935b77faa221840cdfb396a}{get\+File\+Contents}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} path)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const R\+J\+I\+NT \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_ae53eca4dcc241357d08cd91f31d5d717}{read}} = 1
+\item 
+static const R\+J\+I\+NT \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_a24c5acfee32c466406cf25bf5b04f566}{write}} = 2
+\item 
+static const R\+J\+I\+NT \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_a8378e77d475fb9296f4e86ffb707d7bc}{append}} = 3
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_ad19422dc71517cf5a45b6a7ed3920bd0}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_ad19422dc71517cf5a45b6a7ed3920bd0}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!create\+V8\+Callbacks@{create\+V8\+Callbacks}}
+\index{create\+V8\+Callbacks@{create\+V8\+Callbacks}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{create\+V8\+Callbacks()}{createV8Callbacks()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::create\+V8\+Callbacks (\begin{DoxyParamCaption}\item[{v8\+::\+Isolate $\ast$}]{isolate,  }\item[{v8\+::\+Local$<$ v8\+::\+Object $>$}]{object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_a3bdb2de3a935b77faa221840cdfb396a}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_a3bdb2de3a935b77faa221840cdfb396a}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!get\+File\+Contents@{get\+File\+Contents}}
+\index{get\+File\+Contents@{get\+File\+Contents}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{get\+File\+Contents()}{getFileContents()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::get\+File\+Contents (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_a3a6cb8a2bd674bbb642180d81bf3b981}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_a3a6cb8a2bd674bbb642180d81bf3b981}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!read\+Entire\+File@{read\+Entire\+File}}
+\index{read\+Entire\+File@{read\+Entire\+File}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{read\+Entire\+File()}{readEntireFile()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::read\+Entire\+File (\begin{DoxyParamCaption}\item[{const v8\+::\+Function\+Callback\+Info$<$ v8\+::\+Value $>$ \&}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_ae6790f6a469a8b598fc2b4cae37b143d}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_ae6790f6a469a8b598fc2b4cae37b143d}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!write\+Text\+To\+File@{write\+Text\+To\+File}}
+\index{write\+Text\+To\+File@{write\+Text\+To\+File}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{write\+Text\+To\+File()}{writeTextToFile()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::write\+Text\+To\+File (\begin{DoxyParamCaption}\item[{const v8\+::\+Function\+Callback\+Info$<$ v8\+::\+Value $>$ \&}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_a5ce86838dd6aadac22a6fd999e1c9d96}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_a5ce86838dd6aadac22a6fd999e1c9d96}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!write\+To\+Text\+File@{write\+To\+Text\+File}}
+\index{write\+To\+Text\+File@{write\+To\+Text\+File}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{write\+To\+Text\+File()}{writeToTextFile()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::write\+To\+Text\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{path,  }\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{contents,  }\item[{R\+J\+I\+NT}]{output\+Type = {\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_i_o_1_1_text_file_a24c5acfee32c466406cf25bf5b04f566}{I\+O\+::\+Text\+File\+::write}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_a8378e77d475fb9296f4e86ffb707d7bc}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_a8378e77d475fb9296f4e86ffb707d7bc}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!append@{append}}
+\index{append@{append}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{append}{append}}
+{\footnotesize\ttfamily const R\+J\+I\+NT Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::append = 3\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_ae53eca4dcc241357d08cd91f31d5d717}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_ae53eca4dcc241357d08cd91f31d5d717}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!read@{read}}
+\index{read@{read}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{read}{read}}
+{\footnotesize\ttfamily const R\+J\+I\+NT Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::read = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_i_o_1_1_text_file_a24c5acfee32c466406cf25bf5b04f566}\label{class_rad_j_a_v_1_1_i_o_1_1_text_file_a24c5acfee32c466406cf25bf5b04f566}} 
+\index{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}!write@{write}}
+\index{write@{write}!Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File@{Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File}}
+\subsubsection{\texorpdfstring{write}{write}}
+{\footnotesize\ttfamily const R\+J\+I\+NT Rad\+J\+A\+V\+::\+I\+O\+::\+Text\+File\+::write = 2\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Rad\+Jav/v8/\mbox{\hyperlink{_rad_jav_v8_i_o_8h}{Rad\+Jav\+V8\+I\+O.\+h}}\item 
+src/\+Rad\+Jav/v8/\mbox{\hyperlink{_rad_jav_v8_i_o_8cpp}{Rad\+Jav\+V8\+I\+O.\+cpp}}\end{DoxyCompactItemize}

@@ -2,19 +2,19 @@
 	MIT-LICENSE
 	Copyright (c) 2017 Higher Edge Software, LLC
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
-	and associated documentation files (the "Software"), to deal in the Software without restriction, 
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software without restriction,
+	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
 	subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in all copies or substantial 
+	The above copyright notice and this permission notice shall be included in all copies or substantial
 	portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include <iostream>
@@ -81,7 +81,7 @@ std::string replaceText (std::string text, std::string find, std::string replace
 
 std::string fixText (std::string text, int *countNewLines)
 {
-	// Replace all new lines in the javascript files with the appropriate \\n\\ to be 
+	// Replace all new lines in the javascript files with the appropriate \\n\\ to be
 	// used in a large string for the header file.
 	text = replaceText (text, findNewLine, "\\n\\" + newLine, countNewLines);
 	text = replaceText (text, "\"", "\\\"");
@@ -97,7 +97,7 @@ int main (int iArgs, char **cArgs)
 	#if defined (WIN32)
 	findNewLine = "\n";
 		newLine = "\n";
-	#elif defined (LINUX) || defined (MACINTOSH)
+	#else
 		findNewLine = "\r\n";
 		newLine = "\n";
 	#endif
@@ -145,6 +145,16 @@ int main (int iArgs, char **cArgs)
 	ary.push_back ("RadJav.GUI.Window.js");
 	ary.push_back ("RadJav.GUI.MenuBar.js");
 	ary.push_back ("RadJav.GUI.MenuItem.js");
+	#ifdef C3D_USE_OGRE
+	ary.push_back("RadJav.GUI.Canvas3D.js");
+	ary.push_back("RadJav.C3D.Object3D.js"); // This must be compiled before any other C3D object.
+	ary.push_back("RadJav.C3D.Entity.js");
+	ary.push_back("RadJav.C3D.Camera.js");
+	ary.push_back("RadJav.C3D.Material.js");
+	ary.push_back("RadJav.C3D.Model.js");
+	ary.push_back("RadJav.C3D.Transform.js");
+	ary.push_back("RadJav.C3D.World.js");
+	#endif
 
 	std::string output = "\
 #ifndef _RADJAV_JAVASCRIPTCODE_H_" + newLine + "\
@@ -174,6 +184,8 @@ int main (int iArgs, char **cArgs)
 
 			return (1);
 		}
+
+		text = text.substr(1110);
 
 		int countNewLines = 0;
 
@@ -238,4 +250,3 @@ RadJav.OS.Mac = function()\\" + newLine + "\
 
 	return (0);
 }
-

@@ -23,9 +23,11 @@
 * An image.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Image = RadJav.GUI.GObject.extend (
+RadJav.GUI.Image = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Image, _super);
+
+	function Image (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,38 +38,47 @@ RadJav.GUI.Image = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Image", 
-					size: "100,100"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 100;
+			obj.size.y = 100;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Image";
 
 		if (obj.image != null)
 			obj._image = obj.image;
 
-		/** @property {String/Image} [_image=null]
+		/** @property {String/Object} [_image=null]
 		* @protected
 		* The image thats being used. If a string, it will be converted into 
 		* an Image when the image is set.
 		*/
-		this._image = RadJav.setDefaultValue (obj._image, null);
-		this.onCreated = function ()
+		_this._image = RadJav.setDefaultValue (obj._image, null);
+		_this.onCreated = function ()
 			{
 				if (this._image != null)
 					this.setImage (this._image);
 			};
-	}, 
+
+		return (_this);
+	}
 
 	/** @method setImage
 	* Set the image.
 	* Theme Event: setImage
 	* Is Theme Event Asynchronous: Yes
-	* @param {String/Image} image The image to display.
+	* @param {String/Object} image The image to display.
 	* @return {Promise} Executes the promise when the image has loaded.
 	*/
-	setImage: function (image)
+	Image.prototype.setImage = function (image)
 	{
 		RadJav.theme.event (this.type, "setImage", this, image);
 	}
-});
+
+	return (Image);
+}(RadJav.GUI.GObject));
 

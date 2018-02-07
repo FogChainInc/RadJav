@@ -23,9 +23,11 @@
 * A checkbox.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (
+RadJav.GUI.Checkbox = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Checkbox, _super);
+
+	function Checkbox (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,20 +38,27 @@ RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 80;
+			obj.size.y = 40;
+		}
+
 		if (obj.checked != null)
 			obj._checked = obj.checked;
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Checkbox", 
-					size: "80, 40"
-				}, false);
-		this._super (obj, text, parent);
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Checkbox";
 
 		/** @property {Boolean} [_checked=false]
 		* If set to true, the box is checked.
 		*/
-		this._checked = RadJav.setDefaultValue (obj._checked, false);
-	}, 
+		_this._checked = RadJav.setDefaultValue (obj._checked, false);
+
+		return (_this);
+	}
 
 	/** @method setChecked
 	* Set whether or not this checkbox is checked.
@@ -58,10 +67,10 @@ RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (
 	* @param {Boolean} checked Whether or not this is checked.
 	* @return {Promise} Executes the promise when the image has loaded.
 	*/
-	setChecked: function (checked)
+	Checkbox.prototype.setChecked = function (checked)
 	{
 		RadJav.theme.eventSync (this.type, "setChecked", this, checked);
-	}, 
+	}
 
 	/** @method isChecked
 	* Checks if this checkbox is checked.
@@ -69,9 +78,11 @@ RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (
 	* Is Theme Event Asynchronous: No
 	* @return {Boolean} Whether or not this is checked.
 	*/
-	isChecked: function ()
+	Checkbox.prototype.isChecked = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "isChecked", this));
 	}
-});
+
+	return (Checkbox);
+}(RadJav.GUI.GObject));
 

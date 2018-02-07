@@ -34,9 +34,23 @@ namespace RadJAV
 {
 	void Global::createV8Callbacks(v8::Isolate *isolate, v8::Local<v8::Object> object)
 	{
+		V8_CALLBACK(object, "setTimeout", Global::setTimeout);
 		V8_CALLBACK(object, "alert", Global::alert);
 		V8_CALLBACK(object, "confirm", Global::confirm);
+		V8_CALLBACK(object, "prompt", Global::prompt);
 		V8_CALLBACK(object, "include", Global::include);
+	}
+
+	void Global::setTimeout(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		v8::Local<v8::Function> func = v8::Local<v8::Function>::Cast(args[0]);
+		v8::Local<v8::Number> time = v8::Local<v8::Number>::Cast(args[1]);
+
+		v8::Persistent<v8::Function> *persistent = RJNEW v8::Persistent<v8::Function>();
+
+		persistent->Reset(V8_JAVASCRIPT_ENGINE->isolate, func);
+
+		V8_JAVASCRIPT_ENGINE->addTimeout(persistent, time->Int32Value ());
 	}
 
 	void Global::alert(const v8::FunctionCallbackInfo<v8::Value> &args)
@@ -72,10 +86,10 @@ namespace RadJAV
 
 		if (args.Length() > 1)
 		{
-			v8::Local<v8::String> tite = v8::Local<v8::String>::Cast(V8_JAVASCRIPT_ENGINE->v8GetArgument(args, 1));
+			v8::Local<v8::String> title2 = v8::Local<v8::String>::Cast(V8_JAVASCRIPT_ENGINE->v8GetArgument(args, 1));
 
-			if (V8_JAVASCRIPT_ENGINE->v8IsNull(tite) == false)
-				title = parseV8Value (tite);
+			if (V8_JAVASCRIPT_ENGINE->v8IsNull(title2) == false)
+				title = parseV8Value (title2);
 		}
 
 		#ifdef GUI_USE_WXWIDGETS
@@ -86,6 +100,42 @@ namespace RadJAV
 				output = true;
 
 			v8::Local<v8::Boolean> result2 = v8::Boolean::New(args.GetIsolate(), output);
+		#endif
+
+		args.GetReturnValue().Set(result2);
+	}
+
+	void Global::prompt(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String message = "";
+		String title = "";
+		String defaultArg = "";
+
+		v8::Local<v8::String> msg = v8::Local<v8::String>::Cast(V8_JAVASCRIPT_ENGINE->v8GetArgument(args, 0));
+
+		if (V8_JAVASCRIPT_ENGINE->v8IsNull(msg) == false)
+			message = parseV8Value(msg);
+
+		if (args.Length() > 1)
+		{
+			v8::Local<v8::String> defaultArg2 = v8::Local<v8::String>::Cast(V8_JAVASCRIPT_ENGINE->v8GetArgument(args, 1));
+
+			if (V8_JAVASCRIPT_ENGINE->v8IsNull(defaultArg2) == false)
+				defaultArg = parseV8Value(defaultArg2);
+		}
+
+		if (args.Length() > 2)
+		{
+			v8::Local<v8::String> title2 = v8::Local<v8::String>::Cast(V8_JAVASCRIPT_ENGINE->v8GetArgument(args, 2));
+
+			if (V8_JAVASCRIPT_ENGINE->v8IsNull(title2) == false)
+				title = parseV8Value(title2);
+		}
+
+		#ifdef GUI_USE_WXWIDGETS
+			String result = parsewxString (wxGetTextFromUser(message.towxString(), title.towxString(), defaultArg.towxString ()));
+
+			v8::Local<v8::String> result2 = result.toV8String (args.GetIsolate ());
 		#endif
 
 		args.GetReturnValue().Set(result2);

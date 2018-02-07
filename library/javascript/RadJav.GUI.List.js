@@ -23,9 +23,11 @@
 * A List.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List = RadJav.GUI.GObject.extend (
+RadJav.GUI.List = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(List, _super);
+
+	function List (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,36 +38,52 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.List", 
-					size: "350, 300"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 350;
+			obj.size.y = 300;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.List";
+
+		if (obj.canSort != null)
+			obj._canSort = obj.canSort;
 
 		if (obj.columns != null)
 			obj._columns = obj.columns;
 
+		/** @property {Boolean} [_canSort=true]
+		* @protected
+		* If set to true, each column will be able to be sorted by the user.
+		*/
+		_this._canSort = RadJav.setDefaultValue (obj._canSort, true);
 		/** @property {Boolean} [_hasCheckBoxes=false]
 		* @protected
 		* If set to true, each row will have a checkbox.
 		*/
-		this._hasCheckBoxes = RadJav.setDefaultValue (obj._hasCheckBoxes, false);
+		_this._hasCheckBoxes = RadJav.setDefaultValue (obj._hasCheckBoxes, false);
 		/** @property {RadJav.GUI.List.Column[]} [_columns=[]]
 		* @protected
 		* The columns in the list box.
 		*/
-		this._columns = RadJav.setDefaultValue (obj._columns, []);
-		this._createAppObj();
+		_this._columns = RadJav.setDefaultValue (obj._columns, []);
+
+		return (_this);
 	}
-});
+
+	return (List);
+}(RadJav.GUI.GObject));
 
 /** @class RadJav.GUI.List.Row
 * A List row.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Row = RadJav.Class.extend (
+RadJav.GUI.List.Row = (function ()
 {
-	init: function (obj)
+	function Row (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -74,28 +92,30 @@ RadJav.GUI.List.Row = RadJav.Class.extend (
 		* The items to display.
 		*/
 		this.items = RadJav.setDefaultValue (obj.items, []);
-	}, 
+	}
 
 	/** @method addItem
 	* Add an item to this row.
 	* @param {RadJav.GUI.List.Item} item The item to add.
 	*/
-	addItem: function (item)
+	Row.prototype.addItem = function (item)
 	{
 		if (typeof (item) != "object")
 			item = new RadJav.GUI.List.Item ({ text: item });
 
 		this.items.push (item);
 	}
-});
+
+	return (Row);
+} ());
 
 /** @class RadJav.GUI.List.Item
 * A List item.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Item = RadJav.Class.extend (
+RadJav.GUI.List.Item = (function ()
 {
-	init: function (obj)
+	function Item (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -109,15 +129,17 @@ RadJav.GUI.List.Item = RadJav.Class.extend (
 		*/
 		this.text = RadJav.setDefaultValue (obj.text, "");
 	}
-});
+
+	return (Item);
+} ());
 
 /** @class RadJav.GUI.List.Column
 * A List column.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Column = RadJav.Class.extend (
+RadJav.GUI.List.Column = (function ()
 {
-	init: function (obj)
+	function Column (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -135,15 +157,17 @@ RadJav.GUI.List.Column = RadJav.Class.extend (
 		*/
 		this.key = RadJav.setDefaultValue (obj.key, null);
 	}
-});
+
+	return (Column);
+} ());
 
 /** @class RadJav.GUI.List.Selection
 * A List selection.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Selection = RadJav.Class.extend (
+RadJav.GUI.List.Selection = (function ()
 {
-	init: function (obj)
+	function Selection (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -159,5 +183,7 @@ RadJav.GUI.List.Selection = RadJav.Class.extend (
 		*/
 		this._appObj = RadJav.setDefaultValue (obj._appObj, null);
 	}
-});
+
+	return (Selection);
+} ());
 

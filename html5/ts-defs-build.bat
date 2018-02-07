@@ -1,0 +1,6 @@
+@echo off
+
+set TSC=tsc
+set TSFILES= .\ts-defs\Math.d.ts .\ts-defs\RadJav.C3D.Camera.d.ts .\ts-defs\RadJav.C3D.Entity.d.ts .\ts-defs\RadJav.C3D.Material.d.ts .\ts-defs\RadJav.C3D.Model.d.ts .\ts-defs\RadJav.C3D.Object3D.d.ts .\ts-defs\RadJav.C3D.Transform.d.ts .\ts-defs\RadJav.C3D.World.d.ts .\ts-defs\RadJav.Circle.d.ts .\ts-defs\RadJav.Color.d.ts .\ts-defs\RadJav.d.ts .\ts-defs\RadJav.Font.d.ts .\ts-defs\RadJav.GUI.Button.d.ts .\ts-defs\RadJav.GUI.Canvas3D.d.ts .\ts-defs\RadJav.GUI.Checkbox.d.ts .\ts-defs\RadJav.GUI.Combobox.d.ts .\ts-defs\RadJav.GUI.Container.d.ts .\ts-defs\RadJav.GUI.GObject.d.ts .\ts-defs\RadJav.GUI.HTMLElement.d.ts .\ts-defs\RadJav.GUI.Image.d.ts .\ts-defs\RadJav.GUI.Label.d.ts .\ts-defs\RadJav.GUI.List.d.ts .\ts-defs\RadJav.GUI.MenuBar.d.ts .\ts-defs\RadJav.GUI.MenuItem.d.ts .\ts-defs\RadJav.GUI.Radio.d.ts .\ts-defs\RadJav.GUI.Textarea.d.ts .\ts-defs\RadJav.GUI.Textbox.ts .\ts-defs\RadJav.GUI.Window.d.ts .\ts-defs\RadJav.IO.d.ts .\ts-defs\RadJav.Quaternion.d.ts .\ts-defs\RadJav.Rectangle.d.ts .\ts-defs\RadJav.Vector2.d.ts .\ts-defs\RadJav.Vector3.d.ts .\ts-defs\RadJav.Vector4.d.ts .\ts-defs\String.d.ts .\ts-defs\Global.d.ts
+
+tsc %TSFILES%

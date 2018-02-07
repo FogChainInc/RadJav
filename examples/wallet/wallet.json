@@ -11,6 +11,46 @@
 					"children": [
 							{
 								"type": "RadJav.GUI.MenuItem", 
+								"name": "soloMining", 
+								"text": "Start Solo Mining...", 
+								"click": "toggleMining ();"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "addNodeItem", 
+								"text": "Add Node", 
+								"click": "addNode ();"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "encryptWalletItem", 
+								"text": "Encrypt Wallet", 
+								"click": "encryptWallet ();"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "enterCommandItem", 
+								"text": "Enter Command", 
+								"click": "enterCommand ();"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "separatorItem1", 
+								"text": "-"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "backupWalletItem", 
+								"text": "Backup Wallet", 
+								"click": "backupWallet ();"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "separatorItem2", 
+								"text": "-"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
 								"name": "exitMenuItem", 
 								"text": "Exit", 
 								"createOnPlatforms": {
@@ -19,6 +59,18 @@
 								"click": "RadJav.exit();"
 							}
 						]
+				}, 
+				{
+					"type": "RadJav.GUI.MenuItem", 
+					"name": "helpMenu", 
+					"text": "Help", 
+					"children": [
+							{
+								"type": "RadJav.GUI.MenuItem", 
+								"name": "about", 
+								"text": "About", 
+								"click": "alert ('Version ' + walletVersion);"
+							}]
 				}]
 	}, 
 	{
@@ -121,8 +173,8 @@
 		"type": "RadJav.GUI.Label", 
 		"name": "connectingMessage", 
 		"visibility": true, 
-		"position": "331, 10", 
-		"size": "232, 17", 
-		"text": "Connecting to the RadJav XRV1 network..."
+		"position": "321, 10", 
+		"size": "242, 17", 
+		"text": "Connecting to the RadJav XRJV1 network..."
 	}
 ]

@@ -1,0 +1,334 @@
+\hypertarget{classwx_ogre_render_window}{}\section{wx\+Ogre\+Render\+Window Class Reference}
+\label{classwx_ogre_render_window}\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+
+
+{\ttfamily \#include $<$wx\+Ogre\+Render\+Window.\+h$>$}
+
+Inheritance diagram for wx\+Ogre\+Render\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classwx_ogre_render_window}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classwx_ogre_render_window_aa1add46adc50ac203ff2b5b07e001b00}{wx\+Ogre\+Render\+Window}} (Ogre\+::\+Root $\ast$root, wx\+Window $\ast$parent, wx\+Window\+ID id, const wx\+Point \&pos=wx\+Default\+Position, const wx\+Size \&size=wx\+Default\+Size, long style=wx\+S\+U\+N\+K\+E\+N\+\_\+\+B\+O\+R\+D\+ER, const wx\+Validator \&validator=wx\+Default\+Validator)
+\item 
+\mbox{\hyperlink{classwx_ogre_render_window_a4fcac7c29977693be0f73a462bc68134}{wx\+Ogre\+Render\+Window}} ()
+\item 
+bool \mbox{\hyperlink{classwx_ogre_render_window_addc8dc3f5edfffab2a52e222aab1e08b}{Create}} (wx\+Window $\ast$parent, wx\+Window\+ID id, const wx\+Point \&pos=wx\+Default\+Position, const wx\+Size \&size=wx\+Default\+Size, long style=wx\+S\+U\+N\+K\+E\+N\+\_\+\+B\+O\+R\+D\+ER, const wx\+Validator \&validator=wx\+Default\+Validator)
+\item 
+virtual \mbox{\hyperlink{classwx_ogre_render_window_ab883308056ab07b1c21c583ddcde1a6e}{$\sim$wx\+Ogre\+Render\+Window}} ()
+\item 
+virtual void \mbox{\hyperlink{classwx_ogre_render_window_a4cff3f54eed10b38b14aa4c7a8d7a4e3}{Init}} ()
+\item 
+virtual wx\+Size \mbox{\hyperlink{classwx_ogre_render_window_ac6b5287a3b9abdedfdb3142df79e678e}{Do\+Get\+Best\+Size}} () const
+\item 
+Ogre\+::\+Render\+Window $\ast$ \mbox{\hyperlink{classwx_ogre_render_window_a36b111b399516bf7397858c5dbd7405c}{Get\+Render\+Window}} () const
+\item 
+void \mbox{\hyperlink{classwx_ogre_render_window_ad2588b1d44ae75bca36ede1303ff914f}{Set\+Render\+Timer\+Period}} (int period)
+\item 
+void \mbox{\hyperlink{classwx_ogre_render_window_ad2d0c71f8757ddd48623f8e475100f76}{Set\+Mouse\+Events\+Callback}} (Mouse\+Events\+Callback callback)
+\item 
+virtual void \mbox{\hyperlink{classwx_ogre_render_window_a00c18e5b03975a630b512ebf0d4f0764}{Update}} ()
+\item 
+virtual void \mbox{\hyperlink{classwx_ogre_render_window_ae3394f8187616e6aa310195001632359}{On\+Paint}} (wx\+Paint\+Event \&evt)
+\item 
+virtual void \mbox{\hyperlink{classwx_ogre_render_window_a4065f34eb3af7813f1b79ee6ba0d269f}{On\+Render\+Timer}} (wx\+Timer\+Event \&evt)
+\item 
+virtual void \mbox{\hyperlink{classwx_ogre_render_window_a2ed6d1321e36951bc9c9bcb42ca1a32e}{On\+Size}} (wx\+Size\+Event \&evt)
+\item 
+virtual void \mbox{\hyperlink{classwx_ogre_render_window_a75627af5e05691526b99524af5feaa5e}{On\+Mouse\+Events}} (wx\+Mouse\+Event \&evt)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Ogre\+::\+Root $\ast$ \mbox{\hyperlink{classwx_ogre_render_window_abe184803840b348854303163f116d267}{Get\+Ogre\+Root}} ()
+\item 
+static void \mbox{\hyperlink{classwx_ogre_render_window_adbd1dc0de7ed468785eeb0cae1239210}{Set\+Ogre\+Root}} (Ogre\+::\+Root $\ast$root)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classwx_ogre_render_window_ad052d7c0accd57b25ac52f5e50df0b62}{Create\+Render\+Window}} ()
+\item 
+virtual Ogre\+::\+String \mbox{\hyperlink{classwx_ogre_render_window_ab855c41487a9b8154be824ff91260f90}{Get\+Ogre\+Handle}} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Render\+Window $\ast$ \mbox{\hyperlink{classwx_ogre_render_window_a9b78f7b7ebccb68b2fd9f30a40bff5a7}{m\+Render\+Window}}
+\begin{DoxyCompactList}\small\item\em This control\textquotesingle{}s own render window reference. \end{DoxyCompactList}\item 
+wx\+Timer $\ast$ \mbox{\hyperlink{classwx_ogre_render_window_a2e1a04499bead763eb9e1cc4477bc643}{m\+Render\+Timer}}
+\begin{DoxyCompactList}\small\item\em Timer to sync the rendering to a \char`\"{}constant\char`\"{} frame rate. \end{DoxyCompactList}\item 
+Mouse\+Events\+Callback \mbox{\hyperlink{classwx_ogre_render_window_ac118411b88d49b1df4218d003520f22d}{m\+Mouse\+Events\+Callback}}
+\begin{DoxyCompactList}\small\item\em Callback for mouse events. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Ogre\+::\+Root $\ast$ \mbox{\hyperlink{classwx_ogre_render_window_aeb1475a166966aa151cbfc71bb4dfe60}{ms\+Ogre\+Root}}
+\begin{DoxyCompactList}\small\item\em A shared reference to the Ogre root. \end{DoxyCompactList}\item 
+static unsigned int \mbox{\hyperlink{classwx_ogre_render_window_aaa86fba0799417a0148303d6613ce424}{ms\+Next\+Render\+Window\+Id}}
+\begin{DoxyCompactList}\small\item\em The Id of the next render window. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+wx\+Widgets Ogre render window widget. Strongly based on the existing wx\+Ogre widget implementation, this one isolates the wx component from Ogre, acting as a simple bind to render inside a wx\+Widgets window.
+
+\begin{DoxyAuthor}{Author}
+Jesús Alonso Abad \textquotesingle{}Kencho\textquotesingle{}, Other contributors (original wx\+Ogre). 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classwx_ogre_render_window_aa1add46adc50ac203ff2b5b07e001b00}\label{classwx_ogre_render_window_aa1add46adc50ac203ff2b5b07e001b00}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{wx\+Ogre\+Render\+Window()}{wxOgreRenderWindow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily wx\+Ogre\+Render\+Window\+::wx\+Ogre\+Render\+Window (\begin{DoxyParamCaption}\item[{Ogre\+::\+Root $\ast$}]{root,  }\item[{wx\+Window $\ast$}]{parent,  }\item[{wx\+Window\+ID}]{id,  }\item[{const wx\+Point \&}]{pos = {\ttfamily wxDefaultPosition},  }\item[{const wx\+Size \&}]{size = {\ttfamily wxDefaultSize},  }\item[{long}]{style = {\ttfamily wxSUNKEN\+\_\+BORDER},  }\item[{const wx\+Validator \&}]{validator = {\ttfamily wxDefaultValidator} }\end{DoxyParamCaption})}
+
+wx-\/like Constructor. 
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent wx\+Window component. \\
+\hline
+{\em id} & The control id. \\
+\hline
+{\em pos} & The default position. \\
+\hline
+{\em size} & The default size. \\
+\hline
+{\em style} & The default style for this component. \\
+\hline
+{\em validator} & A default validator for the component. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_a4fcac7c29977693be0f73a462bc68134}\label{classwx_ogre_render_window_a4fcac7c29977693be0f73a462bc68134}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{wx\+Ogre\+Render\+Window()}{wxOgreRenderWindow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily wx\+Ogre\+Render\+Window\+::wx\+Ogre\+Render\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor. Allows the \char`\"{}standard\char`\"{} wx\+Widgets\textquotesingle{} two-\/step construction. \mbox{\Hypertarget{classwx_ogre_render_window_ab883308056ab07b1c21c583ddcde1a6e}\label{classwx_ogre_render_window_ab883308056ab07b1c21c583ddcde1a6e}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!````~wx\+Ogre\+Render\+Window@{$\sim$wx\+Ogre\+Render\+Window}}
+\index{````~wx\+Ogre\+Render\+Window@{$\sim$wx\+Ogre\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{$\sim$wx\+Ogre\+Render\+Window()}{~wxOgreRenderWindow()}}
+{\footnotesize\ttfamily wx\+Ogre\+Render\+Window\+::$\sim$wx\+Ogre\+Render\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Virtual destructor. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classwx_ogre_render_window_addc8dc3f5edfffab2a52e222aab1e08b}\label{classwx_ogre_render_window_addc8dc3f5edfffab2a52e222aab1e08b}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Create@{Create}}
+\index{Create@{Create}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily bool wx\+Ogre\+Render\+Window\+::\+Create (\begin{DoxyParamCaption}\item[{wx\+Window $\ast$}]{parent,  }\item[{wx\+Window\+ID}]{id,  }\item[{const wx\+Point \&}]{pos = {\ttfamily wxDefaultPosition},  }\item[{const wx\+Size \&}]{size = {\ttfamily wxDefaultSize},  }\item[{long}]{style = {\ttfamily wxSUNKEN\+\_\+BORDER},  }\item[{const wx\+Validator \&}]{validator = {\ttfamily wxDefaultValidator} }\end{DoxyParamCaption})}
+
+Creation method (for the two-\/step construction). 
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent wx\+Window component. \\
+\hline
+{\em id} & The control id. \\
+\hline
+{\em pos} & The default position. \\
+\hline
+{\em size} & The default size. \\
+\hline
+{\em style} & The default style for this component. \\
+\hline
+{\em validator} & A default validator for the component. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_ad052d7c0accd57b25ac52f5e50df0b62}\label{classwx_ogre_render_window_ad052d7c0accd57b25ac52f5e50df0b62}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Create\+Render\+Window@{Create\+Render\+Window}}
+\index{Create\+Render\+Window@{Create\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Create\+Render\+Window()}{CreateRenderWindow()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+Create\+Render\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Creates an Ogre render window for this widget. \mbox{\Hypertarget{classwx_ogre_render_window_ac6b5287a3b9abdedfdb3142df79e678e}\label{classwx_ogre_render_window_ac6b5287a3b9abdedfdb3142df79e678e}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Do\+Get\+Best\+Size@{Do\+Get\+Best\+Size}}
+\index{Do\+Get\+Best\+Size@{Do\+Get\+Best\+Size}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Do\+Get\+Best\+Size()}{DoGetBestSize()}}
+{\footnotesize\ttfamily wx\+Size wx\+Ogre\+Render\+Window\+::\+Do\+Get\+Best\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Overrides the default implementation. This override is here for convenience. Returns a symbolic 320x240px size. \begin{DoxyReturn}{Returns}
+A size of 320x240 (just a symbolic 4\+:3 size). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classwx_ogre_render_window_ab855c41487a9b8154be824ff91260f90}\label{classwx_ogre_render_window_ab855c41487a9b8154be824ff91260f90}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Get\+Ogre\+Handle@{Get\+Ogre\+Handle}}
+\index{Get\+Ogre\+Handle@{Get\+Ogre\+Handle}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Get\+Ogre\+Handle()}{GetOgreHandle()}}
+{\footnotesize\ttfamily Ogre\+::\+String wx\+Ogre\+Render\+Window\+::\+Get\+Ogre\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Gets the handle for the render window. \begin{DoxyReturn}{Returns}
+The render window handle. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classwx_ogre_render_window_abe184803840b348854303163f116d267}\label{classwx_ogre_render_window_abe184803840b348854303163f116d267}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Get\+Ogre\+Root@{Get\+Ogre\+Root}}
+\index{Get\+Ogre\+Root@{Get\+Ogre\+Root}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Get\+Ogre\+Root()}{GetOgreRoot()}}
+{\footnotesize\ttfamily Ogre\+::\+Root $\ast$ wx\+Ogre\+Render\+Window\+::\+Get\+Ogre\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Gets the current Ogre root reference associated. \begin{DoxyReturn}{Returns}
+The current reference to Ogre\textquotesingle{}s Root. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classwx_ogre_render_window_a36b111b399516bf7397858c5dbd7405c}\label{classwx_ogre_render_window_a36b111b399516bf7397858c5dbd7405c}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Get\+Render\+Window@{Get\+Render\+Window}}
+\index{Get\+Render\+Window@{Get\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Get\+Render\+Window()}{GetRenderWindow()}}
+{\footnotesize\ttfamily Ogre\+::\+Render\+Window $\ast$ wx\+Ogre\+Render\+Window\+::\+Get\+Render\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the associated Ogre render window. \begin{DoxyReturn}{Returns}
+The render window used to paint this control. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classwx_ogre_render_window_a4cff3f54eed10b38b14aa4c7a8d7a4e3}\label{classwx_ogre_render_window_a4cff3f54eed10b38b14aa4c7a8d7a4e3}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Init@{Init}}
+\index{Init@{Init}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Initialisation method. \mbox{\Hypertarget{classwx_ogre_render_window_a75627af5e05691526b99524af5feaa5e}\label{classwx_ogre_render_window_a75627af5e05691526b99524af5feaa5e}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!On\+Mouse\+Events@{On\+Mouse\+Events}}
+\index{On\+Mouse\+Events@{On\+Mouse\+Events}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{On\+Mouse\+Events()}{OnMouseEvents()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+On\+Mouse\+Events (\begin{DoxyParamCaption}\item[{wx\+Mouse\+Event \&}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Mouse events callback. \begin{DoxyRemark}{Remarks}
+Note this will call the specified callback function to process the event. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em evt} & Data regarding the mouse event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_ae3394f8187616e6aa310195001632359}\label{classwx_ogre_render_window_ae3394f8187616e6aa310195001632359}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!On\+Paint@{On\+Paint}}
+\index{On\+Paint@{On\+Paint}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{On\+Paint()}{OnPaint()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+On\+Paint (\begin{DoxyParamCaption}\item[{wx\+Paint\+Event \&}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Painting event callback. 
+\begin{DoxyParams}{Parameters}
+{\em evt} & Data regarding the painting event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_a4065f34eb3af7813f1b79ee6ba0d269f}\label{classwx_ogre_render_window_a4065f34eb3af7813f1b79ee6ba0d269f}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!On\+Render\+Timer@{On\+Render\+Timer}}
+\index{On\+Render\+Timer@{On\+Render\+Timer}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{On\+Render\+Timer()}{OnRenderTimer()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+On\+Render\+Timer (\begin{DoxyParamCaption}\item[{wx\+Timer\+Event \&}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Render timer event callback. 
+\begin{DoxyParams}{Parameters}
+{\em evt} & Data regarding the timer event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_a2ed6d1321e36951bc9c9bcb42ca1a32e}\label{classwx_ogre_render_window_a2ed6d1321e36951bc9c9bcb42ca1a32e}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!On\+Size@{On\+Size}}
+\index{On\+Size@{On\+Size}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{On\+Size()}{OnSize()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+On\+Size (\begin{DoxyParamCaption}\item[{wx\+Size\+Event \&}]{evt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Resizing events callback. 
+\begin{DoxyParams}{Parameters}
+{\em evt} & Data regarding the resize event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_ad2d0c71f8757ddd48623f8e475100f76}\label{classwx_ogre_render_window_ad2d0c71f8757ddd48623f8e475100f76}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Set\+Mouse\+Events\+Callback@{Set\+Mouse\+Events\+Callback}}
+\index{Set\+Mouse\+Events\+Callback@{Set\+Mouse\+Events\+Callback}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Set\+Mouse\+Events\+Callback()}{SetMouseEventsCallback()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+Set\+Mouse\+Events\+Callback (\begin{DoxyParamCaption}\item[{Mouse\+Events\+Callback}]{callback }\end{DoxyParamCaption})}
+
+Sets the mouse events callback. 
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback function. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_adbd1dc0de7ed468785eeb0cae1239210}\label{classwx_ogre_render_window_adbd1dc0de7ed468785eeb0cae1239210}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Set\+Ogre\+Root@{Set\+Ogre\+Root}}
+\index{Set\+Ogre\+Root@{Set\+Ogre\+Root}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Set\+Ogre\+Root()}{SetOgreRoot()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+Set\+Ogre\+Root (\begin{DoxyParamCaption}\item[{Ogre\+::\+Root $\ast$}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Sets the Ogre root for all the \mbox{\hyperlink{classwx_ogre_render_window}{wx\+Ogre\+Render\+Window}} instances. 
+\begin{DoxyParams}{Parameters}
+{\em root} & The new Ogre\+Root. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_ad2588b1d44ae75bca36ede1303ff914f}\label{classwx_ogre_render_window_ad2588b1d44ae75bca36ede1303ff914f}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Set\+Render\+Timer\+Period@{Set\+Render\+Timer\+Period}}
+\index{Set\+Render\+Timer\+Period@{Set\+Render\+Timer\+Period}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Set\+Render\+Timer\+Period()}{SetRenderTimerPeriod()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+Set\+Render\+Timer\+Period (\begin{DoxyParamCaption}\item[{int}]{period }\end{DoxyParamCaption})}
+
+Sets the render timer period. 
+\begin{DoxyParams}{Parameters}
+{\em period} & The number of milliseconds before the next notification. A negative or zero value will stop the timer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwx_ogre_render_window_a00c18e5b03975a630b512ebf0d4f0764}\label{classwx_ogre_render_window_a00c18e5b03975a630b512ebf0d4f0764}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!Update@{Update}}
+\index{Update@{Update}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void wx\+Ogre\+Render\+Window\+::\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Updating function. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classwx_ogre_render_window_ac118411b88d49b1df4218d003520f22d}\label{classwx_ogre_render_window_ac118411b88d49b1df4218d003520f22d}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!m\+Mouse\+Events\+Callback@{m\+Mouse\+Events\+Callback}}
+\index{m\+Mouse\+Events\+Callback@{m\+Mouse\+Events\+Callback}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{m\+Mouse\+Events\+Callback}{mMouseEventsCallback}}
+{\footnotesize\ttfamily Mouse\+Events\+Callback wx\+Ogre\+Render\+Window\+::m\+Mouse\+Events\+Callback\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Callback for mouse events. 
+
+\mbox{\Hypertarget{classwx_ogre_render_window_a2e1a04499bead763eb9e1cc4477bc643}\label{classwx_ogre_render_window_a2e1a04499bead763eb9e1cc4477bc643}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!m\+Render\+Timer@{m\+Render\+Timer}}
+\index{m\+Render\+Timer@{m\+Render\+Timer}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{m\+Render\+Timer}{mRenderTimer}}
+{\footnotesize\ttfamily wx\+Timer$\ast$ wx\+Ogre\+Render\+Window\+::m\+Render\+Timer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Timer to sync the rendering to a \char`\"{}constant\char`\"{} frame rate. 
+
+\mbox{\Hypertarget{classwx_ogre_render_window_a9b78f7b7ebccb68b2fd9f30a40bff5a7}\label{classwx_ogre_render_window_a9b78f7b7ebccb68b2fd9f30a40bff5a7}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!m\+Render\+Window@{m\+Render\+Window}}
+\index{m\+Render\+Window@{m\+Render\+Window}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{m\+Render\+Window}{mRenderWindow}}
+{\footnotesize\ttfamily Ogre\+::\+Render\+Window$\ast$ wx\+Ogre\+Render\+Window\+::m\+Render\+Window\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+This control\textquotesingle{}s own render window reference. 
+
+\mbox{\Hypertarget{classwx_ogre_render_window_aaa86fba0799417a0148303d6613ce424}\label{classwx_ogre_render_window_aaa86fba0799417a0148303d6613ce424}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!ms\+Next\+Render\+Window\+Id@{ms\+Next\+Render\+Window\+Id}}
+\index{ms\+Next\+Render\+Window\+Id@{ms\+Next\+Render\+Window\+Id}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{ms\+Next\+Render\+Window\+Id}{msNextRenderWindowId}}
+{\footnotesize\ttfamily unsigned int wx\+Ogre\+Render\+Window\+::ms\+Next\+Render\+Window\+Id\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+The Id of the next render window. 
+
+\mbox{\Hypertarget{classwx_ogre_render_window_aeb1475a166966aa151cbfc71bb4dfe60}\label{classwx_ogre_render_window_aeb1475a166966aa151cbfc71bb4dfe60}} 
+\index{wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}!ms\+Ogre\+Root@{ms\+Ogre\+Root}}
+\index{ms\+Ogre\+Root@{ms\+Ogre\+Root}!wx\+Ogre\+Render\+Window@{wx\+Ogre\+Render\+Window}}
+\subsubsection{\texorpdfstring{ms\+Ogre\+Root}{msOgreRoot}}
+{\footnotesize\ttfamily Ogre\+::\+Root$\ast$ wx\+Ogre\+Render\+Window\+::ms\+Ogre\+Root\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+A shared reference to the Ogre root. 
+
+Mouse events callback type. Any static function with the signature of a mouse events handler does the work. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Rad\+Jav/\mbox{\hyperlink{wx_ogre_render_window_8h}{wx\+Ogre\+Render\+Window.\+h}}\item 
+src/\+Rad\+Jav/\mbox{\hyperlink{wx_ogre_render_window_8cpp}{wx\+Ogre\+Render\+Window.\+cpp}}\end{DoxyCompactItemize}

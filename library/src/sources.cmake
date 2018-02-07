@@ -92,6 +92,16 @@ source_group ("RadJav\\Networking" FILES ${SOURCES_files_Networking__Main__Sourc
 
 set (SOURCES ${SOURCES_files_Networking__Main__Sources} ${SOURCES})
 
+if (USE_OGRE)
+	set (SOURCES_files_RadJav__v8__C3D__Sources 
+		"${libRadJav_SOURCE_DIR}/src/RadJav/v8/RadJavV8C3DObject3D.cpp"
+		"${libRadJav_SOURCE_DIR}/src/RadJav/v8/RadJavV8C3DEntity.cpp"
+		"${libRadJav_SOURCE_DIR}/src/RadJav/v8/RadJavV8C3DWorld.cpp")
+	source_group ("RadJav\\V8\\C3D" FILES ${SOURCES_files_RadJav__v8__C3D__Sources})
+
+	set (SOURCES ${SOURCES_files_RadJav__v8__C3D__Sources} ${SOURCES})
+endif ()
+
 if (libRadJav_INCLUDE_BLOCKCHAIN_V1)
 	set (SOURCES_files_BlockchainV1__Main__Sources 
 		"${libRadJav_SOURCE_DIR}/blockchainV1/src/arith_uint256.cpp"

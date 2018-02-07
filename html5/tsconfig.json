@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+			"target": "ES5", 
+			"module": "amd", 
+			"outFile": "./window.js", 
+			"lib": ["es5", "es2015.promise"]
+		}, 
+	"include": [
+			"./ts-defs/*.d.ts"
+		], 
+	"files": [
+		"window.ts"
+	]
+}

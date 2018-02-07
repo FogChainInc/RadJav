@@ -45,6 +45,8 @@ namespace RadJAV
 		V8_CALLBACK(object, "getApplicationPath", OS::getApplicationPath);
 		V8_CALLBACK(object, "getCurrentWorkingPath", OS::getCurrentWorkingPath);
 		V8_CALLBACK(object, "setCurrentWorkingPath", OS::setCurrentWorkingPath);
+		V8_CALLBACK(object, "saveFileAs", OS::saveFileAs);
+		V8_CALLBACK(object, "openFileAs", OS::openFileAs);
 	}
 
 	void OS::onReady(const v8::FunctionCallbackInfo<v8::Value> &args)
@@ -143,6 +145,100 @@ namespace RadJAV
 		#ifdef GUI_USE_WXWIDGETS
 			wxSetWorkingDirectory(str);
 		#endif
+	}
+
+	void OS::saveFileAs(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String str = "";
+		String message = "";
+		String defaultDir = "";
+		String defaultFile = "";
+		String wildcard = "";
+		RJBOOL overwritePrompt = true;
+		String path = "";
+
+		if (args.Length() > 0)
+		{
+			if (args[0]->IsString () == true)
+				message = parseV8Value(args[0]);
+			
+			if (args[0]->IsObject() == true)
+			{
+				v8::Local<v8::Object> obj = v8::Local<v8::Object>::Cast (args[0]);
+
+				message = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "message");
+				defaultDir = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "defaultDir");
+				defaultFile = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "defaultFile");
+				wildcard = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "wildcard");
+				overwritePrompt = V8_JAVASCRIPT_ENGINE->v8GetBool(obj, "overwritePrompt");
+			}
+		}
+
+		#ifdef GUI_USE_WXWIDGETS
+			wxString wxmsg = wxFileSelectorPromptStr;
+
+			if (message != "")
+				wxmsg = message.towxString();
+
+			RJLONG style = wxFD_SAVE;
+
+			if (overwritePrompt == true)
+				style |= wxFD_OVERWRITE_PROMPT;
+
+			wxFileDialog fileDialog(NULL, wxmsg, defaultDir.towxString (), defaultFile.towxString(), wildcard.towxString (), style);
+
+			if (fileDialog.ShowModal() != wxID_CANCEL)
+				path = parsewxString (fileDialog.GetPath());
+		#endif
+
+		args.GetReturnValue().Set(path.toV8String(args.GetIsolate()));
+	}
+
+	void OS::openFileAs(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String str = "";
+		String message = "";
+		String defaultDir = "";
+		String defaultFile = "";
+		String wildcard = "";
+		RJBOOL fileMustExist = true;
+		String path = "";
+
+		if (args.Length() > 0)
+		{
+			if (args[0]->IsString() == true)
+				message = parseV8Value(args[0]);
+
+			if (args[0]->IsObject() == true)
+			{
+				v8::Local<v8::Object> obj = v8::Local<v8::Object>::Cast(args[0]);
+
+				message = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "message");
+				defaultDir = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "defaultDir");
+				defaultFile = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "defaultFile");
+				wildcard = V8_JAVASCRIPT_ENGINE->v8GetString(obj, "wildcard");
+				fileMustExist = V8_JAVASCRIPT_ENGINE->v8GetBool(obj, "fileMustExist");
+			}
+		}
+
+		#ifdef GUI_USE_WXWIDGETS
+			wxString wxmsg = wxFileSelectorPromptStr;
+
+			if (message != "")
+				wxmsg = message.towxString();
+
+			RJLONG style = wxFD_OPEN;
+
+			if (fileMustExist == true)
+				style |= wxFD_FILE_MUST_EXIST;
+
+			wxFileDialog fileDialog(NULL, wxmsg, defaultDir.towxString(), defaultFile.towxString(), wildcard.towxString(), style);
+
+			if (fileDialog.ShowModal() != wxID_CANCEL)
+				path = parsewxString(fileDialog.GetPath());
+		#endif
+
+		args.GetReturnValue().Set(path.toV8String(args.GetIsolate()));
 	}
 }
 #endif

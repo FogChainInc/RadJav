@@ -95,7 +95,9 @@ namespace RadJAV
 			{
 				wxBitmapType type = getImageType(file);
 				image.LoadFile(file, type);
-				image = image.Scale(fileSize.GetWidth(), fileSize.GetHeight());
+				//image = image.Scale(fileSize.GetWidth(), fileSize.GetHeight());
+				image.Rescale(fileSize.GetWidth(), fileSize.GetHeight(), wxImageResizeQuality::wxIMAGE_QUALITY_HIGH);
+				imageSize = fileSize;
 			}
 
 			void ImageFrame::paintEvent(wxPaintEvent &evt)
@@ -106,6 +108,7 @@ namespace RadJAV
 
 			void ImageFrame::render(wxDC &dc)
 			{
+				image.Rescale(imageSize.GetWidth(), imageSize.GetHeight(), wxImageResizeQuality::wxIMAGE_QUALITY_HIGH);
 				dc.DrawBitmap(image, 0, 0);
 			}
 		#endif

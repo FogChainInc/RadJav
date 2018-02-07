@@ -23,9 +23,11 @@
 * An HTML element.
 * Available on platforms: HTML5
 */
-RadJav.GUI.HTMLElement = RadJav.GUI.GObject.extend (
+RadJav.GUI.HTMLElement = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(HTMLElement, _super);
+
+	function HTMLElement (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,11 +38,20 @@ RadJav.GUI.HTMLElement = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.HTMLElement", 
-					size: "500, 350"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 500;
+			obj.size.y = 350;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.HTMLElement";
+
+		return (_this);
 	}
-});
+
+	return (HTMLElement);
+}(RadJav.GUI.GObject));
 

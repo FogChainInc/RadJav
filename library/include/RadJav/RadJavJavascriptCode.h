@@ -11,26 +11,7 @@
 
 		inline void loadJavascriptLibrary ()
 		{
-			javascriptFiles.push_back (JSFile ("Math.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("Math.js", "\n\
 /** @class Math\n\
 * The math class.\n\
 */\n\
@@ -147,26 +128,7 @@ Math.randomRange = function (min, max)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("String.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("String.js", "\n\
 /** @class String\n\
 * The string class.\n\
 */\n\
@@ -219,26 +181,9 @@ String.prototype.replaceAll = function (str, replacement)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
+			javascriptFiles.push_back (JSFile ("RadJav.js", "\n\
 var RadJav = {};\n\
+RadJav.useEval = true;\n\
 RadJav._isInitialized = false;\n\
 RadJav._included = [];\n\
 \n\
@@ -312,6 +257,18 @@ RadJav.initialize = function (libraries)\n\
 			Promise.all (promises).then (function ()\n\
 				{\n\
 					RadJav._isInitialized = true;\n\
+\n\
+					if (RadJav.useEval == false)\n\
+					{\n\
+						eval = Function = function ()\n\
+						{\n\
+							var msg = \"RadJav disables eval by default. Set RadJav.useEval = true; to enable it.\";\n\
+\n\
+							alert (msg);\n\
+							throw msg;\n\
+						}\n\
+					}\n\
+\n\
 					resolve ();\n\
 				});\n\
 		}, RadJav, arguments));\n\
@@ -321,7 +278,7 @@ RadJav.initialize = function (libraries)\n\
 RadJav.getStandardLibrary = function ()\n\
 {\n\
 	var includes = [{ file: \"RadJav.Circle\", themeFile: false }, { file: \"RadJav.Rectangle\", themeFile: false }, \n\
-			{ file: \"RadJav.Vector2\", themeFile: false }, { file: \"RadJav.Color\", themeFile: false }];\n\
+			{ file: \"RadJav.Vector2\", themeFile: false, loadFirst: true }, { file: \"RadJav.Color\", themeFile: false }];\n\
 \n\
 	return (includes);\n\
 };\n\
@@ -344,8 +301,8 @@ RadJav.getC3DLibrary = function ()\n\
 	var includes = [{ file: \"RadJav.GUI.Canvas3D\", themeFile: true }, \n\
 			{ file: \"RadJav.C3D.Object3D\", themeFile: false, loadFirst: true }, \n\
 			{ file: \"RadJav.C3D.Camera\", themeFile: false }, { file: \"RadJav.C3D.Entity\", themeFile: false }, \n\
-			{ file: \"RadJav.C3D.Transform\", themeFile: false }, { file: \"RadJav.Vector3\", themeFile: false }, \n\
-			{ file: \"RadJav.Vector4\", themeFile: false }, { file: \"RadJav.Quaternion\", themeFile: false }, \n\
+			{ file: \"RadJav.C3D.Transform\", themeFile: true }, { file: \"RadJav.Vector3\", themeFile: false, loadFirst: true }, \n\
+			{ file: \"RadJav.Vector4\", themeFile: false, loadFirst: true }, { file: \"RadJav.Quaternion\", themeFile: false }, \n\
 			{ file: \"RadJav.C3D.Model\", themeFile: false, loadFirst: false }, \n\
 			{ file: \"RadJav.C3D.Material\", themeFile: false, loadFirst: false }];\n\
 \n\
@@ -394,7 +351,7 @@ RadJav.runApplication = function (file)\n\
 			{\n\
 				promise = include (file).then (function (data)\n\
 					{\n\
-						var func = new Function (data);\n\
+						var func = new _Function (data);\n\
 						func ();\n\
 						resolve ();\n\
 					});\n\
@@ -840,90 +797,30 @@ RadJav.combineString = function()\n\
 	return (strReturn);\n\
 }\n\
 \n\
-RadJav.classInitializing = false; \n\
-RadJav.fnTest = / xyz / .test(function() { xyz; }) ? / \\b_super\\b / : / .* / ; \n\
+_eval = eval;\n\
+_Function = Function;\n\
+RadJav.default = RadJav;\n\
 \n\
-// The base Class implementation (does nothing)\n\
-RadJav.Class = function() {};\n\
+// This is taken from generated TypeScript code. Thanks Microsoft!\n\
+var __extends = (this && this.__extends) || (function () {\n\
+    var extendStatics = Object.setPrototypeOf ||\n\
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\n\
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\n\
+    return function (d, b) {\n\
+        extendStatics(d, b);\n\
+        function __() { this.constructor = d; }\n\
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\n\
+    };\n\
+})();\n\
 \n\
-// Create a new Class that inherits from this class\n\
-RadJav.Class.extend = function(prop) {\n\
-	var _super = this.prototype;\n\
-\n\
-	// Instantiate a base class (but only create the instance,\n\
-	// don't run the init constructor)\n\
-	RadJav.classInitializing = true;\n\
-	var prototype = new this();\n\
-	RadJav.classInitializing = false;\n\
-\n\
-	// Copy the properties over onto the new prototype\n\
-	for (var name in prop) {\n\
-		// Check if we're overwriting an existing function\n\
-		prototype[name] = typeof prop[name] == \"function\" &&\n\
-			typeof _super[name] == \"function\" && RadJav.fnTest.test(prop[name]) ?\n\
-			(function(name, fn) {\n\
-			return function() {\n\
-				var tmp = this._super;\n\
-\n\
-				// Add a new ._super() method that is the same method\n\
-				// but on the super-class\n\
-				this._super = _super[name];\n\
-\n\
-				// The method only need to be bound temporarily, so we\n\
-				// remove it when we're done executing\n\
-				var ret = fn.apply(this, arguments);\n\
-				this._super = tmp;\n\
-\n\
-				return ret;\n\
-			};\n\
-		})(name, prop[name]) :\n\
-			prop[name];\n\
-	}\n\
-\n\
-	// The dummy class constructor\n\
-	function Class() {\n\
-		// All construction is actually done in the init method\n\
-		if (!RadJav.classInitializing && this.init)\n\
-			this.init.apply(this, arguments);\n\
-	}\n\
-\n\
-	// Populate our constructed prototype object\n\
-	Class.prototype = prototype;\n\
-\n\
-	// Enforce the constructor to be what we expect\n\
-	Class.prototype.constructor = Class;\n\
-\n\
-	// And make this class extendable\n\
-	Class.extend = arguments.callee;\n\
-\n\
-	return Class;\n\
-};\n\
+var console = {};\n\
 \n\
 RadJav.OS.type = \"windows\";\n\
 RadJav.OS.Windows = function()\n\
 {\n\
 }\n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Color.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Color.js", "\n\
 /** @class RadJav.Color\n\
 * Represents a color.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
@@ -1078,26 +975,7 @@ function parseColor (str)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Quaternion.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Quaternion.js", "\n\
 /** @class RadJav.Quaternion\n\
 * A Quaternion class.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
@@ -1153,26 +1031,7 @@ RadJav.Quaternion = function (w, x, y, z)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Vector2.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Vector2.js", "\n\
 /** @class RadJav.Vector2\n\
 * A Vector2 class.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
@@ -1350,26 +1209,7 @@ RadJav.Vector2.parseVector2 = function (str)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Vector3.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Vector3.js", "\n\
 /** @class RadJav.Vector3\n\
 * A Vector3 class.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
@@ -1657,26 +1497,7 @@ RadJav.Vector3 = function (x, y, z)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Vector4.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Vector4.js", "\n\
 /** @class RadJav.Vector4\n\
 * A Vector4 class.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
@@ -1766,26 +1587,7 @@ function parseVector4 (string)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Circle.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Circle.js", "\n\
 /** @class RadJav.Circle\n\
 * A basic circle.\n\
 * @author Jason Ryan\n\
@@ -1852,26 +1654,7 @@ RadJav.Circle = function (x, y, r)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Rectangle.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Rectangle.js", "\n\
 /** @class RadJav.Rectangle\n\
 * A basic rectangle.\n\
 * @param {Number|RadJav.Vector2|RadJav.Vector4} [x=0] The x coordinate of the rectangle. Can also be a Vector2 \n\
@@ -2065,26 +1848,7 @@ RadJav.Rectangle = function (x, y, w, h)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.Font.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.Font.js", "\n\
 /** @class RadJav.Font\n\
 * The font class.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
@@ -2124,26 +1888,7 @@ RadJav.Font = function (obj)\n\
 }\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.IO.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.IO.js", "\n\
 /** @class RadJav.IO.TextFile\n\
 * Handles text files.\n\
 * Available on platforms: Windows,Linux,OSX\n\
@@ -2169,26 +1914,7 @@ RadJav.IO.TextFile.write = 2;\n\
 RadJav.IO.TextFile.append = 3;\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.IO.SerialComm.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.IO.SerialComm.js", "\n\
 /** @class RadJav.IO.SerialComm\n\
 * The serial communications class.\n\
 * Available on platforms: Windows,Linux,OSX\n\
@@ -2274,28 +2000,9 @@ RadJav.IO.SerialComm.markParity = 3;\n\
 RadJav.IO.SerialComm.spaceParity = 4;\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.GObject.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-RadJav.GUI.GObject = RadJav.Class.extend (\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.GObject.js", "RadJav.GUI.GObject = (function ()\n\
 {\n\
-	init: function(obj, text, parent, beforeCreatedChild)\n\
+	function GObject (obj, text, parent, beforeCreatedChild)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = new Object ();\n\
@@ -2478,48 +2185,33 @@ RadJav.GUI.GObject = RadJav.Class.extend (\n\
 \n\
 			this._transform.setSize (size);\n\
 		}\n\
-	}, \n\
+	}\n\
 \n\
-	show : function()\n\
+	GObject.prototype.show = function()\n\
 	{\n\
 		this.setVisibility(true);\n\
-	},\n\
+	}\n\
 \n\
-	hide: function()\n\
+	GObject.prototype.hide = function()\n\
 	{\n\
 		this.setVisibility(false);\n\
 	}\n\
-});\n\
+\n\
+	return (GObject);\n\
+} ());\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Button.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Button.js", "\n\
 /** @class RadJav.GUI.Button\n\
 * @extends RadJav.GUI.GObject\n\
 * A button.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Button = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Button = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Button, _super);\n\
+\n\
+	function Button (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2530,44 +2222,35 @@ RadJav.GUI.Button = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Button\", \n\
-					size: \"80,40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 80;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Button\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Button);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Canvas3D.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Canvas3D.js", "\n\
 /** @class RadJav.GUI.Canvas3D\n\
 * @extends RadJav.GUI.GObject\n\
 * A 3d canvas.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Canvas3D = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Canvas3D, _super);\n\
+\n\
+	function Canvas3D (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2578,40 +2261,48 @@ RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Canvas3D\", \n\
-					size: \"500,350\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 500;\n\
+			obj.size.y = 350;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Canvas3D\";\n\
 \n\
 		/** @property {Mixed} [_renderer=null]\n\
 		* @protected\n\
 		* The renderer used to render the canvas.\n\
 		*/\n\
-		this._renderer = RadJav.setDefaultValue (obj._renderer, null);\n\
+		_this._renderer = RadJav.setDefaultValue (obj._renderer, null);\n\
 		/** @property {Number} [_rendererType=1]\n\
 		* @protected\n\
 		* The renderer type used to render the canvas.\n\
 		*/\n\
-		this._rendererType = RadJav.setDefaultValue (obj._renderer, 1);\n\
+		_this._rendererType = RadJav.setDefaultValue (obj._renderer, 1);\n\
 		/** @property {Object} [_currentCamera=null]\n\
 		* @protected\n\
 		* The current camera used to render the scene.\n\
 		*/\n\
-		this._currentCamera = RadJav.setDefaultValue (obj._currentCamera, null);\n\
+		_this._currentCamera = RadJav.setDefaultValue (obj._currentCamera, null);\n\
 		/** @property {Object} [_models={}]\n\
 		* @protected\n\
 		* The models that have been loaded for use. Each key is a RadJav.C3D.Model.\n\
 		*/\n\
-		this._models = RadJav.setDefaultValue (obj._models, {});\n\
+		_this._models = RadJav.setDefaultValue (obj._models, {});\n\
 		/** @property {Object} [_materials={}]\n\
 		* @protected\n\
 		* The materials that have been loaded for use. Each key is a RadJav.C3D.Material.\n\
 		*/\n\
-		this._materials = RadJav.setDefaultValue (obj._materials, {});\n\
-		this._createAppObj();\n\
+		_this._materials = RadJav.setDefaultValue (obj._materials, {});\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Canvas3D);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 /** @class RadJav.GUI.Canvas3D.RendererTypes\n\
 * A 3d canvas.\n\
@@ -2626,34 +2317,17 @@ RadJav.GUI.Canvas3D.RendererTypes.WebGL = 2;\n\
 RadJav.GUI.Canvas3D.RendererTypes.Context2D = 3;\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Checkbox.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Checkbox.js", "\n\
 /** @class RadJav.GUI.Checkbox\n\
 * @extends RadJav.GUI.GObject\n\
 * A checkbox.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Checkbox = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Checkbox, _super);\n\
+\n\
+	function Checkbox (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2664,52 +2338,43 @@ RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 80;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
 		if (obj.checked != null)\n\
 			obj._checked = obj.checked;\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Checkbox\", \n\
-					size: \"80, 40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Checkbox\";\n\
 \n\
 		/** @property {Boolean} [_checked=false]\n\
 		* If set to true, the box is checked.\n\
 		*/\n\
-		this._checked = RadJav.setDefaultValue (obj._checked, false);\n\
-		this._createAppObj();\n\
+		_this._checked = RadJav.setDefaultValue (obj._checked, false);\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Checkbox);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Combobox.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Combobox.js", "\n\
 /** @class RadJav.GUI.Combobox\n\
 * @extends RadJav.GUI.GObject\n\
 * A Textbox.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Combobox = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Combobox, _super);\n\
+\n\
+	function Combobox (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2723,17 +2388,22 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (\n\
 		if (obj.items != null)\n\
 			obj._items = obj.items;\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Combobox\", \n\
-					size: \"120, 40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 120;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Combobox\";\n\
 \n\
 		/** @property {String} [_items=[]]\n\
 		* The items associated with this object.\n\
 		*/\n\
-		this._items = RadJav.setDefaultValue (obj._items, []);\n\
-		this.onCreated = function ()\n\
+		_this._items = RadJav.setDefaultValue (obj._items, []);\n\
+		_this.onCreated = function ()\n\
 			{\n\
 				for (var iIdx = 0; iIdx < this._items.length; iIdx++)\n\
 				{\n\
@@ -2741,17 +2411,20 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (\n\
 					this.addItem (item);\n\
 				}\n\
 			};\n\
-		this._createAppObj();\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Combobox);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 /** @class RadJav.GUI.Combobox.Item\n\
 * A combobox item.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Combobox.Item = RadJav.Class.extend (\n\
+RadJav.GUI.Combobox.Item = (function ()\n\
 {\n\
-	init: function (obj)\n\
+	function Item (obj)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2765,37 +2438,22 @@ RadJav.GUI.Combobox.Item = RadJav.Class.extend (\n\
 		*/\n\
 		this.text = RadJav.setDefaultValue (obj.text, \"\");\n\
 	}\n\
-});\n\
+\n\
+	return (Item);\n\
+} ());\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Container.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Container.js", "\n\
 /** @class RadJav.GUI.Container\n\
 * @extends RadJav.GUI.GObject\n\
 * A container.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Container = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Container = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Container, _super);\n\
+\n\
+	function Container (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2806,44 +2464,35 @@ RadJav.GUI.Container = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Container\", \n\
-					size: \"100,100\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 100;\n\
+			obj.size.y = 100;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Container\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Container);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Image.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Image.js", "\n\
 /** @class RadJav.GUI.Image\n\
 * @extends RadJav.GUI.GObject\n\
 * An image.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Image = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Image = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Image, _super);\n\
+\n\
+	function Image (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2854,11 +2503,16 @@ RadJav.GUI.Image = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Image\", \n\
-					size: \"100,100\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 100;\n\
+			obj.size.y = 100;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Image\";\n\
 \n\
 		if (obj.image != null)\n\
 			obj._image = obj.image;\n\
@@ -2868,40 +2522,31 @@ RadJav.GUI.Image = RadJav.GUI.GObject.extend (\n\
 		* The image thats being used. If a string, it will be converted into \n\
 		* an Image when the image is set.\n\
 		*/\n\
-		this._image = RadJav.setDefaultValue (obj._image, null);\n\
-		this._createAppObj();\n\
+		_this._image = RadJav.setDefaultValue (obj._image, null);\n\
+		_this.onCreated = function ()\n\
+			{\n\
+				if (this._image != null)\n\
+					this.setImage (this._image);\n\
+			};\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Image);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Label.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Label.js", "\n\
 /** @class RadJav.GUI.Label\n\
 * @extends RadJav.GUI.GObject\n\
 * A label.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Label = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Label = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Label, _super);\n\
+\n\
+	function Label (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2912,44 +2557,35 @@ RadJav.GUI.Label = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Label\", \n\
-					size: \"120, 40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 120;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Label\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Label);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.List.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.List.js", "\n\
 /** @class RadJav.GUI.List\n\
 * @extends RadJav.GUI.GObject\n\
 * A List.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.List = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.List = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(List, _super);\n\
+\n\
+	function List (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2960,36 +2596,52 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.List\", \n\
-					size: \"350, 300\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 350;\n\
+			obj.size.y = 300;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.List\";\n\
+\n\
+		if (obj.canSort != null)\n\
+			obj._canSort = obj.canSort;\n\
 \n\
 		if (obj.columns != null)\n\
 			obj._columns = obj.columns;\n\
 \n\
+		/** @property {Boolean} [_canSort=true]\n\
+		* @protected\n\
+		* If set to true, each column will be able to be sorted by the user.\n\
+		*/\n\
+		_this._canSort = RadJav.setDefaultValue (obj._canSort, true);\n\
 		/** @property {Boolean} [_hasCheckBoxes=false]\n\
 		* @protected\n\
 		* If set to true, each row will have a checkbox.\n\
 		*/\n\
-		this._hasCheckBoxes = RadJav.setDefaultValue (obj._hasCheckBoxes, false);\n\
+		_this._hasCheckBoxes = RadJav.setDefaultValue (obj._hasCheckBoxes, false);\n\
 		/** @property {RadJav.GUI.List.Column[]} [_columns=[]]\n\
 		* @protected\n\
 		* The columns in the list box.\n\
 		*/\n\
-		this._columns = RadJav.setDefaultValue (obj._columns, []);\n\
-		this._createAppObj();\n\
+		_this._columns = RadJav.setDefaultValue (obj._columns, []);\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (List);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 /** @class RadJav.GUI.List.Row\n\
 * A List row.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.List.Row = RadJav.Class.extend (\n\
+RadJav.GUI.List.Row = (function ()\n\
 {\n\
-	init: function (obj)\n\
+	function Row (obj)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -2998,28 +2650,30 @@ RadJav.GUI.List.Row = RadJav.Class.extend (\n\
 		* The items to display.\n\
 		*/\n\
 		this.items = RadJav.setDefaultValue (obj.items, []);\n\
-	}, \n\
+	}\n\
 \n\
 	/** @method addItem\n\
 	* Add an item to this row.\n\
 	* @param {RadJav.GUI.List.Item} item The item to add.\n\
 	*/\n\
-	addItem: function (item)\n\
+	Row.prototype.addItem = function (item)\n\
 	{\n\
 		if (typeof (item) != \"object\")\n\
 			item = new RadJav.GUI.List.Item ({ text: item });\n\
 \n\
 		this.items.push (item);\n\
 	}\n\
-});\n\
+\n\
+	return (Row);\n\
+} ());\n\
 \n\
 /** @class RadJav.GUI.List.Item\n\
 * A List item.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.List.Item = RadJav.Class.extend (\n\
+RadJav.GUI.List.Item = (function ()\n\
 {\n\
-	init: function (obj)\n\
+	function Item (obj)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3033,15 +2687,17 @@ RadJav.GUI.List.Item = RadJav.Class.extend (\n\
 		*/\n\
 		this.text = RadJav.setDefaultValue (obj.text, \"\");\n\
 	}\n\
-});\n\
+\n\
+	return (Item);\n\
+} ());\n\
 \n\
 /** @class RadJav.GUI.List.Column\n\
 * A List column.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.List.Column = RadJav.Class.extend (\n\
+RadJav.GUI.List.Column = (function ()\n\
 {\n\
-	init: function (obj)\n\
+	function Column (obj)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3059,15 +2715,17 @@ RadJav.GUI.List.Column = RadJav.Class.extend (\n\
 		*/\n\
 		this.key = RadJav.setDefaultValue (obj.key, null);\n\
 	}\n\
-});\n\
+\n\
+	return (Column);\n\
+} ());\n\
 \n\
 /** @class RadJav.GUI.List.Selection\n\
 * A List selection.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.List.Selection = RadJav.Class.extend (\n\
+RadJav.GUI.List.Selection = (function ()\n\
 {\n\
-	init: function (obj)\n\
+	function Selection (obj)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3083,37 +2741,22 @@ RadJav.GUI.List.Selection = RadJav.Class.extend (\n\
 		*/\n\
 		this._appObj = RadJav.setDefaultValue (obj._appObj, null);\n\
 	}\n\
-});\n\
+\n\
+	return (Selection);\n\
+} ());\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Radio.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Radio.js", "\n\
 /** @class RadJav.GUI.Radio\n\
 * @extends RadJav.GUI.GObject\n\
 * A Radio button.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Radio = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Radio = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Radio, _super);\n\
+\n\
+	function Radio (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3123,6 +2766,17 @@ RadJav.GUI.Radio = RadJav.GUI.GObject.extend (\n\
 			var name = obj;\n\
 			obj = { name: name };\n\
 		}\n\
+\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 80;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Radio\";\n\
 \n\
 		if (obj.radioGroup != null)\n\
 			obj._radioGroup = obj.radioGroup;\n\
@@ -3130,55 +2784,35 @@ RadJav.GUI.Radio = RadJav.GUI.GObject.extend (\n\
 		if (obj.checked != null)\n\
 			obj._checked = obj.checked;\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Radio\", \n\
-					size: \"80, 40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-\n\
 		/** @property {String} [_radioGroup=\"\"]\n\
 		* @protected\n\
 		* The group this box is associated grouped with.\n\
 		*/\n\
-		this._radioGroup = RadJav.setDefaultValue (obj._radioGroup, \"\");\n\
+		_this._radioGroup = RadJav.setDefaultValue (obj._radioGroup, \"\");\n\
 		/** @property {Boolean} [_checked=false]\n\
 		* @protected\n\
 		* Whether or not this object is checked when created.\n\
 		*/\n\
-		this._checked = RadJav.setDefaultValue (obj._checked, false);\n\
-		this._createAppObj();\n\
+		_this._checked = RadJav.setDefaultValue (obj._checked, false);\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Radio);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Textarea.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Textarea.js", "\n\
 /** @class RadJav.GUI.Textarea\n\
 * @extends RadJav.GUI.GObject\n\
 * A Textarea.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Textarea = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Textarea = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Textarea, _super);\n\
+\n\
+	function Textarea (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3189,44 +2823,35 @@ RadJav.GUI.Textarea = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Textarea\", \n\
-					size: \"120, 120\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 120;\n\
+			obj.size.y = 120;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Textarea\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Textarea);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Textbox.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Textbox.js", "\n\
 /** @class RadJav.GUI.Textbox\n\
 * @extends RadJav.GUI.GObject\n\
 * A Textbox.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Textbox = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Textbox = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Textbox, _super);\n\
+\n\
+	function Textbox (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3237,44 +2862,35 @@ RadJav.GUI.Textbox = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Textbox\", \n\
-					size: \"120, 40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 120;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Textbox\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Textbox);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.WebView.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.WebView.js", "\n\
 /** @class RadJav.GUI.WebView\n\
 * @extends RadJav.GUI.GObject\n\
 * A button.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.WebView = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.WebView = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(WebView, _super);\n\
+\n\
+	function WebView (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3285,44 +2901,35 @@ RadJav.GUI.WebView = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.WebView\", \n\
-					size: \"400,400\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 400;\n\
+			obj.size.y = 400;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.WebView\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (WebView);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.Window.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Window.js", "\n\
 /** @class RadJav.GUI.Window\n\
 * @extends RadJav.GUI.GObject\n\
 * A window.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.Window = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.Window = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(Window, _super);\n\
+\n\
+	function Window (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3333,44 +2940,35 @@ RadJav.GUI.Window = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.Window\", \n\
-					size: \"500, 350\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 500;\n\
+			obj.size.y = 350;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Window\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (Window);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.MenuBar.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.MenuBar.js", "\n\
 /** @class RadJav.GUI.MenuBar\n\
 * @extends RadJav.GUI.GObject\n\
 * A menu Bar.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.MenuBar = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.MenuBar = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(MenuBar, _super);\n\
+\n\
+	function MenuBar (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3381,44 +2979,46 @@ RadJav.GUI.MenuBar = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.MenuBar\", \n\
-					size: \"120, 40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 120;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.MenuBar\";\n\
+\n\
+		if (obj.htmlElement != null)\n\
+			obj._htmlElement = obj.htmlElement;\n\
+\n\
+		/** @property {RadJav.GUI.HTMLElement/String} [_htmlElement=null]\n\
+		* @protected\n\
+		* If the OS is HTML5, this will be the HTML element that will be attached to.\n\
+		* If this property is a string, it will be selected by the HTML DOM's element id \n\
+		* then converted into a RadJav.GUI.HTMLElement.\n\
+		*/\n\
+		_this._htmlElement = RadJav.setDefaultValue (obj._htmlElement, null);\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (MenuBar);\n\
+}(RadJav.GUI.GObject));\n\
 \n\
 "));
-			javascriptFiles.push_back (JSFile ("RadJav.GUI.MenuItem.js", "/*\n\
-	MIT-LICENSE\n\
-	Copyright (c) 2017 Higher Edge Software, LLC\n\
-\n\
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software \n\
-	and associated documentation files (the \"Software\"), to deal in the Software without restriction, \n\
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, \n\
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, \n\
-	subject to the following conditions:\n\
-\n\
-	The above copyright notice and this permission notice shall be included in all copies or substantial \n\
-	portions of the Software.\n\
-\n\
-	THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT \n\
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. \n\
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \n\
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION \n\
-	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\
-*/\n\
-\n\
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.MenuItem.js", "\n\
 /** @class RadJav.GUI.MenuItem\n\
 * @extends RadJav.GUI.GObject\n\
 * A menu item.\n\
 * Available on platforms: Windows,Linux,OSX,HTML5\n\
 */\n\
-RadJav.GUI.MenuItem = RadJav.GUI.GObject.extend (\n\
+RadJav.GUI.MenuItem = (function (_super)\n\
 {\n\
-	init: function (obj, text, parent)\n\
+	__extends(MenuItem, _super);\n\
+\n\
+	function MenuItem (obj, text, parent)\n\
 	{\n\
 		if (obj == null)\n\
 			obj = {};\n\
@@ -3429,14 +3029,654 @@ RadJav.GUI.MenuItem = RadJav.GUI.GObject.extend (\n\
 			obj = { name: name };\n\
 		}\n\
 \n\
-		RadJav.copyProperties (obj, {\n\
-					type: \"RadJav.GUI.MenuItem\", \n\
-					size: \"120, 40\"\n\
-				}, false);\n\
-		this._super (obj, text, parent);\n\
-		this._createAppObj();\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 120;\n\
+			obj.size.y = 40;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.MenuItem\";\n\
+\n\
+		return (_this);\n\
 	}\n\
-});\n\
+\n\
+	return (MenuItem);\n\
+}(RadJav.GUI.GObject));\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.GUI.Canvas3D.js", "\n\
+/** @class RadJav.GUI.Canvas3D\n\
+* @extends RadJav.GUI.GObject\n\
+* A 3d canvas.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.GUI.Canvas3D = (function (_super)\n\
+{\n\
+	__extends(Canvas3D, _super);\n\
+\n\
+	function Canvas3D (obj, text, parent)\n\
+	{\n\
+		if (obj == null)\n\
+			obj = {};\n\
+\n\
+		if (typeof (obj) == \"string\")\n\
+		{\n\
+			var name = obj;\n\
+			obj = { name: name };\n\
+		}\n\
+\n\
+		if (obj.size == null)\n\
+		{\n\
+			obj.size = new RadJav.Vector2 ();\n\
+			obj.size.x = 500;\n\
+			obj.size.y = 350;\n\
+		}\n\
+\n\
+		var _this = _super.call(this, obj, text, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.GUI.Canvas3D\";\n\
+\n\
+		/** @property {Mixed} [_renderer=null]\n\
+		* @protected\n\
+		* The renderer used to render the canvas.\n\
+		*/\n\
+		_this._renderer = RadJav.setDefaultValue (obj._renderer, null);\n\
+		/** @property {Number} [_rendererType=1]\n\
+		* @protected\n\
+		* The renderer type used to render the canvas.\n\
+		*/\n\
+		_this._rendererType = RadJav.setDefaultValue (obj._renderer, 1);\n\
+		/** @property {Object} [_currentCamera=null]\n\
+		* @protected\n\
+		* The current camera used to render the scene.\n\
+		*/\n\
+		_this._currentCamera = RadJav.setDefaultValue (obj._currentCamera, null);\n\
+		/** @property {Object} [_models={}]\n\
+		* @protected\n\
+		* The models that have been loaded for use. Each key is a RadJav.C3D.Model.\n\
+		*/\n\
+		_this._models = RadJav.setDefaultValue (obj._models, {});\n\
+		/** @property {Object} [_materials={}]\n\
+		* @protected\n\
+		* The materials that have been loaded for use. Each key is a RadJav.C3D.Material.\n\
+		*/\n\
+		_this._materials = RadJav.setDefaultValue (obj._materials, {});\n\
+\n\
+		return (_this);\n\
+	}\n\
+\n\
+	return (Canvas3D);\n\
+}(RadJav.GUI.GObject));\n\
+\n\
+/** @class RadJav.GUI.Canvas3D.RendererTypes\n\
+* A 3d canvas.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.GUI.Canvas3D.RendererTypes = function ()\n\
+{\n\
+}\n\
+\n\
+RadJav.GUI.Canvas3D.RendererTypes.AnyAvailable = 1;\n\
+RadJav.GUI.Canvas3D.RendererTypes.WebGL = 2;\n\
+RadJav.GUI.Canvas3D.RendererTypes.Context2D = 3;\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.C3D.Object3D.js", "\n\
+/** @class RadJav.C3D.Object3D\n\
+* The base 3D object.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Object3D = (function ()\n\
+{\n\
+	function Object3D (canvas3d, obj, parent)\n\
+	{\n\
+		if (obj == null)\n\
+			obj = new Object ();\n\
+\n\
+		if (typeof (obj) == \"string\")\n\
+		{\n\
+			var tempObj = obj;\n\
+			obj = {};\n\
+			obj.name = tempObj;\n\
+		}\n\
+\n\
+		if (parent != null)\n\
+			obj._parent = parent;\n\
+\n\
+		if (obj.visible != null)\n\
+			obj._visible = obj.visible;\n\
+\n\
+		if (obj.parent != null)\n\
+			obj._parent = obj.parent;\n\
+\n\
+		/** @property {String} [name=\"\"]\n\
+		* The name of this object.\n\
+		*/\n\
+		this.name = RadJav.setDefaultValue (obj.name, \"\");\n\
+		/** @property {String} [type=\"\"]\n\
+		* The type of object.\n\
+		*/\n\
+		this.type = RadJav.setDefaultValue (obj.type, \"\");\n\
+		/** @property {Boolean} [_visible=true]\n\
+		* @protected\n\
+		* The visibility of the object.\n\
+		*/\n\
+		this._visible = RadJav.setDefaultValue (obj._visible, true);\n\
+		/** @property {Mixed} [_parent=null]\n\
+		* @protected\n\
+		* The parent of this object.\n\
+		*/\n\
+		this._parent = RadJav.setDefaultValue (obj._parent, null);\n\
+		/** @property {RadJav.GUI.Canvas3D} [_canvas3D=canvas3d]\n\
+		* @protected\n\
+		* The canvas 3d object used to display this object.\n\
+		*/\n\
+		this._canvas3D = canvas3d;\n\
+		/** @property {Mixed} [_c3dObj=null]\n\
+		* @protected\n\
+		* The 3d object associated with this object.\n\
+		*/\n\
+		this._c3dObj = RadJav.setDefaultValue (obj._c3dObj, null);\n\
+		/** @property {RadJav.C3D.Transform} [_transform=new RadJav.C3D.Transform (this)]\n\
+		* @protected\n\
+		* This object's transform.\n\
+		*/\n\
+		this._transform = RadJav.setDefaultValue (obj._transform, new RadJav.C3D.Transform (this));\n\
+	}\n\
+\n\
+	function show ()\n\
+	{\n\
+		this.setVisibility(true);\n\
+	}\n\
+\n\
+	function hide ()\n\
+	{\n\
+		this.setVisibility(false);\n\
+	}\n\
+\n\
+	return (Object3D);\n\
+} ());\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.C3D.Entity.js", "\n\
+/** @class RadJav.C3D.Entity\n\
+* @extends RadJav.C3D.Object3D\n\
+* An entity.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Entity = (function (_super)\n\
+{\n\
+	__extends(Entity, _super);\n\
+\n\
+	function Entity (canvas3d, obj, parent, model)\n\
+	{\n\
+		var _this = _super.call(this, canvas3d, obj, parent) || this;\n\
+\n\
+		if (obj == null)\n\
+			obj = {};\n\
+\n\
+		if (typeof (obj) == \"string\")\n\
+		{\n\
+			var tempObj = obj;\n\
+			obj = {};\n\
+			obj._name = tempObj;\n\
+		}\n\
+\n\
+		_this.type = \"RadJav.C3D.Entity\";\n\
+\n\
+		if (model != null)\n\
+			obj._model = model;\n\
+\n\
+		if (obj.model != null)\n\
+			obj._model = obj.model;\n\
+\n\
+		/** @property {Object} [_model=null]\n\
+		* @protected\n\
+		* The name of the 3d model being used.\n\
+		*/\n\
+		_this._model = RadJav.setDefaultValue (obj._model, null);\n\
+		/** @property {Mixed} [_c3dEntity=null]\n\
+		* @protected\n\
+		* The entity object being used by the 3D engine.\n\
+		*/\n\
+		_this._c3dEntity = RadJav.setDefaultValue (obj._c3dEntity, null);\n\
+\n\
+		if (_this._model != null)\n\
+		{\n\
+			if (_this._model._object3d == null)\n\
+				_this._model._object3d = _this;\n\
+		}\n\
+\n\
+		return (_this);\n\
+	}\n\
+\n\
+	return (Entity);\n\
+}(RadJav.C3D.Object3D));\n\
+\n\
+/** @class RadJav.C3D.Entity.Types\n\
+* Types of entities.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Entity.Types = {};\n\
+RadJav.C3D.Entity.Types.None = 0;\n\
+RadJav.C3D.Entity.Types.Cube = 1;\n\
+RadJav.C3D.Entity.Types.Sphere = 2;\n\
+RadJav.C3D.Entity.Types.Plane = 3;\n\
+RadJav.C3D.Entity.Types.Camera = 4;\n\
+RadJav.C3D.Entity.Types.Light = 5;\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.C3D.Camera.js", "\n\
+/** @class RadJav.C3D.Camera\n\
+* @extends RadJav.C3D.Object3D\n\
+* A camera.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Camera = (function (_super)\n\
+{\n\
+	__extends(Camera, _super);\n\
+\n\
+	function Camera (canvas3d, obj, parent)\n\
+	{\n\
+		var _this = _super.call(this, canvas3d, obj, parent) || this;\n\
+\n\
+		_this.type = \"RadJav.C3D.Camera\";\n\
+\n\
+		/** @property {Boolean} [_perspective=true]\n\
+		* @protected\n\
+		* If this is set to true, the perspective view will be used.\n\
+		*/\n\
+		_this._perspective = RadJav.setDefaultValue (obj._perspective, true);\n\
+		/** @property {Number} [_aspectRatio=parseFloat (canvas3d.getWidth ()) / parseFloat (canvas3d.getHeight ()]\n\
+		* @protected\n\
+		* The camera's aspect ratio.\n\
+		*/\n\
+		_this._aspectRatio = RadJav.setDefaultValue (obj._aspectRatio, parseFloat (canvas3d.getWidth ()) / \n\
+							parseFloat (canvas3d.getHeight ()));\n\
+		/** @property {Number} [_fov=(90 / _this._aspectRatio)]\n\
+		* @protected\n\
+		* The camera's fov.\n\
+		*/\n\
+		_this._fov = RadJav.setDefaultValue (obj._fov, (90 / _this._aspectRatio));\n\
+		/** @property {Number} [_nearClip=1.0]\n\
+		* @protected\n\
+		* The camera's near clip distance.\n\
+		*/\n\
+		_this._nearClip = RadJav.setDefaultValue (obj._nearClip, 1.0);\n\
+		/** @property {Number} [_farClip=1.0]\n\
+		* @protected\n\
+		* The camera's far clip distance.\n\
+		*/\n\
+		_this._farClip = RadJav.setDefaultValue (obj._farClip, 10000000000.0);\n\
+		/** @property {Object} [_rayCaster=null]\n\
+		* @protected\n\
+		* The ray caster used to get ray casts from the screen.\n\
+		*/\n\
+		_this._rayCaster = RadJav.setDefaultValue (obj._rayCaster, null);\n\
+\n\
+		return (_this);\n\
+	}\n\
+\n\
+	return (Camera);\n\
+}(RadJav.C3D.Object3D));\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.C3D.Material.js", "\n\
+/** @class RadJav.C3D.Material\n\
+* @extends RadJav.C3D.Object3D\n\
+* A material.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Material = (function ()\n\
+{\n\
+	function Material (canvas3d, obj)\n\
+	{\n\
+		if (obj == null)\n\
+			obj = new Object ();\n\
+\n\
+		if (typeof (obj) == \"string\")\n\
+		{\n\
+			var tempObj = obj;\n\
+			obj = {};\n\
+			obj.name = tempObj;\n\
+		}\n\
+\n\
+		/** @property {String} [_name=\"\"]\n\
+		* @protected\n\
+		* The name.\n\
+		*/\n\
+		this._name = RadJav.setDefaultValue (obj._name, \"\");\n\
+		/** @property {Object} [_material=null]\n\
+		* @protected\n\
+		* The 3d engine material.\n\
+		*/\n\
+		this._material = RadJav.setDefaultValue (obj._material, null);\n\
+	}\n\
+\n\
+	return (Material);\n\
+} ());\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.C3D.Model.js", "\n\
+/** @class RadJav.C3D.Model\n\
+* A 3d Model.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Model = (function ()\n\
+{\n\
+	function Model (object3d, obj, materials)\n\
+	{\n\
+		if (obj == null)\n\
+			obj = {};\n\
+\n\
+		if (obj.name != null)\n\
+			obj._name = obj.name;\n\
+\n\
+		if (materials != null)\n\
+			obj.materials = materials;\n\
+\n\
+		/** @property {RadJav.C3D.Object3D} [_object3d=object3d]\n\
+		* @protected\n\
+		* The 3d object that is associated with this transform.\n\
+		*/\n\
+		this._object3d = object3d;\n\
+		/** @property {String} [_name=\"\"]\n\
+		* @protected\n\
+		* The name.\n\
+		*/\n\
+		this._name = RadJav.setDefaultValue (obj._name, \"\");\n\
+		/** @property {RadJav.C3D.Model.Mesh} [mesh=null]\n\
+		* @protected\n\
+		* The model mesh to load.\n\
+		*/\n\
+		this.mesh = RadJav.setDefaultValue (obj.mesh, null);\n\
+		/** @property {RadJav.C3D.Material[]} [materials=[]]\n\
+		* The materials used in this model.\n\
+		*/\n\
+		this.materials = RadJav.setDefaultValue (obj.materials, []);\n\
+	}\n\
+\n\
+	return (Model);\n\
+} ());\n\
+\n\
+/** @class RadJav.C3D.Model.Mesh\n\
+* Information about the 3d Model mesh to load.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Model.Mesh = (function ()\n\
+{\n\
+	function Mesh (model, obj)\n\
+	{\n\
+		if (obj == null)\n\
+			obj = {};\n\
+\n\
+		if (typeof (obj) == \"string\")\n\
+		{\n\
+			var tempObj = obj;\n\
+			obj = {};\n\
+			obj.name = tempObj;\n\
+		}\n\
+\n\
+		if (obj.name != null)\n\
+			obj._name = obj.name;\n\
+\n\
+		/** @property {String} [_name=\"\"]\n\
+		* The name of this mesh.\n\
+		*/\n\
+		this._name = RadJav.setDefaultValue (obj._name, \"\");\n\
+		/** @property {String} [filePath=\"\"]\n\
+		* The path to the file to load.\n\
+		*/\n\
+		this.filePath = RadJav.setDefaultValue (obj.filePath, \"\");\n\
+		/** @property {String} [type=\"json\"]\n\
+		* @protected\n\
+		* The type of model to load.\n\
+		*/\n\
+		this.type = RadJav.setDefaultValue (obj.type, \"json\");\n\
+		/** @property {RadJav.C3D.Model.Mesh.Data} [data=null]\n\
+		* @protected\n\
+		* The mesh data.\n\
+		*/\n\
+		this.data = RadJav.setDefaultValue (obj.data, null);\n\
+		/** @property {Object} [_mesh=null]\n\
+		* @protected\n\
+		* The 3d engine mesh associated with the model.\n\
+		*/\n\
+		this._mesh = RadJav.setDefaultValue (obj._mesh, null);\n\
+		/** @property {RadJav.C3D.Model} [model=null]\n\
+		* @protected\n\
+		* The model that contains this mesh.\n\
+		*/\n\
+		this.model = model;\n\
+	}\n\
+\n\
+	return (Mesh);\n\
+} ());\n\
+\n\
+/** @class RadJav.C3D.Model.Mesh.Data\n\
+* 3d Model mesh data.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Model.Mesh.Data = (function ()\n\
+{\n\
+	function Data (mesh, obj)\n\
+	{\n\
+		/** @property {String} [type=\"mesh\"]\n\
+		* @protected\n\
+		* The type of mesh data. Can be: \n\
+		* - mesh\n\
+		* - sphere\n\
+		* - cube\n\
+		* - plane\n\
+		*/\n\
+		this.type = RadJav.setDefaultValue (obj.type, \"mesh\");\n\
+		/** @property {Number} [radius=100]\n\
+		* @protected\n\
+		* The radius of the sphere.\n\
+		*/\n\
+		this.radius = RadJav.setDefaultValue (obj.radius, 100);\n\
+		/** @property {Number} [width=0]\n\
+		* @protected\n\
+		* The width of the mesh.\n\
+		*/\n\
+		this.width = RadJav.setDefaultValue (obj.width, 0);\n\
+		/** @property {Number} [height=0]\n\
+		* @protected\n\
+		* The height of the mesh.\n\
+		*/\n\
+		this.height = RadJav.setDefaultValue (obj.height, 0);\n\
+		/** @property {Number} [depth=0]\n\
+		* @protected\n\
+		* The depth of the mesh.\n\
+		*/\n\
+		this.depth = RadJav.setDefaultValue (obj.depth, 0);\n\
+		/** @property {Number} [widthSegments=1]\n\
+		* @protected\n\
+		* The width segments in the cube.\n\
+		*/\n\
+		this.widthSegments = RadJav.setDefaultValue (obj.widthSegments, 1);\n\
+		/** @property {Number} [heightSegments=1]\n\
+		* @protected\n\
+		* The height segments in the cube.\n\
+		*/\n\
+		this.heightSegments = RadJav.setDefaultValue (obj.heightSegments, 1);\n\
+		/** @property {Number} [depthSegments=1]\n\
+		* @protected\n\
+		* The depth segments in the cube.\n\
+		*/\n\
+		this.depthSegments = RadJav.setDefaultValue (obj.depthSegments, 1);\n\
+	}\n\
+\n\
+	return (Data);\n\
+} ());\n\
+\n\
+/** @class RadJav.C3D.Model.Sphere\n\
+* Create a sphere.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Model.Sphere = (function (_super)\n\
+{\n\
+	__extends(Sphere, _super);\n\
+\n\
+	function Sphere (object3d, obj, materials, radius)\n\
+	{\n\
+		var _this = _super.call(this, object3d, obj, materials) || this;\n\
+		_this.mesh = new RadJav.C3D.Model.Mesh (_this, _this._name);\n\
+		_this.mesh.type = \"primitive\";\n\
+		_this.mesh.data = {\n\
+					type: \"sphere\", \n\
+					radius: radius\n\
+				};\n\
+\n\
+		return (_this);\n\
+	}\n\
+\n\
+	return (Sphere);\n\
+} (RadJav.C3D.Model));\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.C3D.Transform.js", "\n\
+/** @class RadJav.C3D.Transform\n\
+* A C3D transform.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.Transform = (function ()\n\
+{\n\
+	function Transform (object3d, obj, position)\n\
+	{\n\
+		if (object3d == null)\n\
+			throw (Lang.object3dNotIncluded);\n\
+\n\
+		if (obj == null)\n\
+			obj = {};\n\
+\n\
+		if (position == null)\n\
+			position = new RadJav.Vector3 ();\n\
+\n\
+		if (obj.parent != null)\n\
+		{\n\
+			if (parent._transform != null)\n\
+				obj._parent = obj.parent._transform;\n\
+			else\n\
+				obj._parent = obj.parent;\n\
+		}\n\
+\n\
+		/** @property {RadJav.C3D.Object3D} [_object3d=object3d]\n\
+		* @protected\n\
+		* The 3d object that is associated with this transform.\n\
+		*/\n\
+		this._object3d = object3d;\n\
+		/** @property {RadJav.C3D.Transform} [_parent=null]\n\
+		* @protected\n\
+		* This object's parent transform.\n\
+		*/\n\
+		this._parent = RadJav.setDefaultValue (obj._parent, null);\n\
+		/** @property {Mixed} [_sceneNode=null]\n\
+		* @protected\n\
+		* This object's scene node.\n\
+		*/\n\
+		this._sceneNode = RadJav.setDefaultValue (obj._sceneNode, null);\n\
+		/** @property {Mixed} [_movable=null]\n\
+		* @protected\n\
+		* The object that is being moved.\n\
+		*/\n\
+		this._movable = RadJav.setDefaultValue (obj._movable, null);\n\
+		/** @property {RadJav.Vector3} [position=new RadJav.Vector3 ()]\n\
+		* @protected\n\
+		* The position of the object.\n\
+		*/\n\
+		this.position = position;\n\
+\n\
+		if (this._parent != null)\n\
+			this._sceneNode = this._parent._sceneNode;\n\
+		//else\n\
+			//this._sceneNode = this._object3d._canvas3D._sceneManager;\n\
+	}\n\
+\n\
+	/** @method addChild\n\
+	* Add a child RadJav.C3D.Object3D to this transform.\n\
+	* @param {RadJav.C3D.Object3D} child The child to add.\n\
+	*/\n\
+	Transform.prototype.addChild = function (child)\n\
+	{\n\
+		if (this._sceneNode != null)\n\
+		{\n\
+			this._sceneNode.add (child._obj3d);\n\
+			this._movable = child._obj3d;\n\
+		}\n\
+	}\n\
+\n\
+	/** @method setPosition\n\
+	* Set the position of this object.\n\
+	* @param {Number/RadJav.Vector3} x The x position or full vector3 position.\n\
+	* @param {Number} y The y position.\n\
+	* @param {Number} z The z position.\n\
+	*/\n\
+	Transform.prototype.setPosition = function (x, y, z)\n\
+	{\n\
+		var obj = {};\n\
+\n\
+		if (x.x != null)\n\
+		{\n\
+			obj.x = x.x;\n\
+			obj.y = x.y;\n\
+			obj.z = x.z;\n\
+		}\n\
+		else\n\
+		{\n\
+			obj.x = x;\n\
+			obj.y = y;\n\
+			obj.z = z;\n\
+		}\n\
+\n\
+		//this._movable.position.set (obj.x, obj.y, obj.z);\n\
+	}\n\
+\n\
+	/** @method getPosition\n\
+	* Get the position of this object.\n\
+	* @return {RadJav.Vector3} The position.\n\
+	*/\n\
+	Transform.prototype.getPosition = function ()\n\
+	{\n\
+		return (this.position);\n\
+	}\n\
+\n\
+	return (Transform);\n\
+} ());\n\
+\n\
+"));
+			javascriptFiles.push_back (JSFile ("RadJav.C3D.World.js", "\n\
+/** @class RadJav.C3D.World\n\
+* @extends RadJav.C3D.Object3D\n\
+* A C3D World.\n\
+* Available on platforms: Windows,Linux,OSX,HTML5\n\
+*/\n\
+RadJav.C3D.World = function (obj)\n\
+{\n\
+	/** @property {Mixed} [_sceneManager=null]\n\
+	* @protected\n\
+	* The native os scene manager associated with this world.\n\
+	*/\n\
+	this._sceneManager = null;\n\
+	/** @property {Mixed} [_renderWindow=null]\n\
+	* @protected\n\
+	* The native os render window currently being used.\n\
+	*/\n\
+	this._renderWindow = null;\n\
+\n\
+	/** @method createEntity\n\
+	* Create an entity in this world.\n\
+	* @param {String} name The name of the entity.\n\
+	* @param {Number} [type=1] The type of entity to create.\n\
+	* @return {RadJav.C3D.Entity} The created entity.\n\
+	*/\n\
+	/*this.createEntity = function (name, type)\n\
+	{\n\
+	}*/\n\
+}\n\
 \n\
 "));
 

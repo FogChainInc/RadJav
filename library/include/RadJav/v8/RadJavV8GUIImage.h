@@ -49,6 +49,7 @@
 
 					protected:
 						wxImage image;
+						wxSize imageSize;
 
 						wxDECLARE_EVENT_TABLE();
 				};

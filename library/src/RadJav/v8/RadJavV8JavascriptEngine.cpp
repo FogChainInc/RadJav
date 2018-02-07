@@ -2,19 +2,19 @@
 	MIT-LICENSE
 	Copyright (c) 2017 Higher Edge Software, LLC
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
-	and associated documentation files (the "Software"), to deal in the Software without restriction, 
-	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+	and associated documentation files (the "Software"), to deal in the Software without restriction,
+	including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+	and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
 	subject to the following conditions:
 
-	The above copyright notice and this permission notice shall be included in all copies or substantial 
+	The above copyright notice and this permission notice shall be included in all copies or substantial
 	portions of the Software.
 
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
-	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+	LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+	IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 #include "v8/RadJavV8JavascriptEngine.h"
@@ -32,6 +32,14 @@
 #ifdef USE_V8
 	#include "v8/RadJavV8Global.h"
 	#include "v8/RadJavV8OS.h"
+
+	#include "v8/RadJavV8Console.h"
+	#include "v8/RadJavV8IO.h"
+	#include "v8/RadJavV8Net.h"
+
+	#include "v8/RadJavV8BlockchainV1.h"
+
+	// GUI
 	#include "v8/RadJavV8GUIGObject.h"
 	#include "v8/RadJavV8GUIWindow.h"
 	#include "v8/RadJavV8GUIButton.h"
@@ -47,10 +55,12 @@
 	#include "v8/RadJavV8GUIMenuBar.h"
 	#include "v8/RadJavV8GUIMenuItem.h"
 	#include "v8/RadJavV8GUIWebView.h"
-	#include "v8/RadJavV8Console.h"
-	#include "v8/RadJavV8IO.h"
-	#include "v8/RadJavV8Net.h"
-	#include "v8/RadJavV8BlockchainV1.h"
+	#include "v8/RadJavV8GUICanvas3D.h"
+
+	// C3D
+	#include "v8/RadJavV8C3DObject3D.h"
+	#include "v8/RadJavV8C3DEntity.h"
+	#include "v8/RadJavV8C3DWorld.h"
 #endif
 
 #include <cstring>
@@ -58,7 +68,7 @@
 namespace RadJAV
 {
 	#ifdef USE_V8
-		void *V8ArrayBufferAllocator::Allocate(size_t length)
+		/*void *V8ArrayBufferAllocator::Allocate(size_t length)
 		{
 			void *data = AllocateUninitialized(length);
 
@@ -76,7 +86,7 @@ namespace RadJAV
 		void V8ArrayBufferAllocator::Free(void *data, size_t length)
 		{
 			free(data);
-		}
+		}*/
 
 		V8JSInspector::V8JSInspector(v8::Isolate *isolate)
 		{
@@ -91,6 +101,7 @@ namespace RadJAV
 			exposeGC = false;
 			useInspector = false;
 			radJav = NULL;
+			exceptionsDisplayMessageBox = true;
 
 			if (RadJav::arguments.size() > 0)
 			{
@@ -125,11 +136,16 @@ namespace RadJAV
 			v8::V8::InitializePlatform(platform);
 			v8::V8::Initialize();
 
-			V8ArrayBufferAllocator allocator;
 			v8::Isolate::CreateParams createParams;
-			createParams.array_buffer_allocator = &allocator;
+			//V8ArrayBufferAllocator allocator;
+			//createParams.array_buffer_allocator = &allocator;
+			createParams.array_buffer_allocator = v8::ArrayBuffer::Allocator::NewDefaultAllocator ();
 
 			isolate = v8::Isolate::New(createParams);
+
+			#ifdef GUI_USE_WXWIDGETS
+				criticalSection = RJNEW wxCriticalSection ();
+			#endif
 		}
 
 		V8JavascriptEngine::~V8JavascriptEngine()
@@ -139,12 +155,16 @@ namespace RadJAV
 			v8::V8::Dispose();
 			v8::V8::ShutdownPlatform();
 
+			#ifdef GUI_USE_WXWIDGETS
+				DELETEOBJ(criticalSection);
+			#endif
+
 			DELETEOBJ(platform);
 		}
 
 		void V8JavascriptEngine::startInspector()
 		{
-			
+
 		}
 
 		void V8JavascriptEngine::runApplication(String applicationSource, String fileName)
@@ -186,20 +206,35 @@ namespace RadJAV
 			RJBOOL firstRun = true;
 			RJBOOL startedBlockchainV1 = false;
 
+			#ifdef GUI_USE_WXWIDGETS
+				wxLongLong currentTime = 0;
+				wxLongLong prevTime = 0;
+				RJLONG diffTime = 0;
+			#endif
+
 			while (true)
 			{
+				#ifdef GUI_USE_WXWIDGETS
+					currentTime = wxGetLocalTimeMillis();
+					diffTime = (currentTime - prevTime).GetValue ();
+					prevTime = currentTime;
+				#endif
+
 				v8::platform::PumpMessageLoop(platform, isolate);
 				RadJav::runEventLoopSingleStep();
+
+				#ifdef C3D_USE_OGRE
+					if (mRoot != NULL)
+					{
+						if (mRoot->isInitialised () == true)
+							mRoot->renderOneFrame();
+					}
+				#endif
 
 				auto execCodeBegin = jsToExecuteNextCode.begin();
 				auto execFilenameBegin = jsToExecuteNextFilename.begin();
 				auto execContextBegin = jsToExecuteNextContext.begin();
 				auto execCodeEnd = jsToExecuteNextCode.end();
-
-				auto funcBegin = funcNext.begin();
-				auto funcArgsBegin = funcNextArgs.begin();
-				auto funcDeleteBegin = funcDelete.begin();
-				auto funcEnd = funcNext.end();
 
 				try
 				{
@@ -227,6 +262,42 @@ namespace RadJAV
 						}
 					}
 					#endif
+
+					auto timeoutBegin = timeoutFuncs.begin();
+					auto timeoutsBegin = timeouts.begin();
+					auto timeoutEnd = timeoutFuncs.end();
+
+					while (timeoutBegin != timeoutEnd)
+					{
+						v8::Persistent<v8::Function> *funcp = *timeoutBegin;
+						RJINT time = *timeoutsBegin;
+
+						if (time <= 0)
+						{
+							timeoutFuncs.erase(timeoutBegin);
+							timeouts.erase(timeoutsBegin);
+
+							v8::Local<v8::Function> func = funcp->Get(isolate);
+
+							if (func->IsNullOrUndefined() == false)
+								func->Call(globalContext->Global(), 0, NULL);
+
+							DELETEOBJ(funcp);
+
+							timeoutBegin = timeoutFuncs.begin();
+							timeoutsBegin = timeouts.begin();
+							timeoutEnd = timeoutFuncs.end();
+
+							continue;
+						}
+
+						#ifdef GUI_USE_WXWIDGETS
+							(*timeoutsBegin) = time - (RJINT)diffTime;
+						#endif
+
+						timeoutBegin++;
+						timeoutsBegin++;
+					}
 
 					for (RJUINT iIdx = 0; iIdx < removeThreads.size(); iIdx++)
 					{
@@ -280,7 +351,18 @@ namespace RadJAV
 					jsToExecuteNextFilename.clear();
 					jsToExecuteNextContext.clear();
 
+					#ifdef GUI_USE_WXWIDGETS
+					if (criticalSection->TryEnter() == true)
+					{
+					#endif
+
+					auto funcBegin = funcNext.begin();
+					auto funcArgsBegin = funcNextArgs.begin();
+					auto funcDeleteBegin = funcDelete.begin();
+					auto funcEnd = funcNext.end();
+
 					// Handle any functions that need to be executed.
+					//if (funcBegin != funcEnd)
 					while (funcBegin != funcEnd)
 					{
 						v8::Persistent<v8::Function> *funcp = *funcBegin;
@@ -301,18 +383,26 @@ namespace RadJAV
 							args3 = RJNEW v8::Local<v8::Value>[numArgs];
 
 						for (RJINT iIdx = 0; iIdx < numArgs; iIdx++)
-							args3[iIdx] = args2->Get (iIdx);
+							args3[iIdx] = args2->Get(iIdx);
 
 						v8::Local<v8::Function> func = funcp->Get(isolate);
-						func->Call(globalContext->Global(), numArgs, args3);
+
+						if (func->IsNullOrUndefined() == false)
+							func->Call(globalContext->Global(), numArgs, args3);
+
+						if (numArgs > 0)
+							DELETEARRAY(args3);
 
 						if (deleteOnComplete == true)
 						{
-							DELETEOBJ(funcp);
-							//DELETEARRAY(args);
-							DELETEARRAY(args3);
+							//DELETEOBJ(funcp);
+							args->Empty();
+							DELETEOBJ(args);
 						}
 
+						//funcNext.erase(funcBegin);
+						//funcNextArgs.erase (funcArgsBegin);
+						//funcDelete.erase(funcDeleteBegin);
 						funcBegin++;
 						funcArgsBegin++;
 						funcDeleteBegin++;
@@ -321,6 +411,11 @@ namespace RadJAV
 					funcNext.clear();
 					funcNextArgs.clear();
 					funcDelete.clear();
+
+					#ifdef GUI_USE_WXWIDGETS
+						criticalSection->Leave();
+						}
+					#endif
 
 					if (shutdown == true)
 						break;
@@ -522,14 +617,182 @@ namespace RadJAV
 			isolate->RequestGarbageCollectionForTesting(v8::Isolate::GarbageCollectionType::kFullGarbageCollection);
 		}
 
-		void V8JavascriptEngine::blockchainEvent(String event)
+		#ifdef C3D_USE_OGRE
+		void V8JavascriptEngine::start3DEngine()
 		{
+			mRoot = Ogre::Root::getSingletonPtr();
+
+			#ifdef GUI_USE_WXWIDGETS
+				String userConfigDir = parsewxString(wxStandardPaths::Get().GetUserConfigDir());
+				String tempDir = userConfigDir + "/RadJav/";
+
+				if (wxDirExists(tempDir.towxString ()) == false)
+				{
+					wxMkDir(tempDir.towxString(), wxS_DIR_DEFAULT);
+					tempDir = userConfigDir + "/RadJav/3D Engine/";
+					wxMkDir(tempDir.towxString(), wxS_DIR_DEFAULT);
+				}
+
+				userConfigDir += "/RadJav/3D Engine";
+			#endif
+
+			Ogre::String mPluginCfg = "";
+
+			#ifdef _DEBUG
+				mPluginCfg = userConfigDir + "/plugins_d.cfg";
+			#else
+				mPluginCfg = userConfigDir + "/plugins.cfg";
+			#endif
+
+			if (mRoot == NULL)
+				mRoot = RJNEW Ogre::Root(mPluginCfg);
+
+			mRoot->showConfigDialog();
+			//mRoot->restoreConfig ();
+
+			/*Ogre::ConfigFile configFile;
+			configFile.load(userConfigDir + "/resources.cfg");
+
+			Ogre::ConfigFile::SectionIterator seci = configFile.getSectionIterator();
+
+			Ogre::String secName, typeName, archName;
+
+			while (seci.hasMoreElements())
+			{
+				secName = seci.peekNextKey();
+				Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+				Ogre::ConfigFile::SettingsMultiMap::iterator i;
+
+				for (i = settings->begin(); i != settings->end(); ++i)
+				{
+					typeName = i->first;
+					archName = i->second;
+
+					Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+						archName, typeName, secName);
+
+				}
+			}*/
+
+			Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+		}
+		#endif
+
+		void V8JavascriptEngine::addTimeout (v8::Persistent<v8::Function> *func, RJINT time)
+		{
+			timeoutFuncs.push_back(func);
+			timeouts.push_back(time);
+		}
+
+		void V8JavascriptEngine::blockchainEvent(String event, String dataType, void *data)
+		{
+			RJINT numArgs = 0;
+			v8::Local<v8::Value> *args = NULL;
+
+			if (data != NULL)
+			{
+				#ifdef GUI_USE_WXWIDGETS
+					if (criticalSection->TryEnter() == false)
+					{
+						/// @bug Stupid hack for now. This will skip any function that needs to execute if a lock can't be placed.
+						//if (deleteOnComplete == true)
+						//DELETE_ARRAY(args);
+
+						return;
+					}
+				#endif
+
+				numArgs = 1;
+				args = RJNEW v8::Local<v8::Value> [numArgs];
+
+				if (dataType == "int")
+					args[0] = v8::Integer::New(isolate, *(RJINT *)data);
+
+				if (dataType == "number")
+					args[0] = v8::Number::New(isolate, *(RJNUMBER *)data);
+
+				if (dataType == "bool")
+					args[0] = v8::Boolean::New(isolate, *(RJBOOL *)data);
+
+				if (dataType == "string")
+					args[0] = ((String *)data)->toV8String (isolate);
+			}
+
+			blockchainEvent(event, numArgs, args, true);
+		}
+
+		void V8JavascriptEngine::blockchainEvent(String event, RJINT numargs, v8::Local<v8::Value> *args, RJBOOL alreadyEnteredCritialSection)
+		{
+			#ifdef GUI_USE_WXWIDGETS
+				if (alreadyEnteredCritialSection == false)
+				{
+					if (criticalSection->TryEnter() == false)
+					{
+						/// @bug Stupid hack for now. This will skip any function that needs to execute if a lock can't be placed.
+						//if (deleteOnComplete == true)
+						DELETE_ARRAY(args);
+
+						return;
+					}
+				}
+			#endif
+
 			#ifdef USE_BLOCKCHAIN_V1
 			if (event == "ready")
 			{
 				if (BlockchainV1::onReadyFunction != NULL)
 					callFunctionOnNextTick(BlockchainV1::onReadyFunction, NULL, false);
 			}
+
+			if (event == "connectBlock")
+			{
+				if (BlockchainV1::connectBlockFunction != NULL)
+				{
+					v8::Persistent<v8::Array> *results = RJNEW v8::Persistent<v8::Array>();
+					v8::Local<v8::Array> ary = v8::Array::New(isolate);
+
+					for (RJINT iIdx = 0; iIdx < numargs; iIdx++)
+						ary->Set(iIdx, args[iIdx]);
+
+					results->Reset(V8_JAVASCRIPT_ENGINE->isolate, ary);
+
+					callFunctionOnNextTick(BlockchainV1::connectBlockFunction, results, true);
+				}
+			}
+
+			if (event == "proofOfWorkFound")
+			{
+				if (BlockchainV1::proofOfWorkFoundFunction != NULL)
+					callFunctionOnNextTick(BlockchainV1::proofOfWorkFoundFunction, NULL, false);
+			}
+
+			if (event == "passphraseRequired")
+			{
+				if (BlockchainV1::passphraseRequiredFunction != NULL)
+					callFunctionOnNextTick(BlockchainV1::passphraseRequiredFunction, NULL, false);
+			}
+
+			if (event == "error")
+			{
+				if (BlockchainV1::onErrorFunction != NULL)
+				{
+					v8::Persistent<v8::Array> *results = RJNEW v8::Persistent<v8::Array>();
+					v8::Local<v8::Array> ary = v8::Array::New(isolate);
+
+					for (RJINT iIdx = 0; iIdx < numargs; iIdx++)
+						ary->Set(iIdx, args[iIdx]);
+
+					results->Reset(V8_JAVASCRIPT_ENGINE->isolate, ary);
+
+					callFunctionOnNextTick(BlockchainV1::onErrorFunction, results, true);
+				}
+			}
+
+			DELETE_ARRAY(args);
+			#endif
+
+			#ifdef GUI_USE_WXWIDGETS
+				criticalSection->Leave();
 			#endif
 		}
 
@@ -574,12 +837,18 @@ namespace RadJAV
 				}
 			}
 
+			// Console
+			{
+				v8::Handle<v8::Function> radJavFunc = v8GetFunction(globalContext->Global(), "console");
+
+				V8_CALLBACK(radJavFunc, "exit", Global::exit);
+			}
+
 			// RadJav
 			{
 				v8::Handle<v8::Function> radJavFunc = v8GetFunction(globalContext->Global(), "RadJav");
 
-				V8_CALLBACK(radJavFunc, "quit", Global::exit);
-				V8_CALLBACK(radJavFunc, "exit", Global::exit);
+				Console::createV8Callbacks(isolate, radJavFunc);
 
 				// RadJav.OS
 				{
@@ -604,8 +873,9 @@ namespace RadJAV
 					// RadJav.IO.SerialComm
 					{
 						v8::Handle<v8::Function> serialCommFunc = v8GetFunction(ioFunc, "SerialComm");
+						v8::Handle<v8::Object> serialPrototype = v8GetObject(serialCommFunc, "prototype");
 
-						IO::SerialComm::createV8Callbacks(isolate, serialCommFunc);
+						IO::SerialComm::createV8Callbacks(isolate, serialPrototype);
 					}
 
 					// RadJav.IO.TextFile
@@ -755,7 +1025,56 @@ namespace RadJAV
 
 						GUI::WebView::createV8Callbacks(isolate, webViewPrototype);
 					}
+
+					#ifdef C3D_USE_OGRE
+						// RadJav.GUI.Canvas3D
+						{
+							v8::Handle<v8::Function> canvas3DFunc = v8GetFunction(guiFunc, "Canvas3D");
+							v8::Handle<v8::Object> canvas3DFuncPrototype = v8GetObject(canvas3DFunc, "prototype");
+
+							GUI::Canvas3D::createV8Callbacks(isolate, canvas3DFuncPrototype);
+						}
+					#endif
 				}
+
+				#ifdef C3D_USE_OGRE
+				// RadJav.C3D
+				{
+					v8::Handle<v8::Function> c3dFunc = v8GetFunction(radJavFunc, "C3D");
+
+					// RadJav.C3D.Object3D
+					{
+						v8::Handle<v8::Function> object3DFunc = v8GetFunction(c3dFunc, "Object3D");
+						v8::Handle<v8::Object> object3DPrototype = v8GetObject(object3DFunc, "prototype");
+
+						C3D::Object3D::createV8Callbacks(isolate, object3DPrototype);
+					}
+
+					// RadJav.C3D.World
+					{
+						v8::Handle<v8::Function> worldFunc = v8GetFunction(c3dFunc, "World");
+						v8::Handle<v8::Object> worldPrototype = v8GetObject(worldFunc, "prototype");
+
+						C3D::World::createV8Callbacks(isolate, worldPrototype);
+					}
+
+					// RadJav.C3D.Entity
+					{
+						v8::Handle<v8::Function> entityFunc = v8GetFunction(c3dFunc, "Entity");
+						v8::Handle<v8::Object> entityPrototype = v8GetObject(entityFunc, "prototype");
+
+						C3D::Entity::createV8Callbacks(isolate, entityPrototype);
+					}
+
+					// RadJav.C3D.Camera
+					/*{
+						v8::Handle<v8::Function> cameraFunc = v8GetFunction(c3dFunc, "Camera");
+						v8::Handle<v8::Object> cameraPrototype = v8GetObject(cameraFunc, "prototype");
+
+						C3D::Camera::createV8Callbacks(isolate, cameraPrototype);
+					}*/
+				}
+				#endif
 			}
 		}
 
@@ -833,6 +1152,19 @@ namespace RadJAV
 			v8::Handle<v8::Number> val = v8::Handle<v8::Number>::Cast(value);
 
 			return (val->Int32Value());
+		}
+
+		RDECIMAL V8JavascriptEngine::v8GetDecimal(v8::Local<v8::Object> context, String functionName)
+		{
+			v8::Handle<v8::Value> value = context->Get(functionName.toV8String(isolate));
+			RDECIMAL result = 0;
+
+			if (v8IsNull(value) == true)
+				return (result);
+
+			v8::Handle<v8::Number> val = v8::Handle<v8::Number>::Cast(value);
+
+			return (val->NumberValue());
 		}
 
 		void V8JavascriptEngine::v8SetBool(v8::Local<v8::Object> context, String functionName, bool value)
@@ -938,6 +1270,11 @@ namespace RadJAV
 			return (val->Int32Value());
 		}
 
+		RDECIMAL V8JavascriptEngine::v8ParseDecimal(v8::Local<v8::Value> val)
+		{
+			return (val->NumberValue ());
+		}
+
 		v8::Local<v8::Object> V8JavascriptEngine::createPromise(v8::Local<v8::Function> function)
 		{
 			v8::Local<v8::Object> context = globalContext->Global();
@@ -975,4 +1312,3 @@ namespace RadJAV
 		}
 	#endif
 }
-

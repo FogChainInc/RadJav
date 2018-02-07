@@ -25,6 +25,10 @@
 	#include "RadJavThread.h"
 	#include "RadJavHashMap.h"
 
+	#ifdef C3D_USE_OGRE
+		#include <Ogre.h>
+	#endif
+
 	namespace RadJAV
 	{
 		/// The javascript engine to be used.
@@ -35,8 +39,12 @@
 				{
 					exposeGC = false;
 					shutdownOnException = false;
-					exceptionsDisplayMessageBox = true;
+					exceptionsDisplayMessageBox = false;
 					shutdown = false;
+
+					#ifdef C3D_USE_OGRE
+						mRoot = NULL;
+					#endif
 				}
 
 				/// Run an application.
@@ -50,8 +58,13 @@
 				/// Call the garbage collector.
 				virtual void collectGarbage() = 0;
 
+				#ifdef C3D_USE_OGRE
+					/// Start the 3d engine.
+					virtual void start3DEngine() = 0;
+				#endif
+
 				/// A blockchain event has occurred, process it.
-				virtual void blockchainEvent (String event) = 0;
+				virtual void blockchainEvent (String event, String dataType = "null", void *data = NULL) = 0;
 
 				/// Add a thread to be handled by the engine.
 				virtual void addThread(Thread *thread) = 0;
@@ -62,6 +75,10 @@
 
 				/// Shutdown the application entirely.
 				virtual void exit(RJINT exitCode) = 0;
+
+				#ifdef C3D_USE_OGRE
+					Ogre::Root *mRoot;
+				#endif
 
 			protected:
 				RJBOOL exposeGC;

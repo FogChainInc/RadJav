@@ -18,60 +18,274 @@ Inheritance diagram for Rad\+J\+AV\+:\+:Javascript\+Engine\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a148c454c66e90614abbc589e715b3f7c}{Javascript\+Engine} ()
+\mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a148c454c66e90614abbc589e715b3f7c}{Javascript\+Engine}} ()
 \item 
-virtual void \hyperlink{class_rad_j_a_v_1_1_javascript_engine_acb5ff6a3eb18d8d550f480047cbc6420}{run\+Application} (\hyperlink{class_rad_j_a_v_1_1_string}{String} application)=0
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a11cc903f042db2b770183667ee36c6bf}{run\+Application}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} application\+Source, \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} file\+Name)=0
 \begin{DoxyCompactList}\small\item\em Run an application. \end{DoxyCompactList}\item 
-virtual void \hyperlink{class_rad_j_a_v_1_1_javascript_engine_a0a435f458e118a813c95ccb359d546e9}{run\+Application\+From\+File} (\hyperlink{class_rad_j_a_v_1_1_string}{String} file)=0
-\begin{DoxyCompactList}\small\item\em Run an application from a javascript file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a0a435f458e118a813c95ccb359d546e9}{run\+Application\+From\+File}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} file)=0
+\begin{DoxyCompactList}\small\item\em Run an application from a javascript file. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a4cdc81e5c398f7f1a2ce3ff45f135792}{execute\+Script}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} code, \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} file\+Name)=0
+\begin{DoxyCompactList}\small\item\em Execute Javascript code. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a91b208b07958c50ce906cd9f25eed669}{load\+Native\+Code}} ()=0
+\begin{DoxyCompactList}\small\item\em Connect the native library to the Javascript library. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a07709e2f1afb9f49444c6605a7a6122f}{collect\+Garbage}} ()=0
+\begin{DoxyCompactList}\small\item\em Call the garbage collector. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a76c00d87d65f69781e2dc4aa3143acac}{start3\+D\+Engine}} ()=0
+\begin{DoxyCompactList}\small\item\em Start the 3d engine. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a91ebe8029a9658f66d9c39356eea2d80}{blockchain\+Event}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} event, \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} data\+Type=\char`\"{}null\char`\"{}, void $\ast$data=N\+U\+LL)=0
+\begin{DoxyCompactList}\small\item\em A blockchain event has occurred, process it. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_abfbd3bff5d4eb0e36d3d18347495bbd7}{add\+Thread}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_thread}{Thread}} $\ast$thread)=0
+\begin{DoxyCompactList}\small\item\em Add a thread to be handled by the engine. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_afe08c6324e3958a5d3ec82fa9e0f1fd1}{remove\+Thread}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_thread}{Thread}} $\ast$thread)=0
+\begin{DoxyCompactList}\small\item\em Remove a thread. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_ab9f13c1928d6967122d0f9a6a026dc73}{throw\+Exception}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} message)=0
+\begin{DoxyCompactList}\small\item\em Throw a Javascript exception. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a4a720b2e36ab737ab0b697e9b7317fb0}{exit}} (R\+J\+I\+NT exit\+Code)=0
+\begin{DoxyCompactList}\small\item\em Shutdown the application entirely. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ogre\+::\+Root $\ast$ \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_af494f1d171ea6dbdcccdee1d03f0ca4e}{m\+Root}}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+R\+J\+B\+O\+OL \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_ab9d5626eb48dd87bba44eb8db6628cc4}{expose\+GC}}
+\item 
+R\+J\+B\+O\+OL \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_ad24ee9119907ff362ac00f7394c665d8}{shutdown\+On\+Exception}}
+\item 
+R\+J\+B\+O\+OL \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_ae32ec13d271fa8e9de7076bf19de5fae}{exceptions\+Display\+Message\+Box}}
+\item 
+R\+J\+B\+O\+OL \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a119dba6e5ced56e7c242129993b94556}{shutdown}}
+\item 
+R\+J\+B\+O\+OL \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a64acee3048eba4322c648cad00bc200e}{use\+Debugger}}
+\item 
+\mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$ R\+J\+U\+L\+O\+NG $>$ \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_aef0c33700408735d821031b2bcdc77cc}{remove\+Threads}}
+\item 
+\mbox{\hyperlink{namespace_rad_j_a_v_a7c83af3095bdd8035fd71ff008120f08}{Hash\+Map}}$<$ R\+J\+U\+L\+O\+NG, \mbox{\hyperlink{class_rad_j_a_v_1_1_thread}{Thread}} $\ast$ $>$ \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine_a5ed20d1c0b0bfa1608b5991c71dfd5e9}{threads}}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 The javascript engine to be used. 
 
 \subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a148c454c66e90614abbc589e715b3f7c}\label{class_rad_j_a_v_1_1_javascript_engine_a148c454c66e90614abbc589e715b3f7c}} 
 \index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!Javascript\+Engine@{Javascript\+Engine}}
 \index{Javascript\+Engine@{Javascript\+Engine}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
-\subsubsection[{\texorpdfstring{Javascript\+Engine()}{JavascriptEngine()}}]{\setlength{\rightskip}{0pt plus 5cm}Rad\+J\+A\+V\+::\+Javascript\+Engine\+::\+Javascript\+Engine (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_rad_j_a_v_1_1_javascript_engine_a148c454c66e90614abbc589e715b3f7c}{}\label{class_rad_j_a_v_1_1_javascript_engine_a148c454c66e90614abbc589e715b3f7c}
+\subsubsection{\texorpdfstring{Javascript\+Engine()}{JavascriptEngine()}}
+{\footnotesize\ttfamily Rad\+J\+A\+V\+::\+Javascript\+Engine\+::\+Javascript\+Engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_abfbd3bff5d4eb0e36d3d18347495bbd7}\label{class_rad_j_a_v_1_1_javascript_engine_abfbd3bff5d4eb0e36d3d18347495bbd7}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!add\+Thread@{add\+Thread}}
+\index{add\+Thread@{add\+Thread}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{add\+Thread()}{addThread()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::add\+Thread (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_thread}{Thread}} $\ast$}]{thread }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Add a thread to be handled by the engine. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_ab72b1bfbf3740039b0ae00008a5e4dd3}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a91ebe8029a9658f66d9c39356eea2d80}\label{class_rad_j_a_v_1_1_javascript_engine_a91ebe8029a9658f66d9c39356eea2d80}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!blockchain\+Event@{blockchain\+Event}}
+\index{blockchain\+Event@{blockchain\+Event}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{blockchain\+Event()}{blockchainEvent()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::blockchain\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{event,  }\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{data\+Type = {\ttfamily \char`\"{}null\char`\"{}},  }\item[{void $\ast$}]{data = {\ttfamily NULL} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+A blockchain event has occurred, process it. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_a13490748bc843ae2d2be22aa889e8e30}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a07709e2f1afb9f49444c6605a7a6122f}\label{class_rad_j_a_v_1_1_javascript_engine_a07709e2f1afb9f49444c6605a7a6122f}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!collect\+Garbage@{collect\+Garbage}}
+\index{collect\+Garbage@{collect\+Garbage}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{collect\+Garbage()}{collectGarbage()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::collect\+Garbage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Call the garbage collector. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_ab9624aca14bbbcb2bb248d81efe8e402}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a4cdc81e5c398f7f1a2ce3ff45f135792}\label{class_rad_j_a_v_1_1_javascript_engine_a4cdc81e5c398f7f1a2ce3ff45f135792}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!execute\+Script@{execute\+Script}}
+\index{execute\+Script@{execute\+Script}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{execute\+Script()}{executeScript()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::execute\+Script (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{code,  }\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Execute Javascript code. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_ac45d45c9a25fe8f0f9e90fe21e8ef035}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a4a720b2e36ab737ab0b697e9b7317fb0}\label{class_rad_j_a_v_1_1_javascript_engine_a4a720b2e36ab737ab0b697e9b7317fb0}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!exit@{exit}}
+\index{exit@{exit}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{exit()}{exit()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::exit (\begin{DoxyParamCaption}\item[{R\+J\+I\+NT}]{exit\+Code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Shutdown the application entirely. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_a23fcc70cb6805867951748fd1c9706f1}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a91b208b07958c50ce906cd9f25eed669}\label{class_rad_j_a_v_1_1_javascript_engine_a91b208b07958c50ce906cd9f25eed669}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!load\+Native\+Code@{load\+Native\+Code}}
+\index{load\+Native\+Code@{load\+Native\+Code}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{load\+Native\+Code()}{loadNativeCode()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::load\+Native\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Connect the native library to the Javascript library. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_afd8d4baa780d5ee7a77754eb5ca52e4d}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_afe08c6324e3958a5d3ec82fa9e0f1fd1}\label{class_rad_j_a_v_1_1_javascript_engine_afe08c6324e3958a5d3ec82fa9e0f1fd1}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!remove\+Thread@{remove\+Thread}}
+\index{remove\+Thread@{remove\+Thread}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{remove\+Thread()}{removeThread()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::remove\+Thread (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_thread}{Thread}} $\ast$}]{thread }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Remove a thread. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_a90a52c8c7d655d2e8e5e682d7618c2ab}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a11cc903f042db2b770183667ee36c6bf}\label{class_rad_j_a_v_1_1_javascript_engine_a11cc903f042db2b770183667ee36c6bf}} 
 \index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!run\+Application@{run\+Application}}
 \index{run\+Application@{run\+Application}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
-\subsubsection[{\texorpdfstring{run\+Application(\+String application)=0}{runApplication(String application)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::run\+Application (
-\begin{DoxyParamCaption}
-\item[{{\bf String}}]{application}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_javascript_engine_acb5ff6a3eb18d8d550f480047cbc6420}{}\label{class_rad_j_a_v_1_1_javascript_engine_acb5ff6a3eb18d8d550f480047cbc6420}
+\subsubsection{\texorpdfstring{run\+Application()}{runApplication()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::run\+Application (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{application\+Source,  }\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
 
 
 Run an application. 
 
 
 
-Implemented in \hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_a5995ed0d4417b6e9ff36a77a540ff911}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}.
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_af792154ac1ceaa6c65faf2409cea5014}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
 
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a0a435f458e118a813c95ccb359d546e9}\label{class_rad_j_a_v_1_1_javascript_engine_a0a435f458e118a813c95ccb359d546e9}} 
 \index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!run\+Application\+From\+File@{run\+Application\+From\+File}}
 \index{run\+Application\+From\+File@{run\+Application\+From\+File}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
-\subsubsection[{\texorpdfstring{run\+Application\+From\+File(\+String file)=0}{runApplicationFromFile(String file)=0}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::run\+Application\+From\+File (
-\begin{DoxyParamCaption}
-\item[{{\bf String}}]{file}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [pure virtual]}}\hypertarget{class_rad_j_a_v_1_1_javascript_engine_a0a435f458e118a813c95ccb359d546e9}{}\label{class_rad_j_a_v_1_1_javascript_engine_a0a435f458e118a813c95ccb359d546e9}
+\subsubsection{\texorpdfstring{run\+Application\+From\+File()}{runApplicationFromFile()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::run\+Application\+From\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
 
 
 Run an application from a javascript file. 
 
 
 
-Implemented in \hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_aa0d9d2f20abcf434f8986f7417ebcc3e}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}.
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_aa0d9d2f20abcf434f8986f7417ebcc3e}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a76c00d87d65f69781e2dc4aa3143acac}\label{class_rad_j_a_v_1_1_javascript_engine_a76c00d87d65f69781e2dc4aa3143acac}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!start3\+D\+Engine@{start3\+D\+Engine}}
+\index{start3\+D\+Engine@{start3\+D\+Engine}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{start3\+D\+Engine()}{start3DEngine()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::start3\+D\+Engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Start the 3d engine. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_ae2e4091f33966a1d722690bcd69f2cde}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_ab9f13c1928d6967122d0f9a6a026dc73}\label{class_rad_j_a_v_1_1_javascript_engine_ab9f13c1928d6967122d0f9a6a026dc73}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!throw\+Exception@{throw\+Exception}}
+\index{throw\+Exception@{throw\+Exception}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{throw\+Exception()}{throwException()}}
+{\footnotesize\ttfamily virtual void Rad\+J\+A\+V\+::\+Javascript\+Engine\+::throw\+Exception (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Throw a Javascript exception. 
+
+
+
+Implemented in \mbox{\hyperlink{class_rad_j_a_v_1_1_v8_javascript_engine_a08ad9464e2efe78b0c84d32728b12632}{Rad\+J\+A\+V\+::\+V8\+Javascript\+Engine}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_ae32ec13d271fa8e9de7076bf19de5fae}\label{class_rad_j_a_v_1_1_javascript_engine_ae32ec13d271fa8e9de7076bf19de5fae}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!exceptions\+Display\+Message\+Box@{exceptions\+Display\+Message\+Box}}
+\index{exceptions\+Display\+Message\+Box@{exceptions\+Display\+Message\+Box}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{exceptions\+Display\+Message\+Box}{exceptionsDisplayMessageBox}}
+{\footnotesize\ttfamily R\+J\+B\+O\+OL Rad\+J\+A\+V\+::\+Javascript\+Engine\+::exceptions\+Display\+Message\+Box\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_ab9d5626eb48dd87bba44eb8db6628cc4}\label{class_rad_j_a_v_1_1_javascript_engine_ab9d5626eb48dd87bba44eb8db6628cc4}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!expose\+GC@{expose\+GC}}
+\index{expose\+GC@{expose\+GC}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{expose\+GC}{exposeGC}}
+{\footnotesize\ttfamily R\+J\+B\+O\+OL Rad\+J\+A\+V\+::\+Javascript\+Engine\+::expose\+GC\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_af494f1d171ea6dbdcccdee1d03f0ca4e}\label{class_rad_j_a_v_1_1_javascript_engine_af494f1d171ea6dbdcccdee1d03f0ca4e}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!m\+Root@{m\+Root}}
+\index{m\+Root@{m\+Root}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{m\+Root}{mRoot}}
+{\footnotesize\ttfamily Ogre\+::\+Root$\ast$ Rad\+J\+A\+V\+::\+Javascript\+Engine\+::m\+Root}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_aef0c33700408735d821031b2bcdc77cc}\label{class_rad_j_a_v_1_1_javascript_engine_aef0c33700408735d821031b2bcdc77cc}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!remove\+Threads@{remove\+Threads}}
+\index{remove\+Threads@{remove\+Threads}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{remove\+Threads}{removeThreads}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$R\+J\+U\+L\+O\+NG$>$ Rad\+J\+A\+V\+::\+Javascript\+Engine\+::remove\+Threads\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a119dba6e5ced56e7c242129993b94556}\label{class_rad_j_a_v_1_1_javascript_engine_a119dba6e5ced56e7c242129993b94556}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{shutdown}{shutdown}}
+{\footnotesize\ttfamily R\+J\+B\+O\+OL Rad\+J\+A\+V\+::\+Javascript\+Engine\+::shutdown\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_ad24ee9119907ff362ac00f7394c665d8}\label{class_rad_j_a_v_1_1_javascript_engine_ad24ee9119907ff362ac00f7394c665d8}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!shutdown\+On\+Exception@{shutdown\+On\+Exception}}
+\index{shutdown\+On\+Exception@{shutdown\+On\+Exception}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{shutdown\+On\+Exception}{shutdownOnException}}
+{\footnotesize\ttfamily R\+J\+B\+O\+OL Rad\+J\+A\+V\+::\+Javascript\+Engine\+::shutdown\+On\+Exception\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a5ed20d1c0b0bfa1608b5991c71dfd5e9}\label{class_rad_j_a_v_1_1_javascript_engine_a5ed20d1c0b0bfa1608b5991c71dfd5e9}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!threads@{threads}}
+\index{threads@{threads}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{threads}{threads}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_rad_j_a_v_a7c83af3095bdd8035fd71ff008120f08}{Hash\+Map}}$<$R\+J\+U\+L\+O\+NG, \mbox{\hyperlink{class_rad_j_a_v_1_1_thread}{Thread}} $\ast$$>$ Rad\+J\+A\+V\+::\+Javascript\+Engine\+::threads\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_javascript_engine_a64acee3048eba4322c648cad00bc200e}\label{class_rad_j_a_v_1_1_javascript_engine_a64acee3048eba4322c648cad00bc200e}} 
+\index{Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}!use\+Debugger@{use\+Debugger}}
+\index{use\+Debugger@{use\+Debugger}!Rad\+J\+A\+V\+::\+Javascript\+Engine@{Rad\+J\+A\+V\+::\+Javascript\+Engine}}
+\subsubsection{\texorpdfstring{use\+Debugger}{useDebugger}}
+{\footnotesize\ttfamily R\+J\+B\+O\+OL Rad\+J\+A\+V\+::\+Javascript\+Engine\+::use\+Debugger\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\+Rad\+Jav/\hyperlink{_rad_jav_javascript_engine_8h}{Rad\+Jav\+Javascript\+Engine.\+h}\end{DoxyCompactItemize}
+include/\+Rad\+Jav/\mbox{\hyperlink{_rad_jav_javascript_engine_8h}{Rad\+Jav\+Javascript\+Engine.\+h}}\end{DoxyCompactItemize}

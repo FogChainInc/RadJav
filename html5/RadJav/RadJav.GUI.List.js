@@ -23,9 +23,11 @@
 * A List.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List = RadJav.GUI.GObject.extend (
+RadJav.GUI.List = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(List, _super);
+
+	function List (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,14 +38,19 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 350;
+			obj.size.y = 300;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.List";
+
 		if (obj.canSort != null)
 			obj._canSort = obj.canSort;
-
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.List", 
-					size: "350, 300"
-				}, false);
-		this._super (obj, text, parent);
 
 		if (obj.columns != null)
 			obj._columns = obj.columns;
@@ -52,18 +59,20 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 		* @protected
 		* If set to true, each column will be able to be sorted by the user.
 		*/
-		this._canSort = RadJav.setDefaultValue (obj._canSort, true);
+		_this._canSort = RadJav.setDefaultValue (obj._canSort, true);
 		/** @property {Boolean} [_hasCheckBoxes=false]
 		* @protected
 		* If set to true, each row will have a checkbox.
 		*/
-		this._hasCheckBoxes = RadJav.setDefaultValue (obj._hasCheckBoxes, false);
+		_this._hasCheckBoxes = RadJav.setDefaultValue (obj._hasCheckBoxes, false);
 		/** @property {RadJav.GUI.List.Column[]} [_columns=[]]
 		* @protected
 		* The columns in the list box.
 		*/
-		this._columns = RadJav.setDefaultValue (obj._columns, []);
-	}, 
+		_this._columns = RadJav.setDefaultValue (obj._columns, []);
+
+		return (_this);
+	}
 
 	/** @method addColumn
 	* Add a column to this list.
@@ -74,7 +83,7 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 	* @param {Number} [width=null] The width.
 	* @param {Mixed} [key=null] The key associated with this column.
 	*/
-	addColumn: function (column, width, key)
+	List.prototype.addColumn = function (column, width, key)
 	{
 		var tempColumn = null;
 
@@ -93,7 +102,7 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 
 		this._columns.push (tempColumn);
 		RadJav.theme.eventSync (this.type, "addColumn", this, tempColumn);
-	}, 
+	}
 
 	/** @method setColumns
 	* Set the columns of this list.
@@ -102,11 +111,11 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, RadJav.GUI.List.Column[]
 	* @param {RadJav.GUI.List.Column[]} columns The columns to set to this list.
 	*/
-	setColumns: function (columns)
+	List.prototype.setColumns = function (columns)
 	{
 		this._columns = columns;
 		RadJav.theme.eventSync (this.type, "setColumns", this, columns);
-	}, 
+	}
 
 	/** @method addRow
 	* Add a row to the list.
@@ -118,10 +127,10 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 	* row has a property named hiddenRow, the value of that will be placed into this
 	* parameter, and it will be deleted from the row object.
 	*/
-	addRow: function (row, hiddenValue)
+	List.prototype.addRow = function (row, hiddenValue)
 	{
 		RadJav.theme.eventSync (this.type, "addRow", this, row, hiddenValue);
-	}, 
+	}
 
 	/** @method setRows
 	* Set the list's rows.
@@ -131,10 +140,10 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 	* @param {Array} rows The rows of data to set.
 	* @param {Array} [hiddenRows=null] The hidden rows of data to set.
 	*/
-	setRows: function (rows, hiddenRows)
+	List.prototype.setRows = function (rows, hiddenRows)
 	{
 		RadJav.theme.eventSync (this.type, "setRows", this, rows, hiddenRows);
-	}, 
+	}
 
 	/** @method getSelectedRows
 	* Get the selected rows.
@@ -143,10 +152,10 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject
 	* @return {RadJav.GUI.List.Selection} The selected objects.
 	*/
-	getSelectedRows: function ()
+	List.prototype.getSelectedRows = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getSelectedRows", this));
-	}, 
+	}
 
 	/** @method deleteRows
 	* Delete rows.
@@ -155,19 +164,21 @@ RadJav.GUI.List = RadJav.GUI.GObject.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, RadJav.GUI.List.Selection
 	* @param {RadJav.GUI.List.Selection} selection The selection to delete.
 	*/
-	deleteRows: function (selection)
+	List.prototype.deleteRows = function (selection)
 	{
 		return (RadJav.theme.eventSync (this.type, "deleteRows", this, selection));
 	}
-});
+
+	return (List);
+}(RadJav.GUI.GObject));
 
 /** @class RadJav.GUI.List.Row
 * A List row.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Row = RadJav.Class.extend (
+RadJav.GUI.List.Row = (function ()
 {
-	init: function (obj)
+	function Row (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -176,28 +187,30 @@ RadJav.GUI.List.Row = RadJav.Class.extend (
 		* The items to display.
 		*/
 		this.items = RadJav.setDefaultValue (obj.items, []);
-	}, 
+	}
 
 	/** @method addItem
 	* Add an item to this row.
 	* @param {RadJav.GUI.List.Item} item The item to add.
 	*/
-	addItem: function (item)
+	Row.prototype.addItem = function (item)
 	{
 		if (typeof (item) != "object")
 			item = new RadJav.GUI.List.Item ({ text: item });
 
 		this.items.push (item);
 	}
-});
+
+	return (Row);
+} ());
 
 /** @class RadJav.GUI.List.Item
 * A List item.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Item = RadJav.Class.extend (
+RadJav.GUI.List.Item = (function ()
 {
-	init: function (obj)
+	function Item (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -211,15 +224,17 @@ RadJav.GUI.List.Item = RadJav.Class.extend (
 		*/
 		this.text = RadJav.setDefaultValue (obj.text, "");
 	}
-});
+
+	return (Item);
+} ());
 
 /** @class RadJav.GUI.List.Column
 * A List column.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Column = RadJav.Class.extend (
+RadJav.GUI.List.Column = (function ()
 {
-	init: function (obj)
+	function Column (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -237,15 +252,17 @@ RadJav.GUI.List.Column = RadJav.Class.extend (
 		*/
 		this.key = RadJav.setDefaultValue (obj.key, null);
 	}
-});
+
+	return (Column);
+} ());
 
 /** @class RadJav.GUI.List.Selection
 * A List selection.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.List.Selection = RadJav.Class.extend (
+RadJav.GUI.List.Selection = (function ()
 {
-	init: function (obj)
+	function Selection (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -261,5 +278,7 @@ RadJav.GUI.List.Selection = RadJav.Class.extend (
 		*/
 		this._appObj = RadJav.setDefaultValue (obj._appObj, null);
 	}
-});
+
+	return (Selection);
+} ());
 

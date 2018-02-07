@@ -27,6 +27,8 @@ set (libRadJav_STATIC false CACHE BOOL "Static build of RadJav")
 set (libRadJav_EMBEDFILE true CACHE BOOL "Embed Javascript into RadJav?")
 set (libRadJav_INCLUDE_BLOCKCHAIN_V1 true CACHE BOOL "Include Blockchain V1?")
 
+set_property (CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+
 set (libRadJav_LANGUAGE_UPPER)
 string (TOUPPER ${libRadJav_LANGUAGE} libRadJav_LANGUAGE_UPPER)
 message (STATUS "Using language ${libRadJav_LANGUAGE_UPPER}")
@@ -85,6 +87,11 @@ set (SOURCES "${libRadJav_SOURCE_DIR}/src/RadJav" ${SOURCES})
 
 #set (SOURCES ${SRC} ${SOURCES})
 
+set (libRadJav_CPP_DEFS)
+set (libRadJav_CPP_DEFS "LANG_${libRadJav_LANGUAGE_UPPER}" ${libRadJav_CPP_DEFS})
+set (libRadJav_CPP_DEFS_DEBUG "")
+set (libRadJav_CPP_DEFS_DEBUG RADJAV_DEBUG ${libRadJav_CPP_DEFS_DEBUG})
+
 include (includes)
 include (sources)
 
@@ -109,9 +116,6 @@ endif ()
 if (USE_CIVETWEB)
 	include (FindModuleCivetWeb)
 endif ()
-
-set (libRadJav_CPP_DEFS)
-set (libRadJav_CPP_DEFS "LANG_${libRadJav_LANGUAGE_UPPER}" ${libRadJav_CPP_DEFS})
 
 if (libRadJav_STATIC)
 	set (libRadJav_CPP_DEFS RADJAV_LIB_STATIC ${libRadJav_CPP_DEFS})
@@ -165,20 +169,7 @@ if (V8_FOUND)
 endif ()
 
 if (wxWidgets_FOUND)
-	include_directories (${wxWidgets_INCLUDE})
-	set (libRadJav_LINK_LIBRARIES ${wxWidgets_LIBRARIES} ${libRadJav_LINK_LIBRARIES})
-	set (libRadJav_CPP_DEFS GUI_USE_WXWIDGETS ${libRadJav_CPP_DEFS})
-
-	#set (libRadJav_CPP_DEFS wxUSE_DYNLIB_CLASS=1 ${libRadJav_CPP_DEFS})
-	#set (libRadJav_CPP_DEFS WXUSINGDLL ${libRadJav_CPP_DEFS})
-
-	set (libRadJav_CPP_DEFS wxUSE_GUI=1 ${libRadJav_CPP_DEFS})
-
-	if (WIN32)
-		set (libRadJav_CPP_DEFS WINVER=0x0400 ${libRadJav_CPP_DEFS})
-		set (libRadJav_CPP_DEFS NOPCH ${libRadJav_CPP_DEFS})
-		set (libRadJav_CPP_DEFS __WXMSW__ ${libRadJav_CPP_DEFS})
-	endif ()
+	include (FindwxWidgetsLib)
 endif ()
 
 if (CURL_FOUND)
@@ -210,7 +201,6 @@ if (libRadJav_INCLUDE_BLOCKCHAIN_V1)
 	set (libRadJav_CPP_DEFS _CRT_SECURE_NO_WARNINGS ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS UNICODE ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS _SCL_SECURE_NO_WARNINGS ${libRadJav_CPP_DEFS})
-	set (libRadJav_CPP_DEFS _WIN32_WINNT=0x0501 ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS HAVE_WORKING_BOOST_SLEEP_FOR ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS NOMINMAX ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS USE_LEVELDB ${libRadJav_CPP_DEFS})
@@ -224,9 +214,17 @@ if (libRadJav_INCLUDE_BLOCKCHAIN_V1)
 	set (libRadJav_CPP_DEFS USE_NUM_NONE=1 ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS USE_SCALAR_8X32=1 ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS USE_SCALAR_INV_BUILTIN=1 ${libRadJav_CPP_DEFS})
-	set (libRadJav_CPP_DEFS _DEBUG ${libRadJav_CPP_DEFS})
 	set (libRadJav_CPP_DEFS _LIB ${libRadJav_CPP_DEFS})
-	set (libRadJav_CPP_DEFS LEVELDB_PLATFORM_WINDOWS ${libRadJav_CPP_DEFS})
+	set (libRadJav_CPP_DEFS BOOST_SYSTEM_NO_DEPRECATED ${libRadJav_CPP_DEFS})
+
+	add_compile_options (-enable-glibc-back-compat)
+
+	if (WIN32)
+		set (libRadJav_CPP_DEFS _WIN32_WINNT=0x0501 ${libRadJav_CPP_DEFS})
+		set (libRadJav_CPP_DEFS LEVELDB_PLATFORM_WINDOWS ${libRadJav_CPP_DEFS})
+	else ()
+		set (libRadJav_CPP_DEFS LEVELDB_PLATFORM_POSIX ${libRadJav_CPP_DEFS})
+	endif ()
 
 	include (FindModuleZLIB)
 	include (FindBerkleyDB)
@@ -242,6 +240,7 @@ if (libRadJav_INCLUDE_BLOCKCHAIN_V1)
 	include_directories ("${libRadJav_SOURCE_DIR}/blockchainV1/src")
 	include_directories ("${libRadJav_SOURCE_DIR}/blockchainV1/src/config")
 	include_directories ("${libRadJav_SOURCE_DIR}/blockchainV1/src/univalue/include")
+	include_directories ("${libRadJav_SOURCE_DIR}/blockchainV1/src/secp256k1/include")
 
 	include_directories (${ZLIB_INCLUDE})
 	#set (libRadJav_LINK_LIBRARIES ${ZLIB_LIBRARIES} ${libRadJav_LINK_LIBRARIES})
@@ -277,12 +276,18 @@ endif ()
 
 set (libRadJav_CPP_DEFS LIBRADJAV ${libRadJav_CPP_DEFS})
 
-set (libRadJav_CPP_DEFS_DEBUG "")
-set (libRadJav_CPP_DEFS_DEBUG RADJAV_DEBUG ${libRadJav_CPP_DEFS_DEBUG})
-
 if (wxWidgets_FOUND)
-	set (libRadJav_CPP_DEFS_DEBUG WXDEBUG=1 ${libRadJav_CPP_DEFS_DEBUG})
-	set (libRadJav_CPP_DEFS_DEBUG __WXDEBUG__ ${libRadJav_CPP_DEFS_DEBUG})
+	if (CMAKE_BUILD_TYPE MATCHES "Debug")
+		set (libRadJav_CPP_DEFS_DEBUG WXDEBUG=1 ${libRadJav_CPP_DEFS_DEBUG})
+		set (libRadJav_CPP_DEFS_DEBUG __WXDEBUG__ ${libRadJav_CPP_DEFS_DEBUG})
+	endif ()
+
+	set (libRadJav_CPP_DEFS GUI_USE_WXWIDGETS ${libRadJav_CPP_DEFS})
+endif ()
+
+if (CMAKE_BUILD_TYPE MATCHES "Debug")
+	set (libRadJav_CPP_DEFS_DEBUG _DEBUG ${libRadJav_CPP_DEFS_DEBUG})
+	set (libRadJav_CPP_DEFS_DEBUG ${libRadJav_CPP_DEFS} ${libRadJav_CPP_DEFS_DEBUG})
 endif ()
 
 if (MSVC)
@@ -331,4 +336,3 @@ if (libRadJav_EMBEDFILE)
 	set_property (TARGET RadJavCompileResources APPEND PROPERTY COMPILE_DEFINITIONS ${libRadJav_CPP_DEFS})
 	set_property (TARGET RadJavCompileResources APPEND PROPERTY COMPILE_DEFINITIONS $<$<CONFIG:Debug>:${libRadJav_CPP_DEFS} ${libRadJav_CPP_DEFS_DEBUG}>)
 endif ()
-

@@ -1,5 +1,7 @@
 var walletWindow = null;
 var isConnectedToXRJV1network = false;
+var isMining = false;
+var walletVersion = 0.2;
 
 function convertCreatedGUIObjectsIntoGlobalVariables (createdObjects)
 {
@@ -19,16 +21,99 @@ function convertCreatedGUIObjectsIntoGlobalVariables (createdObjects)
 
 function fillinNetXRJAddress ()
 {
+	if (isConnectedToXRJV1network == false)
+		return;
+
 	var addr = RadJav.BlockchainV1.getNewAddress ();
 	receivingAddress.setText (addr);
 }
 
 function updateWalletInfo ()
 {
+	if (isConnectedToXRJV1network == false)
+		return;
+
 	var walletInfo = RadJav.BlockchainV1.getWalletInfo ();
 
 	xrjAvailable.setText ("XRJ Available: " + walletInfo.balance);
 	xrjPending.setText ("XRJ Pending: " + walletInfo.unconfirmed_balance);
+}
+
+function enterCommand ()
+{
+	if (isConnectedToXRJV1network == false)
+		return;
+
+	var command = prompt ("Enter command:");
+
+	if (command != "")
+	{
+		var result = RadJav.BlockchainV1.rpcCommand (command);
+
+		alert (result);
+	}
+}
+
+function addNode ()
+{
+	var address = prompt ("Enter node's address:");
+
+	if (address != "")
+		RadJav.BlockchainV1.addNode (address, "add");
+}
+
+function encryptWallet ()
+{
+	var passphrase = prompt ("Enter wallet's passphrase:");
+
+	if (passphrase != "")
+	{
+		var passphrase2 = prompt ("Enter wallet's passphrase again:");
+
+		if (passphrase == passphrase2)
+			RadJav.BlockchainV1.encryptWallet (passphrase);
+		else
+			alert ("Passphrase's do not match! Try again.");
+	}
+}
+
+function backupWallet ()
+{
+	var path = RadJav.OS.saveFileAs ({
+				message: "Select where to save wallet backup file", 
+				wildcard: "Wallet File (*.dat)|*.dat"
+			});
+
+	if (path != "")
+		RadJav.BlockchainV1.backupWallet (path);
+}
+
+function toggleMining ()
+{
+	if (isConnectedToXRJV1network == false)
+	{
+		alert ("Not connected to the XRJV1 network yet!");
+
+		return;
+	}
+
+	if (isMining == true)
+	{
+		soloMining.setText ("Start Solo Mining...");
+		RadJav.BlockchainV1.setGenerate (false);
+		isMining = false;
+	}
+	else
+	{
+		var threads = prompt ("Enter number of threads to use (-1 for autodetect):", -1);
+
+		if (threads == "")
+			threads = -1;
+
+		RadJav.BlockchainV1.setGenerate (true, parseInt (threads));
+		soloMining.setText ("Stop Solo Mining...");
+		isMining = true;
+	}
 }
 
 RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (function ()
@@ -62,6 +147,51 @@ RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (
 											{
 												fillinNetXRJAddress ();
 											});
+										send.on ("click", function ()
+											{
+												var addr = sendXRJTo.getText ();
+												var amount = parseFloat (amountOfXRJToSend.getText ());
+												var askPassphrase = function ()
+													{
+														var passphrase = prompt ("Enter passphrase: ");
+
+														if (passphrase == "")
+															return;
+
+														try
+														{
+															RadJav.BlockchainV1.walletPassphrase (passphrase, 60);
+															RadJav.BlockchainV1.sendToAddress (addr, amount);
+															sendXRJTo.setText ("");
+															amountOfXRJToSend.setText ("");
+															updateWalletInfo ();
+															alert ("Transaction has been sent!");
+														}
+														catch (ex)
+														{
+															if (ex.message.indexOf ("passphrase") > -1)
+															{
+															}
+															else
+																alert (ex.message);
+														}
+													};
+
+												try
+												{
+													RadJav.BlockchainV1.sendToAddress (addr, amount);
+													sendXRJTo.setText ("");
+													amountOfXRJToSend.setText ("");
+													updateWalletInfo ();
+													alert ("Transaction has been sent!");
+												}
+												catch (ex)
+												{
+													if (ex.message.indexOf ("passphrase") > -1)
+													{
+													}
+												}
+											});
 
 										RadJav.BlockchainV1.on ("ready", function ()
 											{
@@ -69,6 +199,30 @@ RadJav.initialize (RadJav.getStandardLibrary (), RadJav.getGUILibrary ()).then (
 												isConnectedToXRJV1network = true;
 												fillinNetXRJAddress ();
 												updateWalletInfo ();
+											});
+										RadJav.BlockchainV1.on ("proofOfWorkFound", function ()
+											{
+												updateWalletInfo ();
+											});
+										RadJav.BlockchainV1.on ("connectBlock", function (blockHeight)
+											{
+												connectingMessage.setText ("Connected block " + blockHeight);
+												updateWalletInfo ();
+											});
+										RadJav.BlockchainV1.on ("passphraseRequired", function ()
+											{
+												var passphrase = prompt ("Enter passphrase: ");
+
+												if (passphrase == "")
+													return;
+
+												RadJav.BlockchainV1.walletPassphrase (passphrase, 60);
+											});
+										RadJav.BlockchainV1.on ("error", function (msg)
+											{
+												alert (msg);
+
+												RadJav.exit ();
 											});
 										RadJav.BlockchainV1.connectToNetwork ({
 												nodes: [

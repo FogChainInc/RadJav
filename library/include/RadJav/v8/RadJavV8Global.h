@@ -32,8 +32,10 @@
 			public:
 				static void createV8Callbacks(v8::Isolate *isolate, v8::Local<v8::Object> object);
 
+				static void setTimeout(const v8::FunctionCallbackInfo<v8::Value> &args);
 				static void alert(const v8::FunctionCallbackInfo<v8::Value> &args);
 				static void confirm(const v8::FunctionCallbackInfo<v8::Value> &args);
+				static void prompt(const v8::FunctionCallbackInfo<v8::Value> &args);
 				static void include(const v8::FunctionCallbackInfo<v8::Value> &args);
 				static void collectGarbage(const v8::FunctionCallbackInfo<v8::Value> &args);
 				static void exit(const v8::FunctionCallbackInfo<v8::Value> &args);

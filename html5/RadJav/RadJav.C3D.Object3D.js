@@ -22,9 +22,9 @@
 * The base 3D object.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Object3D = RadJav.Class.extend (
+RadJav.C3D.Object3D = (function ()
 {
-	init: function (canvas3d, obj, parent)
+	function Object3D (canvas3d, obj, parent)
 	{
 		if (obj == null)
 			obj = new Object ();
@@ -68,51 +68,51 @@ RadJav.C3D.Object3D = RadJav.Class.extend (
 		* The canvas 3d object used to display this object.
 		*/
 		this._canvas3D = canvas3d;
-		/** @property {Mixed} [_obj3d=null]
+		/** @property {Mixed} [_c3dObj=null]
 		* @protected
 		* The 3d object associated with this object.
 		*/
-		this._obj3d = RadJav.setDefaultValue (obj._obj3d, null);
+		this._c3dObj = RadJav.setDefaultValue (obj._c3dObj, null);
 		/** @property {RadJav.C3D.Transform} [_transform=new RadJav.C3D.Transform (this)]
 		* @protected
 		* This object's transform.
 		*/
 		this._transform = RadJav.setDefaultValue (obj._transform, new RadJav.C3D.Transform (this));
-	}, 
+	}
 
 	/** @method create
 	* Using the existing parameters in this object, create it.
 	* @return {Promise} The promise to execute when the creation is completed.
 	*/
-	create: function ()
+	Object3D.prototype.create = function ()
 	{
 		return (null);
-	}, 
+	}
 
 	/** @method destroy
 	* Destroy this object.
 	*/
-	destroy: function ()
+	Object3D.prototype.destroy = function ()
 	{
-	}, 
+	}
 
 	/** @method getParent
 	* Get the parent.
 	* @return {RadJav.C3D.Object3D} The parent of this object.
 	*/
-	getParent: function ()
+	Object3D.prototype.getParent = function ()
 	{
 		return (this._parent);
-	}, 
+	}
 
 	/** @method getTransform
 	* Get the transform.
 	* @return {RadJav.C3D.Transform} The transform.
 	*/
-	getTransform: function ()
+	Object3D.prototype.getTransform = function ()
 	{
 		return (this._transform);
-	}, 
+	}
 
 	/** @method setPosition
 	* Set the position of this object.
@@ -120,19 +120,19 @@ RadJav.C3D.Object3D = RadJav.Class.extend (
 	* @param {Number} y The y position.
 	* @param {Number} z The z position.
 	*/
-	setPosition: function (x, y, z)
+	Object3D.prototype.setPosition = function (x, y, z)
 	{
 		return (this._transform.setPosition (x, y, z));
-	}, 
+	}
 
 	/** @method getPosition
 	* Get the position of this object.
 	* @return {RadJav.Vector3} The position.
 	*/
-	getPosition: function ()
+	Object3D.prototype.getPosition = function ()
 	{
 		return (this._transform.getPosition ());
-	}, 
+	}
 
 	/** @method setVisibility
 	* Set the visibility of this object.
@@ -141,10 +141,10 @@ RadJav.C3D.Object3D = RadJav.Class.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
 	* @param {Boolean} visible The visibility of the object
 	*/
-	setVisibility: function (visible)
+	Object3D.prototype.setVisibility = function (visible)
 	{
 		RadJav.theme.event (this.type, "setVisibility", this, visible);
-	}, 
+	}
 
 	/** @method getVisibility
 	* Get the visibility of this object.
@@ -153,10 +153,10 @@ RadJav.C3D.Object3D = RadJav.Class.extend (
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject
 	* @return {Boolean} The visibility of this object
 	*/
-	getVisibility: function ()
+	Object3D.prototype.getVisibility = function ()
 	{
 		return (RadJav.theme.eventSync (this.type, "getVisibility", this));
-	}, 
+	}
 
 	/** @method show
 	* Show this object.
@@ -164,10 +164,10 @@ RadJav.C3D.Object3D = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: Yes
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
 	*/
-	show: function ()
+	Object3D.prototype.show = function ()
 	{
 		this.setVisibility (true);
-	}, 
+	}
 
 	/** @method hide
 	* Show this object.
@@ -175,10 +175,10 @@ RadJav.C3D.Object3D = RadJav.Class.extend (
 	* Is Theme Event Asynchronous: Yes
 	* Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
 	*/
-	hide: function ()
+	Object3D.prototype.hide = function ()
 	{
 		this.setVisibility (false);
-	}, 
+	}
 
 	/** @method on
 	* Calls a function when an event is triggered.
@@ -188,8 +188,10 @@ RadJav.C3D.Object3D = RadJav.Class.extend (
 	* @param {String} eventName The name of the event to trigger.
 	* @param {Function} func The function to execute.
 	*/
-	on: function (eventName, func)
+	Object3D.prototype.on = function (eventName, func)
 	{
 	}
-});
+
+	return (Object3D);
+} ());
 

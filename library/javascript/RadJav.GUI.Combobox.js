@@ -23,9 +23,11 @@
 * A Textbox.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
+RadJav.GUI.Combobox = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Combobox, _super);
+
+	function Combobox (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -39,17 +41,22 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 		if (obj.items != null)
 			obj._items = obj.items;
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Combobox", 
-					size: "120, 40"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 120;
+			obj.size.y = 40;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Combobox";
 
 		/** @property {String} [_items=[]]
 		* The items associated with this object.
 		*/
-		this._items = RadJav.setDefaultValue (obj._items, []);
-		this.onCreated = function ()
+		_this._items = RadJav.setDefaultValue (obj._items, []);
+		_this.onCreated = function ()
 			{
 				for (var iIdx = 0; iIdx < this._items.length; iIdx++)
 				{
@@ -57,17 +64,20 @@ RadJav.GUI.Combobox = RadJav.GUI.GObject.extend (
 					this.addItem (item);
 				}
 			};
-		this._createAppObj();
+
+		return (_this);
 	}
-});
+
+	return (Combobox);
+}(RadJav.GUI.GObject));
 
 /** @class RadJav.GUI.Combobox.Item
 * A combobox item.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Combobox.Item = RadJav.Class.extend (
+RadJav.GUI.Combobox.Item = (function ()
 {
-	init: function (obj)
+	function Item (obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -81,5 +91,7 @@ RadJav.GUI.Combobox.Item = RadJav.Class.extend (
 		*/
 		this.text = RadJav.setDefaultValue (obj.text, "");
 	}
-});
+
+	return (Item);
+} ());
 

@@ -43,15 +43,19 @@ namespace RadJAV
 	int BlockchainV1::connectArgsc = 0;
 	char **BlockchainV1::connectArgsv = NULL;
 	v8::Persistent<v8::Function> *BlockchainV1::onReadyFunction = NULL;
+	v8::Persistent<v8::Function> *BlockchainV1::connectBlockFunction = NULL;
+	v8::Persistent<v8::Function> *BlockchainV1::proofOfWorkFoundFunction = NULL;
+	v8::Persistent<v8::Function> *BlockchainV1::passphraseRequiredFunction = NULL;
 	v8::Persistent<v8::Function> *BlockchainV1::onErrorFunction = NULL;
 
 	static XRJV1CLIResult getXRJV1CLIResult(String command);
-	static XRJV1CLIResult getXRJV1CLIResult(String command, Array<String> args);
+	static XRJV1CLIResult getXRJV1CLIResult(String command, Array<String> args, RJBOOL throwError = true);
 
 	void BlockchainV1::createV8Callbacks(v8::Isolate *isolate, v8::Local<v8::Object> object)
 	{
 		V8_CALLBACK(object, "connectToNetwork", BlockchainV1::connectToNetwork);
 		V8_CALLBACK(object, "on", BlockchainV1::on);
+		V8_CALLBACK(object, "rpcCommand", BlockchainV1::rpcCommand);
 
 		// Blockchain
 		V8_CALLBACK(object, "getBestBlockHash", BlockchainV1::getBestBlockHash);
@@ -90,6 +94,8 @@ namespace RadJAV
 		V8_CALLBACK(object, "getNetworkHashPS", BlockchainV1::getNetworkHashPS);
 		V8_CALLBACK(object, "prioritiseTransaction", BlockchainV1::prioritiseTransaction);
 		V8_CALLBACK(object, "submitBlock", BlockchainV1::submitBlock);
+		V8_CALLBACK(object, "setGenerate", BlockchainV1::setGenerate);
+		V8_CALLBACK(object, "getGenerate", BlockchainV1::getGenerate);
 
 		// Network
 		V8_CALLBACK(object, "addNode", BlockchainV1::addNode);
@@ -156,6 +162,9 @@ namespace RadJAV
 		V8_CALLBACK(object, "sendToAddress", BlockchainV1::sendToAddress);
 		V8_CALLBACK(object, "setTxFee", BlockchainV1::setTxFee);
 		V8_CALLBACK(object, "signMessage", BlockchainV1::signMessage);
+		V8_CALLBACK(object, "walletLock", BlockchainV1::walletLock);
+		V8_CALLBACK(object, "walletPassphrase", BlockchainV1::walletPassphrase);
+		V8_CALLBACK(object, "walletPassphraseChange", BlockchainV1::walletPassphraseChange);
 	}
 
 	void BlockchainV1::connectToNetwork(const v8::FunctionCallbackInfo<v8::Value> &args)
@@ -186,18 +195,19 @@ namespace RadJAV
 					v8::Local<v8::String> str = v8::Local<v8::String>::Cast(nodes->Get(iIdx));
 
 					String node = parseV8Value(str);
-					commands.push_back("-addnode " + node);
+					commands.push_back("-addnode=" + node);
 				}
 			}
 
-			connectArgsc = commands.size();
+			connectArgsc = commands.size() + 1;
 			connectArgsv = RJNEW char *[connectArgsc];
+			connectArgsv[0] = "";
 
 			for (RJUINT iIdx = 0; iIdx < commands.size(); iIdx++)
 			{
 				String command = commands.at(iIdx);
-				connectArgsv[iIdx] = RJNEW char[command.size () + 1];
-				strcpy (connectArgsv[iIdx], command.c_str());
+				connectArgsv[iIdx + 1] = RJNEW char[command.size () + 1];
+				strcpy (connectArgsv[iIdx + 1], command.c_str());
 			}
 		}
 
@@ -220,6 +230,39 @@ namespace RadJAV
 			onReadyFunction = persistent;
 		}
 
+		if (event == "connectBlock")
+		{
+			if (connectBlockFunction != NULL)
+				DELETEOBJ(connectBlockFunction);
+
+			v8::Persistent<v8::Function> *persistent = RJNEW v8::Persistent<v8::Function>();
+
+			persistent->Reset(args.GetIsolate(), func);
+			connectBlockFunction = persistent;
+		}
+
+		if (event == "proofOfWorkFound")
+		{
+			if (proofOfWorkFoundFunction != NULL)
+				DELETEOBJ(proofOfWorkFoundFunction);
+
+			v8::Persistent<v8::Function> *persistent = RJNEW v8::Persistent<v8::Function>();
+
+			persistent->Reset(args.GetIsolate(), func);
+			proofOfWorkFoundFunction = persistent;
+		}
+
+		if (event == "passphraseRequired")
+		{
+			if (passphraseRequiredFunction != NULL)
+				DELETEOBJ(passphraseRequiredFunction);
+
+			v8::Persistent<v8::Function> *persistent = RJNEW v8::Persistent<v8::Function>();
+
+			persistent->Reset(args.GetIsolate(), func);
+			passphraseRequiredFunction = persistent;
+		}
+
 		if (event == "error")
 		{
 			if (onErrorFunction != NULL)
@@ -230,6 +273,21 @@ namespace RadJAV
 			persistent->Reset(args.GetIsolate(), func);
 			onErrorFunction = persistent;
 		}
+	}
+
+	void BlockchainV1::rpcCommand(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		Array<String> args2;
+
+		for (RJINT iIdx = 0; iIdx < args.Length(); iIdx++)
+			args2.push_back(parseV8Value (args[iIdx]->ToString (args.GetIsolate ())));
+
+		XRJV1CLIResult output = getXRJV1CLIResult("rpcCommand", args2);
+
+		if (output.exceptionThrown == true)
+			return;
+
+		args.GetReturnValue().Set (output.result.toV8String (args.GetIsolate ()));
 	}
 
 	void BlockchainV1::getBestBlockHash(const v8::FunctionCallbackInfo<v8::Value> &args)
@@ -761,6 +819,43 @@ namespace RadJAV
 		args.GetReturnValue().Set(output.result.toV8String (args.GetIsolate ()));
 	}
 
+	void BlockchainV1::setGenerate(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String cmd = "setgenerate";
+		RJBOOL generate = parseBoolean(parseV8Value(args[0]));
+		String strgenerate = "false";
+
+		if (generate == true)
+			strgenerate = "true";
+
+		Array<String> args2;
+		args2.push_back(strgenerate);
+
+		if (args.Length() > 1)
+		{
+			String genproclimit = parseV8Value(args[1]);
+			args2.push_back(genproclimit);
+		}
+		else
+			args2.push_back("-1");
+
+		getXRJV1CLIResult(cmd, args2);
+	}
+
+	void BlockchainV1::getGenerate(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String cmd = "getgenerate";
+
+		XRJV1CLIResult output = getXRJV1CLIResult(cmd);
+
+		if (output.exceptionThrown == true)
+			return;
+
+		RJBOOL result = parseBoolean(output.result);
+
+		args.GetReturnValue().Set(v8::Boolean::New(args.GetIsolate(), result));
+	}
+
 	void BlockchainV1::addNode(const v8::FunctionCallbackInfo<v8::Value> &args)
 	{
 		String cmd = "addnode";
@@ -774,6 +869,8 @@ namespace RadJAV
 			String command = parseV8Value(args[1]);
 			args2.push_back(command);
 		}
+		else
+			args2.push_back("add");
 
 		getXRJV1CLIResult(cmd, args2);
 	}
@@ -1170,6 +1267,39 @@ namespace RadJAV
 			return;
 
 		args.GetReturnValue().Set(output.result.toV8String (args.GetIsolate ()));
+	}
+
+	void BlockchainV1::walletLock(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String cmd = "walletlock";
+
+		getXRJV1CLIResult(cmd);
+	}
+
+	void BlockchainV1::walletPassphrase(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String cmd = "walletpassphrase";
+		String passphrase = parseV8Value(args[0]);
+		String seconds = parseV8Value(args[1]);
+		Array<String> args2;
+
+		args2.push_back(passphrase);
+		args2.push_back(seconds);
+
+		getXRJV1CLIResult(cmd, args2);
+	}
+
+	void BlockchainV1::walletPassphraseChange(const v8::FunctionCallbackInfo<v8::Value> &args)
+	{
+		String cmd = "walletpassphrasechange";
+		String passphrase = parseV8Value(args[0]);
+		String newPassphrase = parseV8Value(args[1]);
+		Array<String> args2;
+
+		args2.push_back(passphrase);
+		args2.push_back(newPassphrase);
+
+		getXRJV1CLIResult(cmd, args2);
 	}
 
 	void BlockchainV1::validateAddress(const v8::FunctionCallbackInfo<v8::Value> &args)
@@ -2016,23 +2146,57 @@ namespace RadJAV
 	{
 		Array<String> args;
 
-		return (getXRJV1CLIResult(command, args));
+		return (getXRJV1CLIResult(command, args, true));
 	}
 
-	XRJV1CLIResult getXRJV1CLIResult(String command, Array<String> args)
+	XRJV1CLIResult getXRJV1CLIResult(String command, Array<String> args, RJBOOL throwError)
 	{
-		int argc = 2 + args.size();
-		char **argv = new char *[argc];
+		int argc = 0;
+		char **argv = NULL;
 
-		argv[0] = "";
-		argv[1] = (char *)command.c_str ();
+		if (command != "rpcCommand")
+		{
+			argc = 2 + args.size();
+			argv = new char *[argc];
 
-		for (RJINT iIdx = 2; iIdx < argc; iIdx++)
-			argv[iIdx] = (char *)args.at(iIdx - 2).c_str();
+			argv[0] = "";
+			argv[1] = (char *)command.c_str();
 
-		XRJV1CLIResult output = startXRJV1CLI(argc, argv);
+			for (RJINT iIdx = 2; iIdx < argc; iIdx++)
+				argv[iIdx] = (char *)args.at(iIdx - 2).c_str();
+		}
+		else
+		{
+			argc = 1 + args.size();
+			argv = new char *[argc];
+
+			argv[0] = "";
+
+			for (RJINT iIdx = 1; iIdx < argc; iIdx++)
+				argv[iIdx] = (char *)args.at(iIdx - 1).c_str();
+		}
+
+		XRJV1CLIResult output = startXRJV1CLI(argc, argv, throwError);
 
 		DELETEARRAY(argv);
+
+		if (output.exceptionThrown == true)
+		{
+			if (output.result.find("passphrase") != String::npos)
+			{
+				if (BlockchainV1::passphraseRequiredFunction != NULL)
+					V8_JAVASCRIPT_ENGINE->blockchainEvent("passphraseRequired");
+			}
+
+			if (output.exceptionThrown == true)
+			{
+				if (output.result != "")
+				{
+					if (RadJAV::RadJav::javascriptEngine != NULL)
+						RadJAV::RadJav::javascriptEngine->throwException(output.result);
+				}
+			}
+		}
 
 		return (output);
 	}
@@ -2047,6 +2211,19 @@ namespace RadJAV
 	{
 		try
 		{
+			Array<String> args;
+			XRJV1CLIResult result = getXRJV1CLIResult("getinfo", args, false);
+
+			if (result.exceptionThrown == false)
+			{
+				v8::Local<v8::Value> *v8args = RJNEW v8::Local<v8::Value>[1];
+				v8args[0] = String ("XRJV1 node is already running. Shut down the node before continuing.").toV8String(V8_JAVASCRIPT_ENGINE->isolate);
+
+				V8_JAVASCRIPT_ENGINE->blockchainEvent("error", 1, v8args);
+
+				return (0);
+			}
+
 			SetupEnvironment();
 			noui_connect();
 			AppInit(BlockchainV1::connectArgsc, BlockchainV1::connectArgsv);
@@ -2055,10 +2232,11 @@ namespace RadJAV
 		{
 			if (BlockchainV1::onErrorFunction != NULL)
 			{
-				v8::Local<v8::Function> val = v8::Local<v8::Function>::Cast(BlockchainV1::onErrorFunction->Get(V8_JAVASCRIPT_ENGINE->isolate));
+				String exstr = ex.what();
+				v8::Local<v8::Value> *v8args = RJNEW v8::Local<v8::Value>[1];
+				v8args[0] = exstr.toV8String(V8_JAVASCRIPT_ENGINE->isolate);
 
-				if (V8_JAVASCRIPT_ENGINE->v8IsNull(val) == false)
-					val->Call(V8_JAVASCRIPT_ENGINE->globalContext->Global(), 0, NULL);
+				V8_JAVASCRIPT_ENGINE->blockchainEvent("error", 1, v8args);
 			}
 		}
 

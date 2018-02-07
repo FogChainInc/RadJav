@@ -23,9 +23,11 @@
 * A button.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Button = RadJav.GUI.GObject.extend (
+RadJav.GUI.Button = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Button, _super);
+
+	function Button (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,12 +38,20 @@ RadJav.GUI.Button = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Button", 
-					size: "80,40"
-				}, false);
-		this._super (obj, text, parent);
-		this._createAppObj();
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 80;
+			obj.size.y = 40;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Button";
+
+		return (_this);
 	}
-});
+
+	return (Button);
+}(RadJav.GUI.GObject));
 

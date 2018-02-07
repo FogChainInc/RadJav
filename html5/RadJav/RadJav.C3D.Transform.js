@@ -22,15 +22,18 @@
 * A 3d tranform.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Transform = RadJav.Class.extend (
+RadJav.C3D.Transform = (function ()
 {
-	init: function (object3d, obj)
+	function Transform (object3d, obj, position)
 	{
 		if (object3d == null)
 			throw (Lang.object3dNotIncluded);
 
 		if (obj == null)
 			obj = {};
+
+		if (position == null)
+			position = new RadJav.Vector3 ();
 
 		if (obj.parent != null)
 		{
@@ -60,25 +63,30 @@ RadJav.C3D.Transform = RadJav.Class.extend (
 		* The object that is being moved.
 		*/
 		this._movable = RadJav.setDefaultValue (obj._movable, null);
+		/** @property {RadJav.Vector3} [position=new RadJav.Vector3 ()]
+		* @protected
+		* The position of the object.
+		*/
+		this.position = position;
 
 		if (this._parent != null)
 			this._sceneNode = this._parent._sceneNode;
 		else
 			this._sceneNode = this._object3d._canvas3D._sceneManager;
-	}, 
+	}
 
 	/** @method addChild
 	* Add a child RadJav.C3D.Object3D to this transform.
 	* @param {RadJav.C3D.Object3D} child The child to add.
 	*/
-	addChild: function (child)
+	Transform.prototype.addChild = function (child)
 	{
 		if (this._sceneNode != null)
 		{
 			this._sceneNode.add (child._obj3d);
 			this._movable = child._obj3d;
 		}
-	}, 
+	}
 
 	/** @method setPosition
 	* Set the position of this object.
@@ -86,7 +94,7 @@ RadJav.C3D.Transform = RadJav.Class.extend (
 	* @param {Number} y The y position.
 	* @param {Number} z The z position.
 	*/
-	setPosition: function (x, y, z)
+	Transform.prototype.setPosition = function (x, y, z)
 	{
 		var obj = {};
 
@@ -104,18 +112,20 @@ RadJav.C3D.Transform = RadJav.Class.extend (
 		}
 
 		this._movable.position.set (obj.x, obj.y, obj.z);
-	}, 
+	}
 
 	/** @method getPosition
 	* Get the position of this object.
 	* @return {RadJav.Vector3} The position.
 	*/
-	getPosition: function ()
+	Transform.prototype.getPosition = function ()
 	{
 		var pos = this._movable.position;
 		var obj = new RadJav.Vector3 (pos);
 
 		return (obj);
 	}
-});
+
+	return (Transform);
+} ());
 

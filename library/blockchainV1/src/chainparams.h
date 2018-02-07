@@ -77,10 +77,11 @@ public:
     const std::vector<SeedSpec6>& FixedSeeds() const { return vFixedSeeds; }
     const CCheckpointData& Checkpoints() const { return checkpointData; }
     const ChainTxData& TxData() const { return chainTxData; }
+
+	Consensus::Params consensus; // Put this back as protected later...
 protected:
     CChainParams() {}
 
-    Consensus::Params consensus;
     CMessageHeader::MessageStartChars pchMessageStart;
     int nDefaultPort;
     uint64_t nPruneAfterHeight;
@@ -96,6 +97,8 @@ protected:
     CCheckpointData checkpointData;
     ChainTxData chainTxData;
 };
+
+extern CChainParams *pCurrentParams;
 
 /**
  * Return the currently selected parameters. This won't change after app

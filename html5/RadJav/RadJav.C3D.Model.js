@@ -22,9 +22,9 @@
 * A 3d Model.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Model = RadJav.Class.extend (
+RadJav.C3D.Model = (function ()
 {
-	init: function (object3d, obj, materials)
+	function Model (object3d, obj, materials)
 	{
 		if (obj == null)
 			obj = {};
@@ -54,13 +54,13 @@ RadJav.C3D.Model = RadJav.Class.extend (
 		* The materials used in this model.
 		*/
 		this.materials = RadJav.setDefaultValue (obj.materials, []);
-	}, 
+	}
 
 	/** @method create
 	* Create the model.
 	* @return {Promise} The promise to execute when completed.
 	*/
-	create: function ()
+	Model.prototype.create = function ()
 	{
 		var promise = null;
 
@@ -75,35 +75,37 @@ RadJav.C3D.Model = RadJav.Class.extend (
 		}
 
 		return (promise);
-	}, 
+	}
 
 	/** @method _setName
 	* @protected
 	* Set the name of the model.
 	* @param {String} name The name of the model.
 	*/
-	_setName: function (name)
+	Model.prototype._setName = function (name)
 	{
 		this._name = name;
-	}, 
+	}
 
 	/** @method getName
 	* Get the name of the model.
 	* @return {String} The name of the model.
 	*/
-	getName: function ()
+	Model.prototype.getName = function ()
 	{
 		return (this._name);
 	}
-});
+
+	return (Model);
+} ());
 
 /** @class RadJav.C3D.Model.Mesh
 * Information about the 3d Model mesh to load.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Model.Mesh = RadJav.Class.extend (
+RadJav.C3D.Model.Mesh = (function ()
 {
-	init: function (model, obj)
+	function Mesh (model, obj)
 	{
 		if (obj == null)
 			obj = {};
@@ -146,13 +148,13 @@ RadJav.C3D.Model.Mesh = RadJav.Class.extend (
 		* The model that contains this mesh.
 		*/
 		this.model = model;
-	}, 
+	}
 
 	/** @method create
 	* Create the model.
 	* @return {Promise} The promise to execute when completed.
 	*/
-	create: function ()
+	Mesh.prototype.create = function ()
 	{
 		var promise = new Promise (RadJav.keepContext (function (resolve, reject)
 			{
@@ -203,25 +205,27 @@ RadJav.C3D.Model.Mesh = RadJav.Class.extend (
 			}, this));
 
 		return (promise);
-	}, 
+	}
 
 	/** @method getName
 	* Get the name of this object.
 	* @return {String} The name.
 	*/
-	getName: function ()
+	Mesh.prototype.getName = function ()
 	{
 		return (this._name);
 	}
-});
+
+	return (Mesh);
+} ());
 
 /** @class RadJav.C3D.Model.Mesh.Data
 * 3d Model mesh data.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Model.Mesh.Data = RadJav.Class.extend (
+RadJav.C3D.Model.Mesh.Data = (function ()
 {
-	init: function (mesh, obj)
+	function Data (mesh, obj)
 	{
 		/** @property {String} [type="mesh"]
 		* @protected
@@ -268,23 +272,31 @@ RadJav.C3D.Model.Mesh.Data = RadJav.Class.extend (
 		*/
 		this.depthSegments = RadJav.setDefaultValue (obj.depthSegments, 1);
 	}
-});
+
+	return (Data);
+} ());
 
 /** @class RadJav.C3D.Model.Sphere
 * Create a sphere.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.C3D.Model.Sphere = RadJav.C3D.Model.extend (
+RadJav.C3D.Model.Sphere = (function (_super)
 {
-	init: function (object3d, obj, materials, radius)
+	__extends(Sphere, _super);
+
+	function Sphere (object3d, obj, materials, radius)
 	{
-		this._super (object3d, obj, materials);
-		this.mesh = new RadJav.C3D.Model.Mesh (this, this._name);
-		this.mesh.type = "primitive";
-		this.mesh.data = {
+		var _this = _super.call(this, object3d, obj, materials) || this;
+		_this.mesh = new RadJav.C3D.Model.Mesh (_this, _this._name);
+		_this.mesh.type = "primitive";
+		_this.mesh.data = {
 					type: "sphere", 
 					radius: radius
 				};
+
+		return (_this);
 	}
-});
+
+	return (Sphere);
+} (RadJav.C3D.Model));
 

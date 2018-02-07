@@ -27,10 +27,17 @@
 
 namespace RadJAV
 {
-	void Console::createV8Callbacks(v8::Isolate *isolate, v8::Local<v8::Object> object)
+	void Console::createV8Callbacks(v8::Isolate *isolate, v8::Local<v8::Object> object, RJBOOL isNativeConsole)
 	{
-		V8_CALLBACK(object, "print", Console::print);
-		V8_CALLBACK(object, "println", Console::println);
+		if (isNativeConsole == true)
+		{
+			V8_CALLBACK(object, "log", Console::println);
+		}
+		else
+		{
+			V8_CALLBACK(object, "print", Console::print);
+			V8_CALLBACK(object, "println", Console::println);
+		}
 	}
 
 	void Console::print(const v8::FunctionCallbackInfo<v8::Value> &args)

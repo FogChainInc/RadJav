@@ -30,12 +30,16 @@
 			else
 				relPath = "./" + decodeURIComponent (relPath);
 
-			RadJav.runApplicationFromFile (relPath);
+			RadJav.runApplicationFromFile (relPath).then (function ()
+				{
+					document.getElementById ("loading").style.visibility = "hidden";
+				});
 		}
 	</script>
 </head>
 
 <body onload = "setup ();" class = "claro">
+	<div id = "loading" style = "position: absolute; visibility: visible;">Loading...</div>
 </body>
 
 </html>

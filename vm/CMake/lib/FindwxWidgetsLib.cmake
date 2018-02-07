@@ -3,10 +3,12 @@ message (STATUS "Searching for wxWidgets...")
 set (wxWidgets_ROOT_DIR $ENV{WXWIN} CACHE PATH "wxWidgets path")
 fixPath (wxWidgets_ROOT_DIR)
 
-include (FindwxWidgets)
+set (wxWidgets_CONFIGURATION ${wxWidgets_CONFIGURATION})
+find_package (wxWidgets REQUIRED core base webview)
+include (${wxWidgets_USE_FILE})
 
 set (wxWidgets_INCLUDE ${wxWidgets_INCLUDE_DIRS})
-set(wxWidgets_LIBRARIES debug ${WX_webviewd} optimized ${WX_webview} ${wxWidgets_LIBRARIES})
+set (wxWidgets_LIBRARIES debug ${WX_webviewd} optimized ${WX_webview} ${wxWidgets_LIBRARIES})
 
 if (WIN32)
 	set(wxWidgets_LIBRARIES debug 
@@ -15,5 +17,10 @@ if (WIN32)
 		${wxWidgets_LIBRARIES})
 endif ()
 
+if (UNIX)
+	#set (wxWidgets_LIBRARIES debug  optimized  ${wxWidgets_LIBRARIES})
+endif ()
+
 hasLibBeenFound (wxWidgets)
+
 

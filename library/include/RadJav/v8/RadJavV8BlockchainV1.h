@@ -39,6 +39,7 @@
 
 						static void connectToNetwork(const v8::FunctionCallbackInfo<v8::Value> &args);
 						static void on(const v8::FunctionCallbackInfo<v8::Value> &args);
+						static void rpcCommand(const v8::FunctionCallbackInfo<v8::Value> &args);
 
 						// Blockchain
 						static void getBestBlockHash(const v8::FunctionCallbackInfo<v8::Value> &args);
@@ -77,6 +78,8 @@
 						static void getNetworkHashPS(const v8::FunctionCallbackInfo<v8::Value> &args);
 						static void prioritiseTransaction(const v8::FunctionCallbackInfo<v8::Value> &args);
 						static void submitBlock(const v8::FunctionCallbackInfo<v8::Value> &args);
+						static void setGenerate(const v8::FunctionCallbackInfo<v8::Value> &args);
+						static void getGenerate(const v8::FunctionCallbackInfo<v8::Value> &args);
 
 						// Network
 						static void addNode(const v8::FunctionCallbackInfo<v8::Value> &args);
@@ -144,6 +147,9 @@
 						static void sendToAddress(const v8::FunctionCallbackInfo<v8::Value> &args);
 						static void setTxFee(const v8::FunctionCallbackInfo<v8::Value> &args);
 						static void signMessage(const v8::FunctionCallbackInfo<v8::Value> &args);
+						static void walletLock(const v8::FunctionCallbackInfo<v8::Value> &args);
+						static void walletPassphrase(const v8::FunctionCallbackInfo<v8::Value> &args);
+						static void walletPassphraseChange(const v8::FunctionCallbackInfo<v8::Value> &args);
 
 						static void startBlockchain();
 
@@ -151,6 +157,9 @@
 						static int connectArgsc;
 						static char **connectArgsv;
 						static v8::Persistent<v8::Function> *onReadyFunction;
+						static v8::Persistent<v8::Function> *connectBlockFunction;
+						static v8::Persistent<v8::Function> *proofOfWorkFoundFunction;
+						static v8::Persistent<v8::Function> *passphraseRequiredFunction;
 						static v8::Persistent<v8::Function> *onErrorFunction;
 				};
 

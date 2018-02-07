@@ -2,106 +2,267 @@
 \label{class_rad_j_a_v_1_1_rad_jav}\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
 
 
+The main \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}} class, this class handles most if not all functionality.  
+
+
+
+
 {\ttfamily \#include $<$Rad\+Jav.\+h$>$}
 
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \hyperlink{class_rad_j_a_v_1_1_rad_jav_a83b5c34f4d2a7b86e12b8f15e8c80b16}{initialize} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{Rad\+J\+A\+V\+::wx\+Widgets\+Rad\+Jav} $>$ new\+App=nullptr, bool initialize\+Wx\+Widgets=true)
-\item 
-static std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav} $>$ \hyperlink{class_rad_j_a_v_1_1_rad_jav_a50e810b811cade7c92db089ba8a9aa52}{getwx\+Widgets\+App} ()
-\item 
-static void \hyperlink{class_rad_j_a_v_1_1_rad_jav_aca464dc91001ac224b55b1ecd85f37a3}{run\+Application} (\hyperlink{class_rad_j_a_v_1_1_string}{String} application)
+static \mbox{\hyperlink{namespace_rad_j_a_v_a74e0b9a4c586a0346af4029e5a7e3d30}{Rad\+Jav\+Type}} \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a04f3d51b1f677d8a832696a7f5b4bc6e}{initialize}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$ \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} $>$ new\+Args, \mbox{\hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav}} $\ast$new\+App=N\+U\+LL, bool initialize\+Wx\+Widgets=true)
+\begin{DoxyCompactList}\small\item\em Start \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav}} $\ast$ \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a524921ac787c2c33cd9d76e6f89bac67}{getwx\+Widgets\+App}} ()
+\begin{DoxyCompactList}\small\item\em Get the wx\+Widgets system. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{namespace_rad_j_a_v_a74e0b9a4c586a0346af4029e5a7e3d30}{Rad\+Jav\+Type}} \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a0403392e138a7a7ed4b486fc881a1322}{initialize}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$ \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} $>$ new\+Args)
+\begin{DoxyCompactList}\small\item\em Start \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}}. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_af1824373c48cbb29dcf9e6047ec97d78}{setup\+Console\+Output}} ()
+\begin{DoxyCompactList}\small\item\em Setup console output. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_aee26bfc80b2d79f1fd8f1be00078dae9}{run\+Event\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Run the event loop indefinitely. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a59eb027192379f310cbc66db108b075f}{run\+Event\+Loop\+Single\+Step}} ()
+\begin{DoxyCompactList}\small\item\em Run a single step in the event loop. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a6dabcf8258dfb10b1c9a785e20add79c}{shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Shut down and stop all applications. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a7e80e2833cf8f3e223659f0ef3f270ab}{run\+Application}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} application, \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} file\+Name)
 \begin{DoxyCompactList}\small\item\em Run an application. \end{DoxyCompactList}\item 
-static void \hyperlink{class_rad_j_a_v_1_1_rad_jav_a293b050fb802c1d1c1112895388c9c7c}{run\+Application\+From\+File} (\hyperlink{class_rad_j_a_v_1_1_string}{String} file)
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a293b050fb802c1d1c1112895388c9c7c}{run\+Application\+From\+File}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} file)
 \begin{DoxyCompactList}\small\item\em Run an application from a javascript file. \end{DoxyCompactList}\item 
-static void \hyperlink{class_rad_j_a_v_1_1_rad_jav_a31c78e173cd6497c8499d194f36966e0}{show\+Error} (\hyperlink{class_rad_j_a_v_1_1_string}{String} message)
-\begin{DoxyCompactList}\small\item\em Show an error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a70ed4cb4f4b341770046193fcf5118dd}{show\+Message\+Box}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} message, \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} title)
+\begin{DoxyCompactList}\small\item\em Show a message box. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_ab91e1d55577183ed105e393c06df6374}{show\+Error}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} message, R\+J\+B\+O\+OL \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a70ed4cb4f4b341770046193fcf5118dd}{show\+Message\+Box}}=false)
+\begin{DoxyCompactList}\small\item\em Show an error message. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_aa06bae2f115631a90a2426d818499049}{print\+To\+Output\+Window}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} message)
+\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a0f461b48e84744a69df4ff30dbf7d302}{log\+New\+Memory\+Alloc}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_memory_alloc_log}{Memory\+Alloc\+Log}} alloc)
+\item 
+static void \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a6226fe15f13446edc493596b6c029cb7}{remove\+Memory\+Alloc}} (\mbox{\hyperlink{class_rad_j_a_v_1_1_memory_alloc_log}{Memory\+Alloc\+Log}} alloc)
+\item 
+static \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a26e6e428425568f87a7ac59e2eef5359}{report\+Memory\+Leaks}} ()
+\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1_lang}{Lang} $>$ \hyperlink{class_rad_j_a_v_1_1_rad_jav_a241b8010a06fae961e78bb53353f5812}{lang} = N\+U\+LL
-\begin{DoxyCompactList}\small\item\em Handles strings from languages. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Static Protected Attributes}
-\begin{DoxyCompactItemize}
-\item 
-static std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav} $>$ \hyperlink{class_rad_j_a_v_1_1_rad_jav_a5eef44f463c9df58551893a3c0379d68}{app} = nullptr
-\item 
-static std\+::shared\+\_\+ptr$<$ \hyperlink{class_rad_j_a_v_1_1_javascript_engine}{Javascript\+Engine} $>$ \hyperlink{class_rad_j_a_v_1_1_rad_jav_ac66931409be869339bb333af696eeb65}{javascript\+Engine} = nullptr
-\end{DoxyCompactItemize}
+static \mbox{\hyperlink{class_rad_j_a_v_1_1_lang}{Lang}} $\ast$ \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_ac27c2fc21e98d8961c7e98099b71c4f3}{lang}} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em Handles strings from languages. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rad_j_a_v_1_1_theme}{Theme}} $\ast$ \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_ace6c4f9cb9d0d9c248986feeea31150e}{theme}} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em Handles the loaded \mbox{\hyperlink{class_rad_j_a_v_1_1_theme}{Theme}}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav}} $\ast$ \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_aa7084f6f5e9bfddf213a16c06878cb36}{app}} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{namespace_rad_j_a_v_1_1_g_u_i}{G\+UI}} system used to display the \mbox{\hyperlink{namespace_rad_j_a_v_1_1_g_u_i}{G\+UI}}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine}{Javascript\+Engine}} $\ast$ \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_aa80128a74f47d969173d2e7946e0ae6c}{javascript\+Engine}} = N\+U\+LL
+\begin{DoxyCompactList}\small\item\em The javascript engine used to execute applications. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$ \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} $>$ \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_a8a4b1ccb076b4ffa84b285d8c1d1e050}{arguments}}
+\begin{DoxyCompactList}\small\item\em The command line arguments used to start \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{namespace_rad_j_a_v_a7c83af3095bdd8035fd71ff008120f08}{Hash\+Map}}$<$ size\+\_\+t, \mbox{\hyperlink{class_rad_j_a_v_1_1_memory_alloc_log}{Memory\+Alloc\+Log}} $>$ \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav_abb9c47c4a37be67599ee136f9fbbd33e}{memory\+Allocs}}
+\begin{DoxyCompactList}\small\item\em Memory allocations made during debug. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The main \hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav} class, this class handles most if not all functionality. 
+The main \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}} class, this class handles most if not all functionality. 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a524921ac787c2c33cd9d76e6f89bac67}\label{class_rad_j_a_v_1_1_rad_jav_a524921ac787c2c33cd9d76e6f89bac67}} 
 \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!getwx\+Widgets\+App@{getwx\+Widgets\+App}}
 \index{getwx\+Widgets\+App@{getwx\+Widgets\+App}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{getwx\+Widgets\+App()}{getwxWidgetsApp()}}]{\setlength{\rightskip}{0pt plus 5cm}static std\+::shared\+\_\+ptr$<${\bf wx\+Widgets\+Rad\+Jav}$>$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::getwx\+Widgets\+App (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_a50e810b811cade7c92db089ba8a9aa52}{}\label{class_rad_j_a_v_1_1_rad_jav_a50e810b811cade7c92db089ba8a9aa52}
+\subsubsection{\texorpdfstring{getwx\+Widgets\+App()}{getwxWidgetsApp()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav}}$\ast$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::getwx\+Widgets\+App (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get the wx\+Widgets system. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a04f3d51b1f677d8a832696a7f5b4bc6e}\label{class_rad_j_a_v_1_1_rad_jav_a04f3d51b1f677d8a832696a7f5b4bc6e}} 
 \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!initialize@{initialize}}
 \index{initialize@{initialize}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{initialize(std\+::shared\+\_\+ptr$<$ Rad\+J\+A\+V\+::wx\+Widgets\+Rad\+Jav $>$ new\+App=nullptr, bool initialize\+Wx\+Widgets=true)}{initialize(std::shared_ptr< RadJAV::wxWidgetsRadJav > newApp=nullptr, bool initializeWxWidgets=true)}}]{\setlength{\rightskip}{0pt plus 5cm}void Rad\+J\+A\+V\+::\+Rad\+Jav\+::initialize (
-\begin{DoxyParamCaption}
-\item[{std\+::shared\+\_\+ptr$<$ {\bf Rad\+J\+A\+V\+::wx\+Widgets\+Rad\+Jav} $>$}]{new\+App = {\ttfamily nullptr}, }
-\item[{bool}]{initialize\+Wx\+Widgets = {\ttfamily true}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_a83b5c34f4d2a7b86e12b8f15e8c80b16}{}\label{class_rad_j_a_v_1_1_rad_jav_a83b5c34f4d2a7b86e12b8f15e8c80b16}
-Start \hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav} with wx\+Widgets already created. \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!run\+Application@{run\+Application}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_rad_j_a_v_a74e0b9a4c586a0346af4029e5a7e3d30}{Rad\+Jav\+Type}} Rad\+J\+A\+V\+::\+Rad\+Jav\+::initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$ \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} $>$}]{new\+Args,  }\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav}} $\ast$}]{new\+App = {\ttfamily NULL},  }\item[{bool}]{initialize\+Wx\+Widgets = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Start \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}}. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a0403392e138a7a7ed4b486fc881a1322}\label{class_rad_j_a_v_1_1_rad_jav_a0403392e138a7a7ed4b486fc881a1322}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!initialize@{initialize}}
+\index{initialize@{initialize}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_rad_j_a_v_a74e0b9a4c586a0346af4029e5a7e3d30}{Rad\+Jav\+Type}} Rad\+J\+A\+V\+::\+Rad\+Jav\+::initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$ \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} $>$}]{new\+Args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Start \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}}. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a0f461b48e84744a69df4ff30dbf7d302}\label{class_rad_j_a_v_1_1_rad_jav_a0f461b48e84744a69df4ff30dbf7d302}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!log\+New\+Memory\+Alloc@{log\+New\+Memory\+Alloc}}
+\index{log\+New\+Memory\+Alloc@{log\+New\+Memory\+Alloc}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{log\+New\+Memory\+Alloc()}{logNewMemoryAlloc()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::log\+New\+Memory\+Alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_memory_alloc_log}{Memory\+Alloc\+Log}}}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_aa06bae2f115631a90a2426d818499049}\label{class_rad_j_a_v_1_1_rad_jav_aa06bae2f115631a90a2426d818499049}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!print\+To\+Output\+Window@{print\+To\+Output\+Window}}
+\index{print\+To\+Output\+Window@{print\+To\+Output\+Window}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{print\+To\+Output\+Window()}{printToOutputWindow()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::print\+To\+Output\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Primarily for Visual Studio debugging. This will print to the output window, or to the console if on another platform. \mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a6226fe15f13446edc493596b6c029cb7}\label{class_rad_j_a_v_1_1_rad_jav_a6226fe15f13446edc493596b6c029cb7}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!remove\+Memory\+Alloc@{remove\+Memory\+Alloc}}
+\index{remove\+Memory\+Alloc@{remove\+Memory\+Alloc}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{remove\+Memory\+Alloc()}{removeMemoryAlloc()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::remove\+Memory\+Alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_memory_alloc_log}{Memory\+Alloc\+Log}}}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a26e6e428425568f87a7ac59e2eef5359}\label{class_rad_j_a_v_1_1_rad_jav_a26e6e428425568f87a7ac59e2eef5359}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!report\+Memory\+Leaks@{report\+Memory\+Leaks}}
+\index{report\+Memory\+Leaks@{report\+Memory\+Leaks}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{report\+Memory\+Leaks()}{reportMemoryLeaks()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} Rad\+J\+A\+V\+::\+Rad\+Jav\+::report\+Memory\+Leaks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a7e80e2833cf8f3e223659f0ef3f270ab}\label{class_rad_j_a_v_1_1_rad_jav_a7e80e2833cf8f3e223659f0ef3f270ab}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!run\+Application@{run\+Application}}
 \index{run\+Application@{run\+Application}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{run\+Application(\+String application)}{runApplication(String application)}}]{\setlength{\rightskip}{0pt plus 5cm}void Rad\+J\+A\+V\+::\+Rad\+Jav\+::run\+Application (
-\begin{DoxyParamCaption}
-\item[{{\bf String}}]{application}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_aca464dc91001ac224b55b1ecd85f37a3}{}\label{class_rad_j_a_v_1_1_rad_jav_aca464dc91001ac224b55b1ecd85f37a3}
+\subsubsection{\texorpdfstring{run\+Application()}{runApplication()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::run\+Application (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{application,  }\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
 
 
 Run an application. 
 
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a293b050fb802c1d1c1112895388c9c7c}\label{class_rad_j_a_v_1_1_rad_jav_a293b050fb802c1d1c1112895388c9c7c}} 
 \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!run\+Application\+From\+File@{run\+Application\+From\+File}}
 \index{run\+Application\+From\+File@{run\+Application\+From\+File}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{run\+Application\+From\+File(\+String file)}{runApplicationFromFile(String file)}}]{\setlength{\rightskip}{0pt plus 5cm}void Rad\+J\+A\+V\+::\+Rad\+Jav\+::run\+Application\+From\+File (
-\begin{DoxyParamCaption}
-\item[{{\bf String}}]{file}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_a293b050fb802c1d1c1112895388c9c7c}{}\label{class_rad_j_a_v_1_1_rad_jav_a293b050fb802c1d1c1112895388c9c7c}
+\subsubsection{\texorpdfstring{run\+Application\+From\+File()}{runApplicationFromFile()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::run\+Application\+From\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
 
 
 Run an application from a javascript file. 
 
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_aee26bfc80b2d79f1fd8f1be00078dae9}\label{class_rad_j_a_v_1_1_rad_jav_aee26bfc80b2d79f1fd8f1be00078dae9}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!run\+Event\+Loop@{run\+Event\+Loop}}
+\index{run\+Event\+Loop@{run\+Event\+Loop}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{run\+Event\+Loop()}{runEventLoop()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::run\+Event\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Run the event loop indefinitely. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a59eb027192379f310cbc66db108b075f}\label{class_rad_j_a_v_1_1_rad_jav_a59eb027192379f310cbc66db108b075f}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!run\+Event\+Loop\+Single\+Step@{run\+Event\+Loop\+Single\+Step}}
+\index{run\+Event\+Loop\+Single\+Step@{run\+Event\+Loop\+Single\+Step}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{run\+Event\+Loop\+Single\+Step()}{runEventLoopSingleStep()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::run\+Event\+Loop\+Single\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Run a single step in the event loop. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_af1824373c48cbb29dcf9e6047ec97d78}\label{class_rad_j_a_v_1_1_rad_jav_af1824373c48cbb29dcf9e6047ec97d78}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!setup\+Console\+Output@{setup\+Console\+Output}}
+\index{setup\+Console\+Output@{setup\+Console\+Output}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{setup\+Console\+Output()}{setupConsoleOutput()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::setup\+Console\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Setup console output. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_ab91e1d55577183ed105e393c06df6374}\label{class_rad_j_a_v_1_1_rad_jav_ab91e1d55577183ed105e393c06df6374}} 
 \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!show\+Error@{show\+Error}}
 \index{show\+Error@{show\+Error}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{show\+Error(\+String message)}{showError(String message)}}]{\setlength{\rightskip}{0pt plus 5cm}void Rad\+J\+A\+V\+::\+Rad\+Jav\+::show\+Error (
-\begin{DoxyParamCaption}
-\item[{{\bf String}}]{message}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_a31c78e173cd6497c8499d194f36966e0}{}\label{class_rad_j_a_v_1_1_rad_jav_a31c78e173cd6497c8499d194f36966e0}
+\subsubsection{\texorpdfstring{show\+Error()}{showError()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::show\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{message,  }\item[{R\+J\+B\+O\+OL}]{show\+Message\+Box = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
 
 
 Show an error message. 
 
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a70ed4cb4f4b341770046193fcf5118dd}\label{class_rad_j_a_v_1_1_rad_jav_a70ed4cb4f4b341770046193fcf5118dd}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!show\+Message\+Box@{show\+Message\+Box}}
+\index{show\+Message\+Box@{show\+Message\+Box}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{show\+Message\+Box()}{showMessageBox()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::show\+Message\+Box (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{message,  }\item[{\mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}}}]{title }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Show a message box. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a6dabcf8258dfb10b1c9a785e20add79c}\label{class_rad_j_a_v_1_1_rad_jav_a6dabcf8258dfb10b1c9a785e20add79c}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{shutdown()}{shutdown()}}
+{\footnotesize\ttfamily void Rad\+J\+A\+V\+::\+Rad\+Jav\+::shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Shut down and stop all applications. 
+
 
 
 \subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_aa7084f6f5e9bfddf213a16c06878cb36}\label{class_rad_j_a_v_1_1_rad_jav_aa7084f6f5e9bfddf213a16c06878cb36}} 
 \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!app@{app}}
 \index{app@{app}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{app}{app}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf Rad\+J\+A\+V\+::wx\+Widgets\+Rad\+Jav} $>$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::app = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_a5eef44f463c9df58551893a3c0379d68}{}\label{class_rad_j_a_v_1_1_rad_jav_a5eef44f463c9df58551893a3c0379d68}
+\subsubsection{\texorpdfstring{app}{app}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1wx_widgets_rad_jav}{wx\+Widgets\+Rad\+Jav}} $\ast$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::app = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The \mbox{\hyperlink{namespace_rad_j_a_v_1_1_g_u_i}{G\+UI}} system used to display the \mbox{\hyperlink{namespace_rad_j_a_v_1_1_g_u_i}{G\+UI}}. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_a8a4b1ccb076b4ffa84b285d8c1d1e050}\label{class_rad_j_a_v_1_1_rad_jav_a8a4b1ccb076b4ffa84b285d8c1d1e050}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!arguments@{arguments}}
+\index{arguments@{arguments}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{arguments}{arguments}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_array}{Array}}$<$ \mbox{\hyperlink{class_rad_j_a_v_1_1_string}{String}} $>$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::arguments\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The command line arguments used to start \mbox{\hyperlink{class_rad_j_a_v_1_1_rad_jav}{Rad\+Jav}}. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_aa80128a74f47d969173d2e7946e0ae6c}\label{class_rad_j_a_v_1_1_rad_jav_aa80128a74f47d969173d2e7946e0ae6c}} 
 \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!javascript\+Engine@{javascript\+Engine}}
 \index{javascript\+Engine@{javascript\+Engine}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{javascript\+Engine}{javascriptEngine}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf Rad\+J\+A\+V\+::\+Javascript\+Engine} $>$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::javascript\+Engine = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_ac66931409be869339bb333af696eeb65}{}\label{class_rad_j_a_v_1_1_rad_jav_ac66931409be869339bb333af696eeb65}
+\subsubsection{\texorpdfstring{javascript\+Engine}{javascriptEngine}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_javascript_engine}{Javascript\+Engine}} $\ast$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::javascript\+Engine = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The javascript engine used to execute applications. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_ac27c2fc21e98d8961c7e98099b71c4f3}\label{class_rad_j_a_v_1_1_rad_jav_ac27c2fc21e98d8961c7e98099b71c4f3}} 
 \index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!lang@{lang}}
 \index{lang@{lang}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
-\subsubsection[{\texorpdfstring{lang}{lang}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::shared\+\_\+ptr$<$ {\bf Lang} $>$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::lang = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{class_rad_j_a_v_1_1_rad_jav_a241b8010a06fae961e78bb53353f5812}{}\label{class_rad_j_a_v_1_1_rad_jav_a241b8010a06fae961e78bb53353f5812}
+\subsubsection{\texorpdfstring{lang}{lang}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_lang}{Lang}} $\ast$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::lang = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
 
 
 Handles strings from languages. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_abb9c47c4a37be67599ee136f9fbbd33e}\label{class_rad_j_a_v_1_1_rad_jav_abb9c47c4a37be67599ee136f9fbbd33e}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!memory\+Allocs@{memory\+Allocs}}
+\index{memory\+Allocs@{memory\+Allocs}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{memory\+Allocs}{memoryAllocs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_rad_j_a_v_a7c83af3095bdd8035fd71ff008120f08}{Hash\+Map}}$<$ size\+\_\+t, \mbox{\hyperlink{class_rad_j_a_v_1_1_memory_alloc_log}{Memory\+Alloc\+Log}} $>$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::memory\+Allocs\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Memory allocations made during debug. 
+
+\mbox{\Hypertarget{class_rad_j_a_v_1_1_rad_jav_ace6c4f9cb9d0d9c248986feeea31150e}\label{class_rad_j_a_v_1_1_rad_jav_ace6c4f9cb9d0d9c248986feeea31150e}} 
+\index{Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}!theme@{theme}}
+\index{theme@{theme}!Rad\+J\+A\+V\+::\+Rad\+Jav@{Rad\+J\+A\+V\+::\+Rad\+Jav}}
+\subsubsection{\texorpdfstring{theme}{theme}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_rad_j_a_v_1_1_theme}{Theme}} $\ast$ Rad\+J\+A\+V\+::\+Rad\+Jav\+::theme = N\+U\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Handles the loaded \mbox{\hyperlink{class_rad_j_a_v_1_1_theme}{Theme}}. 
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/\+Rad\+Jav/\hyperlink{_rad_jav_8h}{Rad\+Jav.\+h}\item 
-src/\+Rad\+Jav/\hyperlink{_rad_jav_8cpp}{Rad\+Jav.\+cpp}\end{DoxyCompactItemize}
+include/\+Rad\+Jav/\mbox{\hyperlink{_rad_jav_8h}{Rad\+Jav.\+h}}\item 
+src/\+Rad\+Jav/\mbox{\hyperlink{_rad_jav_8cpp}{Rad\+Jav.\+cpp}}\end{DoxyCompactItemize}

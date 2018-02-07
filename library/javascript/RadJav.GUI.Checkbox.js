@@ -23,9 +23,11 @@
 * A checkbox.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (
+RadJav.GUI.Checkbox = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Checkbox, _super);
+
+	function Checkbox (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,20 +38,28 @@ RadJav.GUI.Checkbox = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 80;
+			obj.size.y = 40;
+		}
+
 		if (obj.checked != null)
 			obj._checked = obj.checked;
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Checkbox", 
-					size: "80, 40"
-				}, false);
-		this._super (obj, text, parent);
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Checkbox";
 
 		/** @property {Boolean} [_checked=false]
 		* If set to true, the box is checked.
 		*/
-		this._checked = RadJav.setDefaultValue (obj._checked, false);
-		this._createAppObj();
+		_this._checked = RadJav.setDefaultValue (obj._checked, false);
+
+		return (_this);
 	}
-});
+
+	return (Checkbox);
+}(RadJav.GUI.GObject));
 

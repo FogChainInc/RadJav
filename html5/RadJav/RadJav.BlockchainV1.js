@@ -28,6 +28,29 @@
 {
 }*/
 
+/** @method connectToNetwork
+* @static
+* Connect to the RadJav Blockchain V1 (XRJV1) network.
+* Available on platforms: Windows,Linux,OSX
+*/
+/*RadJav.BlockchainV1.connectToNetwork = function ()
+{
+}*/
+
+/** @method on
+* @static
+* When an event occurs, execute a function.
+* Available on platforms: Windows,Linux,OSX
+* @param {String} eventName The event associated with the event.
+* Possible events are:
+* * ready
+* * error
+* @param {Function} eventFunction The function to execute.
+*/
+/*RadJav.BlockchainV1.on = function (eventName, eventFunction)
+{
+}*/
+
 /** @method getBestBlockHash
 * @static
 * Available on platforms: Windows,Linux,OSX

@@ -23,9 +23,11 @@
 * A 3d canvas.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
+RadJav.GUI.Canvas3D = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Canvas3D, _super);
+
+	function Canvas3D (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,40 +38,48 @@ RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Canvas3D", 
-					size: "500,350"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 500;
+			obj.size.y = 350;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Canvas3D";
 
 		/** @property {Mixed} [_renderer=null]
 		* @protected
 		* The renderer used to render the canvas.
 		*/
-		this._renderer = RadJav.setDefaultValue (obj._renderer, null);
+		_this._renderer = RadJav.setDefaultValue (obj._renderer, null);
 		/** @property {Number} [_rendererType=1]
 		* @protected
 		* The renderer type used to render the canvas.
 		*/
-		this._rendererType = RadJav.setDefaultValue (obj._renderer, 1);
+		_this._rendererType = RadJav.setDefaultValue (obj._renderer, 1);
 		/** @property {Object} [_currentCamera=null]
 		* @protected
 		* The current camera used to render the scene.
 		*/
-		this._currentCamera = RadJav.setDefaultValue (obj._currentCamera, null);
+		_this._currentCamera = RadJav.setDefaultValue (obj._currentCamera, null);
 		/** @property {Object} [_models={}]
 		* @protected
 		* The models that have been loaded for use. Each key is a RadJav.C3D.Model.
 		*/
-		this._models = RadJav.setDefaultValue (obj._models, {});
+		_this._models = RadJav.setDefaultValue (obj._models, {});
 		/** @property {Object} [_materials={}]
 		* @protected
 		* The materials that have been loaded for use. Each key is a RadJav.C3D.Material.
 		*/
-		this._materials = RadJav.setDefaultValue (obj._materials, {});
-		this._createAppObj();
+		_this._materials = RadJav.setDefaultValue (obj._materials, {});
+
+		return (_this);
 	}
-});
+
+	return (Canvas3D);
+}(RadJav.GUI.GObject));
 
 /** @class RadJav.GUI.Canvas3D.RendererTypes
 * A 3d canvas.

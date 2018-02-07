@@ -41,6 +41,8 @@
 				static void getApplicationPath(const v8::FunctionCallbackInfo<v8::Value> &args);
 				static void getCurrentWorkingPath(const v8::FunctionCallbackInfo<v8::Value> &args);
 				static void setCurrentWorkingPath(const v8::FunctionCallbackInfo<v8::Value> &args);
+				static void saveFileAs(const v8::FunctionCallbackInfo<v8::Value> &args);
+				static void openFileAs(const v8::FunctionCallbackInfo<v8::Value> &args);
 
 				static v8::Persistent<v8::Value> *onReadyFunction;
 		};

@@ -1,6 +1,6 @@
 /*
 	MIT-LICENSE
-	Copyright (c) 2017 Higher Edge Software, LLC
+	Copyright (c) 2015 Higher Edge Software, LLC
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
 	and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -23,9 +23,11 @@
 * A 3d canvas.
 * Available on platforms: Windows,Linux,OSX,HTML5
 */
-RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
+RadJav.GUI.Canvas3D = (function (_super)
 {
-	init: function (obj, text, parent)
+	__extends(Canvas3D, _super);
+
+	function Canvas3D (obj, text, parent)
 	{
 		if (obj == null)
 			obj = {};
@@ -36,40 +38,47 @@ RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
 			obj = { name: name };
 		}
 
-		RadJav.copyProperties (obj, {
-					type: "RadJav.GUI.Canvas3D", 
-					size: "500,350"
-				}, false);
-		this._super (obj, text, parent);
+		if (obj.size == null)
+		{
+			obj.size = new RadJav.Vector2 ();
+			obj.size.x = 500;
+			obj.size.y = 350;
+		}
+
+		var _this = _super.call(this, obj, text, parent) || this;
+
+		_this.type = "RadJav.GUI.Canvas3D";
 
 		/** @property {Mixed} [_renderer=null]
 		* @protected
 		* The renderer used to render the canvas.
 		*/
-		this._renderer = RadJav.setDefaultValue (obj._renderer, null);
+		_this._renderer = RadJav.setDefaultValue (obj._renderer, null);
 		/** @property {Number} [_rendererType=1]
 		* @protected
 		* The renderer type used to render the canvas.
 		*/
-		this._rendererType = RadJav.setDefaultValue (obj._renderer, 1);
+		_this._rendererType = RadJav.setDefaultValue (obj._renderer, 1);
 		/** @property {Object} [_currentCamera=null]
 		* @protected
 		* The current camera used to render the scene.
 		*/
-		this._currentCamera = RadJav.setDefaultValue (obj._currentCamera, null);
+		_this._currentCamera = RadJav.setDefaultValue (obj._currentCamera, null);
 		/** @property {Object} [_models={}]
 		* @protected
 		* The models that have been loaded for use. Each key is a RadJav.C3D.Model.
 		*/
-		this._models = RadJav.setDefaultValue (obj._models, {});
+		_this._models = RadJav.setDefaultValue (obj._models, {});
 		/** @property {Object} [_materials={}]
 		* @protected
 		* The materials that have been loaded for use. Each key is a RadJav.C3D.Material.
 		*/
-		this._materials = RadJav.setDefaultValue (obj._materials, {});
-	}, 
+		_this._materials = RadJav.setDefaultValue (obj._materials, {});
 
-	create: function ()
+		return (_this);
+	}
+
+	Canvas3D.prototype.create = function ()
 	{
 		var promise = RadJav.theme.event (this.type, "create", this).then (
 			RadJav.keepContext (function (html)
@@ -139,7 +148,7 @@ RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
 			}, this));
 
 		return (promise);
-	}, 
+	}
 
 	/** @method _setupDefaultCamera
 	* @protected
@@ -147,7 +156,7 @@ RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
 	* @return {Promise} The promise to execute when the camera has finished being 
 	* created.
 	*/
-	_setupDefaultCamera: function ()
+	Canvas3D.prototype._setupDefaultCamera = function ()
 	{
 		var camera = new RadJav.C3D.Camera (this, "camera");
 
@@ -155,26 +164,26 @@ RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
 			{
 				this._currentCamera = cam;
 			}, this)));
-	}, 
+	}
 
 	/** @method _setupDefaultSceneManager
 	* @protected
 	* Setup the default scene manager.
 	* @return {RadJav.GUI.GObject} The parent of this object.
 	*/
-	_setupDefaultSceneManager: function ()
+	Canvas3D.prototype._setupDefaultSceneManager = function ()
 	{
 		this._sceneManager = new THREE.Scene ();
-	}, 
+	}
 
 	/** @method setAmbientLightColor
 	* Set the ambient light color of the scene.
 	* @param {RadJav.Color} color The color.
 	*/
-	setAmbientLightColor: function (colour)
+	Canvas3D.prototype.setAmbientLightColor = function (colour)
 	{
 		this._sceneManager.add (new THREE.AmbientLight (colour.toHexInt ()));
-	}, 
+	}
 
 	/** @method createEntity
 	* Create an entity to display in the scene.
@@ -183,56 +192,76 @@ RadJav.GUI.Canvas3D = RadJav.GUI.GObject.extend (
 	* @param {RadJav.C3D.Model} model The 3d model to create.
 	* @return {Promise} The promise to execute when the entity has finished creating.
 	*/
-	createEntity: function (name, parent, model)
+	Canvas3D.prototype.createEntity = function (name, parent, model)
 	{
 		var entity = new RadJav.C3D.Entity (this, name, parent, model);
 
 		return (entity.create ());
-	}, 
+	}
 
 	/** @method addModel
 	* Add a loaded model for use.
 	* @param {RadJav.C3D.Model} model The model to add.
 	*/
-	addModel: function (model)
+	Canvas3D.prototype.addModel = function (model)
 	{
 		this._models[model._name] = model;
-	}, 
+	}
 
 	/** @method addMaterial
 	* Add a loaded material for use.
 	* @param {RadJav.C3D.Material} material The material to add.
 	*/
-	addMaterial: function (material)
+	Canvas3D.prototype.addMaterial = function (material)
 	{
 		this._materials[material._name] = material;
-	}, 
+	}
 
 	/** @method getNumModels
 	* Get the number of models that have been loaded.
 	*/
-	getNumModels: function ()
+	Canvas3D.prototype.getNumModels = function ()
 	{
 		return (Object.keys (this._models).length);
-	}, 
+	}
 
 	/** @method getNumMaterials
 	* Get the number of materials that have been loaded.
 	*/
-	getNumMaterials: function ()
+	Canvas3D.prototype.getNumMaterials = function ()
 	{
 		return (Object.keys (this._materials).length);
-	}, 
+	}
 
 	/** @method render
 	* Perform the actual rendering.
 	*/
-	render: function ()
+	Canvas3D.prototype.render = function ()
 	{
 		requestAnimationFrame (RadJav.keepContext (this.render, this));
 		this._renderer.render (this._sceneManager, this._currentCamera._obj3d);
 	}
-});
+
+	/** @method createWorld
+	* Set the ambient light color of the scene.
+	* @param {RadJav.Color} color The color.
+	*/
+	Canvas3D.prototype.createWorld = function (colour)
+	{
+		this._sceneManager.add (new THREE.AmbientLight (colour.toHexInt ()));
+	}
+
+	/** @method setWorld
+	* Set the ambient light color of the scene.
+	* @param {RadJav.Color} color The color.
+	*/
+	Canvas3D.prototype.setWorld = function (colour)
+	{
+		this._sceneManager.add (new THREE.AmbientLight (colour.toHexInt ()));
+	}
+
+	return (Canvas3D);
+}(RadJav.GUI.GObject));
 
 /** @class RadJav.GUI.Canvas3D.RendererTypes
 * A 3d canvas.

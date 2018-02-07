@@ -17,7 +17,9 @@
 	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+
 var RadJav = {};
+RadJav.useEval = true;
 RadJav._isInitialized = false;
 RadJav._included = [];
 
@@ -91,6 +93,18 @@ RadJav.initialize = function (libraries)
 			Promise.all (promises).then (function ()
 				{
 					RadJav._isInitialized = true;
+
+					if (RadJav.useEval == false)
+					{
+						eval = Function = function ()
+						{
+							var msg = "RadJav disables eval by default. Set RadJav.useEval = true; to enable it.";
+
+							alert (msg);
+							throw msg;
+						}
+					}
+
 					resolve ();
 				});
 		}, RadJav, arguments));
@@ -100,7 +114,7 @@ RadJav.initialize = function (libraries)
 RadJav.getStandardLibrary = function ()
 {
 	var includes = [{ file: "RadJav.Circle", themeFile: false }, { file: "RadJav.Rectangle", themeFile: false }, 
-			{ file: "RadJav.Vector2", themeFile: false }, { file: "RadJav.Color", themeFile: false }];
+			{ file: "RadJav.Vector2", themeFile: false, loadFirst: true }, { file: "RadJav.Color", themeFile: false }];
 
 	return (includes);
 };
@@ -123,8 +137,8 @@ RadJav.getC3DLibrary = function ()
 	var includes = [{ file: "RadJav.GUI.Canvas3D", themeFile: true }, 
 			{ file: "RadJav.C3D.Object3D", themeFile: false, loadFirst: true }, 
 			{ file: "RadJav.C3D.Camera", themeFile: false }, { file: "RadJav.C3D.Entity", themeFile: false }, 
-			{ file: "RadJav.C3D.Transform", themeFile: false }, { file: "RadJav.Vector3", themeFile: false }, 
-			{ file: "RadJav.Vector4", themeFile: false }, { file: "RadJav.Quaternion", themeFile: false }, 
+			{ file: "RadJav.C3D.Transform", themeFile: true }, { file: "RadJav.Vector3", themeFile: false, loadFirst: true }, 
+			{ file: "RadJav.Vector4", themeFile: false, loadFirst: true }, { file: "RadJav.Quaternion", themeFile: false }, 
 			{ file: "RadJav.C3D.Model", themeFile: false, loadFirst: false }, 
 			{ file: "RadJav.C3D.Material", themeFile: false, loadFirst: false }];
 
@@ -173,7 +187,7 @@ RadJav.runApplication = function (file)
 			{
 				promise = include (file).then (function (data)
 					{
-						var func = new Function (data);
+						var func = new _Function (data);
 						func ();
 						resolve ();
 					});
@@ -619,62 +633,21 @@ RadJav.combineString = function()
 	return (strReturn);
 }
 
-RadJav.classInitializing = false; 
-RadJav.fnTest = / xyz / .test(function() { xyz; }) ? / \\b_super\\b / : / .* / ; 
+_eval = eval;
+_Function = Function;
+RadJav.default = RadJav;
 
-// The base Class implementation (does nothing)
-RadJav.Class = function() {};
+// This is taken from generated TypeScript code. Thanks Microsoft!
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 
-// Create a new Class that inherits from this class
-RadJav.Class.extend = function(prop) {
-	var _super = this.prototype;
-
-	// Instantiate a base class (but only create the instance,
-	// don't run the init constructor)
-	RadJav.classInitializing = true;
-	var prototype = new this();
-	RadJav.classInitializing = false;
-
-	// Copy the properties over onto the new prototype
-	for (var name in prop) {
-		// Check if we're overwriting an existing function
-		prototype[name] = typeof prop[name] == "function" &&
-			typeof _super[name] == "function" && RadJav.fnTest.test(prop[name]) ?
-			(function(name, fn) {
-			return function() {
-				var tmp = this._super;
-
-				// Add a new ._super() method that is the same method
-				// but on the super-class
-				this._super = _super[name];
-
-				// The method only need to be bound temporarily, so we
-				// remove it when we're done executing
-				var ret = fn.apply(this, arguments);
-				this._super = tmp;
-
-				return ret;
-			};
-		})(name, prop[name]) :
-			prop[name];
-	}
-
-	// The dummy class constructor
-	function Class() {
-		// All construction is actually done in the init method
-		if (!RadJav.classInitializing && this.init)
-			this.init.apply(this, arguments);
-	}
-
-	// Populate our constructed prototype object
-	Class.prototype = prototype;
-
-	// Enforce the constructor to be what we expect
-	Class.prototype.constructor = Class;
-
-	// And make this class extendable
-	Class.extend = arguments.callee;
-
-	return Class;
-};
+var console = {};
 

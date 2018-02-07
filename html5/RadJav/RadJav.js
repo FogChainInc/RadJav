@@ -1,6 +1,6 @@
 /*
 	MIT-LICENSE
-	Copyright (c) 2017 Higher Edge Software, LLC
+	Copyright (c) 2015 Higher Edge Software, LLC
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
 	and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -28,6 +28,10 @@
 */
 var RadJav = 
 {
+	/** @property {Boolean} [useEval=false]
+	* Allow the use of eval.
+	*/
+	useEval: true, 
 	/** @property {Number} [MIN_VERSION=0.05]
 	* The minimum version of code that can be ran.
 	*/
@@ -119,7 +123,7 @@ var RadJav =
 					{
 						if (response != "")
 						{
-							var func = new Function (response);
+							var func = new _Function (response);
 							func.apply (window, []);
 						}
 					}
@@ -213,6 +217,18 @@ var RadJav =
 				Promise.all (promises).then (function ()
 					{
 						RadJav._isInitialized = true;
+
+						if (RadJav.useEval == false)
+						{
+							eval = Function = function ()
+							{
+								var msg = "RadJav disables eval by default. Set RadJav.useEval = true; to enable it.";
+
+								alert (msg);
+								throw msg;
+							}
+						}
+
 						resolve ();
 					});
 			}, RadJav, arguments));
@@ -241,6 +257,7 @@ var RadJav =
 	getGUILibrary: function ()
 	{
 		var includes = [{ file: "RadJav.GUI.GObject", themeFile: true, loadFirst: true }, 
+				{ file: "RadJav.Font", themeFile: false, loadFirst: true }, 
 				{ file: "RadJav.GUI.Window", themeFile: true }, { file: "RadJav.GUI.MenuBar", themeFile: true }, 
 				{ file: "RadJav.GUI.MenuItem", themeFile: true }, { file: "RadJav.GUI.Button", themeFile: true }, 
 				{ file: "RadJav.GUI.Textbox", themeFile: true }, { file: "RadJav.GUI.Checkbox", themeFile: true }, 
@@ -248,7 +265,7 @@ var RadJav =
 				{ file: "RadJav.GUI.Image", themeFile: true }, { file: "RadJav.GUI.Label", themeFile: true }, 
 				{ file: "RadJav.GUI.Container", themeFile: true }, 
 				{ file: "RadJav.GUI.HTMLElement", themeFile: true }, 
-				{ file: "RadJav.Font", themeFile: false }, { file: "RadJav.GUI.Combobox", themeFile: true }, 
+				{ file: "RadJav.GUI.Combobox", themeFile: true }, 
 				{ file: "RadJav.GUI.Textarea", themeFile: true }];
 
 		return (includes);
@@ -263,6 +280,8 @@ var RadJav =
 		var includes = [{ file: "RadJav.GUI.Window", themeFile: true }, 
 				{ file: "RadJav.GUI.Canvas3D", themeFile: true }, 
 				{ file: "RadJav.C3D.Object3D", themeFile: false, loadFirst: true }, 
+				{ file: "RadJav.GUI.GObject", themeFile: false, loadFirst: true }, 
+				{ file: "RadJav.Font", themeFile: false }, 
 				{ file: "RadJav.C3D.Camera", themeFile: false }, { file: "RadJav.C3D.Entity", themeFile: false }, 
 				{ file: "RadJav.C3D.Transform", themeFile: false }, { file: "RadJav.Vector3", themeFile: false }, 
 				{ file: "RadJav.Vector4", themeFile: false }, { file: "RadJav.Quaternion", themeFile: false }, 
@@ -316,7 +335,7 @@ var RadJav =
 									else
 										file = includeObj;
 
-									if (eval ("if (" + file + " != null){true;}else{false;}") == false)
+									if (_eval ("if (" + file + " != null){true;}else{false;}") == false)
 										shouldIncludeFile = true;
 
 									if (RadJav.isMinified == false)
@@ -352,7 +371,7 @@ var RadJav =
 									else
 										file = includeObj;
 
-									if (eval ("if (" + file + " != null){true;}else{false;}") == false)
+									if (_eval ("if (" + file + " != null){true;}else{false;}") == false)
 										shouldIncludeFile = true;
 
 									if (RadJav.isMinified == false)
@@ -391,7 +410,7 @@ var RadJav =
 					RadJav._getResponse (RadJav.baseUrl + "/languages/" + RadJav.selectedLanguage + ".js")
 						.then (function (data)
 							{
-								RadJav._lang = eval (data);
+								RadJav._lang = _eval (data);
 								resolve ();
 							});
 				}
@@ -460,29 +479,24 @@ var RadJav =
 	*/
 	runApplication: function (file)
 	{
-		var promise = RadJav.initialize ().then (RadJav.keepContext (function ()
-			{
-				var promise = null;
+		var promise = null;
 
-				if (typeof (file) == "string")
+		if (typeof (file) == "string")
+		{
+			promise = RadJav.include (file).then (RadJav.keepContext (function (data)
 				{
-					promise = RadJav.include (file).then (RadJav.keepContext (function (data)
-						{
-							var func = new Function (data);
-							func ();
-						}, this));
-				}
-				else
+					var func = new _Function (data);
+					func ();
+				}, this));
+		}
+		else
+		{
+			promise = new Promise (RadJav.keepContext (function (resolve, reject, func)
 				{
-					promise = new Promise (RadJav.keepContext (function (resolve, reject, func)
-						{
-							func ();
-							resolve ();
-						}, this, file));
-				}
-
-				return (promise);
-			}, this));
+					func ();
+					resolve ();
+				}, this, file));
+		}
 
 		return (promise);
 	}, 
@@ -954,7 +968,7 @@ RadJav.Theme = function (obj)
 								try
 								{
 									if (typeof (data) == "string")
-										RadJav.Theme.exports = eval (data);
+										RadJav.Theme.exports = _eval (data);
 
 									if (RadJav.Theme.exports.init != null)
 										RadJav.Theme.exports.init ();
@@ -1066,7 +1080,7 @@ RadJav.Theme = function (obj)
 											{
 												try
 												{
-													RadJav.Theme.themeObjects[tfile] = eval (data);
+													RadJav.Theme.themeObjects[tfile] = _eval (data);
 												}
 												catch (ex)
 												{
@@ -1254,7 +1268,7 @@ RadJav.Theme.loadTheme = function (url, data)
 
 	try
 	{
-		var obj = eval (data);
+		var obj = _eval (data);
 		theme = new RadJav.Theme (obj);
 		theme.url = url;
 	}
@@ -1506,16 +1520,6 @@ RadJav.OS.onReady = function (func)
 {
 	RadJav.OS.HTML5.ready (window).then (func);
 }
-
-/** @method exec
-* @static
-* Exec a system command.
-* Available on platforms: Windows,Linux,OSX
-* @return {Number} The code returned from the executed command.
-*/
-/*RadJav.OS.exec = function ()
-{
-}*/
 
 /** @method getDocumentsPath
 * @static
@@ -1813,7 +1817,7 @@ RadJav.OS.HTML5.getHTMLDOM = function (str)
 	div.innerHTML = str;
 
 	return (div.firstChild);
-}, 
+}
 
 /** @method appendHTML
 * Append HTML to an existing HTML DOM object.
@@ -1834,7 +1838,7 @@ RadJav.OS.HTML5.appendHTML = function (obj, html)
 		html = RadJav.OS.HTML5.getHTMLDOM (html);
 
 	return (obj.appendChild (html));
-}, 
+}
 
 /** @method selectDOM
 * Use a selector to get a DOM object.
@@ -1982,68 +1986,27 @@ RadJav.OS.HTML5.interfaceConnector = function (connectorName, methodName)
 	return (result);
 }
 
-/* Simple JavaScript Inheritance
- * By John Resig http://ejohn.org/
- * Modified for RadJav by Higher Edge Software.
- * MIT Licensed.
- */
-// Inspired by base2 and Prototype
-RadJav.classInitializing = false;
-RadJav.fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
+_eval = eval;
+_Function = Function;
+RadJav.default = RadJav;
 
-// The base Class implementation (does nothing)
-RadJav.Class = function(){};
+// This is taken from generated TypeScript code. Thanks Microsoft!
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 
-// Create a new Class that inherits from this class
-RadJav.Class.extend = function(prop) {
-var _super = this.prototype;
-
-// Instantiate a base class (but only create the instance,
-// don't run the init constructor)
-RadJav.classInitializing = true;
-var prototype = new this();
-RadJav.classInitializing = false;
-
-// Copy the properties over onto the new prototype
-for (var name in prop) {
-  // Check if we're overwriting an existing function
-  prototype[name] = typeof prop[name] == "function" &&
-	typeof _super[name] == "function" && RadJav.fnTest.test(prop[name]) ?
-	(function(name, fn){
-	  return function() {
-		var tmp = this._super;
-	   
-		// Add a new ._super() method that is the same method
-		// but on the super-class
-		this._super = _super[name];
-	   
-		// The method only need to be bound temporarily, so we
-		// remove it when we're done executing
-		var ret = fn.apply(this, arguments);        
-		this._super = tmp;
-	   
-		return ret;
-	  };
-	})(name, prop[name]) :
-	prop[name];
+if (define != null)
+{
+	define (function ()
+	{
+		return (RadJav);
+	});
 }
-
-// The dummy class constructor
-function Class() {
-  // All construction is actually done in the init method
-  if ( !RadJav.classInitializing && this.init )
-	this.init.apply(this, arguments);
-}
-
-// Populate our constructed prototype object
-Class.prototype = prototype;
-
-// Enforce the constructor to be what we expect
-Class.prototype.constructor = Class;
-
-// And make this class extendable
-Class.extend = arguments.callee;
-
-return Class;
-};
 
