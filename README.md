@@ -1,6 +1,7 @@
 # What is RadJav
 
 [![Join the chat at https://gitter.im/RadJav/Lobby](https://badges.gitter.im/RadJav/Lobby.svg)](https://gitter.im/RadJav/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 RadJav is an open source, easy-to-code JavaScript Virtual Machine and Decentralized Blockchain Datacenter. 
 It is currently available for Windows, and HTML5. Linux and Mac will be supported sometime in July 2017. 
 Android, iOS, and Windows Universal App support will come in future versions. RadJav allows developers to 
