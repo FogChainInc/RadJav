@@ -26,7 +26,7 @@
  * @static
  * The main object that starts RadJav.
  */
-namespace RadJav {
+export namespace RadJav {
   /** @property {Boolean} [useEval=false]
    * Allow the use of eval.
    */

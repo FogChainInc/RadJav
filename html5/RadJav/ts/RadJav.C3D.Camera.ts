@@ -1,6 +1,6 @@
 /*
 	MIT-LICENSE
-	Copyright (c) 2017 Higher Edge Software, LLC
+	Copyright (c) 2017-2018 Higher Edge Software, LLC
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
 	and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -18,87 +18,96 @@
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/** @class RadJav.C3D.Camera
-* A camera object.
-* Available on platforms: Windows,Linux,OSX,HTML5
-*/
+/// <reference path="RadJav.ts" />
 
-/**
- * Should camera be it's own class? Along with Radjav and the other in bed classes, they'll likely need to be added into the constructor function
- */
-RadJav.C3D.Camera = (function (_super)
-{
-	__extends(Camera, _super);
+namespace RadJav {
+  export namespace C3D {
+    /** @class RadJav.C3D.Camera
+     * A camera object.
+     * Available on platforms: Windows,Linux,OSX,HTML5
+     */
+    class Camera extends Object3D {
+      constructor(canvas3d, obj, parent) {
+        super(canvas3d, obj, parent);
+        this._perspective = RadJav.setDefaultValue(obj._perspective, true);
+        this._aspectRatio = RadJav.setDefaultValue(
+          obj._aspectRatio,
+          parseFloat(canvas3d.getWidth()) / parseFloat(canvas3d.getHeight())
+        );
 
-	function Camera (canvas3d, obj, parent)
-	{
-		var _this = _super.call(this, canvas3d, obj, parent) || this;
+        this._fov = RadJav.setDefaultValue(obj._fov, 90 / this._aspectRatio);
+        this._nearClip = RadJav.setDefaultValue(obj._nearClip, 1.0);
+        this._farClip = RadJav.setDefaultValue(obj._farClip, 10000000000.0);
+        this._rayCaster = RadJav.setDefaultValue(obj._rayCaster, null);
+      }
 
-		_this.type = "RadJav.C3D.Camera";
+      /** @property {Boolean} [_perspective=true]
+       * @protected
+       * If this is set to true, the perspective view will be used.
+       */
+      protected _perspective: boolean = true;
 
-		/** @property {Boolean} [_perspective=true]
-		* @protected
-		* If this is set to true, the perspective view will be used.
-		*/
-		_this._perspective = RadJav.setDefaultValue (obj._perspective, true);
-		/** @property {Number} [_aspectRatio=parseFloat (canvas3d.getWidth ()) / parseFloat (canvas3d.getHeight ()]
-		* @protected
-		* The camera's aspect ratio.
-		*/
-		_this._aspectRatio = RadJav.setDefaultValue (obj._aspectRatio, parseFloat (canvas3d.getWidth ()) / 
-							parseFloat (canvas3d.getHeight ()));
-		/** @property {Number} [_fov=(90 / _this._aspectRatio)]
-		* @protected
-		* The camera's fov.
-		*/
-		_this._fov = RadJav.setDefaultValue (obj._fov, (90 / _this._aspectRatio));
-		/** @property {Number} [_nearClip=1.0]
-		* @protected
-		* The camera's near clip distance.
-		*/
-		_this._nearClip = RadJav.setDefaultValue (obj._nearClip, 1.0);
-		/** @property {Number} [_farClip=1.0]
-		* @protected
-		* The camera's far clip distance.
-		*/
-		_this._farClip = RadJav.setDefaultValue (obj._farClip, 10000000000.0);
-		/** @property {Object} [_rayCaster=null]
-		* @protected
-		* The ray caster used to get ray casts from the screen.
-		*/
-		_this._rayCaster = RadJav.setDefaultValue (obj._rayCaster, null);
+      /** @property {Number} [_aspectRatio=parseFloat (canvas3d.getWidth ()) / parseFloat (canvas3d.getHeight ()]
+       * @protected
+       * The camera's aspect ratio.
+       */
+      protected _aspectRatio: number;
 
-		return (_this);
-	}
+      /** @property {Number} [_fov=(90 / _this._aspectRatio)]
+       * @protected
+       * The camera's fov.
+       */
+      protected _fov: Number;
+      /** @property {Number} [_nearClip=1.0]
+       * @protected
+       * The camera's near clip distance.
+       */
+      protected _nearClip: Number;
+      /** @property {Number} [_farClip=1.0]
+       * @protected
+       * The camera's far clip distance.
+       */
+      protected _farClip: Number;
+      /** @property {Object} [_rayCaster=null]
+       * @protected
+       * The ray caster used to get ray casts from the screen.
+       */
+      protected _rayCaster: any;
 
-	/** @method create
-	* Using the existing parameters in this object, create it.
-	* @return {Promise} The promise to execute when the creation is completed.
-	*/
-	Camera.prototype.create = function ()
-	{
-		var promise = new Promise (RadJav.keepContext (function (resolve, reject)
-			{
-				if (this._perspective == true)
-				{
-					this._obj3d = new THREE.PerspectiveCamera (this._fov, 
-						this._aspectRatio, this._nearClip, this._farClip);
-				}
-				else
-				{
-					var width = this._canvas3D.getWidth ();
-					var height = this._canvas3D.getHeight ();
-					this._obj3d = new THREE.OrthographicCamera ((width / -2), (width / 2), 
-											(height / 2), (height / -2), this._nearClip, this._farClip);
-				}
+      /** @method create
+       * Using the existing parameters in this object, create it.
+       * @return {Promise} The promise to execute when the creation is completed.
+       */
+      create(): Promise<Camera> {
+        var promise = new Promise(
+          RadJav.keepContext(function(resolve, reject) {
+            if (this._perspective == true) {
+              this._obj3d = new THREE.PerspectiveCamera(
+                this._fov,
+                this._aspectRatio,
+                this._nearClip,
+                this._farClip
+              );
+            } else {
+              var width = this._canvas3D.getWidth();
+              var height = this._canvas3D.getHeight();
+              this._obj3d = new THREE.OrthographicCamera(
+                width / -2,
+                width / 2,
+                height / 2,
+                height / -2,
+                this._nearClip,
+                this._farClip
+              );
+            }
 
-				this._rayCaster = new THREE.Raycaster ();
-				resolve (this);
-			}, this));
+            this._rayCaster = new THREE.Raycaster();
+            resolve(this);
+          }, this)
+        );
 
-		return (promise);
-	}
-
-	return (Camera);
-}(RadJav.C3D.Object3D));
-
+        return promise;
+      }
+    }
+  }
+}
