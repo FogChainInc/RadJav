@@ -689,343 +689,608 @@ namespace RadJav {
   export function getHeight(): number {
     /// @note THE - 38 IS A TEMPORARY HACK TO MATCH THE DESKTOP VERSION OF RADJAV
     return RadJav._screenHeight - 38;
-	}
-	
-		/** @method clone
-	* Perform a deep copy of an object. This has been copied from jQuery.
-	* Thank you jQuery!
-	* Available on platforms: Windows,Linux,OSX,HTML5
-	* @param {Object} obj The object to clone.
-	* @return {Object} The cloned object.
-	*/
-	export function clone(obj: {[key: string]: any}): {[key: string]: any} {
-		var options, name, src, copy, copyIsArray, clone,
-		target = arguments[ 0 ] || {},
-		i = 1,
-		length = arguments.length,
-		deep = false;
+  }
 
-		// Handle a deep copy situation
-		if ( typeof target === "boolean" ) {
-			deep = target;
+  /** @method clone
+   * Perform a deep copy of an object. This has been copied from jQuery.
+   * Thank you jQuery!
+   * Available on platforms: Windows,Linux,OSX,HTML5
+   * @param {Object} obj The object to clone.
+   * @return {Object} The cloned object.
+   */
+  export function clone(obj: { [key: string]: any }): { [key: string]: any } {
+    var options,
+      name,
+      src,
+      copy,
+      copyIsArray,
+      clone,
+      target = arguments[0] || {},
+      i = 1,
+      length = arguments.length,
+      deep = false;
 
-			// Skip the boolean and the target
-			target = arguments[i] || {};
-			i++;
-		}
+    // Handle a deep copy situation
+    if (typeof target === "boolean") {
+      deep = target;
 
-		var isPlainObject = function( obj ) {
-			var proto, Ctor;
+      // Skip the boolean and the target
+      target = arguments[i] || {};
+      i++;
+    }
 
-			// Detect obvious negatives
-			// Use toString instead of jQuery.type to catch host objects
-			if ( !obj || obj.toString () !== "[object Object]" ) {
-				return false;
-			}
+    var isPlainObject = function(obj) {
+      var proto, Ctor;
 
-			proto = Object.getPrototypeOf(obj);
+      // Detect obvious negatives
+      // Use toString instead of jQuery.type to catch host objects
+      if (!obj || obj.toString() !== "[object Object]") {
+        return false;
+      }
 
-			// Objects with no prototype (e.g., `Object.create( null )`) are plain
-			if ( !proto ) {
-				return true;
-			}
+      proto = Object.getPrototypeOf(obj);
 
-			// Objects with prototype are plain iff they were constructed by a global Object function
-			Ctor = proto.hasOwnProperty("constructor") && proto.constructor;
-			return typeof Ctor === "function" && Ctor.toString() === Ctor.toString.call(Object);
-		};
+      // Objects with no prototype (e.g., `Object.create( null )`) are plain
+      if (!proto) {
+        return true;
+      }
 
-		var isFunction = function( obj ){
-			return typeof (obj) === "function";
-		};
+      // Objects with prototype are plain iff they were constructed by a global Object function
+      Ctor = proto.hasOwnProperty("constructor") && proto.constructor;
+      return (
+        typeof Ctor === "function" &&
+        Ctor.toString() === Ctor.toString.call(Object)
+      );
+    };
 
-		// Handle case when target is a string or something (possible in deep copy)
-		if (typeof target !== "object" && !isFunction(target)) {
-			target = {};
-		}
+    var isFunction = function(obj) {
+      return typeof obj === "function";
+    };
 
-		// Extend jQuery itself if only one argument is passed
-		if ( i === length ) {
-			target = this;
-			i--;
-		}
+    // Handle case when target is a string or something (possible in deep copy)
+    if (typeof target !== "object" && !isFunction(target)) {
+      target = {};
+    }
 
-		for ( ; i < length; i++ ) {
+    // Extend jQuery itself if only one argument is passed
+    if (i === length) {
+      target = this;
+      i--;
+    }
 
-			// Only deal with non-null/undefined values
-			if ( ( options = arguments[i] ) != null ) {
+    for (; i < length; i++) {
+      // Only deal with non-null/undefined values
+      if ((options = arguments[i]) != null) {
+        // Extend the base object
+        for (name in options) {
+          src = target[name];
+          copy = options[name];
 
-				// Extend the base object
-				for ( name in options ) {
-					src = target[ name ];
-					copy = options[ name ];
+          // Prevent never-ending loop
+          if (target === copy) {
+            continue;
+          }
 
-					// Prevent never-ending loop
-					if ( target === copy ) {
-						continue;
-					}
+          // Recurse if we're merging plain objects or arrays
+          if (
+            deep &&
+            copy &&
+            (isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))
+          ) {
+            if (copyIsArray) {
+              copyIsArray = false;
+              clone = src && Array.isArray(src) ? src : [];
+            } else {
+              clone = src && isPlainObject(src) ? src : {};
+            }
 
-					// Recurse if we're merging plain objects or arrays
-					if ( deep && copy && ( isPlainObject( copy ) ||
-						( copyIsArray = Array.isArray( copy ) ) ) ) {
+            // Never move original objects, clone them
+            target[name] = RadJav.clone(deep, clone, copy);
 
-						if ( copyIsArray ) {
-							copyIsArray = false;
-							clone = src && Array.isArray( src ) ? src : [];
+            // Don't bring in undefined values
+          } else if (copy !== undefined) {
+            target[name] = copy;
+          }
+        }
+      }
+    }
 
-						} else {
-							clone = src && isPlainObject( src ) ? src : {};
-						}
+    // Return the modified object
+    return target;
+  }
 
-						// Never move original objects, clone them
-						target[ name ] = RadJav.clone( deep, clone, copy );
+  /** @method cloneObject
+   * Perform a deep copy of an object.
+   * Available on platforms: Windows,Linux,OSX,HTML5
+   * @param {Object} obj The object to clone.
+   * @return {Object} The cloned object.
+   */
+  export function cloneObject(obj: {
+    [key: string]: any;
+  }): { [key: string]: any } {
+    return RadJav.clone({}, obj);
+  }
 
-					// Don't bring in undefined values
-					} else if ( copy !== undefined ) {
-						target[ name ] = copy;
-					}
-				}
-			}
-		}
+  /** @method cloneArray
+   * Perform a deep copy of an array.
+   * Available on platforms: Windows,Linux,OSX,HTML5
+   * @param {Array} obj The array to clone.
+   * @return {Array} The cloned array.
+   */
+  export function cloneArray(obj: any[]): any[] {
+    return RadJav.clone([], obj);
+  }
 
-		// Return the modified object
-		return target;
-	}
+  /** @method copyProperties
+   * Copy the properties of one object to another.
+   * Available on platforms: Windows,Linux,OSX,HTML5
+   * @param {Object} obj1 The object to receive the properties.
+   * @param {Object} obj2 The object to send the properties.
+   * @param {Boolean} [overwriteExisting=true] If set to true, this will overwrite any
+   * existing keys.
+   * @return {Object} The completed object.
+   */
+  export function copyProperties(
+    obj1: object,
+    obj2: object,
+    overwriteExisting: boolean
+  ): object {
+    if (overwriteExisting == null) {
+      overwriteExisting = true;
+    }
 
-	/** @method cloneObject
-	* Perform a deep copy of an object.
-	* Available on platforms: Windows,Linux,OSX,HTML5
-	* @param {Object} obj The object to clone.
-	* @return {Object} The cloned object.
-	*/
-	export function cloneObject(obj: {[key: string]: any}): {[key: string]: any} {
-		return (RadJav.clone ({}, obj));
-	} 
+    for (var key in obj2) {
+      if (overwriteExisting == false) {
+        if (obj1[key] == null) {
+          obj1[key] = obj2[key];
+        }
+      } else {
+        obj1[key] = obj2[key];
+      }
+    }
 
-	/** @method cloneArray
-	* Perform a deep copy of an array.
-	* Available on platforms: Windows,Linux,OSX,HTML5
-	* @param {Array} obj The array to clone.
-	* @return {Array} The cloned array.
-	*/
-	export function cloneArray(obj: any[]): any[] {
-		return (RadJav.clone ([], obj));
-	}
+    return obj1;
+  }
 
-		/** @method copyProperties
-	* Copy the properties of one object to another.
-	* Available on platforms: Windows,Linux,OSX,HTML5
-	* @param {Object} obj1 The object to receive the properties.
-	* @param {Object} obj2 The object to send the properties.
-	* @param {Boolean} [overwriteExisting=true] If set to true, this will overwrite any 
-	* existing keys.
-	* @return {Object} The completed object.
-	*/
-	export function copyProperties(obj1: object, obj2: object, overwriteExisting: boolean): object {
-		if (overwriteExisting == null) {
-			overwriteExisting = true;
-		}
+  /** @method keepContext
+   * @static
+   * Keep the context the object is currently in.
+   * Available on platforms: Windows,Linux,OSX,HTML5
+   * @param {Function} func The document element's id.
+   * @param {Object} context The object to remain in context.
+   * @param {Mixed} [val=undefined] An additional value to pass to the context.
+   * @return {Mixed} The returned result from the function func.
+   */
+  export function keepContext(func: Function, context: object, val: any): any {
+    var objReturn = function() {
+      var aryArgs = Array.prototype.slice.call(arguments);
 
-		for (var key in obj2) {
-			if (overwriteExisting == false) {
-				if (obj1[key] == null) {
-					obj1[key] = obj2[key];
-				}
-			} else {
-				obj1[key] = obj2[key];
-			}
-		}
+      if (val != undefined) {
+        aryArgs.push(val);
+      }
 
-		return (obj1);
-	}
+      if (context == null) {
+        return func.apply(this, aryArgs);
+      } else {
+        return func.apply(context, aryArgs);
+      }
+    };
 
-	/** @method keepContext
-	* @static
-	* Keep the context the object is currently in.
-	* Available on platforms: Windows,Linux,OSX,HTML5
-	* @param {Function} func The document element's id.
-	* @param {Object} context The object to remain in context.
-	* @param {Mixed} [val=undefined] An additional value to pass to the context.
-	* @return {Mixed} The returned result from the function func.
-	*/
-	export function keepContext(func: Function, context: object, val: any): any {
-		var objReturn = function () {
-			var aryArgs = Array.prototype.slice.call(arguments);
+    return objReturn;
+  }
 
-			if (val != undefined) {
-				aryArgs.push(val);
-			}
+  /** @method getLangString
+   * @static
+   * Get a language string from the current lanuage. Additional arguments can be
+   * added to this method to combine the strings together using Utils.combineString.
+   * @param {String} keyword The keyword to use when getting the language string.
+   * @return {String} The string associated with the keyword.
+   */
+  export function getLangString(keyword: string): string {
+    var args = Array.prototype.slice.call(arguments);
+    args.splice(0, 1);
+    args.splice(0, 0, RadJav._lang[keyword]);
 
-			if (context == null) {
-				return (func.apply (this, aryArgs));
-			} else {
-				return (func.apply (context, aryArgs));
-			}
-		};
+    return RadJav.combineString.apply(RadJav, args);
+  }
 
-		return (objReturn);
-	}
+  /** @method combineString
+   * @static
+   * Combine multiple strings together using %s in the first argument.
+   *
+   *     @example
+   *     var firstName = "John";
+   *     var lastName = "Doe";
+   *     var result = RadJav.combineString ("Hi there %s %s!", firstName, lastname);
+   *     // The result will contain:
+   *     // Hi there John Doe!
+   * @param {String} primaryString The primary string that contains %s. Each %s will be
+   * replaced with an argument specified in the order in which each argument is received.
+   * @return {String} The result of the string combining.
+   */
+  export function combineString(
+    primaryString: string,
+    ...otherStrings: string[]
+  ): string {
+    var strReturn = "";
 
-	/** @method getLangString
-	* @static
-	* Get a language string from the current lanuage. Additional arguments can be 
-	* added to this method to combine the strings together using Utils.combineString.
-	* @param {String} keyword The keyword to use when getting the language string.
-	* @return {String} The string associated with the keyword.
-	*/
-	export function getLangString(keyword: string): string {
-		var args = Array.prototype.slice.call(arguments);
-		args.splice(0, 1);
-		args.splice(0, 0, RadJav._lang[keyword]);
+    if (primaryString != null) {
+      strReturn = primaryString;
+    }
 
-		return (RadJav.combineString.apply(RadJav, args));
-	}
+    for (var iIdx = 1; iIdx < arguments.length; iIdx++) {
+      strReturn = strReturn.replace("%s", arguments[iIdx]);
+    }
 
-	/** @method combineString
-	* @static
-	* Combine multiple strings together using %s in the first argument.
-	* 
-	*     @example
-	*     var firstName = "John";
-	*     var lastName = "Doe";
-	*     var result = RadJav.combineString ("Hi there %s %s!", firstName, lastname);
-	*     // The result will contain:
-	*     // Hi there John Doe!
-	* @param {String} primaryString The primary string that contains %s. Each %s will be 
-	* replaced with an argument specified in the order in which each argument is received.
-	* @return {String} The result of the string combining.
-	*/
-	export function combineString(primaryString: string): string {
-		var strReturn = "";
+    return strReturn;
+  }
 
-		if (arguments[0] != null) {
-			strReturn = arguments[0];
-		}
+  export class Theme {
+    obj: { [key: string]: any };
 
-		for (var iIdx = 1; iIdx < arguments.length; iIdx++) {
-			strReturn = strReturn.replace ("%s", arguments[iIdx]);
-		}
+    /** @property {String} [name=""]
+     * The name of the theme.
+     */
+    name: string = "";
 
-		return (strReturn);
-	}
+    /** @property {String} [version=""]
+     * The theme's version.
+     */
+    version: string = "";
 
-	export class Theme {
-		obj: {[key: string]: any};
-		constructor(obj?: {}) {
-			this.obj = obj;
-		}
-		/** @property {String} [name=""]
-		* The name of the theme.
-		*/
-		name = RadJav.setDefaultValue(this.obj.name, "");
-		/** @property {String} [version=""]
-		* The theme's version.
-		*/
-		version = RadJav.setDefaultValue (this.obj.version, "");
-		/** @property {String} [author=""]
-		* The theme's author.
-		*/
-		author = RadJav.setDefaultValue (this.obj.author, "");
-		/** @property {Date} [lastUpdated=null]
-		* The theme's last update date.
-		*/
-		lastUpdated = RadJav.setDefaultValue(this.obj.lastUpdated, null);
-		/** @property {String} [description=""]
-		* The theme's description.
-		*/
-		description = RadJav.setDefaultValue(this.obj.description, "");
-		/** @property {String} [url=""]
-		* The url to this theme.
-		*/
-		url = RadJav.setDefaultValue(this.obj.url, "");
-		/** @property {String} [initFile=""]
-		* The initialization file to start.
-		*/
-		initFile = RadJav.setDefaultValue(this.obj.initFile, "");
-		/** @property {String[]} [cssFiles=[]]
-		* CSS files to load.
-		*/
-		cssFiles = RadJav.setDefaultValue(this.obj.cssFiles, []);
-		/** @property {Object[]} [fonts=[]]
-		* Fonts to load.
-		*/
-		fonts = RadJav.setDefaultValue(this.obj.fonts, []);
-		}
+    /** @property {String} [author=""]
+     * The theme's author.
+     */
+    author: string = "";
 
-		/** @method loadInitializationFile
-		* Load the initialization file and execute it.
-		* @return {Promise} Executes when the loading has completed.
-		*/
-		loadInitializationFile() {
-			var promise = new Promise (RadJav.keepContext (function (resolve, reject) {
-				var func = RadJav.keepContext (function (data) {
-					try {
-						if (typeof (data) == "string") {
-							RadJav.Theme.exports = _eval(data);
-						}
-	
-						if (RadJav.Theme.exports.init != null) {
-							RadJav.Theme.exports.init ();
-						}
-	
-						var fontCSS = "";
-	
-						for (var iIdx = 0; iIdx < this.fonts.length; iIdx++) {
-							var fontName = this.fonts[iIdx].name;
-							var fontUrl = this.url + "/" + this.fonts[iIdx].relPath;
-	
-											fontCSS += "@font-face\n";
-											fontCSS += "{\n";
-											fontCSS += "\tfont-family: \"" + fontName + "\";\n";
-											fontCSS += "\tsrc: url(\"" + fontUrl + "\");\n";
-											fontCSS += "}\n\n";
-										}
-	
-										if (this.fonts.length > 0)
-										{
-											var style = document.createElement ("style");
-											style.innerHTML = fontCSS;
-											document.head.appendChild (style);
-										}
-	
-										var promises = [];
-	
-										if (RadJav.useAjax == true)
-										{
-											for (var iIdx = 0; iIdx < this.cssFiles.length; iIdx++)
-											{
-												promises.push (RadJav._getResponse (
-													this.url + "/" + this.cssFiles[iIdx]).then (
-														function (data)
-														{
-															var style = document.createElement ("style");
-															style.innerHTML = data;
-															document.head.appendChild (style);
-														}));
-											}
-										}
-	
-										Promise.all (promises).then (function ()
-											{
-												resolve ();
-											});
-									}
-									catch (ex)
-									{
-										throw (RadJav.getLangString ("themeThrewErrorInFile", this.name, 
-												this.initFile, ex.message));
-									}
-								}, this);
-	
-					if (RadJav.useAjax == true)
-						RadJav._getResponse (this.url + "/" + this.initFile).then (func);
-					else
-					{
-						func (RadJav.Theme.exports);
-						resolve ();
-					}
-				}, this));
-	
-			return (promise);
-		}
-};
+    /** @property {Date} [lastUpdated=null]
+     * The theme's last update date.
+     */
+    lastUpdated: Date = null;
+
+    /** @property {String} [description=""]
+     * The theme's description.
+     */
+    description: string = "";
+
+    /** @property {String} [url=""]
+     * The url to this theme.
+     */
+    url: string = "";
+
+    /** @property {String} [initFile=""]
+     * The initialization file to start.
+     */
+    initFile: string = "";
+
+    /** @property {String[]} [cssFiles=[]]
+     * CSS files to load.
+     */
+    cssFiles: string[] = [];
+
+    /** @property {Object[]}[fonts=[]]
+     * Fonts to load.
+     */
+    fonts: object[] = [];
+
+    constructor(obj?: {}) {
+      this.obj = obj;
+      this.name = RadJav.setDefaultValue(this.obj.name, "");
+      this.version = RadJav.setDefaultValue(this.obj.version, "");
+      this.author = RadJav.setDefaultValue(this.obj.author, "");
+      this.lastUpdated = RadJav.setDefaultValue(this.obj.lastUpdated, null);
+      this.description = RadJav.setDefaultValue(this.obj.description, "");
+      this.url = RadJav.setDefaultValue(this.obj.url, "");
+      this.initFile = RadJav.setDefaultValue(this.obj.initFile, "");
+      this.cssFiles = RadJav.setDefaultValue(this.obj.cssFiles, []);
+      this.fonts = RadJav.setDefaultValue(this.obj.fonts, []);
+    }
+
+    /** @method loadInitializationFile
+     * Load the initialization file and execute it.
+     * @return {Promise} Executes when the loading has completed.
+     */
+    loadInitializationFile(): Promise<any> {
+      var promise = new Promise(
+        RadJav.keepContext(function(resolve, reject) {
+          var func = RadJav.keepContext(function(data) {
+            try {
+              if (typeof data == "string") {
+                RadJav.Theme.exports = _eval(data);
+              }
+
+              if (RadJav.Theme.exports.init != null) {
+                RadJav.Theme.exports.init();
+              }
+
+              var fontCSS = "";
+
+              for (var iIdx = 0; iIdx < this.fonts.length; iIdx++) {
+                var fontName = this.fonts[iIdx].name;
+                var fontUrl = this.url + "/" + this.fonts[iIdx].relPath;
+
+                fontCSS += "@font-face\n";
+                fontCSS += "{\n";
+                fontCSS += '\tfont-family: "' + fontName + '";\n';
+                fontCSS += '\tsrc: url("' + fontUrl + '");\n';
+                fontCSS += "}\n\n";
+              }
+
+              if (this.fonts.length > 0) {
+                var style = document.createElement("style");
+                style.innerHTML = fontCSS;
+                document.head.appendChild(style);
+              }
+
+              var promises = [];
+
+              if (RadJav.useAjax == true) {
+                for (var iIdx = 0; iIdx < this.cssFiles.length; iIdx++) {
+                  promises.push(
+                    RadJav._getResponse(
+                      this.url + "/" + this.cssFiles[iIdx]
+                    ).then(function(data) {
+                      var style = document.createElement("style");
+                      style.innerHTML = data;
+                      document.head.appendChild(style);
+                    })
+                  );
+                }
+              }
+
+              Promise.all(promises).then(function() {
+                resolve();
+              });
+            } catch (ex) {
+              throw RadJav.getLangString(
+                "themeThrewErrorInFile",
+                this.name,
+                this.initFile,
+                ex.message
+              );
+            }
+          }, this);
+
+          if (RadJav.useAjax == true) {
+            RadJav._getResponse(this.url + "/" + this.initFile).then(func);
+          } else {
+            func(RadJav.Theme.exports);
+            resolve();
+          }
+        }, this)
+      );
+
+      return promise;
+    }
+
+    /** @method loadJavascriptFiles
+     * Load the javascript files for this theme.
+     * @return {Promise} Executes when the loading has completed.
+     */
+    loadJavascriptFiles(): Promise<any> {
+      var promise = new Promise(
+        RadJav.keepContext(function(resolve, reject) {
+          var files = [];
+
+          for (var iIdx = 0; iIdx < RadJav._included.length; iIdx++) {
+            var includeObj = RadJav._included[iIdx];
+
+            if (typeof includeObj != "string") {
+              if (typeof includeObj.themeFile == "string") {
+                files.push(includeObj.themeFile);
+              } else {
+                if (includeObj.themeFile == true) {
+                  files.push(includeObj.file);
+                } else {
+                  continue;
+                }
+              }
+            }
+          }
+
+          for (var iIdx = 0; iIdx < files.length; iIdx++) {
+            var file = files[iIdx];
+
+            (function(theme, url, tfile, index, numFiles) {
+              try {
+                if (RadJav.Theme.themeObjects[tfile] == null) {
+                  RadJav.Theme.themeObjects[tfile] = new Object();
+                }
+
+                if (RadJav.useAjax == true) {
+                  RadJav._getResponse(url + "/" + tfile + ".js").then(function(
+                    data
+                  ) {
+                    try {
+                      RadJav.Theme.themeObjects[tfile] = _eval(data);
+                    } catch (ex) {
+                      throw RadJav.getLangString(
+                        "themeThrewErrorInFile",
+                        theme.name,
+                        tfile + ".js",
+                        ex.message
+                      );
+                    }
+
+                    /*var js = "return (function (module, theme){";
+												js += data + "\n";
+												js += "});";
+
+												try
+												{
+													var obj = new Function (js);
+													RadJav.Theme.themeObjects[tfile].javascript = obj.apply (this, [{}, theme]);
+												}
+												catch (ex)
+												{
+													throw (RadJav.getLangString ("themeThrewErrorInFile", theme.name, 
+															tfile + ".js", ex.message));
+												}*/
+
+                    if (index >= numFiles - 1) {
+                      resolve();
+                    }
+                  });
+                } else {
+                  resolve();
+                }
+              } catch (ex) {}
+            })(this, this.url, file, iIdx, files.length);
+          }
+        }, this)
+      );
+
+      return promise;
+    }
+
+    /** @method event
+     * Execute a theme event.
+     * @param {String} file The file associated with the event.
+     * @param {String} event The name of the event to trigger.
+     * @return {Promise} The promise to execute when this event is completed.
+     */
+    event(file: string, event: string): Promise<any> {
+      var args = new Array();
+
+      for (var iIdx = 2; iIdx < arguments.length; iIdx++) {
+        args.push(arguments[iIdx]);
+      }
+      try {
+        if (RadJav.Theme.themeObjects[file] != null) {
+          if (RadJav.Theme.themeObjects[file][event] != null) {
+            return RadJav.Theme.themeObjects[file][event].apply(
+              RadJav.Theme.themeObjects[file],
+              args
+            );
+          } else {
+            if (file.indexOf("GUI") > -1) {
+              var tempfile = "RadJav.GUI.GObject";
+
+              if (RadJav.Theme.themeObjects[tempfile][event] != null) {
+                return RadJav.Theme.themeObjects[tempfile][event].apply(
+                  RadJav.Theme.themeObjects[tempfile],
+                  args
+                );
+              }
+            }
+          }
+        }
+      } catch (ex) {
+        throw "Error in " +
+          file +
+          " message: " +
+          ex.message +
+          "\nStack: " +
+          ex.stack;
+      }
+
+      /*var jsModule = null;
+
+			if (RadJav.theme.themeObjects[file] != null)
+				jsModule = RadJav.theme.themeObjects[file].javascript;
+
+			if (jsModule != null)
+			{
+				var mod = {};
+				jsModule (mod, this);
+
+				if (mod.exports[event] != null)
+					return (mod.exports[event].apply (mod.exports, args));
+			}*/
+
+      return null;
+    }
+
+    /** @method eventSync
+     * Execute a theme event synchronously.
+     * @param {String} file The file associated with the event.
+     * @param {String} event The name of the event to trigger.
+     * @return {Mixed} The data returned from the event.
+     */
+    eventSync(file: string, event: string): any {
+      var args = new Array();
+      var result = null;
+
+      for (var iIdx = 2; iIdx < arguments.length; iIdx++) {
+        args.push(arguments[iIdx]);
+      }
+
+      try {
+        if (RadJav.Theme.themeObjects[file] != null) {
+          if (RadJav.Theme.themeObjects[file][event] != null) {
+            result = RadJav.Theme.themeObjects[file][event].apply(
+              RadJav.Theme.themeObjects[file],
+              args
+            );
+          } else {
+            if (file.indexOf("GUI") > -1) {
+              var tempfile = "RadJav.GUI.GObject";
+
+              if (RadJav.Theme.themeObjects[tempfile][event] != null) {
+                result = RadJav.Theme.themeObjects[tempfile][event].apply(
+                  RadJav.Theme.themeObjects[tempfile],
+                  args
+                );
+              }
+            }
+          }
+        }
+      } catch (ex) {
+        throw "Error in " +
+          file +
+          " message: " +
+          ex.message +
+          "\nStack: " +
+          ex.stack;
+      }
+
+      /*var jsModule = null;
+
+			if (RadJav.Theme.themeObjects[file] != null)
+				jsModule = RadJav.Theme.themeObjects[file].javascript;
+
+			if (jsModule != null)
+			{
+				var mod = {};
+				jsModule (mod, this);
+
+				if (mod.exports[event] != null)
+					result = mod.exports[event].apply (mod.exports, args);
+			}*/
+
+      return result;
+    }
+
+    /** @property exports
+     * @static
+     * The functions and properties associated with this theme.
+     */
+    exports(): any {}
+
+    /** @property themeObjects
+     * @static
+     * The theme objects associated with this theme.
+     */
+    themeObjects(): any {}
+
+    /** @method loadTheme
+     * @static
+     * Load the theme.
+     * @param {String} url The URL to this theme.
+     * @param {String} data The JSON to parse and get the data from.
+     */
+    loadTheme(url: string, data: string): any {
+      var theme = null;
+
+      try {
+        var obj = _eval(data);
+        theme = new RadJav.Theme(obj);
+        theme.url = url;
+      } catch (ex) {
+        console.error(ex.message);
+      }
+
+      return theme;
+    }
+  }
+}
