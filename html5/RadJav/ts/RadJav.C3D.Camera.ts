@@ -21,12 +21,12 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  export namespace C3D {
+  namespace C3D {
     /** @class RadJav.C3D.Camera
      * A camera object.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Camera extends Object3D {
+    export class Camera extends Object3D {
       constructor(canvas3d, obj, parent) {
         super(canvas3d, obj, parent);
         this._perspective = RadJav.setDefaultValue(obj._perspective, true);

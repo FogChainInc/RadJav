@@ -20,12 +20,12 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  export namespace C3D {
+  namespace C3D {
     /** @class RadJav.C3D.Material
      * A 3d tranform.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Material {
+    export class Material {
       constructor(canvas3d, obj, parent, model) {
         if (obj == null) {
           obj = new Object();
