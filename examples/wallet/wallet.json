@@ -46,6 +46,12 @@
 							}, 
 							{
 								"type": "RadJav.GUI.MenuItem", 
+								"name": "exportPrivateKeysItem", 
+								"text": "Export Private Keys", 
+								"click": "exportPrivateKeys ();"
+							}, 
+							{
+								"type": "RadJav.GUI.MenuItem", 
 								"name": "separatorItem2", 
 								"text": "-"
 							}, 

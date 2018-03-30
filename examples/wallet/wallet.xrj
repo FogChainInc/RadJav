@@ -77,6 +77,60 @@ function encryptWallet ()
 	}
 }
 
+function exportPrivateKeys ()
+{
+	var path = RadJav.OS.saveFileAs ({
+				message: "Select where to export the private keys", 
+				wildcard: "CSV File (*.csv)|*.csv"
+			});
+
+	if (path == "")
+		return;
+
+	var passphrase = prompt ("Enter wallet's passphrase:");
+
+	if (passphrase != "")
+	{
+		try
+		{
+			RadJav.BlockchainV1.walletPassphrase (passphrase, 60);
+			var groupings = RadJav.BlockchainV1.listAddressGroupings ();
+			var addresses = [];
+
+			for (var iIdx = 0; iIdx < groupings.length; iIdx++)
+			{
+				for (var iJdx = 0; iJdx < groupings[iIdx].length; iJdx++)
+				{
+					var addrs = groupings[iIdx][iJdx];
+
+					if (addrs.length > 0)
+						addresses.push (addrs[0]);
+				}
+			}
+
+			var output = "address,private_key\n";
+
+			for (var iIdx = 0; iIdx < addresses.length; iIdx++)
+			{
+				var addr = addresses[iIdx];
+				var privKey = RadJav.BlockchainV1.dumpPrivKey (addr);
+
+				output += addr + ",p2pkh:" + privKey + "\n";
+			}
+
+			RadJav.IO.TextFile.writeTextToFile (path, output);
+		}
+		catch (ex)
+		{
+			if (ex.message.indexOf ("passphrase") > -1)
+			{
+			}
+			else
+				alert (ex.message);
+		}
+	}
+}
+
 function backupWallet ()
 {
 	var path = RadJav.OS.saveFileAs ({

@@ -2,3 +2,5 @@ library/build
 vm/build
 
 html5/closure*.jar
+
+library/include/RadJav/RadJavJavascriptCode.h
