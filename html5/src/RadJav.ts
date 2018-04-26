@@ -26,323 +26,332 @@
  * @static
  * The main object that starts RadJav.
  */
-export namespace RadJav {
-  /** @property {Boolean} [useEval=false]
-   * Allow the use of eval.
-   */
-  export let useEval: boolean = true;
+namespace RadJav
+{
+	/** @property {Boolean} [useEval=false]
+	* Allow the use of eval.
+	*/
+	export let useEval: boolean = true;
 
-  /** @property {Number} [MIN_VERSION=0.05]
-   * The minimum version of code that can be ran.
-   */
-  export let MIN_VERSION: number = 0.05;
+	/** @property {Number} [MIN_VERSION=0.05]
+	* The minimum version of code that can be ran.
+	*/
+	export let MIN_VERSION: number = 0.05;
 
-  /** @property {Number} [VERSION=0.05]
-   * The current version.
-   */
-  export let VERSION: number = 0.05;
+	/** @property {Number} [VERSION=0.05]
+	* The current version.
+	*/
+	export let VERSION: number = 0.05;
 
-  /** @property {String} [baseUrl="./RadJav"]
-   * The url to the directory where RadJav is located.
-   */
-  export let baseUrl: string = "./RadJav/";
+	/** @property {String} [baseUrl="./RadJav"]
+	* The url to the directory where RadJav is located.
+	*/
+	export let baseUrl: string = "./RadJav/";
 
-  /** @property {String} [themeUrl="./RadJav/themes/default"]
-   * The url to the directory where the theme will be loaded.
-   */
-  export let themeUrl: string = "./RadJav/themes/default";
+	/** @property {String} [themeUrl="./RadJav/themes/default"]
+	* The url to the directory where the theme will be loaded.
+	*/
+	export let themeUrl: string = "./RadJav/themes/default";
 
-  /** @property {String} [selectedLanguage="en_us"]
-   * The selected language.
-   */
-  export let selectedLanguage: string = "en_us";
+	/** @property {String} [selectedLanguage="en_us"]
+	* The selected language.
+	*/
+	export let selectedLanguage: string = "en_us";
 
-  /** @property {RadJav.Theme} [themes=null]
-   * The current theme that has been loaded.
-   */
-  export let themes: Theme = null;
+	/** @property {RadJav.Theme} [themes=null]
+	* The current theme that has been loaded.
+	*/
+	export let themes: Theme = null;
 
-  /** @property {Boolean} [_isInitialized=false]
-   * If set to true, RadJav has been initialized.
-   */
-  export let _isInitialized: boolean = false;
+	/** @property {Boolean} [_isInitialized=false]
+	* If set to true, RadJav has been initialized.
+	*/
+	export let _isInitialized: boolean = false;
 
-  /** @property {String[]} [_included=[]]
-   * If set to true, RadJav has been initialized.
-   */
-  export let _included: string[] = [];
+	/** @property {String[]} [_included=[]]
+	* If set to true, RadJav has been initialized.
+	*/
+	export let _included: string[] = [];
 
-  /** @property {String[]} [_lang=[]]
-   * If set to true, RadJav has been initialized.
-   */
-  export let _lang: { [key: string]: string[] } = {};
+	/** @property {String[]} [_lang=[]]
+	* If set to true, RadJav has been initialized.
+	*/
+	export let _lang: { [key: string]: string[] } = {};
 
-  /** @property {Number} [_screenWidth=window.innerWidth]
-   * The width of the window's screen.
-   */
-  export let _screenWidth: number = window.innerWidth;
+	/** @property {Number} [_screenWidth=window.innerWidth]
+	* The width of the window's screen.
+	*/
+	export let _screenWidth: number = window.innerWidth;
 
-  /** @property {Number} [_screenHeight=window.innerHeight]
-   * The height of the window's screen.
-   */
-  export let _screenHeight: number = window.innerHeight;
+	/** @property {Number} [_screenHeight=window.innerHeight]
+	* The height of the window's screen.
+	*/
+	export let _screenHeight: number = window.innerHeight;
 
-  /** @property {Object} [themeUtils={}]
-   * Miscellaneous theme utilities to use.
-   */
-  export let themeUtils: any = {};
+	/** @property {Object} [themeUtils={}]
+	* Miscellaneous theme utilities to use.
+	*/
+	export let themeUtils: any = {};
 
-  /** @property {Boolean} [useAjax=true]
-   * If set to true, each file loaded by RadJav will use ajax.
-   */
-  export let useAjax: boolean = true;
+	/** @property {Boolean} [useAjax=true]
+	* If set to true, each file loaded by RadJav will use ajax.
+	*/
+	export let useAjax: boolean = true;
 
-  /** @property {Boolean} [isMinified=false]
-   * Is set to true if RadJav has been minified.
-   */
-  export let isMinified: boolean = false;
+	/** @property {Boolean} [isMinified=false]
+	* Is set to true if RadJav has been minified.
+	*/
+	export let isMinified: boolean = false;
 
-  /** @method quit
-   * Exit the application.
-   * Available on platforms: Windows,Linux,OSX
-   * @param {Number} [exitCode=0] The exit code to end the application with.
-   */
-  export function quit(exitCode: number = 0) {}
+	/** @method quit
+	* Exit the application.
+	* Available on platforms: Windows,Linux,OSX
+	* @param {Number} [exitCode=0] The exit code to end the application with.
+	*/
+	export function quit(exitCode: number = 0) {}
 
-  /** @method exit
-   * Exit the application.
-   * Available on platforms: Windows,Linux,OSX
-   * @param {Number} [exitCode=0] The exit code to end the application with.
-   */
-  export function exit(exitCode: number) {}
+	/** @method exit
+	* Exit the application.
+	* Available on platforms: Windows,Linux,OSX
+	* @param {Number} [exitCode=0] The exit code to end the application with.
+	*/
+	export function exit(exitCode: number) {}
 
-  /** @method include
-   * Load and return a module. If the module has not already been loaded, this will create
-   * an asynchronous connection to the server and include whatever javascript files it needs.
-   * @param {String} path The path to the module to load.
-   * @return {Promise} The promise containing the loaded module.
-   */
-  export function include(path: string): Promise<void> {
-    var promise = null;
+	/** @method include
+	* Load and return a module. If the module has not already been loaded, this will create
+	* an asynchronous connection to the server and include whatever javascript files it needs.
+	* @param {String} path The path to the module to load.
+	* @return {Promise} The promise containing the loaded module.
+	*/
+	export function include(path: string): Promise<void>
+	{
+		var promise: Promise<void> = null;
 
-    if (RadJav.useAjax == true) {
-      promise = RadJav._getResponse(path).then(
-        RadJav.keepContext(function(response) {
-          if (response != null) {
-            if (response != "") {
-              var func = new Function(response);
-              func.apply(window, []);
-            }
-          }
-        }, this)
-      );
-    } else {
-      promise = new Promise(
-        RadJav.keepContext(function(resolve, reject) {
-          var script = document.createElement("script");
-          script.type = "text/javascript";
-          //script.async = false;
-          //script.defer = false;
-          var str = "";
+		if (RadJav.useAjax == true)
+		{
+			promise = RadJav._getResponse(path).then(
+				RadJav.keepContext(function(response)
+					{
+						if (response != null)
+						{
+							if (response != "")
+							{
+								var func = new Function(response);
+								func.apply(window, []);
+							}
+						}
+					}, this));
+		}
+		else
+		{
+			promise = new Promise<void>(
+				RadJav.keepContext(function(resolve, reject)
+				{
+					var script = document.createElement("script");
+					script.type = "text/javascript";
+					//script.async = false;
+					//script.defer = false;
+					var str = "";
 
-          if (RadJav._isUsingInternetExplorerTheWorstWebBrowserEver() == true) {
-            script.text = str;
-          } else {
-            var textNode = document.createTextNode(str);
-            script.appendChild(textNode);
-          }
+					if (RadJav._isUsingInternetExplorerTheWorstWebBrowserEver() == true)
+						script.text = str;
+					else
+					{
+						var textNode = document.createTextNode(str);
+						script.appendChild(textNode);
+					}
 
-          script.onreadystatechange = RadJav.keepContext(
-            function(evt, script2) {
-              var s = script2[0];
+					script.onreadystatechange = RadJav.keepContext(
+							function(evt, script2)
+							{
+								var s = script2[0];
 
-              if (s.readyState == null) {
-                s.readyState = "complete";
-              }
+								if (s.readyState == null)
+									s.readyState = "complete";
 
-              if (s.readyState == "complete") {
-                resolve();
-              }
-            },
-            this,
-            [script]
-          );
+								if (s.readyState == "complete")
+									resolve();
 
-          script.onload = script.onreadystatechange;
+							}, this, [script]);
 
-          script.onerror = RadJav.keepContext(function(err) {
-            throw RadJav.getLangString(
-              "errorWhileIncludingFile",
-              err.message,
-              path
-            );
-          }, this);
+					script.onload = script.onreadystatechange;
 
-          script.src = path;
+					script.onerror = RadJav.keepContext(function(err)
+						{
+							throw RadJav.getLangString("errorWhileIncludingFile", err.message, path);
+						}, this);
 
-          document.documentElement.insertBefore(
-            script,
-            document.documentElement.firstChild
-          );
-        }, this)
-      );
-    }
+					script.src = path;
 
-    return promise;
-  }
+					document.documentElement.insertBefore(script, document.documentElement.firstChild);
+				}, this));
+		}
 
-  /** @method initialize
-   * Initialize RadJav.
-   * @param {Object[]} [libraries=null] The libraries to include.
-   * @return {Promise} The promise to execute.
-   */
-  export function initialize(
-    libraries: { [key: string]: any }[]
-  ): Promise<void> {
-    var promise = new Promise(
-      RadJav.keepContext(
-        function(resolve, reject, args) {
-          if (RadJav._isInitialized == true) {
-            resolve();
-            return;
-          }
+		return promise;
+	}
 
-          var promises = [];
-          promises.push(RadJav._loadLanguages());
+	/** @method initialize
+	* Initialize RadJav.
+	* @param {Object[]} [libraries=null] The libraries to include.
+	* @return {Promise} The promise to execute.
+	*/
+	export function initialize(libraries: { [key: string]: any }[]): Promise<void>
+	{
+		var promise = new Promise(
+			RadJav.keepContext(function(resolve, reject, args)
+			{
+				if (RadJav._isInitialized == true)
+				{
+					resolve();
 
-          if (libraries == null || libraries.length == 0) {
-            promises.push(RadJav.includeLibraries(RadJav.getStandardLibrary()));
-            promises.push(RadJav.includeLibraries(RadJav.getGUILibrary()));
-          }
+					return;
+				}
 
-          if (libraries != null) {
-            if (args.length > 1) {
-              for (var iIdx = 1; iIdx < args.length; iIdx++) {
-                var tempArg = args[iIdx];
+				var promises = [];
+				promises.push(RadJav._loadLanguages());
 
-                for (var iJdx = 0; iJdx < tempArg.length; iJdx++) {
-                  libraries.push(tempArg[iJdx]);
-                }
-              }
-            }
+				if (libraries == null || libraries.length == 0)
+				{
+					promises.push(RadJav.includeLibraries(RadJav.getStandardLibrary()));
+					promises.push(RadJav.includeLibraries(RadJav.getGUILibrary()));
+				}
 
-            promises.push(RadJav.includeLibraries(libraries));
-          }
+				if (libraries != null)
+				{
+					if (args.length > 1)
+					{
+						for (var iIdx = 1; iIdx < args.length; iIdx++)
+						{
+							var tempArg = args[iIdx];
 
-          promises.push(RadJav._loadTheme(RadJav.themeUrl));
+							for (var iJdx = 0; iJdx < tempArg.length; iJdx++)
+							{
+								libraries.push(tempArg[iJdx]);
+							}
+						}
+					}
 
-          Promise.all(promises).then(function() {
-            RadJav._isInitialized = true;
+					promises.push(RadJav.includeLibraries(libraries));
+				}
 
-            if (RadJav.useEval == false) {
-              var eval = function() {
-                var msg =
-                  "RadJav disables eval by default. Set RadJav.useEval = true; to enable it.";
-                alert(msg);
-                throw msg;
-              };
-            }
+				promises.push(RadJav._loadTheme(RadJav.themeUrl));
 
-            resolve();
-          });
-        },
-        RadJav,
-        arguments
-      )
-    );
+				Promise.all(promises).then(function()
+					{
+						RadJav._isInitialized = true;
 
-    return promise;
-  }
+						if (RadJav.useEval == false)
+						{
+							var eval = function()
+							{
+								var msg = "RadJav disables eval by default. Set RadJav.useEval = true; to enable it.";
+								alert(msg);
+								throw msg;
+							};
+						}
 
-  /** @method getStandardLibrary
-   * Get the paths to the standard library.
-   * @return {Object[]} The standard library.
-   */
-  export function getStandardLibrary(): {
-    file: string;
-    themeFile: boolean;
-    loadFirst?: boolean;
-  }[] {
-    var includes = [
-      { file: "RadJav.Circle", themeFile: false },
-      { file: "RadJav.Rectangle", themeFile: false },
-      { file: "RadJav.Vector2", themeFile: false },
-      { file: "RadJav.Color", themeFile: false },
-      { file: "Math", themeFile: false, loadFirst: true },
-      { file: "String", themeFile: false, loadFirst: true }
-    ];
+						resolve();
+					});
+			}, RadJav, arguments));
 
-    return includes;
-  }
+		return promise;
+	}
 
-  /** @method getGUILibrary
-   * Get the paths to the gui library.
-   * @return {Object[]} The gui library.
-   */
-  export function getGUILibrary(): {
-    file: string;
-    themeFile: boolean;
-    loadFirst?: boolean;
-  }[] {
-    var includes = [
-      { file: "RadJav.GUI.GObject", themeFile: true, loadFirst: true },
-      { file: "RadJav.Font", themeFile: false, loadFirst: true },
-      { file: "RadJav.GUI.Window", themeFile: true },
-      { file: "RadJav.GUI.MenuBar", themeFile: true },
-      { file: "RadJav.GUI.MenuItem", themeFile: true },
-      { file: "RadJav.GUI.Button", themeFile: true },
-      { file: "RadJav.GUI.Textbox", themeFile: true },
-      { file: "RadJav.GUI.Checkbox", themeFile: true },
-      { file: "RadJav.GUI.Radio", themeFile: true },
-      { file: "RadJav.GUI.List", themeFile: true },
-      { file: "RadJav.GUI.Image", themeFile: true },
-      { file: "RadJav.GUI.Label", themeFile: true },
-      { file: "RadJav.GUI.Container", themeFile: true },
-      { file: "RadJav.GUI.HTMLElement", themeFile: true },
-      { file: "RadJav.GUI.Combobox", themeFile: true },
-      { file: "RadJav.GUI.Textarea", themeFile: true }
-    ];
+	/** @method getStandardLibrary
+	* Get the paths to the standard library.
+	* @return {Object[]} The standard library.
+	*/
+	export function getStandardLibrary(): {
+			file: string;
+			themeFile: boolean;
+			loadFirst?: boolean;
+		}[]
+	{
+		var includes = [
+				{ file: "RadJav.Circle", themeFile: false },
+				{ file: "RadJav.Rectangle", themeFile: false },
+				{ file: "RadJav.Vector2", themeFile: false },
+				{ file: "RadJav.Color", themeFile: false },
+				{ file: "Math", themeFile: false, loadFirst: true },
+				{ file: "String", themeFile: false, loadFirst: true }
+			];
 
-    return includes;
-  }
+		return includes;
+	}
 
-  /** @method getC3DLibrary
-   * Get the paths to the C3D library.
-   * @return {Object[]} The C3D library.
-   */
-  export function getC3DLibrary(): {
-    file: string;
-    themeFile: boolean;
-    loadFirst?: boolean;
-  }[] {
-    var includes = [
-      { file: "RadJav.GUI.Window", themeFile: true },
-      { file: "RadJav.GUI.Canvas3D", themeFile: true },
-      { file: "RadJav.C3D.Object3D", themeFile: false, loadFirst: true },
-      { file: "RadJav.GUI.GObject", themeFile: false, loadFirst: true },
-      { file: "RadJav.Font", themeFile: false },
-      { file: "RadJav.C3D.Camera", themeFile: false },
-      { file: "RadJav.C3D.Entity", themeFile: false },
-      { file: "RadJav.C3D.Transform", themeFile: false },
-      { file: "RadJav.Vector3", themeFile: false },
-      { file: "RadJav.Vector4", themeFile: false },
-      { file: "RadJav.Quaternion", themeFile: false },
-      { file: "RadJav.C3D.Model", themeFile: false, loadFirst: false },
-      { file: "RadJav.C3D.Material", themeFile: false, loadFirst: false }
-    ];
+	/** @method getGUILibrary
+	* Get the paths to the gui library.
+	* @return {Object[]} The gui library.
+	*/
+	export function getGUILibrary(): {
+			file: string;
+			themeFile: boolean;
+			loadFirst?: boolean;
+		}[]
+	{
+		var includes = [
+				{ file: "RadJav.GUI.GObject", themeFile: true, loadFirst: true },
+				{ file: "RadJav.Font", themeFile: false, loadFirst: true },
+				{ file: "RadJav.GUI.Window", themeFile: true },
+				{ file: "RadJav.GUI.MenuBar", themeFile: true },
+				{ file: "RadJav.GUI.MenuItem", themeFile: true },
+				{ file: "RadJav.GUI.Button", themeFile: true },
+				{ file: "RadJav.GUI.Textbox", themeFile: true },
+				{ file: "RadJav.GUI.Checkbox", themeFile: true },
+				{ file: "RadJav.GUI.Radio", themeFile: true },
+				{ file: "RadJav.GUI.List", themeFile: true },
+				{ file: "RadJav.GUI.Image", themeFile: true },
+				{ file: "RadJav.GUI.Label", themeFile: true },
+				{ file: "RadJav.GUI.Container", themeFile: true },
+				{ file: "RadJav.GUI.HTMLElement", themeFile: true },
+				{ file: "RadJav.GUI.Combobox", themeFile: true },
+				{ file: "RadJav.GUI.Textarea", themeFile: true }
+			];
 
-    return includes;
-  }
+		return includes;
+	}
 
-  /** @method getNetLibrary
-   * Get the paths to the Net library.
-   * @return {Object[]} The Net library.
-   */
-  export function getNetLibrary(): { file: string; themeFile: boolean }[] {
-    var includes = [{ file: "RadJav.Net.WebSocketClient", themeFile: false }];
+	/** @method getC3DLibrary
+	* Get the paths to the C3D library.
+	* @return {Object[]} The C3D library.
+	*/
+	export function getC3DLibrary(): {
+			file: string;
+			themeFile: boolean;
+			loadFirst?: boolean;
+		}[]
+	{
+		var includes = [
+				{ file: "RadJav.GUI.Window", themeFile: true },
+				{ file: "RadJav.GUI.Canvas3D", themeFile: true },
+				{ file: "RadJav.C3D.Object3D", themeFile: false, loadFirst: true },
+				{ file: "RadJav.GUI.GObject", themeFile: false, loadFirst: true },
+				{ file: "RadJav.Font", themeFile: false },
+				{ file: "RadJav.C3D.Camera", themeFile: false },
+				{ file: "RadJav.C3D.Entity", themeFile: false },
+				{ file: "RadJav.C3D.Transform", themeFile: false },
+				{ file: "RadJav.Vector3", themeFile: false },
+				{ file: "RadJav.Vector4", themeFile: false },
+				{ file: "RadJav.Quaternion", themeFile: false },
+				{ file: "RadJav.C3D.Model", themeFile: false, loadFirst: false },
+				{ file: "RadJav.C3D.Material", themeFile: false, loadFirst: false }
+			];
 
-    return includes;
-  }
+		return includes;
+	}
+
+	/** @method getNetLibrary
+	* Get the paths to the Net library.
+	* @return {Object[]} The Net library.
+	*/
+	export function getNetLibrary(): {
+			file: string; themeFile: boolean
+		}[]
+	{
+		var includes = [{ file: "RadJav.Net.WebSocketClient", themeFile: false }];
+
+		return includes;
+	}
 
   /** @method includeLibraries
    * Include libraries.
@@ -851,6 +860,29 @@ export namespace RadJav {
 
     return obj1;
   }
+  
+	/** @method setDefaultValue
+	* @static
+	* Set a default value to a parameter should it the parameter be set to 
+	* undefined.
+	* Available on platforms: Windows,Linux,OSX,HTML5
+	* @param {Mixed} param The parameter value to check.
+	* @param {Mixed} defaultValue The default value to set should param be set to undefined.
+	* @param {Function} [onValue=null] This function is called when a value can be retrieved from the 
+	* param parameter.
+	* @return {Mixed} Will return the value of param should it not be set to undefined. If param 
+	* is set to undefined, defaultValue will be returned instead.
+	*/
+	 export function setDefaultValue (param: any, defaultValue: any, onValue?: Function): any
+	{
+		if (param == undefined)
+			return (defaultValue);
+
+		if (onValue != null)
+			return (onValue (param));
+
+		return (param);
+	}
 
   /** @method keepContext
    * @static
@@ -861,7 +893,7 @@ export namespace RadJav {
    * @param {Mixed} [val=undefined] An additional value to pass to the context.
    * @return {Mixed} The returned result from the function func.
    */
-  export function keepContext(func: Function, context: object, val: any): any {
+  export function keepContext(func: Function, context: object, val?: any): any {
     var objReturn = function() {
       var aryArgs = Array.prototype.slice.call(arguments);
 
@@ -1279,216 +1311,219 @@ export namespace RadJav {
      * @param {String} url The URL to this theme.
      * @param {String} data The JSON to parse and get the data from.
      */
-    loadTheme(url: string, data: string): any {
-      var theme = null;
+    loadTheme(url: string, data: string): any
+	{
+		var theme = null;
 
-      try {
-        var obj = _eval(data);
-        theme = new RadJav.Theme(obj);
-        theme.url = url;
-      } catch (ex) {
-        console.error(ex.message);
-      }
+		try
+		{
+			var obj = _eval(data);
+			theme = new RadJav.Theme(obj);
+			theme.url = url;
+		}
+		catch (ex)
+		{
+			console.error(ex.message);
+		}
 
-      return theme;
-    }
-  }
+		return theme;
+	}
+}
 
-  export class GUI {
-    /** @method initObj
-     * @static
-     * Initialize a GUI object.
-     * @param {String} type The object type to create.
-     * @param {String/Mixed} name The name of the object.
-     * @param {String} text The text associated with the object.
-     * @param {RadJav.GUI.GObject} parent The parent of this object.
-     * @param {Promise} The promise to execute when this object has finished being created.
-     */
-    initObj(
-      type: string | { [key: string]: any },
-      name: any,
-      text: string,
-      parent: object
-    ): object {
-      var tempType = type;
+	export namespace GUI
+	{
+		/** @method initObj
+		* @static
+		* Initialize a GUI object.
+		* @param {String} type The object type to create.
+		* @param {String/Mixed} name The name of the object.
+		* @param {String} text The text associated with the object.
+		* @param {RadJav.GUI.GObject} parent The parent of this object.
+		* @param {Promise} The promise to execute when this object has finished being created.
+		*/
+		initObj(type: string | object, name: any, text: string, parent: object): object
+		{
+			let tempType = type;
 
-      if (typeof type == "object") {
-        tempType = type.type;
+			if (typeof type == "object") {
+					tempType = type.type;
 
-        if (type.name != null) {
-          name = type.name;
-        }
+					if (type.name != null) {
+					name = type.name;
+				}
 
-        if (type.text != null) {
-          text = type.text;
-        }
+				if (type.text != null) {
+					text = type.text;
+				}
 
-        if (type._text != null) {
-          text = type._text;
-        }
-      }
+				if (type._text != null) {
+					text = type._text;
+				}
+			}
 
-      if (tempType.indexOf("RadJav.GUI") > -1) {
-        tempType = tempType.substr(11);
-      }
+			if (tempType.indexOf("RadJav.GUI") > -1) {
+				tempType = tempType.substr(11);
+			}
 
-      if (RadJav.GUI[tempType] == null) {
-        throw RadJav.getLangString("unableToFindClass", tempType);
-      }
+			if (RadJav.GUI[tempType] == null) {
+				throw RadJav.getLangString("unableToFindClass", tempType);
+			}
 
-      var properties = {
-        name: name,
-        text: text,
-        parent: parent
-      };
+			var properties = {
+					name: name,
+					text: text,
+					parent: parent
+				};
 
-      if (typeof type == "object") {
-        RadJav.copyProperties(properties, type, false);
-      }
+			if (typeof type == "object") {
+				RadJav.copyProperties(properties, type, false);
+			}
 
-      var obj = new RadJav.GUI[tempType](properties);
+			var obj = new RadJav.GUI[tempType](properties);
 
-      return obj;
-    }
+			return obj;
+		}
 
-    /** @method create
-     * @static
-     * Create a GUI object.
-     * @param {String} type The object type to create.
-     * @param {String/Mixed} name The name of the object.
-     * @param {String} text The text associated with the object.
-     * @param {RadJav.GUI.GObject} parent The parent of this object.
-     * @param {Promise} The promise to execute when this object has finished being created.
-     */
-    create(type: string, name: string, text: string, parent: object): any {
-      var obj = this.initObj(type, name, text, parent);
+		/** @method create
+		* @static
+		* Create a GUI object.
+		* @param {String} type The object type to create.
+		* @param {String/Mixed} name The name of the object.
+		* @param {String} text The text associated with the object.
+		* @param {RadJav.GUI.GObject} parent The parent of this object.
+		* @param {Promise} The promise to execute when this object has finished being created.
+		*/
+		create(type: string, name: string, text: string, parent: object): any
+		{
+			var obj = this.initObj(type, name, text, parent);
 
-      return obj.create();
-    }
+			return obj.create();
+		}
 
-    /** @method createObjects
-     * @static
-     * Create GUI objects.
-     * @param {String/RadJav.GUI.GObject[]} objects The objects to create.
-     * @param {RadJav.GUI.GObject} parent The parent of this object.
-     * @param {Function} [beforeCreated=null] The function to execute before the object is created.
-     * If this function returns false, the object will not be created.
-     * @return {Promise} The promise to execute when the objects have finished being created.
-     */
-    createObjects(
-      objects: any,
-      parent: object,
-      beforeCreated: Function = null
-    ): Promise<any> {
-      var promises = [];
+		/** @method createObjects
+		* @static
+		* Create GUI objects.
+		* @param {String/RadJav.GUI.GObject[]} objects The objects to create.
+		* @param {RadJav.GUI.GObject} parent The parent of this object.
+		* @param {Function} [beforeCreated=null] The function to execute before the object is created.
+		* If this function returns false, the object will not be created.
+		* @return {Promise} The promise to execute when the objects have finished being created.
+		*/
+		createObjects(objects: any, parent: object, beforeCreated: Function = null): Promise<any>
+		{
+			var promises = [];
 
-      if (beforeCreated == undefined) {
-        beforeCreated = null;
-      }
+			if (beforeCreated == undefined) {
+				beforeCreated = null;
+			}
 
-      for (var iIdx = 0; iIdx < objects.length; iIdx++) {
-        var obj = objects[iIdx];
-        var createObject = true;
+			for (var iIdx = 0; iIdx < objects.length; iIdx++) {
+				var obj = objects[iIdx];
+				var createObject = true;
 
-        if (beforeCreated != null) {
-          obj.onBeforeChildCreated = beforeCreated;
-          var result = beforeCreated(obj, parent);
+				if (beforeCreated != null) {
+					obj.onBeforeChildCreated = beforeCreated;
+					var result = beforeCreated(obj, parent);
 
-          if (result != null) {
-            createObject = result;
-          }
-        }
+					if (result != null) {
+						createObject = result;
+					}
+				}
 
-        if (createObject == true) {
-          promises.push(this.create(obj, "", "", parent));
-        }
-      }
+				if (createObject == true) {
+					promises.push(this.create(obj, "", "", parent));
+				}
+			}
 
-      return Promise.all(promises);
-    }
-  }
+			return Promise.all(promises);
+		}
+	}
 
-  /** @class C3D
-   * @static
-   * Contains classes for 3d operations in a RadJav.GUI.Canvas3D object.
-   */
-  export class C3D {
-    /** @method create
-     * @static
-     * Create a 3D object.
-     * @param {String} type The object type to create.
-     * @param {String|Mixed} name The name of the object.
-     * @param {RadJav.C3D.Object3D} parent The parent of this object.
-     * @param {Promise} The promise to execute when this object has finished being created.
-     */
-    create(type: string, name: any, parent: any): any {
-      if (type.indexOf("RadJav.C3D") > -1) {
-        type = type.substr(10);
-      }
+	/** @class C3D
+	* @static
+	* Contains classes for 3d operations in a RadJav.GUI.Canvas3D object.
+	*/
+	export namespace C3D
+	{
+		/** @method create
+		* @static
+		* Create a 3D object.
+		* @param {String} type The object type to create.
+		* @param {String|Mixed} name The name of the object.
+		* @param {RadJav.C3D.Object3D} parent The parent of this object.
+		* @param {Promise} The promise to execute when this object has finished being created.
+		*/
+		create(type: string, name: any, parent: any): any
+		{
+			if (type.indexOf("RadJav.C3D") > -1) {
+				type = type.substr(10);
+			}
 
-      if (RadJav.C3D[type] == null) {
-        throw RadJav.getLangString("unableToFindClass", type);
-      }
+			if (RadJav.C3D[type] == null) {
+				throw RadJav.getLangString("unableToFindClass", type);
+			}
 
-      var obj = new RadJav.C3D[type](name, parent);
+			var obj = new RadJav.C3D[type](name, parent);
 
-      return obj.create();
-    }
-  }
+			return obj.create();
+		}
+	}
 
-  /** @class Net
-   * @static
-   * Contains classes for network operations.
-   */
-  export class Net {
-    /** @method httpRequest
-     * @static
-     * Make an ajax request to a HTTP server.
-     * Available on platforms: Windows,Linux,OSX,HTML5
-     * @param {String/Object} req The URL or request object to send to the server.
-     * @return {Promise} The promise to execute when the request has completed.
-     */
-    httpRequest(req: string | object): Promise<any> {
-      var promise = new Promise(
-        RadJav.keepContext(function(resolve, reject) {
-          var addr = req;
-          var request = null;
-          var response = null;
+	/** @class Net
+	* @static
+	* Contains classes for network operations.
+	*/
+	export class Net
+	{
+		/** @method httpRequest
+		* @static
+		* Make an ajax request to a HTTP server.
+		* Available on platforms: Windows,Linux,OSX,HTML5
+		* @param {String/Object} req The URL or request object to send to the server.
+		* @return {Promise} The promise to execute when the request has completed.
+		*/
+		httpRequest(req: string | object): Promise<any>
+		{
+			var promise = new Promise(RadJav.keepContext(function(resolve, reject)
+				{
+					var addr = req;
+					var request = null;
+					var response = null;
 
-          try {
-            if (XMLHttpRequest != null) {
-              request = new XMLHttpRequest();
-            } else {
-              request = new ActiveXObject("Microsoft.XMLHTTP");
-            }
+					try
+					{
+						if (XMLHttpRequest != null)
+							request = new XMLHttpRequest();
+						else
+							request = new ActiveXObject("Microsoft.XMLHTTP");
 
-            request.onreadystatechange = RadJav.keepContext(
-              function(evt, request2) {
-                var req2 = request2[0];
+						request.onreadystatechange = RadJav.keepContext(function(evt, request2)
+							{
+								var req2 = request2[0];
 
-                try {
-                  if (req2.readyState == 4 && req2.status == 200) {
-                    resolve(req2.responseText);
-                  }
-                } catch (ex) {
-                  reject(ex);
-                }
-              },
-              this,
-              [request]
-            );
+								try
+								{
+									if (req2.readyState == 4 && req2.status == 200)
+										resolve(req2.responseText);
+								}
+								catch (ex)
+								{
+									reject(ex);
+								}
+							}, this, [request]);
 
-            request.open("GET", addr);
-            request.send();
-          } catch (ex) {
-            reject(ex);
-          }
-        }, this)
-      );
+						request.open("GET", addr);
+						request.send();
+					}
+					catch (ex)
+					{
+						reject(ex);
+					}
+				}, this));
 
-      return promise;
-    }
-  }
+			return promise;
+		}
+	}
 
   /** @class Console
    * @static
@@ -1942,13 +1977,13 @@ export namespace RadJav {
           found = true;
         }
 
-        if (window.webkit != null) {
+        if (window["webkit"] != null) {
           // iOS WKWebView
-          if (window.webkit.messageHandlers != null) {
-            if (window.webkit.messageHandlers[name] != null) {
+          if (window["webkit"].messageHandlers != null) {
+            if (window["webkit"].messageHandlers[name] != null) {
               args = Array.prototype.slice.call(arguments);
               args.splice(0, 1);
-              window.webkit.messageHandlers[name].postMessage(args);
+              window["webkit"].messageHandlers[name].postMessage(args);
               found = true;
             }
           }

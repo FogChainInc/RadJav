@@ -19,14 +19,15 @@
 */
 
 /// <reference path="RadJav.ts" />
+/// <reference path="RadJav.C3D.Object3D.ts" />
 
 namespace RadJav {
-  namespace C3D {
+  export namespace C3D {
     /** @class RadJav.C3D.Camera
      * A camera object.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    export class Camera extends Object3D {
+    export class Camera extends RadJav.C3D.Object3D {
       constructor(canvas3d, obj, parent) {
         super(canvas3d, obj, parent);
         this._perspective = RadJav.setDefaultValue(obj._perspective, true);
@@ -79,7 +80,7 @@ namespace RadJav {
        * @return {Promise} The promise to execute when the creation is completed.
        */
       create(): Promise<Camera> {
-        var promise = new Promise(
+        var promise = new Promise<Camera>(
           RadJav.keepContext(function(resolve, reject) {
             if (this._perspective == true) {
               this._obj3d = new THREE.PerspectiveCamera(

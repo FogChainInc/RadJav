@@ -1,6 +1,6 @@
 /*
 	MIT-LICENSE
-	Copyright (c) 2017-2018 Higher Edge Software, LLC
+	Copyright (c) 2018 Higher Edge Software, LLC
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
 	and associated documentation files (the "Software"), to deal in the Software without restriction, 
@@ -20,39 +20,15 @@
 
 namespace RadJav
 {
-	export namespace Net
+	export namespace BlockchainV2
 	{
-		/// Web server
-		export class WebServer
+		export function connect (): Promise<void>
 		{
-			/** @property {Number} [port=80]
-			* The port.
-			*/
-			port: Number;
-			/** @property {Number} [_serverType=RadJav.Net.WebServerTypes.HTTP]
-			* The server type.
-			*/
-			_serverType: RadJav.Net.WebServerTypes;
-			/** @property {Mixed} [_webServer=null]
-			* The native web server.
-			*/
-			_webServer: any;
+			let promise = new Promise (function (resolve, reject)
+				{
+				});
 
-			constructor ()
-			{
-				this.port = 80;
-				this._serverType = RadJav.Net.WebServerTypes.HTTP;
-				this._webServer = null;
-
-				if (this._init != null)
-					this._init ();
-			}
-		}
-
-		export enum WebServerTypes
-		{
-			HTTP = 1, 
-			HTTPS = 2
+			return (promise);
 		}
 	}
 }

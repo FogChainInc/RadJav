@@ -1,0 +1,7 @@
+{
+	"compilerOptions": {
+			"target": "ES3", 
+			"module": "None", 
+			"lib": ["es5", "DOM"]
+		}
+}

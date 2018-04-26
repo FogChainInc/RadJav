@@ -20,84 +20,81 @@
 
 /// <reference path="RadJav.ts" />
 
-namespace RadJav {
+namespace RadJav
+{
   /** @class RadJav.Vector2
    * A Vector2 class.
    * Available on platforms: Windows,Linux,OSX,HTML5
    */
-  export class Vector2 {
-    constructor(x: Number, y: Number) {
-      if (typeof x == "object") {
-        var temp = x;
-        x = temp.x;
-        y = temp.y;
-      }
+  export class Vector2
+  {
+	constructor(x: number | Vector2 = 0, y: number = 0)
+	{
+		if (typeof x == "object")
+			this.x = x.x;
+		else
+			this.x = x;
 
-      if (x == null) x = 0;
+		this.y = y;
+	}
 
-      if (y == null) y = 0;
-
-      this.x = x;
-      this.y = y;
-    }
-
-    /** @property {Number} [x=0]
+    /** @property {number} [x=0]
      * The X component.
      */
-    x: Number;
-    /** @property {Number} [y=0]
+    x: number;
+    /** @property {number} [y=0]
      * The X component.
      */
-    y: Number;
+    y: number;
 
-    /** @method toString
+    /** @method tostring
      * Convert this object to a string.
-     * @return {String} The string representing this object.
+     * @return {string} The string representing this object.
      */
-    toString(): String {
+    tostring(): string {
       return this.x + "," + this.y;
     }
 
     /** @method setX
      * Set the X component of this object.
-     * @param {Number} n The new X component of this object.
+     * @param {number} n The new X component of this object.
      */
-    setX(n: Number): void {
+    setX(n: number): void {
       this.x = n;
     }
 
     /** @method setY
      * Set the X component of this object.
-     * @param {Number} n The new X component of this object.
+     * @param {number} n The new X component of this object.
      */
-    setY(n: Number): void {
+    setY(n: number): void {
       this.y = n;
     }
 
     /** @method set
      * Set the X,Y component of this object.
-     * @param {Number} x The new X component of this object.
-     * @param {Number} y The new Y component of this object.
+     * @param {number} x The new X component of this object.
+     * @param {number} y The new Y component of this object.
      */
-    set(x: Number, y: Number): void {
+    set(x: number, y: number): void {
       this.x = x;
       this.y = y;
     }
 
     /** @method add
      * Add X and Y values to the X and Y components of this object.
-     * @param {Number} x The X component to add.
-     * @param {Number} y The Y component to add.
+     * @param {number} x The X component to add.
+     * @param {number} y The Y component to add.
      */
-    add(x: Number, y: Number): void {
+    add(x: number, y: number): void {
       this.x += x;
       this.y += y;
     }
 
     /** @method sub
      * Subtract X and Y values from the X and Y components of this object.
-     * @param {Number} x The X component to subtract.
-     * @param {Number} y The Y component to subtract.
+     * @param {number} x The X component to subtract.
+     * @param {number} y The Y component to subtract.
      */
     sub(subVector2: Vector2): void {
       this.x -= subVector2.x;
@@ -106,20 +103,21 @@ namespace RadJav {
 
     /** @method mult
      * Multiply X and Y values to the X and Y components of this object.
-     * @param {Number} x The X component to subtract.
-     * @param {Number} y The Y component to subtract.
+     * @param {number} x The X component to subtract.
+     * @param {number} y The Y component to subtract.
      */
-    mult(n: Number): void {
+    mult(n: number): void {
       this.x *= n;
       this.y *= n;
     }
 
     /** @method divide
      * Divide this object by another Vector2 object or number.
-     * @param {RadJav.Vector2|Number} vector2 The Vector2 or Number to divide by.
+     * @param {RadJav.Vector2|number} vector2 The Vector2 or number to divide by.
      */
-    divide(vector2: Vector2): Vector2 {
-      var result = new RadJav.Vector2();
+    divide(vector2: number | Vector2): Vector2
+	{
+      let result = new Vector2();
 
       if (typeof vector2 == "object") {
         result.x = this.x / vector2.x;
@@ -135,41 +133,41 @@ namespace RadJav {
     /** @method dot
      * Perform a dot product on this object.
      * @param {RadJav.Vector2} dotVector2 The Vector2 to perform the dot product.
-     * @return {Number} The result of the dot product.
+     * @return {number} The result of the dot product.
      */
-    dot(dotVector2: Vector2): Number {
+    dot(dotVector2: Vector2): number {
       return this.x * dotVector2.x + this.y * dotVector2.y;
     }
 
     /** @method length
      * Get the length of this object using a square root. This will use Math.sqrt.
-     * @return {Number} The length of this object.
+     * @return {number} The length of this object.
      */
-    length(): Number {
+    length(): number {
       return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
     /** @method normalize
      * Normalize this object, this will use this object's length method.
-     * @return {Number} The normalized length of this object.
+     * @return {number} The normalized length of this object.
      */
-    normalize(): Number {
+    normalize(): Vector2 {
       return this.divide(this.length());
     }
     /** @method parseVector2
      * @static
      * Parse a Vector2 string and create a Vector2 object from it.
-     * @param {String} str The string to parse.
+     * @param {string} str The string to parse.
      * @return {RadJav.Vector2} The new Vector2 created from this string.
      */
-    parseVector2(str: String): RadJav.Vector2 {
-      var obj = new RadJav.Vector2();
+    parseVector2(str: string): Vector2 {
+      let obj = new Vector2();
 
       if (str == "") return obj;
 
       str = str.toLowerCase();
       str = str.replace(/ /g, "");
-      var strs = str.split(",");
+      let strs = str.split(",");
 
       if (strs.length > 0) obj.x = parseFloat(strs[0]);
 

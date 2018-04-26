@@ -18,42 +18,28 @@
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/// <reference path="RadJav.ts" />
+
 namespace RadJav
 {
-	export namespace Net
+	export namespace GUI
 	{
-		/// Web server
-		export class WebServer
+		/** @class RadJav.GUI.MouseEvent
+		* A GUI mouse event.
+		* @param {Number} [x=0] The x position of the mouse.
+		* @param {Number} [y=0] The y position of the mouse.
+		* Available on platforms: Windows,Linux,OSX,HTML5
+		*/
+		export class MouseEvent
 		{
-			/** @property {Number} [port=80]
-			* The port.
-			*/
-			port: Number;
-			/** @property {Number} [_serverType=RadJav.Net.WebServerTypes.HTTP]
-			* The server type.
-			*/
-			_serverType: RadJav.Net.WebServerTypes;
-			/** @property {Mixed} [_webServer=null]
-			* The native web server.
-			*/
-			_webServer: any;
-
-			constructor ()
+			constructor(x: number = 0, y: number = 0)
 			{
-				this.port = 80;
-				this._serverType = RadJav.Net.WebServerTypes.HTTP;
-				this._webServer = null;
-
-				if (this._init != null)
-					this._init ();
+				this.x = x;
+				this.y = y;
 			}
-		}
 
-		export enum WebServerTypes
-		{
-			HTTP = 1, 
-			HTTPS = 2
+			x: number;
+			y: number;
 		}
 	}
 }
-

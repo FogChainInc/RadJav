@@ -20,39 +20,46 @@
 
 namespace RadJav
 {
-	export namespace Net
+	export namespace DB
 	{
 		/// Web server
-		export class WebServer
+		export class KeyValueStorage
 		{
-			/** @property {Number} [port=80]
-			* The port.
+			/** @property {Mixed} [_storage=null]
+			* The native database object.
 			*/
-			port: Number;
-			/** @property {Number} [_serverType=RadJav.Net.WebServerTypes.HTTP]
-			* The server type.
-			*/
-			_serverType: RadJav.Net.WebServerTypes;
-			/** @property {Mixed} [_webServer=null]
-			* The native web server.
-			*/
-			_webServer: any;
+			_storage: any;
 
 			constructor ()
 			{
-				this.port = 80;
-				this._serverType = RadJav.Net.WebServerTypes.HTTP;
-				this._webServer = null;
+				this._storage = null;
 
 				if (this._init != null)
 					this._init ();
 			}
-		}
 
-		export enum WebServerTypes
-		{
-			HTTP = 1, 
-			HTTPS = 2
+			/** The database to open.
+			* @return Returns true if the database was able to be opened.
+			* Also returns true if the database was newly created.
+			*/ 
+			open (path: string): boolean
+			{
+			}
+
+			/// Write a value to a key.
+			write (key: string, value: string): Promise<void>
+			{
+			}
+
+			/// The key to read.
+			read (key: string): Promise<string>
+			{
+			}
+
+			/// The database to open.
+			close (): void
+			{
+			}
 		}
 	}
 }

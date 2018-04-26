@@ -21,7 +21,7 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace C3D {
+  export namespace C3D {
     /** @class RadJav.C3D.Object3D
      * The base 3D object.
      * Available on platforms: Windows,Linux,OSX,HTML5

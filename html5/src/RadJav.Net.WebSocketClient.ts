@@ -40,6 +40,9 @@ namespace RadJav {
         this.url = RadJav.setDefaultValue(obj.url, "");
         this._socket = RadJav.setDefaultValue(obj._socket, null);
         this._events = RadJav.setDefaultValue(obj._events, {});
+
+		if (this._init != null)
+			this._init ();
       }
 
       /** @property {String} [url=""]
