@@ -29,7 +29,7 @@ namespace RadJav {
     constructor(
       r:
         | number
-        | { r: number = 0; g: number = 0; b: number = 0; a: number = 1 } = 0,
+        | { r: 0; g: 0; b: 0; a: 1 } = 0,
       g: number = 0,
       b: number = 0,
       a: number = 1
@@ -69,10 +69,10 @@ namespace RadJav {
      * Return this color as a hex string.
      * @return {String} The hex string representing the color.
      */
-    toHex(): String {
-      var red = this.r;
-      var green = this.g;
-      var blue = this.b;
+    toHex(): string {
+      var red:any = this.r;
+      var green:any = this.g;
+      var blue:any = this.b;
 
       red *= 255;
       green *= 255;
@@ -135,7 +135,7 @@ RadJav.Color.Blue = new RadJav.Color(0, 0, 1, 1);
  * @param {String} str The color string to parse.
  * @return {RadJav.Color} The color.
  */
-declare function parseColor(str: String): RadJav.Color {
+ function parseColor(str: String): RadJav.Color {
   var color = new RadJav.Color(0, 0, 0, 1);
 
   if (str == "") {

@@ -28,7 +28,7 @@ namespace RadJav {
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
     export class Camera extends RadJav.C3D.Object3D {
-      constructor(canvas3d, obj, parent) {
+      constructor(canvas3d?, obj?, parent?) {
         super(canvas3d, obj, parent);
         this._perspective = RadJav.setDefaultValue(obj._perspective, true);
         this._aspectRatio = RadJav.setDefaultValue(

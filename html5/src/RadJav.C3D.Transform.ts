@@ -20,15 +20,15 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace C3D {
+ export namespace C3D {
     /** @class RadJav.C3D.Transform
      * A 3d tranform.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
     export class Transform {
-      constructor(object3d, obj) {
+      constructor(object3d, obj?,position?) {
         if (object3d == null) {
-          throw Lang.object3dNotIncluded;
+          throw (_lang.object3dNotIncluded);
         }
 
         if (obj == null) {
@@ -40,7 +40,7 @@ namespace RadJav {
         }
 
         if (obj.parent != null) {
-          if (parent._transform != null) {
+          if ((<any>parent)._transform != null) {
             obj._parent = obj.parent._transform;
           } else {
             obj._parent = obj.parent;
@@ -56,9 +56,12 @@ namespace RadJav {
         if (this._parent != null) {
           this._sceneNode = this._parent._sceneNode;
         } else {
-          this._sceneNode = this._object3d._canvas3D._sceneManager;
+          this._sceneNode = (<any>this._object3d.getCanvas3D())._sceneManager;
         }
       }
+
+
+      protected position: any;
 
       /** @property {RadJav.C3D.Object3D} [_object3d=object3d]
        * @protected
@@ -87,8 +90,8 @@ namespace RadJav {
        */
       addChild(child: Object3D): void {
         if (this._sceneNode != null) {
-          this._sceneNode.add(child._obj3d);
-          this._movable = child._obj3d;
+          this._sceneNode.add(child.getObj3D());
+          this._movable = child.getObj3D();
         }
       }
 
@@ -98,7 +101,7 @@ namespace RadJav {
        * @param {Number} y The y position.
        * @param {Number} z The z position.
        */
-      setPosition(x: Number | Vector3, y: number, z: number): void {
+      setPosition(x: any | Vector3, y: number, z: number): void {
         var obj = {
           x: 0,
           y: 0,

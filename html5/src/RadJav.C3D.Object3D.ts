@@ -19,6 +19,7 @@
 */
 
 /// <reference path="RadJav.ts" />
+/// <reference path="RadJav.C3D.Transform.ts" />
 
 namespace RadJav {
   export namespace C3D {
@@ -35,7 +36,7 @@ namespace RadJav {
       /** The type of object.
        * @default ""
        */
-      type: String = "";
+      type: string = "";
 
       /** The visibility of the object.
        * @default true
@@ -61,6 +62,8 @@ namespace RadJav {
        */
       protected _obj3d: any = null;
 
+
+      protected _c3dObj: any;
       /** This object's transform.
        * @default new RadJav.C3D.Transform (this)
        * @protected
@@ -102,6 +105,14 @@ namespace RadJav {
         );
       }
 
+      getCanvas3D():GUI.Canvas3D {
+          return this._canvas3D;
+      }
+
+
+      getObj3D():any {
+        return this._obj3d;
+      }
       /** Using the existing parameters in this object, create it.
        * @return {Promise} The promise to execute when the creation is completed.
        */
@@ -132,7 +143,7 @@ namespace RadJav {
        * @param {Number} y The y position.
        * @param {Number} z The z position.
        */
-      setPosition(x: Number, y: Number, z: Number): void {
+      setPosition(x: Number, y: number, z: number): void {
         return this._transform.setPosition(x, y, z);
       }
 
@@ -150,7 +161,7 @@ namespace RadJav {
        * @param {Boolean} visible The visibility of the object
        */
       setVisibility(visible: boolean): void {
-        RadJav.theme.event(this.type, "setVisibility", this, visible);
+        RadJav.Theme.event(this.type, "setVisibility", this, visible);
       }
 
       /** Get the visibility of this object.
@@ -160,7 +171,7 @@ namespace RadJav {
        * @return {Boolean} The visibility of this object
        */
       getVisibility(): boolean {
-        return RadJav.theme.eventSync(this.type, "getVisibility", this);
+        return RadJav.Theme.eventSync(this.type, "getVisibility");
       }
 
       /** Show this object.

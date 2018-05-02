@@ -20,13 +20,13 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-	namespace C3D {
+	export namespace C3D {
 	/** @class RadJav.C3D.Model
 	* A 3d Model.
 	* Available on platforms: Windows,Linux,OSX,HTML5
 	*/
 		export class Model {
-			constructor(canvas3d, obj, parent, model) {
+			constructor(object3d, obj, materials) {
 				if (obj == null) {
 					obj = {};
 				}
@@ -49,7 +49,7 @@ namespace RadJav {
 			* @protected
 			* The 3d object that is associated with this transform.
 			*/
-			protected _object3d: Object3D;
+			protected _object3d: RadJav.C3D.Object3D;
 
 			/** @property {String} [_name=""]
 			* @protected
@@ -66,7 +66,7 @@ namespace RadJav {
 			/** @property {RadJav.C3D.Material[]} [materials=[]]
 			* The materials used in this model.
 			*/
-			protected materials: Material[] = [];
+			protected materials: RadJav.C3D.Material[] = [];
 
 			/** @method create
 			* Create the model.
@@ -109,9 +109,9 @@ namespace RadJav {
 			* Information about the 3d Model mesh to load.
 			* Available on platforms: Windows,Linux,OSX,HTML5
 			*/
-			class Mesh {
+			export class Mesh {
 
-				constructor(mode, obj) {
+				constructor(model, obj) {
 					if (obj == null) {
 						obj = {};
 					}
@@ -153,7 +153,7 @@ namespace RadJav {
 				* @protected
 				* The mesh data.
 				*/
-				data: Mesh.Data = null;
+				data: Mesh.Data | object= null;
 
 				/** @property {Object} [_mesh=null]
 				* @protected
@@ -219,7 +219,7 @@ namespace RadJav {
 				* 3d Model mesh data.
 				* Available on platforms: Windows,Linux,OSX,HTML5
 				*/
-				class Data {
+				export class Data {
 					constructor(mesh, obj) {
 						this.type = RadJav.setDefaultValue(obj.type, "mesh");
 						this.radius = RadJav.setDefaultValue(obj.radius, 100);

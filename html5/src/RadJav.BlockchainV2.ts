@@ -24,7 +24,7 @@ namespace RadJav
 	{
 		export function connect (): Promise<void>
 		{
-			let promise = new Promise (function (resolve, reject)
+			let promise = new Promise<void> (function (resolve, reject)
 				{
 				});
 

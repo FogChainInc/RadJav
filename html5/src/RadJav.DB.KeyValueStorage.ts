@@ -38,22 +38,27 @@ namespace RadJav
 					this._init ();
 			}
 
+			protected _init:any;
+			
 			/** The database to open.
 			* @return Returns true if the database was able to be opened.
 			* Also returns true if the database was newly created.
 			*/ 
 			open (path: string): boolean
 			{
+				return;
 			}
 
 			/// Write a value to a key.
 			write (key: string, value: string): Promise<void>
 			{
+				return new Promise<void>(()=>null);
 			}
 
 			/// The key to read.
 			read (key: string): Promise<string>
 			{
+				return new Promise<string>(()=>null);
 			}
 
 			/// The database to open.

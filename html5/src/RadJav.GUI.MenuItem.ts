@@ -27,8 +27,8 @@ namespace RadJav {
      * A menu item.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class MenuItem extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+    class MenuItem extends RadJav.GUI.GObject {
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }

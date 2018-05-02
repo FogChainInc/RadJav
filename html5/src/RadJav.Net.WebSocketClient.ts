@@ -41,8 +41,8 @@ namespace RadJav {
         this._socket = RadJav.setDefaultValue(obj._socket, null);
         this._events = RadJav.setDefaultValue(obj._events, {});
 
-		if (this._init != null)
-			this._init ();
+        if ((<any>this)._init != null)
+          (<any>this)._init();
       }
 
       /** @property {String} [url=""]
@@ -54,7 +54,7 @@ namespace RadJav {
        * @protected
        * The web socket that will be used for the connection.
        */
-      _socket: Object;
+      _socket: any;
       /** @property {Object} [_events={}]
        * @protected
        * The events to execute when triggered.
@@ -67,7 +67,7 @@ namespace RadJav {
        */
       connect(eventName, func: Function): Promise<any> {
         var promise = new Promise(
-          RadJav.keepContext(function(resolve, reject) {
+          RadJav.keepContext(function (resolve, reject) {
             if (WebSocket == null) {
               reject(RadJav._lang.websocketsNotSupported);
               return;
@@ -75,7 +75,7 @@ namespace RadJav {
 
             this._socket = new WebSocket(this.url, ["xmpp"]);
 
-            this._socket.onopen = RadJav.keepContext(function() {
+            this._socket.onopen = RadJav.keepContext(function () {
               resolve();
 
               if (this._events["onopen"] != null) {
@@ -83,7 +83,7 @@ namespace RadJav {
               }
             }, this);
 
-            this._socket.onerror = RadJav.keepContext(function(error) {
+            this._socket.onerror = RadJav.keepContext(function (error) {
               reject(error);
 
               if (this._events["onerror"] != null) {
@@ -91,13 +91,13 @@ namespace RadJav {
               }
             }, this);
 
-            this._socket.onmessage = RadJav.keepContext(function(message) {
+            this._socket.onmessage = RadJav.keepContext(function (message) {
               if (this._events["onmessage"] != null) {
                 this._events["onmessage"](message);
               }
             }, this);
 
-            this._socket.onclose = RadJav.keepContext(function(message) {
+            this._socket.onclose = RadJav.keepContext(function (message) {
               if (this._events["onclose"] != null) {
                 this._events["onclose"]();
               }

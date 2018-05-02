@@ -21,14 +21,14 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace GUI {
+  export namespace GUI {
     /** @class RadJav.GUI.Combobox
      * @extends RadJav.GUI.GObject
      * A combobox.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Canvas3D extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+    export class Canvas3D extends RadJav.GUI.GObject {
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }
@@ -54,6 +54,7 @@ namespace RadJav {
         this._materials = RadJav.setDefaultValue(obj._materials, {});
       }
 
+       
       /** @property {Mixed} [_renderer=null]
        * @protected
        * The renderer used to render the canvas.
@@ -80,8 +81,10 @@ namespace RadJav {
        */
       protected _materials: Object[];
 
-      create(): Promise<GObject> {
-        var promise = RadJav.theme.event(this.type, "create", this).then(
+      protected _sceneManager:any;
+
+      create(): Promise<RadJav.GUI.GObject> {
+        var promise = RadJav.Theme.event(this.type, "create", this).then(
           RadJav.keepContext(function(html) {
             this._html = html;
 
@@ -161,7 +164,7 @@ namespace RadJav {
        * @return {Promise} The promise to execute when the camera has finished being
        * created.
        */
-      _setupDefaultCamera(): void {
+      _setupDefaultCamera(): Promise<RadJav.C3D.Camera> {
         var camera = new RadJav.C3D.Camera(this, "camera");
 
         return camera.create().then(
@@ -195,7 +198,7 @@ namespace RadJav {
        * @param {RadJav.C3D.Model} model The 3d model to create.
        * @return {Promise} The promise to execute when the entity has finished creating.
        */
-      createEntity(name: string, parent: Object3D, model: Model): Promise<any> {
+      createEntity(name: string, parent: RadJav.C3D.Object3D, model: RadJav.C3D.Model): Promise<any> {
         var entity = new RadJav.C3D.Entity(this, name, parent, model);
         return entity.create();
       }
@@ -204,7 +207,7 @@ namespace RadJav {
        * Add a loaded model for use.
        * @param {RadJav.C3D.Model} model The model to add.
        */
-      addModel(model: Model): void {
+      addModel(model: RadJav.C3D.Model): void {
         this._models[model._name] = model;
       }
 
@@ -212,7 +215,7 @@ namespace RadJav {
        * Add a loaded material for use.
        * @param {RadJav.C3D.Material} material The material to add.
        */
-      addMaterial(material: Material): void {
+      addMaterial(material: RadJav.C3D.Material): void {
         this._materials[material._name] = material;
       }
 

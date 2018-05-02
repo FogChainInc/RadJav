@@ -27,8 +27,8 @@ namespace RadJav {
      * A button.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Button extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+    class Button extends RadJav.GUI.GObject{
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         super(obj, text, parent);
         if (obj == null) {
           obj = {};

@@ -36,7 +36,7 @@ namespace RadJav {
       if (z == null) z = 0;
 
       if (x instanceof RadJav.Vector4) {
-        var temp = x;
+        let temp = x;
         x = temp.x;
         y = temp.y;
         z = temp.z;
@@ -44,7 +44,7 @@ namespace RadJav {
       }
 
       if (x instanceof RadJav.Quaternion) {
-        var temp = x;
+        let temp = x;
         w = temp.w;
         x = temp.x;
         y = temp.y;

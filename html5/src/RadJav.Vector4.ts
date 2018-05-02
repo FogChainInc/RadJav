@@ -25,7 +25,7 @@ namespace RadJav {
    * A Vector4 class.
    * Available on platforms: Windows,Linux,OSX,HTML5
    */
-  class Vector4 {
+  export class Vector4 {
     constructor(x: Number, y: Number, z: Number, w: Number) {
       if (x == null) x = 0;
 
@@ -42,14 +42,14 @@ namespace RadJav {
       }
 
       if (x instanceof RadJav.Vector3) {
-        var temp = x;
+        let temp = x;
         x = temp.x;
         y = temp.y;
         z = temp.z;
       }
 
       if (x instanceof RadJav.Vector4) {
-        var temp = x;
+        let temp = x;
         x = temp.x;
         y = temp.y;
         z = temp.z;
@@ -89,7 +89,7 @@ namespace RadJav {
   }
 }
 
-declare function parseVector4(str: String): RadJav.Vector4 {
+declare function parseVector4(string: string): RadJav.Vector4 {
   var v4dReturn = new RadJav.Vector4();
 
   if (string == "") return v4dReturn;
