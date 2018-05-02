@@ -25,8 +25,8 @@ namespace RadJav {
    * A Vector3 class.
    * Available on platforms: Windows,Linux,OSX,HTML5
    */
-  class Vector3 {
-    constructor(x, y, z) {
+  export class Vector3 {
+    constructor(x?, y?, z?) {
       if (x == null) x = 0;
 
       if (y == null) y = 0;
@@ -40,7 +40,7 @@ namespace RadJav {
       }
 
       if (x instanceof RadJav.Vector3) {
-        var temp = x;
+        let temp = x;
         x = temp.x;
         y = temp.y;
         z = temp.z;
@@ -53,15 +53,15 @@ namespace RadJav {
     /** @property {Number} [x=0]
      * The X component.
      */
-    x: Number;
+    x: number;
     /** @property {Number} [y=0]
      * The Y component.
      */
-    y: Number;
+    y: number;
     /** @property {Number} [z=0]
      * The Z component.
      */
-    z: Number;
+    z: number;
 
     /** @method toString
      * Convert this object to a string.
@@ -141,7 +141,7 @@ namespace RadJav {
      * Divide this object by another Vector3 object or number.
      * @param {RadJav.Vector3|Number} Vector3 The Vector3 or Number to divide by.
      */
-    divide(vector3: Vector3): Vector3 {
+    divide(vector3: Vector3 |number): Vector3 {
       var result = new RadJav.Vector3();
 
       if (vector3 instanceof RadJav.Vector3) {
@@ -162,7 +162,7 @@ namespace RadJav {
      * @param {RadJav.Vector3} vector3 The Vector3 to perform the dot product.
      * @return {Number} The result of the dot product.
      */
-    dot(vector3: Vector3): Number {
+    dot(vector3: Vector3): number {
       var dReturn =
         this.x * vector3.x + this.y * vector3.y + this.z * vector3.z;
 
@@ -188,7 +188,7 @@ namespace RadJav {
      * Get the length of this object using a square root. This will use Math.sqrt.
      * @return {Number} The length of this object.
      */
-    length(): Number {
+    length(): number {
       var dReturn = Math.sqrt(
         this.x * this.x + this.y * this.y + this.z * this.z
       );
@@ -200,7 +200,7 @@ namespace RadJav {
      * Normalize this object, this will use this object's length method.
      * @return {Number} The normalized length of this object.
      */
-    normalize(): Number {
+    normalize(): number|Vector3 {
       var dReturn = this.divide(this.length());
 
       return dReturn;
@@ -232,7 +232,7 @@ namespace RadJav {
      * @param {RadJav.Vector3} vector3 The Vector3 to get the angle from.
      * @return {Number} The angle.
      */
-    angleBetween(vector3: Vector3): Number {
+    angleBetween(vector3: Vector3): number {
       var dTheta = this.dot(vector3) / (this.length() * vector3.length());
       var dReturn = Math.acos(Math.clamp(dTheta, -1, 1));
 

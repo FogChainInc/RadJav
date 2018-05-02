@@ -22,7 +22,7 @@
 
 namespace RadJav
 {
-	export namespace Net
+	 namespace Net
 	{
 		export class WebSocketServer
 		{
@@ -45,8 +45,8 @@ namespace RadJav
 				this.clients = [];
 				this._webSocket = null;
 
-				if (this._init != null)
-					this._init ();
+				if ((<any>this)._init != null)
+					(<any>this)._init ();
 			}
 		}
 

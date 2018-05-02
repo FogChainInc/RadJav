@@ -35,7 +35,7 @@ namespace RadJav {
    * Available on platforms: Windows,Linux,OSX,HTML5
    */
   export class Rectangle {
-    constructor(x: Number, y: Number, w: Number, h: Number) {
+    constructor(x?: any, y?: number, w?: number, h?: number) {
       if (typeof x == "object") {
         if (x.w != null) {
           var rect = x;
@@ -77,14 +77,14 @@ namespace RadJav {
       this.right = this.x + this.width;
     }
 
-    x: Number;
-    y: Number;
-    width: Number;
-    height: Number;
-    top: Number;
-    bottom: Number;
-    left: Number;
-    right: Number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
 
     /** @method setPosition
      * Set the position of this object.
@@ -92,9 +92,9 @@ namespace RadJav {
      * representing the coordinates of this object.
      * @param {Number} [y=null] The y coordinate of this object.
      */
-    setPosition(x: Number, y: Number): void {
+    setPosition(x: any, y?: number): void {
       if (typeof x == "object") {
-        var pos = x;
+        var pos:any = x;
         x = pos.x;
         y = pos.y;
       }
@@ -121,7 +121,7 @@ namespace RadJav {
      * representing the size of this object.
      * @param {Number} [h=null] The height of this object.
      */
-    setSize(w: Number, h: Number): void {
+    setSize(w: any, h?: number): void {
       if (typeof w == "object") {
         var size = w;
         w = size.x;
@@ -151,7 +151,7 @@ namespace RadJav {
      * @param {Number} [y=null] The y coordinate of the point.
      * @return {Boolean} Returns true if the point is inside the rectangle.
      */
-    pointInside(x: Number, y: Number): boolean {
+    pointInside(x: any, y: Number): boolean {
       if (typeof x == "object") {
         var pos = x;
         x = pos.x;

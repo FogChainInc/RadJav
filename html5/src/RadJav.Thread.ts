@@ -34,8 +34,8 @@ namespace RadJav
 			this._htmlObj = null;
 			this._threadFunc = null;
 
-			if (this._init != null)
-				this._init ();
+			if ((<any>this)._init != null)
+				(<any>this)._init ();
 		}
 
 		/** @property {Any} [_appObj=null]
@@ -56,7 +56,7 @@ namespace RadJav
 		*/
 		start ()
 		{
-			let script: HTMLElement = document.createElement("script");
+			let script = document.createElement("script");
 			script.type = "javascript/worker";
 			let str: string = "(" + this._threadFunc.toString () + ")()";
 

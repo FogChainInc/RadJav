@@ -20,13 +20,13 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace C3D {
+ export namespace C3D {
     /** @class RadJav.C3D.Material
      * A 3d tranform.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
     export class Material {
-      constructor(canvas3d, obj, parent, model) {
+      constructor(canvas3d, obj, parent?, model?) {
         if (obj == null) {
           obj = new Object();
         }
@@ -68,7 +68,7 @@ namespace RadJav {
        */
       static _createMaterials(canvas3d: GUI.Canvas3D, materials: Object[]) {
         var result = [];
-        var materialCount = canvas3d.getNumMaterials();
+        var materialCount:any = canvas3d.getNumMaterials();
 
         if (materials instanceof Array) {
           for (var iIdx = 0; iIdx < materials.length; iIdx++) {

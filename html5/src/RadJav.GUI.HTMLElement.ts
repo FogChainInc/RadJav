@@ -21,14 +21,14 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace GUI {
+  export namespace GUI {
     /** @class RadJav.GUI.HTMLElement
      * @extends RadJav.GUI.GObject
      * An HTML element.
      * Available on platforms: HTML5
      */
-    class HTMLElement extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+   export class HTMLElement extends RadJav.GUI.GObject {
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }

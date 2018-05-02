@@ -26,14 +26,14 @@ namespace RadJav {
      * The IO class.
      * Available on platforms: Windows,Linux,OSX
      */
-    class IO {
+    export class IO {
       /** @method isDir
        * Check to see if a directory exists.
        * Available on platforms: Windows,Linux,OSX
        * @param {String} path The path to check.
        * @return {Boolean} Returns true if the directory exists.
        */
-      static isDir(path: String): boolean {}
+      static isDir(path: String): boolean { return; }
 
       /** @method isFile
        * Check to see if a file exists.
@@ -41,7 +41,7 @@ namespace RadJav {
        * @param {String} path The path to check.
        * @return {Boolean} Returns true if the file exists.
        */
-      static isFile(path: String): boolean {}
+      static isFile(path: String): boolean { return; }
 
       /** @method mkdir
        * Make a directory.
@@ -69,49 +69,51 @@ namespace RadJav {
          * Available on platforms: Windows,Linux,OSX
          * @return {String} The port being used.
          */
-        getPort(): String {}
+        getPort(): String {
+          return;
+        }
 
         /** @method getBaud
          * Get the baud.
          * Available on platforms: Windows,Linux,OSX
          * @return {String} The baud being used.
          */
-        getBaud(): Number {}
+        getBaud(): Number { return; }
 
         /** @method getByteSize
          * Get the byte size being used.
          * Available on platforms: Windows,Linux,OSX
          * @return {String} The byte size being used.
          */
-        getByteSize(): Number {}
+        getByteSize(): Number {return;}
 
         /** @method getStopBits
          * Get the stop bits being used.
          * Available on platforms: Windows,Linux,OSX
          * @return {String} The stop bits being used.
          */
-        getStopBits(): Number {}
+        getStopBits(): Number { return; }
 
         /** @method getParity
          * Get the parity being used.
          * Available on platforms: Windows,Linux,OSX
          * @return {String} The parity being used.
          */
-        getParity(): Number {}
+        getParity(): Number { return; }
 
         /** @method open
          * Open the serial communications.
          * Available on platforms: Windows,Linux,OSX
          * @return {Boolean} Whether or not communications were able to be established.
          */
-        open(): boolean {}
+        open(): boolean { return; }
 
         /** @method isOpen
          * Check if serial communications were opened.
          * Available on platforms: Windows,Linux,OSX
          * @return {Boolean} Whether or not communications were able to be established.
          */
-        isOpen(): boolean {}
+        isOpen(): boolean { return; }
 
         /** @method read
          * Read from the opened port.
@@ -119,7 +121,7 @@ namespace RadJav {
          * @param {Number} bufferSize The size of the buffer to read in bytes.
          * @return {String} The string buffer from the opened port.
          */
-        read(bufferSize: Number): String {}
+        read(bufferSize: Number): String { return; }
 
         /** @method write
          * Write to the opened port.
@@ -128,7 +130,7 @@ namespace RadJav {
          * @param {Number} [bufferSize=buffer.length] The number of bytes to write from the buffer.
          * @return {Number} The number of bytes written.
          */
-        write(buffer: Number, bufferSize?: Number): Number {}
+        write(buffer: Number, bufferSize?: Number): Number { return; }
 
         /** @method close
          * Close the opened port.
@@ -156,7 +158,7 @@ namespace RadJav {
          * @param {String} path The path to the file to read from.
          * @return {String} The content read from the text file.
          */
-        static readEntireFile(path: String): String {}
+        static readEntireFile(path: String): String { return; }
 
         /** @property {Number} [read=1]
          * @static

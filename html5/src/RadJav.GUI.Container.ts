@@ -27,8 +27,11 @@ namespace RadJav {
      * A container.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Container extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+    class Container extends RadJav.GUI.GObject {
+
+      
+
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }

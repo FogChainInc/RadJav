@@ -20,6 +20,7 @@
 
 /// <reference path="RadJav.ts" />
 
+
 namespace RadJav {
   namespace GUI {
     /** @class RadJav.GUI.Window
@@ -27,8 +28,9 @@ namespace RadJav {
      * A window.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Window extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+    export class Window extends RadJav.GUI.GObject{
+
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         if (obj == null) obj = {};
 
         if (typeof obj == "string") {
@@ -44,7 +46,7 @@ namespace RadJav {
 
         super(obj, text, parent) || this;
 
-        _this.type = "RadJav.GUI.Window";
+        this.type = "RadJav.GUI.Window";
       }
     }
   }

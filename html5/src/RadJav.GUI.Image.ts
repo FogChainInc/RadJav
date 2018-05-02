@@ -27,8 +27,8 @@ namespace RadJav {
      * An image.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Image extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+    export class Image extends RadJav.GUI.GObject {
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }
@@ -61,7 +61,9 @@ namespace RadJav {
        */
       protected _image: String | any;
 
+      
       onCreated(): void {
+        
         if (this._image != null) {
           this.setImage(this._image);
         }
@@ -75,7 +77,7 @@ namespace RadJav {
        * @return {Promise} Executes the promise when the image has loaded.
        */
       setImage(image: String | any): void {
-        RadJav.theme.event(this.type, "setImage", this, image);
+        RadJav.Theme.event(this.type, "setImage", this, image);
       }
     }
   }

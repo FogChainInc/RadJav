@@ -19,14 +19,15 @@
 */
 
 /// <reference path="RadJav.ts" />
+///<reference path="RadJav.C3D.Object3D.ts" />
 
 namespace RadJav {
-  namespace C3D {
+ export namespace C3D {
     /** @class RadJav.C3D.Camera
      * A camera object.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    export class Entity extends Object3D {
+    export class Entity extends RadJav.C3D.Object3D {
       constructor(canvas3d, obj, parent, model) {
         super(canvas3d, obj, parent);
         if (typeof obj == "string") {
@@ -58,7 +59,9 @@ namespace RadJav {
        * @protected
        * The name of the 3d model being used.
        */
-      protected _model: Object;
+      protected _model: any;
+
+      protected _c3dEntity:Object;
 
       /** @method create
        * Using the existing parameters in this object, create it.
@@ -85,7 +88,7 @@ namespace RadJav {
        * Set a model.
        * @param {String} newModel The model to set.
        */
-      setModel(newModel: String): void {
+      setModel(newModel: string): void {
         this._model = newModel;
       }
 
@@ -93,7 +96,7 @@ namespace RadJav {
        * Get the model.
        * @return {String} The model being used.
        */
-      getModel(): string {
+      getModel(): any {
         return this._model;
       }
 

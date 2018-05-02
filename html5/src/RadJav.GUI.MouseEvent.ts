@@ -22,7 +22,7 @@
 
 namespace RadJav
 {
-	export namespace GUI
+	namespace GUI
 	{
 		/** @class RadJav.GUI.MouseEvent
 		* A GUI mouse event.

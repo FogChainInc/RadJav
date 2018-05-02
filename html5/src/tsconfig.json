@@ -2,6 +2,11 @@
 	"compilerOptions": {
 			"target": "ES3", 
 			"module": "None", 
-			"lib": ["es5", "DOM"]
+			"lib": ["es5", "es2015", "dom", "scripthost"],
+			"types": [
+				// add node as an option
+				"node"
+			 ],
+
 		}
 }

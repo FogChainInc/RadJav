@@ -27,8 +27,8 @@ namespace RadJav {
      * A menu Bar.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class MenuBar extends GObject {
-      constructor(obj?: Object, text?: String, parent?: GObject) {
+    class MenuBar extends RadJav.GUI.GObject {
+      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }
@@ -54,8 +54,8 @@ namespace RadJav {
 
         this._htmlElement = RadJav.setDefaultValue(obj._htmlElement, null);
 
-        if (_this._htmlElement != null) {
-          _this.setHTMLElement(_this._htmlElement);
+        if (this._htmlElement != null) {
+          this.setHTMLElement(this._htmlElement);
         }
       }
 
@@ -65,14 +65,14 @@ namespace RadJav {
        * If this property is a string, it will be selected by the HTML DOM's element id
        * then converted into a RadJav.GUI.HTMLElement.
        */
-      protected _htmlElement: String | HTMLElement;
+      protected _htmlElement: String | HTMLElement | any;
 
       /** @method setHTMLElement
        * Set the HTML element to use, if the OS being used is HTML5.
        * @param {RadJav.GUI.HTMLElement/String} element The element to be used.
        */
       setHTMLElement(element: HTMLElement): void {
-        var elm = element;
+        var elm:any = element;
 
         if (typeof element == "string") {
           elm = new RadJav.GUI.HTMLElement(this.name);
