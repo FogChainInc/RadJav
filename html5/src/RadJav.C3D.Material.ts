@@ -45,7 +45,7 @@ namespace RadJav {
        * @protected
        * The name.
        */
-      protected _name: String = "";
+      protected _name: string = "";
       /** @property {Object} [_material=null]
        * @protected
        * The 3d engine material.
@@ -56,9 +56,11 @@ namespace RadJav {
        * Get the name of this object.
        * @return {String} The name.
        */
-      getName(): String {
+      getName(): string {
         return this._name;
       }
+
+      
 
       /** @method createMaterials
        * @static

@@ -55,7 +55,7 @@ namespace RadJav {
 			* @protected
 			* The name.
 			*/
-			protected _name: String = '';
+			protected _name: string = '';
 
 			/** @property {RadJav.C3D.Model.Mesh} [mesh=null]
 			* @protected
@@ -91,7 +91,7 @@ namespace RadJav {
 			* Set the name of the model.
 			* @param {String} name The name of the model.
 			*/
-			protected _setName(name: String): void {
+			protected _setName(name: string): void {
 				this._name = name;
 			}
 
@@ -99,7 +99,7 @@ namespace RadJav {
 			* Get the name of the model.
 			* @return {String} The name of the model.
 			*/
-			getName(): String {
+			getName(): string {
 				return this._name;
 			}
 		}
