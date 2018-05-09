@@ -208,7 +208,7 @@ namespace RadJav {
        * @param {RadJav.C3D.Model} model The model to add.
        */
       addModel(model: RadJav.C3D.Model): void {
-        this._models[model._name] = model;
+        this._models[model.getName()] = model;
       }
 
       /** @method addMaterial
@@ -216,7 +216,7 @@ namespace RadJav {
        * @param {RadJav.C3D.Material} material The material to add.
        */
       addMaterial(material: RadJav.C3D.Material): void {
-        this._materials[material._name] = material;
+        this._materials[material.getName()] = material;
       }
 
       /** @method getNumModels

@@ -26,7 +26,7 @@ namespace RadJav {
    * Available on platforms: Windows,Linux,OSX,HTML5
    */
   export class Vector4 {
-    constructor(x: Number, y: Number, z: Number, w: Number) {
+    constructor(x?: Number, y?: Number, z?: Number, w?: Number) {
       if (x == null) x = 0;
 
       if (y == null) y = 0;
@@ -89,7 +89,7 @@ namespace RadJav {
   }
 }
 
-declare function parseVector4(string: string): RadJav.Vector4 {
+ function parseVector4(string: string): RadJav.Vector4 {
   var v4dReturn = new RadJav.Vector4();
 
   if (string == "") return v4dReturn;
