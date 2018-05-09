@@ -1,9 +1,12 @@
 {
+
 	"compilerOptions": {
 			"target": "ES3", 
-			"module": "none", 
 			"outFile": "./build/RadJav.js", 
-			"lib": ["es5", "es2015.promise"]
+			"lib": ["es5", "es2015.promise","dom","scripthost"],
+			"types": [
+				"jquery"
+			]
 		}, 
 	"files": [
 		"./src/Math.ts",
