@@ -1,49 +1,11 @@
 {
-
 	"compilerOptions": {
 			"target": "ES3", 
-			"outFile": "./build/RadJav.js", 
+			"outDir": "./build/", 
 			"lib": ["es5", "es2015.promise","dom","scripthost"],
-			"types": [
-				"jquery"
-			]
+			"types": []
 		}, 
-	"files": [
-		"./src/Math.ts",
-		"./src/String.ts", 
-		"./src/RadJav.ts", 
-		"./src/RadJav.Circle.ts", 
-		"./src/RadJav.Color.ts", 
-		"./src/RadJav.Font.ts", 
-		"./src/RadJav.IO.ts", 
-		"./src/RadJav.Net.WebSocketClient.ts", 
-		"./src/RadJav.Quaternion.ts", 
-		"./src/RadJav.Rectangle.ts", 
-		"./src/RadJav.Vector2.ts", 
-		"./src/RadJav.Vector3.ts", 
-		"./src/RadJav.Vector4.ts", 
-		"./src/RadJav.C3D.Object3D.ts", 
-		"./src/RadJav.C3D.Camera.ts", 
-		"./src/RadJav.C3D.Entity.ts", 
-		"./src/RadJav.C3D.Material.ts", 
-		"./src/RadJav.C3D.Model.ts", 
-		"./src/RadJav.C3D.Transform.ts", 
-		"./src/RadJav.GUI.GObject.ts", 
-		"./src/RadJav.GUI.Button.ts", 
-		"./src/RadJav.GUI.Canvas3D.ts", 
-		"./src/RadJav.GUI.Checkbox.ts", 
-		"./src/RadJav.GUI.Combobox.ts", 
-		"./src/RadJav.GUI.Container.ts", 
-		"./src/RadJav.GUI.HTMLElement.ts", 
-		"./src/RadJav.GUI.Image.ts", 
-		"./src/RadJav.GUI.Label.ts", 
-		"./src/RadJav.GUI.List.ts", 
-		"./src/RadJav.GUI.MenuBar.ts", 
-		"./src/RadJav.GUI.MenuItem.ts", 
-		"./src/RadJav.GUI.Radio.ts", 
-		"./src/RadJav.GUI.Textarea.ts", 
-		"./src/RadJav.GUI.Textbox.ts", 
-		"./src/RadJav.GUI.Window.ts", 
-		"./src/RadJavMinify.ts"
+	"include": [
+		"./src/*"
 	]
 }

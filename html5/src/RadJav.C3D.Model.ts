@@ -171,7 +171,7 @@ namespace RadJav {
 					var promise = new Promise (RadJav.keepContext (function (resolve, reject) {
 						if (this.type == "json") {
 							var jsonLoader = new THREE.JSONLoader();
-							jsonLoader.load(this.filePath, RadXML._keepContext (function (geometry, materials){
+							jsonLoader.load(this.filePath, RadJav.keepContext (function (geometry, materials){
 								var meshMaterial = new THREE.MeshFaceMaterial(materials);
 								this._mesh = new THREE.Mesh(geometry, meshMaterial);
 								this._mesh.radJavModel = this;
