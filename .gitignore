@@ -1,6 +1,17 @@
-library/build
-vm/build
-
-html5/closure*.jar
+leaks.csv
+.vs
 
 library/include/RadJav/RadJavJavascriptCode.h
+library/build*
+
+vm/build*
+vm/installers/windows/x86/build
+vm/installers/windows/x86/RadJavVM/Debug
+vm/installers/windows/x86/RadJavVM/Release
+vm/installers/windows/x64/build
+vm/installers/windows/x64/RadJavVM/Debug
+vm/installers/windows/x64/RadJavVM/Release
+
+html5/closure*.jar
+html5/node_modules
+html5/package-lock.json

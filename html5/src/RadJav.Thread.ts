@@ -73,7 +73,7 @@ namespace RadJav
 			var blob = new Blob ([ script.textContent ], { type: script.type });
 			var url = window.URL.createObjectURL (blob);
 
-			this._htmlObj = new SharedWorker (url);
+			this._htmlObj = new Worker (url);
 			this._htmlObj.postMessage ();
 		}
 

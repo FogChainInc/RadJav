@@ -1,12 +1,31 @@
 {
-  "name": "RadJav",
+  "name": "builder",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist",
-  "scripts": {},
-  "author": "",
-  "license": "ISC",
+  "description": "RadJav JavaScript Builder",
+  "main": "index.js",
   "dependencies": {
-    "@types/jquery": "^3.3.1"
-  }
+    "express": "^4.16.3",
+    "recursive-copy": "^2.0.9",
+    "typescript": "^2.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node index.js --build",
+    "build-only": "node index.js --build doNotCopyHTML5Files doNotCopyFilesToLibrary doNotMinify",
+    "http": "node index.js --http",
+    "build-defs": "node index.js --defs",
+    "defs": "node index.js --defs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/HigherEdgeSoftware/RadJav/html5/"
+  },
+  "keywords": [
+    "RadJav",
+    "JavaScript",
+    "Builder"
+  ],
+  "author": "Higher Edge Software <prettyface@highersoftware.com> (http://www.highersoftware.com)",
+  "license": "MIT"
 }
