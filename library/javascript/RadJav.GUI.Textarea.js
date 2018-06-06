@@ -34,5 +34,6 @@ var RadJav;
             }
             return Textarea;
         }(RadJav.GUI.GObject));
-    })(GUI || (GUI = {}));
+        GUI.Textarea = Textarea;
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

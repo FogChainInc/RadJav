@@ -25,6 +25,7 @@ namespace RadJav {
    * Available on platforms: Windows,Linux,OSX,HTML5
    */
   export class Font {
+    
     constructor(obj?) {
       if (obj == null) {
         obj = {};

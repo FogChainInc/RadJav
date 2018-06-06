@@ -27,8 +27,8 @@ namespace RadJav {
      * A menu Bar.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class MenuBar extends RadJav.GUI.GObject {
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+   export class MenuBar extends RadJav.GUI.GObject {
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }

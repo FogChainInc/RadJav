@@ -41,13 +41,13 @@ var RadJav;
                 return _this;
             }
             Radio.prototype.setChecked = function (checked) {
-                RadJav.Theme.eventSync(this.type, "setChecked", this, checked);
+                RadJav.theme.eventSync(this.type, "setChecked", this, checked);
             };
             Radio.prototype.isChecked = function () {
-                return RadJav.Theme.eventSync(this.type, "isChecked", this);
+                return RadJav.theme.eventSync(this.type, "isChecked", this);
             };
             return Radio;
         }(RadJav.GUI.GObject));
         GUI.Radio = Radio;
-    })(GUI || (GUI = {}));
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

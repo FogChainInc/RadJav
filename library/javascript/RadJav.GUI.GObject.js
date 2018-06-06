@@ -115,7 +115,7 @@ var RadJav;
                             }
                         }
                     }
-                    var promise2 = RadJav.Theme.event(this.type, "create", this);
+                    var promise2 = RadJav.theme.event(this.type, "create", this);
                     if (promise2 == null) {
                         debugger;
                     }
@@ -130,7 +130,7 @@ var RadJav;
                             for (var key in this._events) {
                                 if (this._events[key] != null) {
                                     var func = new Function(this._events[key]);
-                                    RadJav.Theme.event(this.type, "on", this, key, func);
+                                    RadJav.theme.event(this.type, "on", this, key, func);
                                 }
                             }
                             if (this.onCreated != null) {
@@ -144,10 +144,10 @@ var RadJav;
             };
             GObject.prototype.setFont = function (font) {
                 this._font = font;
-                RadJav.Theme.eventSync(this.type, "setFont", this, font);
+                RadJav.theme.eventSync(this.type, "setFont", this, font);
             };
             GObject.prototype.getFont = function () {
-                return RadJav.Theme.eventSync(this.type, "getFont", this);
+                return RadJav.theme.eventSync(this.type, "getFont", this);
             };
             GObject.prototype.setPosition = function (x, y) {
                 this._transform.setPosition(x, y);
@@ -174,10 +174,10 @@ var RadJav;
                 return this._transform.height;
             };
             GObject.prototype.setText = function (text) {
-                RadJav.Theme.event(this.type, "setText", this, text);
+                RadJav.theme.event(this.type, "setText", this, text);
             };
             GObject.prototype.getText = function () {
-                return RadJav.Theme.eventSync(this.type, "getText", this);
+                return RadJav.theme.eventSync(this.type, "getText", this);
             };
             GObject.prototype.getParent = function () {
                 return this._parent;
@@ -186,10 +186,10 @@ var RadJav;
                 return this._html;
             };
             GObject.prototype.setVisibility = function (visible) {
-                RadJav.Theme.event(this.type, "setVisibility", this, visible);
+                RadJav.theme.event(this.type, "setVisibility", this, visible);
             };
             GObject.prototype.getVisibility = function () {
-                return RadJav.Theme.eventSync(this.type, "getVisibility", this);
+                return RadJav.theme.eventSync(this.type, "getVisibility", this);
             };
             GObject.prototype.show = function () {
                 this.setVisibility(true);
@@ -198,16 +198,16 @@ var RadJav;
                 this.setVisibility(false);
             };
             GObject.prototype.setEnabled = function (enabled) {
-                RadJav.Theme.event(this.type, "setEnabled", this, enabled);
+                RadJav.theme.event(this.type, "setEnabled", this, enabled);
             };
             GObject.prototype.getEnabled = function () {
-                return RadJav.Theme.eventSync(this.type, "getEnabled", this);
+                return RadJav.theme.eventSync(this.type, "getEnabled", this);
             };
             GObject.prototype.on = function (eventName, func) {
-                return RadJav.Theme.event(this.type, "on", this, eventName, func);
+                return RadJav.theme.event(this.type, "on", this, eventName, func);
             };
             GObject.prototype.getHTMLDOM = function () {
-                return RadJav.Theme.eventSync(this.type, "getHTMLDOM", this);
+                return RadJav.theme.eventSync(this.type, "getHTMLDOM", this);
             };
             return GObject;
         }());

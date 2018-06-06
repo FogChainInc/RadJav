@@ -72,7 +72,7 @@ namespace RadJav {
 			* Create the model.
 			* @return {Promise} The promise to execute when completed.
 			*/
-			create(): Promise<Model> {
+			public create(): Promise<Model> {
 				var promise = null;
 		
 				if (this.mesh != null) {
@@ -166,6 +166,15 @@ namespace RadJav {
 				* The model that contains this mesh.
 				*/
 				model: Model = null;
+
+				/** @method getName
+				* Get the name of this object.
+				* @return {String} The name.
+				*/
+				getName()
+				{
+					return this._name;
+				}
 
 				create() 	{
 					var promise = new Promise (RadJav.keepContext (function (resolve, reject) {

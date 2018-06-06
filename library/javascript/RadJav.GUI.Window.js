@@ -34,5 +34,5 @@ var RadJav;
             return Window;
         }(RadJav.GUI.GObject));
         GUI.Window = Window;
-    })(GUI || (GUI = {}));
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

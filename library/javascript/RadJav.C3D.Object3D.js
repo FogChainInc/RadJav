@@ -57,10 +57,10 @@ var RadJav;
                 return this._transform.getPosition();
             };
             Object3D.prototype.setVisibility = function (visible) {
-                RadJav.Theme.event(this.type, "setVisibility", this, visible);
+                RadJav.theme.event(this.type, "setVisibility", this, visible);
             };
             Object3D.prototype.getVisibility = function () {
-                return RadJav.Theme.eventSync(this.type, "getVisibility");
+                return RadJav.theme.eventSync(this.type, "getVisibility");
             };
             Object3D.prototype.show = function () {
                 this.setVisibility(true);

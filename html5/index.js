@@ -203,7 +203,7 @@ var commands = [
 					compile (tsfiles, {
 							noImplicitUseStrict: true, removeComments: true, importHelpers: true, 
 							target: typescript.ScriptTarget.ES3, module: typescript.ModuleKind.None, 
-							lib: tsLibs, outDir: "./build"
+							lib: tsLibs, outDir: "./RadJav"
 						});
 
 					console.log ("Done.");
@@ -214,15 +214,15 @@ var commands = [
 
 						try
 						{
-							fs.mkdirSync ("./build/themes/");
-							fs.mkdirSync ("./build/languages/");
+							fs.mkdirSync ("./RadJav/themes/");
+							fs.mkdirSync ("./RadJav/languages/");
 						}
 						catch (ex)
 						{
 						}
 
-						rcopy ("./themes/", "./build/themes/", { overwrite: true });
-						rcopy ("./languages/", "./build/languages/", { overwrite: true });
+						rcopy ("./themes/", "./RadJav/themes/", { overwrite: true });
+						rcopy ("./languages/", "./RadJav/languages/", { overwrite: true });
 
 						console.log ("Done.");
 					}
@@ -231,7 +231,7 @@ var commands = [
 					{
 						console.log ("Copying JavaScript files to library/javascript directory...");
 
-						rcopy ("./build/", "../library/javascript/", { filter: ["*.js"], overwrite: true });
+						rcopy ("./RadJav/", "../library/javascript/", { filter: ["*.js"], overwrite: true });
 
 						console.log ("Done.");
 					}
@@ -256,13 +256,13 @@ var commands = [
 								}
 							});
 
-						localFiles = fs.readdirSync ("./build");
+						localFiles = fs.readdirSync ("./RadJav");
 						let list = "";
 
 						localFiles.forEach (function (file)
 							{
 								if (file.indexOf (".js") > -1)
-									list += "./build/" + file + " ";
+									list += "./RadJav/" + file + " ";
 							});
 
 						var output = "";
@@ -272,7 +272,7 @@ var commands = [
 							if (compilerType == 1)
 							{
 								output = execSync ("java -jar " + compiler + " --compilation_level WHITESPACE_ONLY " + 
-									" --js_output_file=./build/RadJav.min.js " + list + "./src/RadJavMinify.js").toString ();
+									" --js_output_file=./RadJav/RadJav.min.js " + list + "./src/RadJavMinify.js").toString ();
 							}
 						}
 						catch (ex)

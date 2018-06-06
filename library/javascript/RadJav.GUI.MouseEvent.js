@@ -12,5 +12,5 @@ var RadJav;
             return MouseEvent;
         }());
         GUI.MouseEvent = MouseEvent;
-    })(GUI || (GUI = {}));
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

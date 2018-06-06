@@ -61,7 +61,7 @@ namespace RadJav {
        */
       protected _model: any;
 
-      protected _c3dEntity:Object;
+      protected _c3dEntity:any;
 
       /** @method create
        * Using the existing parameters in this object, create it.
@@ -100,7 +100,7 @@ namespace RadJav {
         return this._model;
       }
 
-      Types = {
+      public static Types = {
         None: 0,
         Cube: 1,
         Sphere: 2,

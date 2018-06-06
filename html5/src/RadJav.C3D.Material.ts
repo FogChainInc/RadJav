@@ -27,6 +27,7 @@ namespace RadJav {
      */
     export class Material {
       constructor(canvas3d, obj, parent?, model?) {
+        
         if (obj == null) {
           obj = new Object();
         }
@@ -56,7 +57,7 @@ namespace RadJav {
        * Get the name of this object.
        * @return {String} The name.
        */
-      getName(): string {
+      public getName(): string {
         return this._name;
       }
 

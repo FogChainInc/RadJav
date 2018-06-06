@@ -281,4 +281,3 @@ RadJav.GUI.List.Selection = (function ()
 
 	return (Selection);
 } ());
-

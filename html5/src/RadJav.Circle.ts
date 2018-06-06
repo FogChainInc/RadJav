@@ -26,6 +26,7 @@ namespace RadJav {
    * Available on platforms: Windows,Linux,OSX,HTML5
    */
   export class Circle {
+
     constructor(x: any, y: any, r: any) {
       if (typeof x == "object") {
         var circle = x;
@@ -55,8 +56,7 @@ namespace RadJav {
         y = pos.y;
       }
 
-      var distance_squared =
-        (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
+      var distance_squared =  (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
 
       if (distance_squared < this.radius_squared) {
         return true;

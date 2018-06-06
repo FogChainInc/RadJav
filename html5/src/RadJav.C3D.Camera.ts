@@ -18,8 +18,11 @@
 	WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/// <reference path="RadJav.ts" />
 /// <reference path="RadJav.C3D.Object3D.ts" />
+
+declare var require: any;
+const THREE = require('three');
+
 
 namespace RadJav {
   export namespace C3D {
@@ -30,12 +33,13 @@ namespace RadJav {
     export class Camera extends RadJav.C3D.Object3D {
       constructor(canvas3d?, obj?, parent?) {
         super(canvas3d, obj, parent);
+        this.type = "RadJav.C3D.Camera";
         this._perspective = RadJav.setDefaultValue(obj._perspective, true);
         this._aspectRatio = RadJav.setDefaultValue(
           obj._aspectRatio,
           parseFloat(canvas3d.getWidth()) / parseFloat(canvas3d.getHeight())
         );
-
+      
         this._fov = RadJav.setDefaultValue(obj._fov, 90 / this._aspectRatio);
         this._nearClip = RadJav.setDefaultValue(obj._nearClip, 1.0);
         this._farClip = RadJav.setDefaultValue(obj._farClip, 10000000000.0);
@@ -79,7 +83,7 @@ namespace RadJav {
        * Using the existing parameters in this object, create it.
        * @return {Promise} The promise to execute when the creation is completed.
        */
-      create(): Promise<Camera> {
+      public create(): Promise<Camera> {
         var promise = new Promise<Camera>(
           RadJav.keepContext(function(resolve, reject) {
             if (this._perspective == true) {

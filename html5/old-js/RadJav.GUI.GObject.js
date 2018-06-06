@@ -186,7 +186,7 @@ RadJav.GUI.GObject = (function ()
 
 		if (obj.position != null)
 		{
-			var position = new RadJav.Vector2 ();
+			var position = new RadJav.Vector2();
 
 			if (typeof (obj.position) == "string")
 				position = RadJav.Vector2.parseVector2 (obj.position);

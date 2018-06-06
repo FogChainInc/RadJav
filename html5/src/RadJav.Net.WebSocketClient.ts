@@ -21,7 +21,7 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace Net {
+  export  namespace Net {
     /** @class RadJav.Net.WebSocketClient
      * A web socket.
      * Available on platforms: Windows,Linux,OSX,HTML5

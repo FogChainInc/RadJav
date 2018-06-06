@@ -40,7 +40,7 @@ RadJav.GUI.Checkbox = (function (_super)
 
 		if (obj.size == null)
 		{
-			obj.size = new RadJav.Vector2 ();
+			obj.size = new RadJav.Vector2();
 			obj.size.x = 80;
 			obj.size.y = 40;
 		}
@@ -55,7 +55,7 @@ RadJav.GUI.Checkbox = (function (_super)
 		/** @property {Boolean} [_checked=false]
 		* If set to true, the box is checked.
 		*/
-		_this._checked = RadJav.setDefaultValue (obj._checked, false);
+		_this._checked = RadJav.setDefaultValue(obj._checked, false);
 
 		return (_this);
 	}
@@ -78,7 +78,7 @@ RadJav.GUI.Checkbox = (function (_super)
 	* Is Theme Event Asynchronous: No
 	* @return {Boolean} Whether or not this is checked.
 	*/
-	Checkbox.prototype.isChecked = function ()
+	Checkbox.prototype.isChecked = function()
 	{
 		return (RadJav.theme.eventSync (this.type, "isChecked", this));
 	}

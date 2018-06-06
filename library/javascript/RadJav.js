@@ -27,7 +27,7 @@ var RadJav;
             promise = RadJav._getResponse(path).then(RadJav.keepContext(function (response) {
                 if (response != null) {
                     if (response != "") {
-                        var func = new Function(response);
+                        var func = new _Function(response);
                         func.apply(window, []);
                     }
                 }
@@ -161,50 +161,15 @@ var RadJav;
     }
     RadJav.getNetLibrary = getNetLibrary;
     function includeLibraries(libraries) {
-        for (var iIdx = 0; iIdx < libraries.length; iIdx++) {
-            RadJav._included.push(libraries[iIdx]);
+        for (var iIdx = 0; iIdx < RadJav._included.length; iIdx++) {
+            var includeObj = RadJav._included[iIdx];
         }
         var promise = new Promise(RadJav.keepContext(function (resolve, reject) {
             var promises = [];
             for (var iIdx = 0; iIdx < RadJav._included.length; iIdx++) {
                 var includeObj = RadJav._included[iIdx];
-            }
-            var promise = new Promise(RadJav.keepContext(function (resolve, reject) {
-                var promises = [];
-                for (var iIdx = 0; iIdx < RadJav._included.length; iIdx++) {
-                    var includeObj = RadJav._included[iIdx];
-                    if (typeof includeObj != "string") {
-                        if (includeObj.loadFirst == true) {
-                            var file = "";
-                            var shouldIncludeFile = false;
-                            if (typeof includeObj != "string") {
-                                if (typeof includeObj.file == "string") {
-                                    file = includeObj.file;
-                                }
-                            }
-                            else {
-                                file = includeObj;
-                            }
-                            if (_eval("if (" + file + " != null){true;}else{false;}") ==
-                                false) {
-                                shouldIncludeFile = true;
-                            }
-                            if (RadJav.isMinified == false) {
-                                if (file == "Math" || file == "String") {
-                                    shouldIncludeFile = true;
-                                }
-                            }
-                            if (shouldIncludeFile == true) {
-                                var includeFile = RadJav.baseUrl + "/" + file + ".js";
-                                promises.push(RadJav.include(includeFile));
-                            }
-                        }
-                    }
-                }
-                Promise.all(promises).then(function () {
-                    var promises2 = [];
-                    for (var iIdx = 0; iIdx < RadJav._included.length; iIdx++) {
-                        var includeObj = RadJav._included[iIdx];
+                if (typeof includeObj != "string") {
+                    if (includeObj.loadFirst == true) {
                         var file = "";
                         var shouldIncludeFile = false;
                         if (typeof includeObj != "string") {
@@ -215,7 +180,8 @@ var RadJav;
                         else {
                             file = includeObj;
                         }
-                        if (_eval("if (" + file + " != null){true;}else{false;}") == false) {
+                        if (_eval("if (" + file + " != null){true;}else{false;}") ==
+                            false) {
                             shouldIncludeFile = true;
                         }
                         if (RadJav.isMinified == false) {
@@ -225,15 +191,43 @@ var RadJav;
                         }
                         if (shouldIncludeFile == true) {
                             var includeFile = RadJav.baseUrl + "/" + file + ".js";
-                            promises2.push(RadJav.include(includeFile));
+                            promises.push(RadJav.include(includeFile));
                         }
                     }
-                    Promise.all(promises2).then(function () {
-                        resolve();
-                    });
+                }
+            }
+            Promise.all(promises).then(function () {
+                var promises2 = [];
+                for (var iIdx = 0; iIdx < RadJav._included.length; iIdx++) {
+                    var includeObj = RadJav._included[iIdx];
+                    var file = "";
+                    var shouldIncludeFile = false;
+                    if (typeof includeObj != "string") {
+                        if (typeof includeObj.file == "string") {
+                            file = includeObj.file;
+                        }
+                    }
+                    else {
+                        file = includeObj;
+                    }
+                    if (_eval("if (" + file + " != null){true;}else{false;}") == false) {
+                        shouldIncludeFile = true;
+                    }
+                    if (RadJav.isMinified == false) {
+                        if (file == "Math" || file == "String") {
+                            shouldIncludeFile = true;
+                        }
+                    }
+                    if (shouldIncludeFile == true) {
+                        var includeFile = RadJav.baseUrl + "/" + file + ".js";
+                        promises2.push(RadJav.include(includeFile));
+                    }
+                }
+                Promise.all(promises2).then(function () {
+                    resolve();
                 });
-            }, RadJav));
-        }, null, null));
+            });
+        }, RadJav));
         return promise;
     }
     RadJav.includeLibraries = includeLibraries;
@@ -261,21 +255,21 @@ var RadJav;
             if (RadJav.useAjax == true) {
                 RadJav._getResponse(url + "/theme.js").then(function (data) {
                     var theme = RadJav.Theme.loadTheme(url, data);
-                    RadJav.Theme = theme;
+                    RadJav.theme = theme;
                     var promises2 = [];
-                    promises2.push(RadJav.Theme.loadInitializationFile());
-                    promises2.push(RadJav.Theme.loadJavascriptFiles());
+                    promises2.push(RadJav.theme.loadInitializationFile());
+                    promises2.push(RadJav.theme.loadJavascriptFiles());
                     Promise.all(promises2).then(function () {
                         resolve();
                     });
                 });
             }
             else {
-                var theme = RadJav.Theme.loadTheme(url, RadJav.Theme);
-                RadJav.Theme = theme;
+                var theme = RadJav.Theme.loadTheme(url, RadJav.theme);
+                RadJav.theme = theme;
                 var promises2 = [];
-                promises2.push(RadJav.Theme.loadInitializationFile());
-                promises2.push(RadJav.Theme.loadJavascriptFiles());
+                promises2.push(RadJav.theme.loadInitializationFile());
+                promises2.push(RadJav.theme.loadJavascriptFiles());
                 Promise.all(promises2).then(function () {
                     resolve();
                 });
@@ -397,14 +391,14 @@ var RadJav;
     }
     RadJav.getHeight = getHeight;
     function clone() {
-        var obj = [];
+        var arg = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            obj[_i] = arguments[_i];
+            arg[_i] = arguments[_i];
         }
-        var options, name, src, copy, copyIsArray, clone, target = arguments[0] || {}, i = 1, length = arguments.length, deep = false;
+        var options, name, src, copy, copyIsArray, clone, target = arg[0] || {}, i = 1, length = arg.length, deep = false;
         if (typeof target === "boolean") {
             deep = target;
-            target = arguments[i] || {};
+            target = arg[i] || {};
             i++;
         }
         var isPlainObject = function (obj) {
@@ -519,15 +513,14 @@ var RadJav;
         return RadJav.combineString.apply(RadJav, args);
     }
     RadJav.getLangString = getLangString;
-    function combineString(primaryString) {
+    function combineString() {
         var otherStrings = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            otherStrings[_i - 1] = arguments[_i];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            otherStrings[_i] = arguments[_i];
         }
         var strReturn = "";
-        if (primaryString != null) {
-            strReturn = primaryString;
-        }
+        if (arguments[0] != null)
+            strReturn = arguments[0];
         for (var iIdx = 1; iIdx < arguments.length; iIdx++) {
             strReturn = strReturn.replace("%s", arguments[iIdx]);
         }
@@ -556,15 +549,15 @@ var RadJav;
             this.cssFiles = RadJav.setDefaultValue(this.obj.cssFiles, []);
             this.fonts = RadJav.setDefaultValue(this.obj.fonts, []);
         }
-        Theme.loadInitializationFile = function () {
+        Theme.prototype.loadInitializationFile = function () {
             var promise = new Promise(RadJav.keepContext(function (resolve, reject) {
                 var func = RadJav.keepContext(function (data) {
                     try {
                         if (typeof data == "string") {
                             RadJav.Theme.exports = _eval(data);
                         }
-                        if (RadJav.Theme.exports().init != null) {
-                            RadJav.Theme.exports().init();
+                        if (RadJav.Theme.exports.init != null) {
+                            RadJav.Theme.exports.init();
                         }
                         var fontCSS = "";
                         for (var iIdx = 0; iIdx < this.fonts.length; iIdx++) {
@@ -609,7 +602,7 @@ var RadJav;
             }, this));
             return promise;
         };
-        Theme.loadJavascriptFiles = function () {
+        Theme.prototype.loadJavascriptFiles = function () {
             var promise = new Promise(RadJav.keepContext(function (resolve, reject) {
                 var files = [];
                 for (var iIdx = 0; iIdx < RadJav._included.length; iIdx++) {
@@ -658,7 +651,7 @@ var RadJav;
             }, this));
             return promise;
         };
-        Theme.event = function (file, event) {
+        Theme.prototype.event = function (file, event) {
             var other = [];
             for (var _i = 2; _i < arguments.length; _i++) {
                 other[_i - 2] = arguments[_i];
@@ -692,7 +685,7 @@ var RadJav;
             }
             return null;
         };
-        Theme.eventSync = function (file, event) {
+        Theme.prototype.eventSync = function (file, event) {
             var other = [];
             for (var _i = 2; _i < arguments.length; _i++) {
                 other[_i - 2] = arguments[_i];
@@ -858,11 +851,11 @@ var RadJav;
     var Console = (function () {
         function Console() {
         }
-        Console.prototype.print = function (message) {
+        Console.print = function (message) {
             console.log(message);
         };
         Console.prototype.println = function (message) {
-            this.print(message + "\n");
+            RadJav.Console.print(message + "\n");
         };
         return Console;
     }());
@@ -1071,12 +1064,12 @@ var RadJav;
                     result = window[name][methodName].apply(window, args);
                     found = true;
                 }
-                if (window["webkit"] != null) {
-                    if (window["webkit"].messageHandlers != null) {
-                        if (window["webkit"].messageHandlers[name] != null) {
+                if (window.webkit != null) {
+                    if (window.webkit.messageHandlers != null) {
+                        if (window.webkit.messageHandlers[name] != null) {
                             args = Array.prototype.slice.call(arguments);
                             args.splice(0, 1);
-                            window["webkit"].messageHandlers[name].postMessage(args);
+                            window.webkit.messageHandlers[name].postMessage(args);
                             found = true;
                         }
                     }

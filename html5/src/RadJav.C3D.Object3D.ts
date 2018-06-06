@@ -161,7 +161,7 @@ namespace RadJav {
        * @param {Boolean} visible The visibility of the object
        */
       setVisibility(visible: boolean): void {
-        RadJav.Theme.event(this.type, "setVisibility", this, visible);
+        RadJav.theme.event(this.type, "setVisibility", this, visible);
       }
 
       /** Get the visibility of this object.
@@ -171,7 +171,7 @@ namespace RadJav {
        * @return {Boolean} The visibility of this object
        */
       getVisibility(): boolean {
-        return RadJav.Theme.eventSync(this.type, "getVisibility");
+        return RadJav.theme.eventSync(this.type, "getVisibility");
       }
 
       /** Show this object.
@@ -199,7 +199,7 @@ namespace RadJav {
        * @param {String} eventName The name of the event to trigger.
        * @param {Function} func The function to execute.
        */
-      on(eventName: String, func: Function): void {}
+      on(eventName: string, func: Function): void {}
     }
   }
 }

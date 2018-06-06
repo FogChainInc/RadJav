@@ -21,6 +21,5 @@ var RadJav;
             }
             return WebSocketClient;
         }());
-        Net.WebSocketClient = WebSocketClient;
-    })(Net || (Net = {}));
+    })(Net = RadJav.Net || (RadJav.Net = {}));
 })(RadJav || (RadJav = {}));

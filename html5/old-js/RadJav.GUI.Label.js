@@ -54,4 +54,3 @@ RadJav.GUI.Label = (function (_super)
 
 	return (Label);
 }(RadJav.GUI.GObject));
-

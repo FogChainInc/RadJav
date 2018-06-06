@@ -63,8 +63,7 @@ RadJav.Circle = function (x, y, r)
 
 		var distance_squared = ((x - this.x) * (x - this.x) + (y - this.y) * (y - this.y));
 
-		if(distance_squared < this.radius_squared)
-			return (true);
+		if(distance_squared < this.radius_squared)	return (true);
 
 		return (false);
 	}
@@ -82,4 +81,3 @@ RadJav.Circle = function (x, y, r)
 		return (false);
 	}
 }
-

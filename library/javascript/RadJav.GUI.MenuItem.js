@@ -34,5 +34,6 @@ var RadJav;
             }
             return MenuItem;
         }(RadJav.GUI.GObject));
-    })(GUI || (GUI = {}));
+        GUI.MenuItem = MenuItem;
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

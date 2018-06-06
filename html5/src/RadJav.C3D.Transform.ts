@@ -27,6 +27,7 @@ namespace RadJav {
      */
     export class Transform {
       constructor(object3d, obj?,position?) {
+        
         if (object3d == null) {
           throw (_lang.object3dNotIncluded);
         }

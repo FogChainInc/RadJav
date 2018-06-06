@@ -28,7 +28,7 @@ namespace RadJav {
      * Available on platforms: HTML5
      */
    export class HTMLElement extends RadJav.GUI.GObject {
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }

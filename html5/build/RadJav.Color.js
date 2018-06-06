@@ -1,30 +1,6 @@
-/*
-    MIT-LICENSE
-    Copyright (c) 2017-2018 Higher Edge Software, LLC
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software
-    and associated documentation files (the "Software"), to deal in the Software without restriction,
-    including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-    subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all copies or substantial
-    portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-    LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-/// <reference path="RadJav.ts" />
 var RadJav;
 (function (RadJav) {
-    /** @class RadJav.Color
-     * Represents a color.
-     * Available on platforms: Windows,Linux,OSX,HTML5
-     */
-    var Color = /** @class */ (function () {
+    var Color = (function () {
         function Color(r, g, b, a) {
             if (r === void 0) { r = 0; }
             if (g === void 0) { g = 0; }
@@ -44,10 +20,6 @@ var RadJav;
                 this.a = a;
             }
         }
-        /** @method toHex
-         * Return this color as a hex string.
-         * @return {String} The hex string representing the color.
-         */
         Color.prototype.toHex = function () {
             var red = this.r;
             var green = this.g;
@@ -69,19 +41,11 @@ var RadJav;
             }
             return "0x" + red + green + blue;
         };
-        /** @method toHTMLColor
-         * Return this color as a HTML color string.
-         * @return {String} The html string representing the color.
-         */
         Color.prototype.toHTMLColor = function () {
             var hex = this.toHex();
             hex = hex.substring(2);
             return "#" + hex;
         };
-        /** @method toHexInt
-         * Return this color as a hex color integer.
-         * @return {Number} The hex integer representing the color.
-         */
         Color.prototype.toHexInt = function () {
             var hex = this.toHex();
             return parseInt(hex);
@@ -95,11 +59,6 @@ RadJav.Color.White = new RadJav.Color(1, 1, 1, 1);
 RadJav.Color.Red = new RadJav.Color(1, 0, 0, 1);
 RadJav.Color.Green = new RadJav.Color(0, 1, 0, 1);
 RadJav.Color.Blue = new RadJav.Color(0, 0, 1, 1);
-/**
- * Parse a color string.
- * @param {String} str The color string to parse.
- * @return {RadJav.Color} The color.
- */
 function parseColor(str) {
     var color = new RadJav.Color(0, 0, 0, 1);
     if (str == "") {

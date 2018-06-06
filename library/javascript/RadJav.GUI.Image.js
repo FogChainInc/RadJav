@@ -42,10 +42,10 @@ var RadJav;
                 }
             };
             Image.prototype.setImage = function (image) {
-                RadJav.Theme.event(this.type, "setImage", this, image);
+                RadJav.theme.event(this.type, "setImage", this, image);
             };
             return Image;
         }(RadJav.GUI.GObject));
         GUI.Image = Image;
-    })(GUI || (GUI = {}));
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

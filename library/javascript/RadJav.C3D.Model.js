@@ -77,6 +77,9 @@ var RadJav;
                     this._mesh = RadJav.setDefaultValue(obj._mesh, null);
                     this.model = model;
                 }
+                Mesh.prototype.getName = function () {
+                    return this._name;
+                };
                 Mesh.prototype.create = function () {
                     var promise = new Promise(RadJav.keepContext(function (resolve, reject) {
                         if (this.type == "json") {

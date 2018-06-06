@@ -22,7 +22,7 @@
 
 
 namespace RadJav {
-  namespace GUI {
+ export namespace GUI {
     /** @class RadJav.GUI.Window
      * @extends RadJav.GUI.GObject
      * A window.
@@ -30,7 +30,7 @@ namespace RadJav {
      */
     export class Window extends RadJav.GUI.GObject{
 
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
         if (obj == null) obj = {};
 
         if (typeof obj == "string") {

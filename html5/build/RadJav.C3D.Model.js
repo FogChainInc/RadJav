@@ -1,23 +1,3 @@
-/*
-    MIT-LICENSE
-    Copyright (c) 2017-2018 Higher Edge Software, LLC
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software
-    and associated documentation files (the "Software"), to deal in the Software without restriction,
-    including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-    subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all copies or substantial
-    portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-    LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-/// <reference path="RadJav.ts" />
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -32,20 +12,9 @@ var RadJav;
 (function (RadJav) {
     var C3D;
     (function (C3D) {
-        /** @class RadJav.C3D.Model
-        * A 3d Model.
-        * Available on platforms: Windows,Linux,OSX,HTML5
-        */
-        var Model = /** @class */ (function () {
+        var Model = (function () {
             function Model(object3d, obj, materials) {
-                /** @property {String} [_name=""]
-                * @protected
-                * The name.
-                */
                 this._name = '';
-                /** @property {RadJav.C3D.Material[]} [materials=[]]
-                * The materials used in this model.
-                */
                 this.materials = [];
                 if (obj == null) {
                     obj = {};
@@ -61,10 +30,6 @@ var RadJav;
                 this.mesh = RadJav.setDefaultValue(obj.mesh, null);
                 this.materials = RadJav.setDefaultValue(obj.materials, []);
             }
-            /** @method create
-            * Create the model.
-            * @return {Promise} The promise to execute when completed.
-            */
             Model.prototype.create = function () {
                 var promise = null;
                 if (this.mesh != null) {
@@ -76,18 +41,9 @@ var RadJav;
                 return (promise);
             };
             ;
-            /** @method _setName
-            * @protected
-            * Set the name of the model.
-            * @param {String} name The name of the model.
-            */
             Model.prototype._setName = function (name) {
                 this._name = name;
             };
-            /** @method getName
-            * Get the name of the model.
-            * @return {String} The name of the model.
-            */
             Model.prototype.getName = function () {
                 return this._name;
             };
@@ -95,39 +51,13 @@ var RadJav;
         }());
         C3D.Model = Model;
         (function (Model) {
-            /** @class RadJav.C3D.Model.Mesh
-            * Information about the 3d Model mesh to load.
-            * Available on platforms: Windows,Linux,OSX,HTML5
-            */
-            var Mesh = /** @class */ (function () {
+            var Mesh = (function () {
                 function Mesh(model, obj) {
-                    /** @property {String} [_name=""]
-                    * The name of this mesh.
-                    */
                     this._name = '';
-                    /** @property {String} [filePath=""]
-                    * The path to the file to load.
-                    */
                     this.filePath = '';
-                    /** @property {String} [type="json"]
-                    * @protected
-                    * The type of model to load.
-                    */
                     this.type = 'json';
-                    /** @property {RadJav.C3D.Model.Mesh.Data} [data=null]
-                    * @protected
-                    * The mesh data.
-                    */
                     this.data = null;
-                    /** @property {Object} [_mesh=null]
-                    * @protected
-                    * The 3d engine mesh associated with the model.
-                    */
                     this._mesh = null;
-                    /** @property {RadJav.C3D.Model} [model=null]
-                    * @protected
-                    * The model that contains this mesh.
-                    */
                     this.model = null;
                     if (obj == null) {
                         obj = {};
@@ -187,55 +117,15 @@ var RadJav;
             }());
             Model.Mesh = Mesh;
             (function (Mesh) {
-                /** @class RadJav.C3D.Model.Mesh.Data
-                * 3d Model mesh data.
-                * Available on platforms: Windows,Linux,OSX,HTML5
-                */
-                var Data = /** @class */ (function () {
+                var Data = (function () {
                     function Data(mesh, obj) {
-                        /** @property {String} [type="mesh"]
-                        * @protected
-                        * The type of mesh data. Can be:
-                        * - mesh
-                        * - sphere
-                        * - cube
-                        * - plane
-                        */
                         this.type = 'mesh';
-                        /** @property {Number} [radius=100]
-                        * @protected
-                        * The radius of the sphere.
-                        */
                         this.radius = 100;
-                        /** @property {Number} [width=0]
-                        * @protected
-                        * The width of the mesh.
-                        */
                         this.width = 0;
-                        /** @property {Number} [height=0]
-                        * @protected
-                        * The height of the mesh.
-                        */
                         this.height = 0;
-                        /** @property {Number} [depth=0]
-                        * @protected
-                        * The depth of the mesh.
-                        */
                         this.depth = 0;
-                        /** @property {Number} [widthSegments=1]
-                        * @protected
-                        * The width segments in the cube.
-                        */
                         this.widthSegments = 1;
-                        /** @property {Number} [heightSegments=1]
-                        * @protected
-                        * The height segments in the cube.
-                        */
                         this.heightSegments = 1;
-                        /** @property {Number} [depthSegments=1]
-                        * @protected
-                        * The depth segments in the cube.
-                        */
                         this.depthSegments = 1;
                         this.type = RadJav.setDefaultValue(obj.type, "mesh");
                         this.radius = RadJav.setDefaultValue(obj.radius, 100);
@@ -251,11 +141,7 @@ var RadJav;
                 Mesh.Data = Data;
             })(Mesh = Model.Mesh || (Model.Mesh = {}));
         })(Model = C3D.Model || (C3D.Model = {}));
-        /** @class RadJav.C3D.Model.Sphere
-        * Create a sphere.
-        * Available on platforms: Windows,Linux,OSX,HTML5
-        */
-        var Sphere = /** @class */ (function (_super) {
+        var Sphere = (function (_super) {
             __extends(Sphere, _super);
             function Sphere(object3d, obj, materials, radius) {
                 var _this = _super.call(this, object3d, obj, materials) || this;

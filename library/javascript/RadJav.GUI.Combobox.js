@@ -33,6 +33,7 @@ var RadJav;
                 }
                 _this = _super.call(this, obj, text, parent) || this;
                 _this.type = "RadJav.GUI.Combobox";
+                _this._items = RadJav.setDefaultValue(obj._items, []);
                 return _this;
             }
             Combobox.prototype.onCreated = function () {
@@ -45,31 +46,31 @@ var RadJav;
                 if (typeof item == "string") {
                     item = { text: item };
                 }
-                RadJav.Theme.eventSync(this.type, "addItem", this, item);
+                RadJav.theme.eventSync(this.type, "addItem", this, item);
             };
             Combobox.prototype.setItems = function (items) {
-                RadJav.Theme.eventSync(this.type, "setItems", this, items);
+                RadJav.theme.eventSync(this.type, "setItems", this, items);
             };
             Combobox.prototype.deleteItem = function (index) {
-                RadJav.Theme.eventSync(this.type, "deleteItem", this, index);
+                RadJav.theme.eventSync(this.type, "deleteItem", this, index);
             };
             Combobox.prototype.getItem = function (index) {
-                return RadJav.Theme.eventSync(this.type, "getItem", this, index);
+                return RadJav.theme.eventSync(this.type, "getItem", this, index);
             };
             Combobox.prototype.getItems = function () {
-                return RadJav.Theme.eventSync(this.type, "getItems", this);
+                return RadJav.theme.eventSync(this.type, "getItems", this);
             };
             Combobox.prototype.getNumItems = function () {
-                return RadJav.Theme.eventSync(this.type, "getNumItems", this);
+                return RadJav.theme.eventSync(this.type, "getNumItems", this);
             };
             Combobox.prototype.clear = function () {
-                return RadJav.Theme.eventSync(this.type, "clear", this);
+                return RadJav.theme.eventSync(this.type, "clear", this);
             };
             Combobox.prototype.setSelectedItemIndex = function (index) {
-                RadJav.Theme.eventSync(this.type, "setSelectedItemIndex", this, index);
+                RadJav.theme.eventSync(this.type, "setSelectedItemIndex", this, index);
             };
             Combobox.prototype.getSelectedItemIndex = function () {
-                return RadJav.Theme.eventSync(this.type, "getSelectedItemIndex", this);
+                return RadJav.theme.eventSync(this.type, "getSelectedItemIndex", this);
             };
             return Combobox;
         }(RadJav.GUI.GObject));
@@ -87,5 +88,5 @@ var RadJav;
             }());
             Combobox.Item = Item;
         })(Combobox = GUI.Combobox || (GUI.Combobox = {}));
-    })(GUI || (GUI = {}));
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

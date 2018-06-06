@@ -28,7 +28,9 @@ namespace RadJav {
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
     export class Canvas3D extends RadJav.GUI.GObject {
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
+
         if (obj == null) {
           obj = {};
         }
@@ -60,11 +62,13 @@ namespace RadJav {
        * The renderer used to render the canvas.
        */
       protected _renderer: any;
+
       /** @property {Number} [_rendererType=1]
        * @protected
        * The renderer type used to render the canvas.
        */
       protected _rendererType: Number;
+
       /** @property {Object} [_currentCamera=null]
        * @protected
        * The current camera used to render the scene.
@@ -79,27 +83,25 @@ namespace RadJav {
        * @protected
        * The materials that have been loaded for use. Each key is a RadJav.C3D.Material.
        */
-      protected _materials: Object[];
+      protected _materials: object[];
 
       protected _sceneManager:any;
 
-      create(): Promise<RadJav.GUI.GObject> {
-        var promise = RadJav.Theme.event(this.type, "create", this).then(
+      public create(): Promise<RadJav.GUI.GObject> {
+        var promise = RadJav.theme.event(this.type, "create", this).then(
           RadJav.keepContext(function(html) {
             this._html = html;
 
-            if (
-              this._rendererType ==
-              RadJav.GUI.Canvas3D.RendererTypes.AnyAvailable
-            ) {
-              try {
-                this._renderer = new THREE.WebGLRenderer({
-                  canvas: this._html,
-                  alpha: false
-                });
-              } catch (ex) {
-                console.log(RadJav._lang.webglIsNotSupported);
-              }
+            if (this._rendererType == RadJav.GUI.Canvas3D.RendererTypes.AnyAvailable) 
+            {
+                try{
+                      this._renderer = new THREE.WebGLRenderer({
+                          canvas: this._html,
+                          alpha: false
+                      });
+                } catch (ex) {
+                  console.log(RadJav._lang.webglIsNotSupported);
+                }
 
               if (this._renderer == null) {
                 this._renderer = new THREE.CanvasRenderer({
@@ -108,18 +110,16 @@ namespace RadJav {
                 });
               }
             } else {
+
               var rendererType = "WebGLRenderer";
 
-              if (
-                this._rendererType == RadJav.GUI.Canvas3D.RendererTypes.WebGL
-              ) {
-                rendererType = "WebGLRenderer";
+              if (this._rendererType == RadJav.GUI.Canvas3D.RendererTypes.WebGL)
+              {
+                  rendererType = "WebGLRenderer";
               }
 
-              if (
-                this._rendererType ==
-                RadJav.GUI.Canvas3D.RendererTypes.Context2D
-              ) {
+              if (this._rendererType == RadJav.GUI.Canvas3D.RendererTypes.Context2D)
+              {
                 rendererType = "CanvasRenderer";
               }
 
@@ -164,7 +164,7 @@ namespace RadJav {
        * @return {Promise} The promise to execute when the camera has finished being
        * created.
        */
-      _setupDefaultCamera(): Promise<RadJav.C3D.Camera> {
+     public _setupDefaultCamera(): Promise<RadJav.C3D.Camera> {
         var camera = new RadJav.C3D.Camera(this, "camera");
 
         return camera.create().then(
@@ -179,7 +179,7 @@ namespace RadJav {
        * Setup the default scene manager.
        * @return {RadJav.GUI.GObject} The parent of this object.
        */
-      _setupDefaultSceneManager(): void {
+      public _setupDefaultSceneManager(): void {
         this._sceneManager = new THREE.Scene();
       }
 
@@ -187,7 +187,7 @@ namespace RadJav {
        * Set the ambient light color of the scene.
        * @param {RadJav.Color} color The color.
        */
-      setAmbientLightColor(colour: Color): void {
+      public setAmbientLightColor(colour: Color): void {
         this._sceneManager.add(new THREE.AmbientLight(colour.toHexInt()));
       }
 
@@ -198,7 +198,7 @@ namespace RadJav {
        * @param {RadJav.C3D.Model} model The 3d model to create.
        * @return {Promise} The promise to execute when the entity has finished creating.
        */
-      createEntity(name: string, parent: RadJav.C3D.Object3D, model: RadJav.C3D.Model): Promise<any> {
+      public createEntity(name: string, parent: RadJav.C3D.Object3D, model: RadJav.C3D.Model): Promise<any> {
         var entity = new RadJav.C3D.Entity(this, name, parent, model);
         return entity.create();
       }
@@ -207,7 +207,7 @@ namespace RadJav {
        * Add a loaded model for use.
        * @param {RadJav.C3D.Model} model The model to add.
        */
-      addModel(model: RadJav.C3D.Model): void {
+      public addModel(model: RadJav.C3D.Model): void {
         this._models[model.getName()] = model;
       }
 
@@ -215,28 +215,28 @@ namespace RadJav {
        * Add a loaded material for use.
        * @param {RadJav.C3D.Material} material The material to add.
        */
-      addMaterial(material: RadJav.C3D.Material): void {
+      public addMaterial(material: RadJav.C3D.Material): void {
         this._materials[material.getName()] = material;
       }
 
       /** @method getNumModels
        * Get the number of models that have been loaded.
        */
-      getNumModels(): Number {
+      public getNumModels(): Number {
         return Object.keys(this._models).length;
       }
 
       /** @method getNumMaterials
        * Get the number of materials that have been loaded.
        */
-      getNumMaterials(): Number {
+      public getNumMaterials(): Number {
         return Object.keys(this._materials).length;
       }
 
       /** @method render
        * Perform the actual rendering.
        */
-      render(): void {
+      public render(): void {
         requestAnimationFrame(RadJav.keepContext(this.render, this));
         this._renderer.render(this._sceneManager, this._currentCamera._obj3d);
       }
@@ -245,7 +245,7 @@ namespace RadJav {
        * Set the ambient light color of the scene.
        * @param {RadJav.Color} color The color.
        */
-      createWorld(colour): void {
+      public createWorld(colour): void {
         this._sceneManager.add(new THREE.AmbientLight(colour.toHexInt()));
       }
 
@@ -253,7 +253,7 @@ namespace RadJav {
        * Set the ambient light color of the scene.
        * @param {RadJav.Color} color The color.
        */
-      setWorld(colour: Color): void {
+      public setWorld(colour: Color): void {
         this._sceneManager.add(new THREE.AmbientLight(colour.toHexInt()));
       }
     }

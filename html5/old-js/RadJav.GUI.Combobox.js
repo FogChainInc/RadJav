@@ -191,8 +191,10 @@ RadJav.GUI.Combobox.Item = (function ()
 {
 	function Item (obj)
 	{
-		if (obj == null)
+		if (obj == null){
 			obj = {};
+		}
+			
 
 		/** @property {String} [name=""]
 		* The name.

@@ -16,14 +16,6 @@ var RadJav;
             __extends(Entity, _super);
             function Entity(canvas3d, obj, parent, model) {
                 var _this = _super.call(this, canvas3d, obj, parent) || this;
-                _this.Types = {
-                    None: 0,
-                    Cube: 1,
-                    Sphere: 2,
-                    Plane: 3,
-                    Camera: 4,
-                    Light: 5
-                };
                 if (typeof obj == "string") {
                     var tempObj = obj;
                     obj = {};
@@ -61,6 +53,14 @@ var RadJav;
             };
             Entity.prototype.getModel = function () {
                 return this._model;
+            };
+            Entity.Types = {
+                None: 0,
+                Cube: 1,
+                Sphere: 2,
+                Plane: 3,
+                Camera: 4,
+                Light: 5
             };
             return Entity;
         }(RadJav.C3D.Object3D));

@@ -21,7 +21,7 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace GUI {
+  export namespace GUI {
     /** @class RadJav.IO
      * The IO class.
      * Available on platforms: Windows,Linux,OSX

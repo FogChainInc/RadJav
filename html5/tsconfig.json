@@ -1,9 +1,12 @@
 {
 	"compilerOptions": {
-			"target": "ES3", 
-			"outDir": "./build/", 
+			"target": "es3", 
+			"outDir": "./RadJav/", 
 			"lib": ["es5", "es2015.promise","dom","scripthost"],
-			"types": []
+			"types": ["ts-node"],
+			 "typeRoots": ["node_modules/@types"],
+			 "module": "es6"
+			// "declaration": true
 		}, 
 	"include": [
 		"./src/*"

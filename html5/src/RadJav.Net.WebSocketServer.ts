@@ -22,7 +22,7 @@
 
 namespace RadJav
 {
-	 namespace Net
+	export	 namespace Net
 	{
 		export class WebSocketServer
 		{
@@ -33,7 +33,7 @@ namespace RadJav
 			/** @property {Number} [port=0]
 			* The port.
 			*/
-			clients: WebSocketClient[];
+			private clients: WebSocketClient[];
 			/** @property {Mixed} [_webSocket=null]
 			* The port.
 			*/
@@ -50,7 +50,7 @@ namespace RadJav
 			}
 		}
 
-		export class WebSocketClient
+		class WebSocketClient
 		{
 			/** @property {Number} [port=0]
 			* The port.

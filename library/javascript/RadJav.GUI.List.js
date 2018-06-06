@@ -57,23 +57,23 @@ var RadJav;
                     }
                 }
                 this._columns.push(tempColumn);
-                RadJav.Theme.eventSync(this.type, "addColumn", this, tempColumn);
+                RadJav.theme.eventSync(this.type, "addColumn", this, tempColumn);
             };
             List.prototype.setColumns = function (columns) {
                 this._columns = columns;
-                RadJav.Theme.eventSync(this.type, "setColumns", this, columns);
+                RadJav.theme.eventSync(this.type, "setColumns", this, columns);
             };
             List.prototype.addRow = function (row, hiddenValue) {
-                RadJav.Theme.eventSync(this.type, "addRow", this, row, hiddenValue);
+                RadJav.theme.eventSync(this.type, "addRow", this, row, hiddenValue);
             };
             List.prototype.setRows = function (rows, hiddenRows) {
-                RadJav.Theme.eventSync(this.type, "setRows", this, rows, hiddenRows);
+                RadJav.theme.eventSync(this.type, "setRows", this, rows, hiddenRows);
             };
             List.prototype.getSelectedRows = function () {
-                return RadJav.Theme.eventSync(this.type, "getSelectedRows", this);
+                return RadJav.theme.eventSync(this.type, "getSelectedRows", this);
             };
             List.prototype.deleteRows = function (selection) {
-                return RadJav.Theme.eventSync(this.type, "deleteRows", this, selection);
+                return RadJav.theme.eventSync(this.type, "deleteRows", this, selection);
             };
             return List;
         }(RadJav.GUI.GObject));

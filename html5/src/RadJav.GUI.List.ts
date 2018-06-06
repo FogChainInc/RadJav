@@ -28,7 +28,7 @@ namespace RadJav {
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
     export class List extends RadJav.GUI.GObject {
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }
@@ -91,7 +91,7 @@ namespace RadJav {
         }
 
         this._columns.push(tempColumn);
-        RadJav.Theme.eventSync(this.type, "addColumn", this, tempColumn);
+        RadJav.theme.eventSync(this.type, "addColumn", this, tempColumn);
       }
 
       /** @method setColumns
@@ -103,7 +103,7 @@ namespace RadJav {
        */
       setColumns(columns) {
         this._columns = columns;
-        RadJav.Theme.eventSync(this.type, "setColumns", this, columns);
+        RadJav.theme.eventSync(this.type, "setColumns", this, columns);
       }
 
       /** @method addRow
@@ -117,7 +117,7 @@ namespace RadJav {
        * parameter, and it will be deleted from the row object.
        */
       addRow(row, hiddenValue) {
-        RadJav.Theme.eventSync(this.type, "addRow", this, row, hiddenValue);
+        RadJav.theme.eventSync(this.type, "addRow", this, row, hiddenValue);
       }
 
       /** @method setRows
@@ -129,7 +129,7 @@ namespace RadJav {
        * @param {Array} [hiddenRows=null] The hidden rows of data to set.
        */
       setRows(rows, hiddenRows) {
-        RadJav.Theme.eventSync(this.type, "setRows", this, rows, hiddenRows);
+        RadJav.theme.eventSync(this.type, "setRows", this, rows, hiddenRows);
       }
 
       /** @method getSelectedRows
@@ -140,7 +140,7 @@ namespace RadJav {
        * @return {RadJav.GUI.List.Selection} The selected objects.
        */
       getSelectedRows() {
-        return RadJav.Theme.eventSync(this.type, "getSelectedRows", this);
+        return RadJav.theme.eventSync(this.type, "getSelectedRows", this);
       }
 
       /** @method deleteRows
@@ -151,7 +151,7 @@ namespace RadJav {
        * @param {RadJav.GUI.List.Selection} selection The selection to delete.
        */
       deleteRows(selection) {
-        return RadJav.Theme.eventSync(this.type, "deleteRows", this, selection);
+        return RadJav.theme.eventSync(this.type, "deleteRows", this, selection);
       }
 
 
@@ -177,7 +177,7 @@ namespace RadJav {
        * Add an item to this row.
        * @param {RadJav.GUI.List.Item} item The item to add.
        */
-      addItem(item) {
+      public addItem(item) {
         if (typeof item != "object") {
           item = new RadJav.GUI.List.Item({ text: item });
         }
@@ -255,12 +255,12 @@ namespace RadJav {
          * @protected
          * The HTML object associated with this selection.
          */
-        _html;
+        protected _html;
         /** @property {Mixed} [_appObj=null]
          * @protected
          * The os object associated with this selection.
          */
-        _appObj;
+       protected _appObj;
       }
     }
   }

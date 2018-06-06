@@ -39,5 +39,5 @@ var RadJav;
                 return TextFile;
             }());
         })(IO = GUI.IO || (GUI.IO = {}));
-    })(GUI || (GUI = {}));
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));

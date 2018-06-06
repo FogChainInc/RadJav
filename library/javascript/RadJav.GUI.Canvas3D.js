@@ -38,10 +38,9 @@ var RadJav;
                 return _this;
             }
             Canvas3D.prototype.create = function () {
-                var promise = RadJav.Theme.event(this.type, "create", this).then(RadJav.keepContext(function (html) {
+                var promise = RadJav.theme.event(this.type, "create", this).then(RadJav.keepContext(function (html) {
                     this._html = html;
-                    if (this._rendererType ==
-                        RadJav.GUI.Canvas3D.RendererTypes.AnyAvailable) {
+                    if (this._rendererType == RadJav.GUI.Canvas3D.RendererTypes.AnyAvailable) {
                         try {
                             this._renderer = new THREE.WebGLRenderer({
                                 canvas: this._html,
@@ -63,8 +62,7 @@ var RadJav;
                         if (this._rendererType == RadJav.GUI.Canvas3D.RendererTypes.WebGL) {
                             rendererType = "WebGLRenderer";
                         }
-                        if (this._rendererType ==
-                            RadJav.GUI.Canvas3D.RendererTypes.Context2D) {
+                        if (this._rendererType == RadJav.GUI.Canvas3D.RendererTypes.Context2D) {
                             rendererType = "CanvasRenderer";
                         }
                         this._renderer = new THREE[rendererType]({

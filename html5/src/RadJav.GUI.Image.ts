@@ -21,14 +21,14 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace GUI {
+  export namespace GUI {
     /** @class RadJav.GUI.Image
      * @extends RadJav.GUI.GObject
      * An image.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
     export class Image extends RadJav.GUI.GObject {
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }
@@ -59,10 +59,10 @@ namespace RadJav {
        * The image thats being used. If a string, it will be converted into
        * an Image when the image is set.
        */
-      protected _image: String | any;
+      protected _image: any;
 
       
-      onCreated(): void {
+      public onCreated(): void {
         
         if (this._image != null) {
           this.setImage(this._image);
@@ -76,8 +76,8 @@ namespace RadJav {
        * @param {String/Image} image The image to display.
        * @return {Promise} Executes the promise when the image has loaded.
        */
-      setImage(image: String | any): void {
-        RadJav.Theme.event(this.type, "setImage", this, image);
+      public setImage(image: string | any): void {
+        RadJav.theme.event(this.type, "setImage", this, image);
       }
     }
   }

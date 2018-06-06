@@ -21,14 +21,15 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace GUI {
+  export namespace GUI {
     /** @class RadJav.GUI.Checkbox
      * @extends RadJav.GUI.GObject
      * A checkbox.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    export class Checkbox extends RadJav.GUI.GObject {
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+    export class Checkbox extends RadJav.GUI.GObject{
+
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }
@@ -71,17 +72,18 @@ namespace RadJav {
        * @param {Boolean} checked Whether or not this is checked.
        * @return {Promise} Executes the promise when the image has loaded.
        */
-      setChecked(checked: boolean): void {
-        RadJav.Theme.eventSync(this.type, "setChecked", this, checked);
+      public setChecked(checked: boolean): void {
+        RadJav.theme.eventSync(this.type, "setChecked", this, checked);
       }
+
 
       /** Checks if this checkbox is checked.
        * Theme Event: isChecked
        * Is Theme Event Asynchronous: No
        * @return {Boolean} Whether or not this is checked.
        */
-      isChecked(): boolean {
-        return RadJav.Theme.eventSync(this.type, "isChecked", this);
+      public isChecked(): boolean {
+        return RadJav.theme.eventSync(this.type, "isChecked", this);
       }
     }
   }

@@ -21,17 +21,18 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace GUI {
+  export namespace GUI {
     /** @class RadJav.GUI.Container
      * @extends RadJav.GUI.GObject
      * A container.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
-    class Container extends RadJav.GUI.GObject {
+  export  class Container extends RadJav.GUI.GObject {
 
       
 
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
+        
         if (obj == null) {
           obj = {};
         }

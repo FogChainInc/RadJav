@@ -29,7 +29,7 @@
       /** @property {String} [name=""]
        * The name of this object.
        */
-      name: String;
+      name: string;
       /** @property {String} [type=""]
        * The type of object.
        */
@@ -54,7 +54,7 @@
        * @protected
        * The text associated with this object.
        */
-      _text: String;
+      _text: string;
       /** @property {RadJav.Font} [_font=new RadJav.Font ()]
        * @protected
        * The font associated with this object.
@@ -64,7 +64,7 @@
        * @protected
        * The cursor to use.
        */
-      _cursor: String;
+      _cursor: string;
       /** @property {Mixed} [_parent=null]
        * @protected
        * The parent of this object.
@@ -117,7 +117,7 @@
 
       constructor(
         obj?: any,
-        text?: String,
+        text?: string,
         parent?: GObject,
         beforeCreatedChild?: boolean
       ) {
@@ -254,7 +254,7 @@
        * Is Theme Event Asynchronous: Yes
        * @return {Promise} The promise to execute when the creation is completed.
        */
-      create(): Promise<GObject> {
+      public create(): Promise<GObject> {
         var promise = new Promise<GObject>(
           RadJav.keepContext(function(resolve, reject) {
             if (this.createOnPlatforms != null) {
@@ -267,7 +267,7 @@
                 }
               }
             }
-            var promise2 = RadJav.Theme.event(this.type, "create", this);
+            var promise2 = RadJav.theme.event(this.type, "create", this);
 
             if (promise2 == null) {
               debugger;
@@ -294,7 +294,7 @@
                     for (var key in this._events) {
                       if (this._events[key] != null) {
                         var func = new Function(this._events[key]);
-                        RadJav.Theme.event(this.type, "on", this, key, func);
+                        RadJav.theme.event(this.type, "on", this, key, func);
                       }
                     }
 
@@ -321,7 +321,7 @@
        */
       setFont(font: Font): void {
         this._font = font;
-        RadJav.Theme.eventSync(this.type, "setFont", this, font);
+        RadJav.theme.eventSync(this.type, "setFont", this, font);
       }
 
       /** @method getFont
@@ -331,7 +331,7 @@
        * @return {RadJav.Font} The font.
        */
       getFont(): Font {
-        return RadJav.Theme.eventSync(this.type, "getFont", this);
+        return RadJav.theme.eventSync(this.type, "getFont", this);
       }
 
       /** @method setPosition
@@ -424,7 +424,7 @@
        * @return {String} The text associated with this object.
        */
       setText(text: String): void {
-        RadJav.Theme.event(this.type, "setText", this, text);
+        RadJav.theme.event(this.type, "setText", this, text);
       }
 
       /** @method getText
@@ -434,7 +434,7 @@
        * @return {String} The text associated with this object.
        */
       getText(): String {
-        return RadJav.Theme.eventSync(this.type, "getText", this);
+        return RadJav.theme.eventSync(this.type, "getText", this);
       }
 
       /** @method getParent
@@ -465,7 +465,7 @@
        * @param {Boolean} visible The visibility of the object
        */
       setVisibility(visible: boolean): void {
-        RadJav.Theme.event(this.type, "setVisibility", this, visible);
+        RadJav.theme.event(this.type, "setVisibility", this, visible);
       }
 
       /** @method getVisibility
@@ -476,7 +476,7 @@
        * @return {Boolean} The visibility of this object
        */
       getVisibility(): boolean {
-        return RadJav.Theme.eventSync(this.type, "getVisibility", this);
+        return RadJav.theme.eventSync(this.type, "getVisibility", this);
       }
 
       /** @method show
@@ -506,7 +506,7 @@
        * Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
        */
       setEnabled(enabled: boolean): void {
-        RadJav.Theme.event(this.type, "setEnabled", this, enabled);
+        RadJav.theme.event(this.type, "setEnabled", this, enabled);
       }
 
       /** @method getEnabled
@@ -517,7 +517,7 @@
        * @return {Boolean} The enabled status of this object
        */
       getEnabled(): boolean {
-        return RadJav.Theme.eventSync(this.type, "getEnabled", this);
+        return RadJav.theme.eventSync(this.type, "getEnabled", this);
       }
 
       /** @method on
@@ -530,7 +530,7 @@
        * @return {Mixed} The result.
        */
       on(eventName: String, func: ((...args: any[]) => any)): any {
-        return RadJav.Theme.event(this.type, "on", this, eventName, func);
+        return RadJav.theme.event(this.type, "on", this, eventName, func);
       }
 
       /** @method getHTMLDOM
@@ -542,7 +542,7 @@
        * @return {Mixed} The html dom object.
        */
       getHTMLDOM(): any {
-        return RadJav.Theme.eventSync(this.type, "getHTMLDOM", this);
+        return RadJav.theme.eventSync(this.type, "getHTMLDOM", this);
       }
     }
   }

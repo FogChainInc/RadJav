@@ -1,31 +1,8 @@
-/*
-    MIT-LICENSE
-    Copyright (c) 2017-2018 Higher Edge Software, LLC
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software
-    and associated documentation files (the "Software"), to deal in the Software without restriction,
-    including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-    subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all copies or substantial
-    portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-    LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
-/** The base GUI object.
- * Available on platforms: Windows,Linux,OSX,HTML5
- */
-/// <reference path="RadJav.ts" />
 var RadJav;
 (function (RadJav) {
     var GUI;
     (function (GUI) {
-        var GObject = /** @class */ (function () {
+        var GObject = (function () {
             function GObject(obj, text, parent, beforeCreatedChild) {
                 if (obj == null) {
                     obj = new Object();
@@ -123,21 +100,9 @@ var RadJav;
                     this._transform.setSize(size);
                 }
             }
-            /** @event [onBeforeChildCreated=null]
-             * The function to execute before a child is created.
-             */
             GObject.prototype.onBeforeChildCreated = function (obj, parent) { };
             ;
-            /** @event [onCreated=null]
-             * The function to execute once the object has been created.
-             */
             GObject.prototype.onCreated = function (obj) { };
-            /** @method create
-             * Using the existing parameters in this object, create it.
-             * Theme Event: create
-             * Is Theme Event Asynchronous: Yes
-             * @return {Promise} The promise to execute when the creation is completed.
-             */
             GObject.prototype.create = function () {
                 var promise = new Promise(RadJav.keepContext(function (resolve, reject) {
                     if (this.createOnPlatforms != null) {
@@ -177,213 +142,70 @@ var RadJav;
                 }, this));
                 return promise;
             };
-            /** @method setFont
-             * Set this object's font.
-             * Theme Event: setFont
-             * Is Theme Event Asynchronous: No
-             * @param {RadJav.Font} font The font to set.
-             */
             GObject.prototype.setFont = function (font) {
                 this._font = font;
                 RadJav.Theme.eventSync(this.type, "setFont", this, font);
             };
-            /** @method getFont
-             * Get this object's font.
-             * Theme Event: getFont
-             * Is Theme Event Asynchronous: No
-             * @return {RadJav.Font} The font.
-             */
             GObject.prototype.getFont = function () {
                 return RadJav.Theme.eventSync(this.type, "getFont", this);
             };
-            /** @method setPosition
-             * Set the position of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @param {Number/RadJav.Vector2} x The new position, or the new x coordinate of the new position.
-             * @param {Number} [y=null] The new y coordinate.
-             */
             GObject.prototype.setPosition = function (x, y) {
                 this._transform.setPosition(x, y);
             };
-            /** @method getPosition
-             * Get the position of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {RadJav.Vector2} The position of this object.
-             */
             GObject.prototype.getPosition = function () {
                 return this._transform.getPosition();
             };
-            /** @method getX
-             * Get the X position of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {RadJav.Vector2} The position of this object.
-             */
             GObject.prototype.getX = function () {
                 return this._transform.x;
             };
-            /** @method getY
-             * Get the Y position of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {RadJav.Vector2} The position of this object.
-             */
             GObject.prototype.getY = function () {
                 return this._transform.y;
             };
-            /** @method setSize
-             * Set the size of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @param {Number/RadJav.Vector2} width The object's new size, or new width.
-             * @param {Number} [height=null] The object's new height.
-             */
             GObject.prototype.setSize = function (width, height) {
                 this._transform.setSize(width, height);
             };
-            /** @method getSize
-             * Get the size of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {RadJav.Vector2} The size of this object.
-             */
             GObject.prototype.getSize = function () {
                 return this._transform.getSize();
             };
-            /** @method getWidth
-             * Get the width of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {Number} The width of this object.
-             */
             GObject.prototype.getWidth = function () {
                 return this._transform.width;
             };
-            /** @method getHeight
-             * Get the height of this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {Number} The height of this object.
-             */
             GObject.prototype.getHeight = function () {
                 return this._transform.height;
             };
-            /** @method setText
-             * Set the object's text.
-             * Theme Event: setText
-             * Is Theme Event Asynchronous: Yes
-             * @param {String} text The text to set.
-             * @return {String} The text associated with this object.
-             */
             GObject.prototype.setText = function (text) {
                 RadJav.Theme.event(this.type, "setText", this, text);
             };
-            /** @method getText
-             * Get the object's text.
-             * Theme Event: getText
-             * Is Theme Event Asynchronous: No
-             * @return {String} The text associated with this object.
-             */
             GObject.prototype.getText = function () {
                 return RadJav.Theme.eventSync(this.type, "getText", this);
             };
-            /** @method getParent
-             * Get the parent.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {RadJav.GUI.GObject} The parent of this object.
-             */
             GObject.prototype.getParent = function () {
                 return this._parent;
             };
-            /** @method getHTML
-             * Get the HTML from this object.
-             * Theme Event: None
-             * Is Theme Event Asynchronous: No
-             * @return {Mixed} The HTML object associated with this object.
-             */
             GObject.prototype.getHTML = function () {
                 return this._html;
             };
-            /** @method setVisibility
-             * Set the visibility of this object.
-             * Theme Event: setVisibility
-             * Is Theme Event Asynchronous: Yes
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
-             * @param {Boolean} visible The visibility of the object
-             */
             GObject.prototype.setVisibility = function (visible) {
                 RadJav.Theme.event(this.type, "setVisibility", this, visible);
             };
-            /** @method getVisibility
-             * Get the visibility of this object.
-             * Theme Event: setVisibility
-             * Is Theme Event Asynchronous: No
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject
-             * @return {Boolean} The visibility of this object
-             */
             GObject.prototype.getVisibility = function () {
                 return RadJav.Theme.eventSync(this.type, "getVisibility", this);
             };
-            /** @method show
-             * Show this object.
-             * Theme Event: setVisibility
-             * Is Theme Event Asynchronous: Yes
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
-             */
             GObject.prototype.show = function () {
                 this.setVisibility(true);
             };
-            /** @method hide
-             * Show this object.
-             * Theme Event: setVisibility
-             * Is Theme Event Asynchronous: Yes
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
-             */
             GObject.prototype.hide = function () {
                 this.setVisibility(false);
             };
-            /** @method setEnabled
-             * Enable or disable this object.
-             * Theme Event: setEnabled
-             * Is Theme Event Asynchronous: Yes
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject, Boolean
-             */
             GObject.prototype.setEnabled = function (enabled) {
                 RadJav.Theme.event(this.type, "setEnabled", this, enabled);
             };
-            /** @method getEnabled
-             * Get whether or not this object is enabled.
-             * Theme Event: getEnabled
-             * Is Theme Event Asynchronous: No
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject
-             * @return {Boolean} The enabled status of this object
-             */
             GObject.prototype.getEnabled = function () {
                 return RadJav.Theme.eventSync(this.type, "getEnabled", this);
             };
-            /** @method on
-             * Calls a function when an event is triggered.
-             * Theme Event: on
-             * Is Theme Event Asynchronous: No
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject, String, Function
-             * @param {String} eventName The name of the event to trigger.
-             * @param {Function} func The function to execute.
-             * @return {Mixed} The result.
-             */
             GObject.prototype.on = function (eventName, func) {
                 return RadJav.Theme.event(this.type, "on", this, eventName, func);
             };
-            /** @method getHTMLDOM
-             * Get the HTML dom object.
-             * Theme Event: getHTMLDOM
-             * Is Theme Event Asynchronous: No
-             * Parameters Passed to Theme Event: RadJav.GUI.GObject
-             * Available on platforms: HTML5
-             * @return {Mixed} The html dom object.
-             */
             GObject.prototype.getHTMLDOM = function () {
                 return RadJav.Theme.eventSync(this.type, "getHTMLDOM", this);
             };

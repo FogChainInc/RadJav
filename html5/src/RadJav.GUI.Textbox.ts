@@ -21,14 +21,14 @@
 /// <reference path="RadJav.ts" />
 
 namespace RadJav {
-  namespace GUI {
+  export namespace GUI {
     /** @class RadJav.GUI.Textbox
      * @extends RadJav.GUI.GObject
      * A Textbox.
      * Available on platforms: Windows,Linux,OSX,HTML5
      */
    export class Textbox extends RadJav.GUI.GObject{
-      constructor(obj?: any, text?: String, parent?: RadJav.GUI.GObject) {
+      constructor(obj?: any, text?: string, parent?: RadJav.GUI.GObject) {
         if (obj == null) {
           obj = {};
         }

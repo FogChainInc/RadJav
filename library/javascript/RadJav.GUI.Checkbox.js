@@ -37,13 +37,13 @@ var RadJav;
                 return _this;
             }
             Checkbox.prototype.setChecked = function (checked) {
-                RadJav.Theme.eventSync(this.type, "setChecked", this, checked);
+                RadJav.theme.eventSync(this.type, "setChecked", this, checked);
             };
             Checkbox.prototype.isChecked = function () {
-                return RadJav.Theme.eventSync(this.type, "isChecked", this);
+                return RadJav.theme.eventSync(this.type, "isChecked", this);
             };
             return Checkbox;
         }(RadJav.GUI.GObject));
         GUI.Checkbox = Checkbox;
-    })(GUI || (GUI = {}));
+    })(GUI = RadJav.GUI || (RadJav.GUI = {}));
 })(RadJav || (RadJav = {}));
