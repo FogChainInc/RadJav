@@ -1,3 +1,0 @@
-NOT YET READY FOR PUBLIC USE, USE AT YOUR OWN DISCRETION.
-
-If using Visual Studio on Windows wxWidgets must be compiled using the Multi-threaded Debug and Multi-threaded runtime libraries under C/C++ Code Generation.

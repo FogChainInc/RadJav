@@ -1,4 +1,7 @@
-## How to build the HTML5/Desktop JavaScript
+# RadJav HTML5
+The HTML5 version of RadJav. This is written in TypeScript and transpiles to JavaScript, which is then embedded into libRadJav. At the same time it also will build the HTML5 version of RadJav which can be embedded into nearly any web app. Once embedded, the developer must call the RadJav app to execute.
+
+## How to build
 NodeJS is required to build. From a terminal type: 
 
 	npm install
